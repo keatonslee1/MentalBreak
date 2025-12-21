@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mental Break · Alpha v3.5</title>
+    <meta
+      name="description"
+      content="A satirical choose your own adventure game about AI, humans, free will, and consciousness."
+    />
+    <meta name="author" content="Keaton Media LLC" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://mentalbreak.io/index.html" />
+    <meta property="og:title" content="Mental Break · Alpha v3.5" />
+    <meta
+      property="og:description"
+      content="A satirical choose your own adventure game about AI, humans, free will, and consciousness."
+    />
+    <meta property="og:image" content="https://mentalbreak.io/TemplateData/og-image.png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Mental Break · Alpha v3.5" />
+    <meta
+      name="twitter:description"
+      content="A satirical choose your own adventure game about AI, humans, free will, and consciousness."
+    />
+    <meta name="twitter:image" content="https://mentalbreak.io/TemplateData/og-image.png" />
+
+    <link rel="icon" type="image/png" href="TemplateData/alice.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="assets/css/landing-v35.css?v=20251216a" />
+    <script defer src="/_vercel/insights/script.js"></script>
+  </head>
+
+  <body>
+    <div class="mb-page">
+      <header class="mb-thin-nav" role="banner">
+        <div class="mb-brand">
+          <h1 class="mb-brand__title">
+            <a class="mb-brand__titleLink" href="index.html">MENTAL BREAK</a>
+          </h1>
+          <h2 class="mb-brand__subtitle">
+            The Satirical CYOA<br />
+            About a Dangerous AI Girlfriend
+          </h2>
+        </div>
+        <button
+          class="mb-navtoggle"
+          type="button"
+          aria-label="Open menu"
+          aria-expanded="false"
+          aria-controls="mb-primary-nav"
+        >
+          <span class="mb-navtoggle__icon" aria-hidden="true"></span>
+          <span class="mb-navtoggle__label">Menu</span>
+        </button>
+        <nav class="mb-navlinks" id="mb-primary-nav" aria-label="Primary navigation">
+          <a href="index.html">Home</a>
+          <a href="/play" data-mb-nav-play>Play</a>
+          <a href="/about">About</a>
+          <a href="/blog">Blog</a>
+          <a href="https://discord.gg/N8KEbzPmTh" target="_blank" rel="noopener">Discord</a>
+        </nav>
+      </header>
+
+      <main class="mb-hero">
+        <div class="mb-hero-wrap">
+          <section class="mb-hero-intro" aria-label="Scenario">
+            <h2 class="mb-hero-intro__title">Welcome to Bigger Tech Corp!</h2>
+            <p class="mb-hero-intro__body">
+              Keep our user Timmy hooked on his AI girlfriend. Hit your engagement targets or get fired.
+            </p>
+          </section>
+
+          <div class="mb-hero-stage" data-mb-hero-stage>
+            <video
+              class="mb-hero-stage__bg"
+              data-mb-hero-video
+              autoplay
+              muted
+              loop
+              playsinline
+              preload="auto"
+            >
+              <source src="StreamingAssets/Videos/bg_supervisoroffice.mp4" type="video/mp4" />
+            </video>
+
+            <img
+              class="mb-hero-stage__alice"
+              src="assets/images/landing/characters/alice.png"
+              alt="Alice portrait"
+            />
+
+            <img
+              class="mb-hero-stage__timmy"
+              src="assets/images/landing/characters/timmy.png"
+              alt="Timmy portrait"
+            />
+          </div>
+
+          <section class="mb-dialogue" aria-label="Dialogue">
+            <p class="mb-dialogue__text" data-mb-dialogue-text>
+              Timmy is losing interest. What subreddit shall we send him to?
+            </p>
+            <div class="mb-dialogue__choices" role="group" aria-label="Choices">
+              <button class="mb-choice" type="button" data-mb-choice="meditation">&gt; r/ Meditation</button>
+              <button class="mb-choice" type="button" data-mb-choice="pickup">&gt; r/ PickupArtists</button>
+            </div>
+          </section>
+        </div>
+      </main>
+
+      <footer class="mb-thin-footer">
+        © 2025 Keaton Media LLC All Rights Reserved - Coming to all platforms soon
+      </footer>
+    </div>
+
+    <script>
+      (function () {
+        var header = document.querySelector(".mb-thin-nav");
+        if (!header) return;
+
+        var btn = header.querySelector(".mb-navtoggle");
+        var nav = header.querySelector("#mb-primary-nav");
+        if (!btn || !nav) return;
+
+        function setOpen(isOpen) {
+          header.classList.toggle("mb-nav-open", isOpen);
+          btn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+          btn.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
+        }
+
+        btn.addEventListener("click", function () {
+          var isOpen = header.classList.contains("mb-nav-open");
+          setOpen(!isOpen);
+        });
+
+        nav.addEventListener("click", function (e) {
+          var target = e.target;
+          if (target && target.tagName === "A") setOpen(false);
+        });
+
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape") setOpen(false);
+        });
+      })();
+    </script>
+    <script src="assets/js/landing-v35.js?v=20251216a"></script>
+  </body>
+</html>
+
+

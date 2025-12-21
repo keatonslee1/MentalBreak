@@ -274,13 +274,24 @@ public class FMODAudioManager : MonoBehaviour
         // Stop current music with proper ending
         StopCurrentMusic(immediate: false);
 
-        // Start new event
+        // Start new event - wrapped in try-catch to prevent breaking dialogue if banks aren't loaded
         currentEventPath = fullPath;
-        currentMusicInstance = RuntimeManager.CreateInstance(fullPath);
+        try
+        {
+            currentMusicInstance = RuntimeManager.CreateInstance(fullPath);
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogWarning($"[FMOD] Could not create event instance for '{fullPath}': {e.Message}. " +
+                "This may happen if FMOD banks failed to load (check StreamingAssets). Dialogue will continue without music.");
+            currentEventPath = null;
+            return;
+        }
 
         if (!currentMusicInstance.isValid())
         {
-            Debug.LogError($"[FMOD] Failed to create instance for: {fullPath}");
+            Debug.LogWarning($"[FMOD] Failed to create instance for: {fullPath}. Dialogue will continue without music.");
+            currentEventPath = null;
             return;
         }
 

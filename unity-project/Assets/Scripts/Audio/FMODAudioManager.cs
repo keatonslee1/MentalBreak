@@ -75,6 +75,9 @@ public class FMODAudioManager : MonoBehaviour
         }
     }
 
+    // Current music volume (0-1)
+    private float musicVolume = 0.7f;
+
     void Awake()
     {
         if (Instance == null)
@@ -88,10 +91,46 @@ public class FMODAudioManager : MonoBehaviour
         }
     }
 
+    void Start()
+    {
+        // Get initial volume from SettingsManager
+        if (SettingsManager.Instance != null)
+        {
+            musicVolume = SettingsManager.Instance.GetMusicVolume();
+            SettingsManager.Instance.OnMusicVolumeChanged += OnMusicVolumeChanged;
+        }
+    }
+
     void OnDestroy()
     {
+        // Unsubscribe from volume changes
+        if (SettingsManager.Instance != null)
+        {
+            SettingsManager.Instance.OnMusicVolumeChanged -= OnMusicVolumeChanged;
+        }
+
         StopCurrentMusic(immediate: true);
         if (Instance == this) Instance = null;
+    }
+
+    /// <summary>
+    /// Called when music volume setting changes.
+    /// </summary>
+    private void OnMusicVolumeChanged(float volume)
+    {
+        musicVolume = volume;
+        ApplyVolumeToCurrentInstance();
+    }
+
+    /// <summary>
+    /// Apply current volume to the playing music instance.
+    /// </summary>
+    private void ApplyVolumeToCurrentInstance()
+    {
+        if (currentMusicInstance.isValid())
+        {
+            currentMusicInstance.setVolume(musicVolume);
+        }
     }
 
     #region Public API - Soundtrack Side
@@ -254,8 +293,11 @@ public class FMODAudioManager : MonoBehaviour
             }
         }
 
+        // Apply current volume setting
+        currentMusicInstance.setVolume(musicVolume);
+
         currentMusicInstance.start();
-        Debug.Log($"[FMOD] Started: {eventName}" + (startLoop > 0 ? $" at Loop{(char)('A' + startLoop)}" : ""));
+        Debug.Log($"[FMOD] Started: {eventName}" + (startLoop > 0 ? $" at Loop{(char)('A' + startLoop)}" : "") + $" (vol={musicVolume:F2})");
     }
 
     /// <summary>

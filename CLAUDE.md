@@ -86,13 +86,13 @@ python -m http.server 8000
 
 | Folder | Purpose | Key Files |
 |--------|---------|-----------|
-| Core/ | Game state, saves | GameManager, SaveLoadManager, SaveExporter, RunTransitionManager |
+| Core/ | Game state, saves, settings | GameManager, SaveLoadManager, SaveExporter, SettingsManager |
 | Dialogue/ | Dialogue flow | DialogueAdvanceHandler, OptionsInputHandler |
-| UI/ | User interface | MenuManager, PauseMenuManager, StoreUI, DayplannerUI |
+| UI/ | User interface | MenuManager, PauseMenuManager, SettingsPanel, StoreUI |
 | Audio/ | Audio commands | AudioCommandHandler, FMODAudioManager |
 | Characters/ | Portraits | CharacterSpriteManager, CharacterTalkAnimation |
 | Commands/ | Yarn handlers | BackgroundCommandHandler, CheckpointCommandHandler |
-| Editor/ | Dev tools | DialogueSystemUIAutoWire, various setup scripts |
+| Editor/ | Dev tools | DialogueSystemUIAutoWire, SettingsPanelSetup, various scripts |
 
 ### Yarn Commands
 
@@ -176,6 +176,31 @@ Use `LoopChange` + ending parameters:
 <<fmod BSIDE_ArthurTheme 2>>       // Start at LoopC (0=A,1=B,2=C,3=D)
 <<fmod_param EndFade 1>>           // Manual parameter control
 ```
+
+## Settings System
+
+**SettingsManager** (`Scripts/Core/SettingsManager.cs`)
+- Centralized settings persistence via PlayerPrefs
+- Volume controls: Master, Music, SFX (0.0-1.0)
+- Events for settings changes (OnMasterVolumeChanged, etc.)
+
+**SettingsPanel** (`Scripts/UI/SettingsPanel.cs`)
+- In-game settings UI accessed from pause menu
+- Volume sliders with percentage display
+- Soundtrack toggle (Nela's Score / Franco's Score)
+- Reset to Defaults button
+
+### PlayerPrefs Keys
+| Key | Type | Default | Description |
+|-----|------|---------|-------------|
+| `MasterVolume` | float | 1.0 | Master volume multiplier |
+| `MusicVolume` | float | 0.7 | Music volume (legacy + FMOD) |
+| `SFXVolume` | float | 1.0 | Sound effects volume |
+| `SoundtrackSide` | string | "A" | Soundtrack preference ("A" or "B") |
+
+### Editor Setup
+- `Tools > Setup Settings Panel in Pause Menu` - Creates complete settings UI
+- `Tools > Setup SettingsManager in Scene` - Adds SettingsManager component
 
 ## WebGL Notes
 

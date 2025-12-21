@@ -39,20 +39,91 @@ public class AudioCommandHandler : MonoBehaviour
     {
         // Initialize dictionaries from lists
         BuildDictionaries();
-        
+
         // Create AudioSource components if not assigned
         if (bgmSource == null)
         {
             bgmSource = gameObject.AddComponent<AudioSource>();
             bgmSource.loop = true; // BGM typically loops
         }
-        bgmSource.volume = 0.5f; // Set BGM volume to half (0.5) to reduce loudness
-        
+
         if (sfxSource == null)
         {
             sfxSource = gameObject.AddComponent<AudioSource>();
             sfxSource.loop = false; // SFX typically don't loop
         }
+
+        // Apply initial volume from settings
+        ApplyVolumeSettings();
+    }
+
+    void Start()
+    {
+        // Subscribe to volume changes from SettingsManager
+        if (SettingsManager.Instance != null)
+        {
+            SettingsManager.Instance.OnMusicVolumeChanged += OnMusicVolumeChanged;
+            SettingsManager.Instance.OnSFXVolumeChanged += OnSFXVolumeChanged;
+            SettingsManager.Instance.OnMasterVolumeChanged += OnMasterVolumeChanged;
+        }
+    }
+
+    void OnDestroy()
+    {
+        // Unsubscribe from volume changes
+        if (SettingsManager.Instance != null)
+        {
+            SettingsManager.Instance.OnMusicVolumeChanged -= OnMusicVolumeChanged;
+            SettingsManager.Instance.OnSFXVolumeChanged -= OnSFXVolumeChanged;
+            SettingsManager.Instance.OnMasterVolumeChanged -= OnMasterVolumeChanged;
+        }
+    }
+
+    /// <summary>
+    /// Apply current volume settings to audio sources.
+    /// </summary>
+    private void ApplyVolumeSettings()
+    {
+        float musicVolume = 0.7f; // Default
+        float sfxVolume = 1.0f; // Default
+
+        if (SettingsManager.Instance != null)
+        {
+            musicVolume = SettingsManager.Instance.GetMusicVolume();
+            sfxVolume = SettingsManager.Instance.GetSFXVolume();
+        }
+
+        if (bgmSource != null)
+        {
+            bgmSource.volume = musicVolume;
+        }
+
+        if (sfxSource != null)
+        {
+            sfxSource.volume = sfxVolume;
+        }
+    }
+
+    private void OnMusicVolumeChanged(float volume)
+    {
+        if (bgmSource != null)
+        {
+            bgmSource.volume = volume;
+        }
+    }
+
+    private void OnSFXVolumeChanged(float volume)
+    {
+        if (sfxSource != null)
+        {
+            sfxSource.volume = volume;
+        }
+    }
+
+    private void OnMasterVolumeChanged(float volume)
+    {
+        // Master volume is handled by AudioListener.volume in SettingsManager
+        // No action needed here
     }
     
     void BuildDictionaries()

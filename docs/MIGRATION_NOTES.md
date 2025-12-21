@@ -202,13 +202,56 @@ The game now has two parallel audio systems:
 
 ---
 
-## Remaining Work / Future Phases
+## Phase 5: Settings Menu Implementation
+**Commits:** `TBD` | **Date:** Dec 21, 2025
 
-### Phase 5: Settings Menu (Planned)
-- Implement proper settings panel in pause menu
-- Wire SoundtrackToggleUI into settings
-- Add volume controls (master, music, SFX)
-- Display/accessibility options
+### What Was Done
+
+#### SettingsManager (`Scripts/Core/SettingsManager.cs`)
+Centralized settings persistence with PlayerPrefs:
+
+**Volume Settings:**
+- Master Volume (0.0-1.0, default 1.0) - Controls AudioListener.volume
+- Music Volume (0.0-1.0, default 0.7) - Applied to AudioCommandHandler and FMODAudioManager
+- SFX Volume (0.0-1.0, default 1.0) - Applied to AudioCommandHandler
+
+**Features:**
+- Event-based updates (OnMasterVolumeChanged, OnMusicVolumeChanged, OnSFXVolumeChanged)
+- Auto-save on application pause/quit
+- Reset to defaults functionality
+
+#### SettingsPanel (`Scripts/UI/SettingsPanel.cs`)
+In-game settings UI accessed from pause menu:
+
+- Volume sliders with percentage display
+- Soundtrack toggle (Nela's Score / Franco's Score)
+- Reset to Defaults button
+- Back button to return to pause menu
+
+#### Audio System Integration
+- **AudioCommandHandler**: Subscribes to volume changes, applies Music/SFX volume
+- **FMODAudioManager**: Subscribes to Music volume changes, applies to FMOD events
+
+#### PauseMenuManager Updates
+- Settings button now enabled and functional
+- Opens SettingsPanel, hides pause menu buttons
+- ESC closes settings panel and returns to pause menu
+
+### Editor Setup Tools
+- `Tools > Setup Settings Panel in Pause Menu` - Creates complete settings UI
+- `Tools > Setup SettingsManager in Scene` - Adds SettingsManager component
+
+### PlayerPrefs Keys
+| Key | Type | Default |
+|-----|------|---------|
+| `MasterVolume` | float | 1.0 |
+| `MusicVolume` | float | 0.7 |
+| `SFXVolume` | float | 1.0 |
+| `SoundtrackSide` | string | "A" |
+
+---
+
+## Remaining Work / Future Phases
 
 ### Phase 6: Save/Load UI Feedback (Planned)
 - Toast notifications for save/load success/failure
@@ -237,6 +280,7 @@ Scripts/Core/
 ├── GameManager.cs           # Central game state coordinator
 ├── SaveLoadManager.cs       # Save/load with slot management
 ├── SaveExporter.cs          # Base64 export/import utility
+├── SettingsManager.cs       # Volume and settings persistence
 └── RunTransitionManager.cs  # 4-run structure management
 
 Scripts/Audio/
@@ -247,9 +291,14 @@ Scripts/Commands/
 └── CommandHandlerRegistrar.cs  # Yarn command registration (WebGL fix)
 
 Scripts/UI/
-├── PauseMenuManager.cs      # Pause menu with save/load
+├── PauseMenuManager.cs      # Pause menu with save/load/settings
 ├── SaveSlotSelectionUI.cs   # 8-slot save UI
+├── SettingsPanel.cs         # Volume sliders and settings UI
 └── SoundtrackToggleUI.cs    # A/B side toggle button
+
+Scripts/Editor/
+├── SettingsPanelSetup.cs    # Creates settings panel in scene
+└── SoundtrackToggleSetup.cs # Creates soundtrack toggle
 ```
 
 ### Yarn Command Quick Reference

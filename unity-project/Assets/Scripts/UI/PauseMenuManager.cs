@@ -85,6 +85,9 @@ public class PauseMenuManager : MonoBehaviour
     [Tooltip("SaveSlotSelectionUI instance (for load game selection)")]
     public SaveSlotSelectionUI saveSlotSelectionUI;
 
+    [Tooltip("SettingsPanel instance (auto-found if null)")]
+    public SettingsPanel settingsPanel;
+
     private bool isPaused = false;
     private float previousTimeScale = 1f;
 
@@ -170,6 +173,11 @@ public class PauseMenuManager : MonoBehaviour
         {
             saveSlotSelectionUI = FindFirstObjectByType<SaveSlotSelectionUI>();
         }
+
+        if (settingsPanel == null)
+        {
+            settingsPanel = FindFirstObjectByType<SettingsPanel>();
+        }
     }
 
     private void Start()
@@ -246,8 +254,8 @@ public class PauseMenuManager : MonoBehaviour
         if (settingsButton != null)
         {
             settingsButton.onClick.AddListener(OnSettings);
-            // Hide settings button for now (not implemented yet)
-            settingsButton.gameObject.SetActive(false);
+            // Settings button is now enabled
+            settingsButton.gameObject.SetActive(true);
         }
 
         if (mainMenuButton != null)
@@ -522,6 +530,14 @@ public class PauseMenuManager : MonoBehaviour
     /// </summary>
     public void TogglePause()
     {
+        // If SettingsPanel is visible, close it and show pause menu buttons instead
+        if (settingsPanel != null && settingsPanel.IsVisible())
+        {
+            settingsPanel.Hide();
+            ShowPauseMenuButtons();
+            return; // Don't change pause state, just close the sub-menu
+        }
+
         // If LoadMenuPanel is visible, close it and show pause menu buttons instead
         if (saveSlotSelectionUI != null && saveSlotSelectionUI.selectionPanel != null && saveSlotSelectionUI.selectionPanel.activeSelf)
         {
@@ -590,6 +606,12 @@ public class PauseMenuManager : MonoBehaviour
         if (saveSlotSelectionUI != null)
         {
             saveSlotSelectionUI.HideSelectionUI();
+        }
+
+        // Ensure SettingsPanel is hidden if it's open
+        if (settingsPanel != null)
+        {
+            settingsPanel.Hide();
         }
 
         isPaused = false;
@@ -1240,12 +1262,24 @@ public class PauseMenuManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Settings button handler (placeholder for future implementation)
+    /// Settings button handler - opens settings panel.
     /// </summary>
     public void OnSettings()
     {
-        Debug.Log("Settings menu not yet implemented");
-        // TODO: Open settings menu
+        if (settingsPanel != null)
+        {
+            // Hide pause menu buttons
+            HidePauseMenuButtons();
+            SetPauseMenuBackgroundVisible(false, "OnSettings");
+
+            // Show settings panel
+            settingsPanel.Show();
+            Debug.Log("PauseMenuManager: Opened settings panel");
+        }
+        else
+        {
+            Debug.LogWarning("PauseMenuManager: SettingsPanel not found!");
+        }
     }
 
     /// <summary>

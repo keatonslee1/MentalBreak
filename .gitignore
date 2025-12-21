@@ -48,9 +48,10 @@ Thumbs.db
 Desktop.ini
 nul
 
-# FMOD (keep only streaming assets banks and plugin)
+# FMOD (keep streaming assets banks in both Assets and webgl-build)
 *.bank
 !unity-project/Assets/StreamingAssets/*.bank
+!unity-project/webgl-build/StreamingAssets/*.bank
 fmod audio.zip
 fmod-extracted/
 *.fspro

@@ -82,22 +82,99 @@ public class BackgroundCommandHandler : MonoBehaviour
     void Awake()
     {
         BuildDictionary();
-        
+
         // Find Image component if not assigned
         if (backgroundImage == null)
         {
             backgroundImage = GetComponent<Image>();
-            if (backgroundImage == null)
-            {
-                Debug.LogWarning("BackgroundCommandHandler: No Image component found. Please assign one in the Inspector.");
-            }
         }
-        
+
+        // Search for Scene Background in Canvas hierarchy if still not found
+        if (backgroundImage == null)
+        {
+            backgroundImage = FindSceneBackgroundImage();
+        }
+
+        if (backgroundImage == null)
+        {
+            Debug.LogWarning("BackgroundCommandHandler: No Image component found. Please assign one in the Inspector or ensure 'Scene Background' exists in Canvas.");
+        }
+        else
+        {
+            Debug.Log($"BackgroundCommandHandler: Found background Image on '{backgroundImage.gameObject.name}'");
+        }
+
         // Start scanning for available videos (lightweight, no heavy allocations)
         StartCoroutine(ScanForVideos());
-        
+
         // NOTE: Video system is NOT initialized here - it's done lazily when first video is requested
         // This reduces memory pressure on initial load, especially for WebGL
+    }
+
+    /// <summary>
+    /// Searches for the Scene Background Image in the Canvas hierarchy.
+    /// Handles both regular scene objects and DontDestroyOnLoad hierarchy.
+    /// </summary>
+    private Image FindSceneBackgroundImage()
+    {
+        // Try to find by name first (most reliable)
+        GameObject sceneBackground = GameObject.Find("Scene Background");
+        if (sceneBackground != null)
+        {
+            Image img = sceneBackground.GetComponent<Image>();
+            if (img != null)
+            {
+                Debug.Log($"BackgroundCommandHandler: Found 'Scene Background' via GameObject.Find");
+                return img;
+            }
+        }
+
+        // Search in Canvas children
+        Canvas[] canvases = FindObjectsByType<Canvas>(FindObjectsSortMode.None);
+        foreach (Canvas canvas in canvases)
+        {
+            // Look for "Scene Background" child
+            Transform bgTransform = canvas.transform.Find("Scene Background");
+            if (bgTransform != null)
+            {
+                Image img = bgTransform.GetComponent<Image>();
+                if (img != null)
+                {
+                    Debug.Log($"BackgroundCommandHandler: Found 'Scene Background' in Canvas '{canvas.name}'");
+                    return img;
+                }
+            }
+
+            // Also check first child if it has Image (common pattern)
+            if (canvas.transform.childCount > 0)
+            {
+                Transform firstChild = canvas.transform.GetChild(0);
+                if (firstChild.name.Contains("Background"))
+                {
+                    Image img = firstChild.GetComponent<Image>();
+                    if (img != null)
+                    {
+                        Debug.Log($"BackgroundCommandHandler: Found background Image on '{firstChild.name}' in Canvas '{canvas.name}'");
+                        return img;
+                    }
+                }
+            }
+        }
+
+        // Last resort: find any Image that looks like a background (large, screen-sized)
+        Image[] allImages = FindObjectsByType<Image>(FindObjectsSortMode.None);
+        foreach (Image img in allImages)
+        {
+            if (img.gameObject.name.ToLower().Contains("background") &&
+                img.rectTransform.anchorMin == Vector2.zero &&
+                img.rectTransform.anchorMax == Vector2.one)
+            {
+                Debug.Log($"BackgroundCommandHandler: Found fullscreen background Image on '{img.gameObject.name}'");
+                return img;
+            }
+        }
+
+        return null;
     }
     
     /// <summary>

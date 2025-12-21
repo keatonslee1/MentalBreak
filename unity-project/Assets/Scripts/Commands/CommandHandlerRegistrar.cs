@@ -62,7 +62,11 @@ public class CommandHandlerRegistrar : MonoBehaviour
             storeHandler = ResolveStoreHandler();
         }
 
-        Debug.Log("CommandHandlerRegistrar: Awake() complete");
+        // Register commands immediately in Awake() to ensure they're available before dialogue starts
+        // This is critical for WebGL where dialogue may begin very early
+        RegisterCommands();
+
+        Debug.Log("CommandHandlerRegistrar: Awake() complete - commands registered");
     }
 
     /// <summary>
@@ -237,8 +241,8 @@ public class CommandHandlerRegistrar : MonoBehaviour
 
     private void Start()
     {
-        // Double-check registration in Start() in case OnEnable() didn't run (component added at runtime)
-        // This is safe because RemoveCommandHandler is safe to call even if not registered
+        // Commands should already be registered in Awake(), but re-register as safety net
+        // This handles edge cases where component was added at runtime after Awake()
         RegisterCommands();
 
         // In WebGL, SceneManagers can be stripped; ensure the store handler exists and registers (again) after start.

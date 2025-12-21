@@ -203,7 +203,7 @@ The game now has two parallel audio systems:
 ---
 
 ## Phase 5: Settings Menu Implementation
-**Commits:** `TBD` | **Date:** Dec 21, 2025
+**Commit:** `ab2399f` | **Date:** Dec 21, 2025
 
 ### What Was Done
 
@@ -338,6 +338,8 @@ Scripts/Editor/
 | `8f56021` | 3 | Add LoadMenuPanel diagnostic tools |
 | `42363c5` | 4 | FMOD Audio Integration |
 | `b2fd575` | 4 | Fix FMOD issues, add plugin |
+| `af2bb07` | 4 | Add MIGRATION_NOTES.md documentation |
+| `ab2399f` | 5 | Settings Menu Implementation |
 
 ---
 

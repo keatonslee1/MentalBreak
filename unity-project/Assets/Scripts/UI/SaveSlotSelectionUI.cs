@@ -23,24 +23,38 @@ public class SaveSlotSelectionUI : MonoBehaviour
     [Tooltip("The main save selection panel")]
     public GameObject selectionPanel;
 
-    [Header("Slot Buttons")]
-    [Tooltip("Button for Autosave (Slot 0)")]
+    [Header("Manual Slot Buttons (1-5)")]
+    [Tooltip("Button for Manual Slot 1")]
     public Button slot1Button;
 
-    [Tooltip("Button for Player Slot 1")]
+    [Tooltip("Button for Manual Slot 2")]
     public Button slot2Button;
 
-    [Tooltip("Button for Player Slot 2")]
+    [Tooltip("Button for Manual Slot 3")]
     public Button slot3Button;
 
-    [Tooltip("Button for Player Slot 3")]
+    [Tooltip("Button for Manual Slot 4")]
     public Button slot4Button;
 
-    [Tooltip("Button for Player Slot 4")]
+    [Tooltip("Button for Manual Slot 5")]
     public Button slot5Button;
 
+    [Header("Autosave Slot Buttons (for Load mode only)")]
+    [Tooltip("Button for Autosave Newest (Slot 0)")]
+    public Button autosave0Button;
+
+    [Tooltip("Button for Autosave Middle (Slot -1)")]
+    public Button autosave1Button;
+
+    [Tooltip("Button for Autosave Oldest (Slot -2)")]
+    public Button autosave2Button;
+
+    [Header("Other Buttons")]
     [Tooltip("Cancel/Back button")]
     public Button cancelButton;
+
+    [Tooltip("Import save from clipboard")]
+    public Button importButton;
 
     [Header("References")]
     [Tooltip("SaveLoadManager instance (auto-found if null)")]
@@ -99,40 +113,56 @@ public class SaveSlotSelectionUI : MonoBehaviour
             selectionPanel.SetActive(false);
         }
 
-        // Setup button listeners
-        // Slot 1 button → Slot 0 (Autosave)
+        // Setup button listeners for Manual Slots (1-5)
         if (slot1Button != null)
         {
-            slot1Button.onClick.AddListener(() => OnSlotSelected(0));
+            slot1Button.onClick.AddListener(() => OnSlotSelected(1));
         }
 
-        // Slot 2 button → Slot 1 (Player Slot 1)
         if (slot2Button != null)
         {
-            slot2Button.onClick.AddListener(() => OnSlotSelected(1));
+            slot2Button.onClick.AddListener(() => OnSlotSelected(2));
         }
 
-        // Slot 3 button → Slot 2 (Player Slot 2)
         if (slot3Button != null)
         {
-            slot3Button.onClick.AddListener(() => OnSlotSelected(2));
+            slot3Button.onClick.AddListener(() => OnSlotSelected(3));
         }
 
-        // Slot 4 button → Slot 3 (Player Slot 3)
         if (slot4Button != null)
         {
-            slot4Button.onClick.AddListener(() => OnSlotSelected(3));
+            slot4Button.onClick.AddListener(() => OnSlotSelected(4));
         }
 
-        // Slot 5 button → Slot 4 (Player Slot 4)
         if (slot5Button != null)
         {
-            slot5Button.onClick.AddListener(() => OnSlotSelected(4));
+            slot5Button.onClick.AddListener(() => OnSlotSelected(5));
+        }
+
+        // Setup button listeners for Autosave Slots (load only)
+        if (autosave0Button != null)
+        {
+            autosave0Button.onClick.AddListener(() => OnSlotSelected(0));
+        }
+
+        if (autosave1Button != null)
+        {
+            autosave1Button.onClick.AddListener(() => OnSlotSelected(-1));
+        }
+
+        if (autosave2Button != null)
+        {
+            autosave2Button.onClick.AddListener(() => OnSlotSelected(-2));
         }
 
         if (cancelButton != null)
         {
             cancelButton.onClick.AddListener(OnCancel);
+        }
+
+        if (importButton != null)
+        {
+            importButton.onClick.AddListener(OnImportClicked);
         }
 
         // Update button labels initially
@@ -522,7 +552,7 @@ public class SaveSlotSelectionUI : MonoBehaviour
     /// </summary>
     private void VerifyButtonsVisible()
     {
-        Button[] buttons = { slot1Button, slot2Button, slot3Button, slot4Button, slot5Button, cancelButton };
+        Button[] buttons = { slot1Button, slot2Button, slot3Button, slot4Button, slot5Button, autosave0Button, autosave1Button, autosave2Button, cancelButton };
         int visibleCount = 0;
         
         Debug.Log("=== Button Position Diagnostics ===");
@@ -591,12 +621,28 @@ public class SaveSlotSelectionUI : MonoBehaviour
             return;
         }
 
-        // Update each button with slot info
-        UpdateButtonLabel(slot1Button, 0, "AUTOSAVE");
-        UpdateButtonLabel(slot2Button, 1, "SLOT 1");
-        UpdateButtonLabel(slot3Button, 2, "SLOT 2");
-        UpdateButtonLabel(slot4Button, 3, "SLOT 3");
-        UpdateButtonLabel(slot5Button, 4, "SLOT 4");
+        // Update Manual Slot buttons (1-5)
+        UpdateButtonLabel(slot1Button, 1, "SLOT 1");
+        UpdateButtonLabel(slot2Button, 2, "SLOT 2");
+        UpdateButtonLabel(slot3Button, 3, "SLOT 3");
+        UpdateButtonLabel(slot4Button, 4, "SLOT 4");
+        UpdateButtonLabel(slot5Button, 5, "SLOT 5");
+
+        // Update Autosave buttons
+        UpdateButtonLabel(autosave0Button, 0, "AUTO (NEW)");
+        UpdateButtonLabel(autosave1Button, -1, "AUTO (MID)");
+        UpdateButtonLabel(autosave2Button, -2, "AUTO (OLD)");
+
+        // Show/hide autosave buttons based on mode
+        // In Save mode, hide autosave buttons (can't save to autosave slots)
+        // In Load mode, show autosave buttons
+        bool showAutosaves = (currentMode == Mode.Load);
+        if (autosave0Button != null) autosave0Button.gameObject.SetActive(showAutosaves);
+        if (autosave1Button != null) autosave1Button.gameObject.SetActive(showAutosaves);
+        if (autosave2Button != null) autosave2Button.gameObject.SetActive(showAutosaves);
+
+        // Show import button only in Load mode
+        if (importButton != null) importButton.gameObject.SetActive(currentMode == Mode.Load);
     }
 
     /// <summary>
@@ -805,4 +851,102 @@ public class SaveSlotSelectionUI : MonoBehaviour
             Debug.Log("SaveSlotSelectionUI: Set LayoutElement.ignoreLayout=true so PauseMenuPanel layout won't reposition LoadMenuPanel.");
         }
     }
+
+    // ========================================================================
+    // Export/Import Functionality
+    // ========================================================================
+
+    /// <summary>
+    /// Handle Import button click - prompts user to paste save string
+    /// </summary>
+    private void OnImportClicked()
+    {
+        // Get clipboard content
+        string clipboardContent = GUIUtility.systemCopyBuffer;
+
+        if (string.IsNullOrEmpty(clipboardContent))
+        {
+            Debug.LogWarning("SaveSlotSelectionUI: Clipboard is empty. Copy a save string first.");
+            // TODO: Show user feedback
+            return;
+        }
+
+        if (!SaveExporter.ValidateSaveString(clipboardContent))
+        {
+            Debug.LogWarning("SaveSlotSelectionUI: Clipboard content is not a valid save string.");
+            // TODO: Show user feedback
+            return;
+        }
+
+        // Import to the first empty manual slot, or slot 5 if all full
+        int targetSlot = FindFirstEmptyManualSlot();
+        if (targetSlot == -1)
+        {
+            targetSlot = 5; // Use slot 5 as fallback (will overwrite)
+            Debug.Log("SaveSlotSelectionUI: All manual slots full, importing to Slot 5");
+        }
+
+        if (saveLoadManager.ImportFromString(clipboardContent, targetSlot))
+        {
+            Debug.Log($"SaveSlotSelectionUI: Successfully imported save to Slot {targetSlot}");
+            UpdateButtonLabels();
+            // TODO: Show success feedback
+        }
+        else
+        {
+            Debug.LogError("SaveSlotSelectionUI: Import failed");
+            // TODO: Show error feedback
+        }
+    }
+
+    /// <summary>
+    /// Find the first empty manual slot (1-5)
+    /// </summary>
+    private int FindFirstEmptyManualSlot()
+    {
+        for (int slot = 1; slot <= 5; slot++)
+        {
+            if (!saveLoadManager.HasSaveData(slot))
+            {
+                return slot;
+            }
+        }
+        return -1; // All slots full
+    }
+
+    /// <summary>
+    /// Export a slot to clipboard
+    /// </summary>
+    public void ExportSlotToClipboard(int slot)
+    {
+        if (saveLoadManager == null)
+        {
+            Debug.LogError("SaveSlotSelectionUI: SaveLoadManager not found");
+            return;
+        }
+
+        string exportString = saveLoadManager.ExportSlotToString(slot);
+        if (!string.IsNullOrEmpty(exportString))
+        {
+            GUIUtility.systemCopyBuffer = exportString;
+            Debug.Log($"SaveSlotSelectionUI: Copied save from slot {slot} to clipboard ({SaveExporter.GetExportSizeDescription(exportString)})");
+            // TODO: Show success feedback
+        }
+        else
+        {
+            Debug.LogWarning($"SaveSlotSelectionUI: Slot {slot} is empty or export failed");
+        }
+    }
+
+    /// <summary>
+    /// Public method for UI buttons to trigger export
+    /// </summary>
+    public void OnExportSlot1() => ExportSlotToClipboard(1);
+    public void OnExportSlot2() => ExportSlotToClipboard(2);
+    public void OnExportSlot3() => ExportSlotToClipboard(3);
+    public void OnExportSlot4() => ExportSlotToClipboard(4);
+    public void OnExportSlot5() => ExportSlotToClipboard(5);
+    public void OnExportAutosave0() => ExportSlotToClipboard(0);
+    public void OnExportAutosave1() => ExportSlotToClipboard(-1);
+    public void OnExportAutosave2() => ExportSlotToClipboard(-2);
 }

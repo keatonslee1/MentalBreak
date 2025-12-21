@@ -63,9 +63,19 @@ python -m http.server 8000
 - 4-run structure (R1_Start through R4_End)
 
 **SaveLoadManager** (`Scripts/Core/SaveLoadManager.cs`)
-- Planned: 5 manual slots + 3 autosave FIFO
+- **5 Manual Slots** (indices 1-5): Player-controlled saves
+- **3 Autosave Slots** (indices 0, -1, -2): FIFO rotation at checkpoints
+  - Slot 0: Newest autosave
+  - Slot -1: Middle autosave
+  - Slot -2: Oldest autosave (overwritten on rotation)
 - WebGL: PlayerPrefs (IndexedDB-backed)
 - Desktop: JSON files in persistentDataPath
+- **Export/Import**: Base64-encoded save strings for clipboard sharing
+
+**SaveExporter** (`Scripts/Core/SaveExporter.cs`)
+- Converts SaveData to/from Base64 strings
+- Format: `MBSAVE_1_{base64data}`
+- Used for cross-device save transfer
 
 **CommandHandlerRegistrar** (`Scripts/Commands/CommandHandlerRegistrar.cs`)
 - Registers Yarn commands with DialogueRunner
@@ -75,7 +85,7 @@ python -m http.server 8000
 
 | Folder | Purpose | Key Files |
 |--------|---------|-----------|
-| Core/ | Game state, saves | GameManager, SaveLoadManager, RunTransitionManager |
+| Core/ | Game state, saves | GameManager, SaveLoadManager, SaveExporter, RunTransitionManager |
 | Dialogue/ | Dialogue flow | DialogueAdvanceHandler, OptionsInputHandler |
 | UI/ | User interface | MenuManager, PauseMenuManager, StoreUI, DayplannerUI |
 | Audio/ | Audio commands | AudioCommandHandler |

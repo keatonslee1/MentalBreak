@@ -25,20 +25,44 @@ public class SaveLoadManager : MonoBehaviour
     private string currentNodeName = "R1_Start";
     private string currentCheckpointID = null;
 
-    // Slot constants
-    private const int AUTOSAVE_SLOT = 0;
-    private const int PLAYER_SLOT_MIN = 1;
-    private const int PLAYER_SLOT_MAX = 4;
+    // Slot constants - 3 autosave slots (FIFO rotation) + 5 manual slots
+    // Autosave: -2 (oldest), -1 (middle), 0 (newest)
+    // Manual: 1-5
+    private const int AUTOSAVE_OLDEST = -2;
+    private const int AUTOSAVE_MIDDLE = -1;
+    private const int AUTOSAVE_NEWEST = 0;
+    private const int MANUAL_SLOT_MIN = 1;
+    private const int MANUAL_SLOT_MAX = 5;
+
+    // Legacy constant for backward compatibility
+    private const int AUTOSAVE_SLOT = AUTOSAVE_NEWEST;
 
     // File paths
     private string savesDirectory;
 
 #if UNITY_WEBGL && !UNITY_EDITOR
     // WebGL storage is client-side (IndexedDB-backed PlayerPrefs). Use stable keys per slot.
-    private const string WebGLKeyPrefix = "MB_Save_v1_";
+    private const string WebGLKeyPrefix = "MB_Save_v2_";
     private const string WebGLLastSaveSlotKey = WebGLKeyPrefix + "LastSaveSlot";
 
-    private static string GetWebGLSlotKey(int slot) => $"{WebGLKeyPrefix}Slot_{slot}_Json";
+    // Handle negative slot indices (autosaves) with "auto" prefix
+    private static string GetWebGLSlotKey(int slot)
+    {
+        if (slot < 0)
+        {
+            // Autosave slots: -2, -1, 0 → auto_2, auto_1, auto_0
+            return $"{WebGLKeyPrefix}Auto_{Math.Abs(slot)}_Json";
+        }
+        else if (slot == 0)
+        {
+            return $"{WebGLKeyPrefix}Auto_0_Json";
+        }
+        else
+        {
+            // Manual slots: 1-5 → Slot_1 through Slot_5
+            return $"{WebGLKeyPrefix}Slot_{slot}_Json";
+        }
+    }
 #endif
 
     // Variables that persist across all runs (story state)
@@ -106,31 +130,110 @@ public class SaveLoadManager : MonoBehaviour
 
     /// <summary>
     /// Set the current checkpoint (called by CheckpointCommandHandler)
+    /// Triggers autosave with FIFO rotation: newest(0) → middle(-1) → oldest(-2)
     /// </summary>
     public void SetCheckpoint(string checkpointID)
     {
         currentCheckpointID = checkpointID;
 
-        // Trigger autosave at checkpoint
+        // Trigger autosave at checkpoint with FIFO rotation
         if (enableAutoSave)
         {
-            SaveGame(AUTOSAVE_SLOT, checkpointID);
+            RotateAutosaves();
+            SaveGame(AUTOSAVE_NEWEST, checkpointID);
         }
     }
 
     /// <summary>
-    /// Save game to a specific slot (0 = autosave, 1-4 = player slots)
+    /// Rotate autosave slots: newest → middle → oldest (FIFO)
+    /// Oldest save is overwritten when rotation occurs.
+    /// </summary>
+    private void RotateAutosaves()
+    {
+        // Move middle(-1) to oldest(-2), overwriting oldest
+        CopySaveSlot(AUTOSAVE_MIDDLE, AUTOSAVE_OLDEST);
+
+        // Move newest(0) to middle(-1)
+        CopySaveSlot(AUTOSAVE_NEWEST, AUTOSAVE_MIDDLE);
+
+        // Newest(0) slot is now ready for new save
+        Debug.Log("SaveLoadManager: Rotated autosave slots (FIFO)");
+    }
+
+    /// <summary>
+    /// Copy save data from one slot to another (for FIFO rotation)
+    /// </summary>
+    private void CopySaveSlot(int sourceSlot, int destSlot)
+    {
+        try
+        {
+#if UNITY_WEBGL && !UNITY_EDITOR
+            string sourceKey = GetWebGLSlotKey(sourceSlot);
+            string destKey = GetWebGLSlotKey(destSlot);
+
+            if (PlayerPrefs.HasKey(sourceKey))
+            {
+                string json = PlayerPrefs.GetString(sourceKey, "");
+                if (!string.IsNullOrEmpty(json))
+                {
+                    PlayerPrefs.SetString(destKey, json);
+                }
+            }
+#else
+            string sourcePath = GetSaveFilePath(sourceSlot);
+            string destPath = GetSaveFilePath(destSlot);
+
+            if (File.Exists(sourcePath))
+            {
+                File.Copy(sourcePath, destPath, true);
+            }
+#endif
+        }
+        catch (Exception e)
+        {
+            Debug.LogWarning($"SaveLoadManager: Failed to copy slot {sourceSlot} to {destSlot}: {e.Message}");
+        }
+    }
+
+    /// <summary>
+    /// Save game to a specific slot.
+    /// Autosave slots: -2 (oldest), -1 (middle), 0 (newest)
+    /// Manual slots: 1-5
     /// </summary>
     public bool SaveGame(int slot, string checkpointID = null)
     {
         // Validate slot range
-        if (slot < AUTOSAVE_SLOT || slot > PLAYER_SLOT_MAX)
+        if (!IsValidSlot(slot))
         {
-            Debug.LogWarning($"SaveLoadManager: Invalid slot {slot}. Must be between {AUTOSAVE_SLOT} and {PLAYER_SLOT_MAX}");
+            Debug.LogWarning($"SaveLoadManager: Invalid slot {slot}. Must be between {AUTOSAVE_OLDEST} and {MANUAL_SLOT_MAX}");
             return false;
         }
 
         return SaveGameInternal(slot, checkpointID ?? currentCheckpointID);
+    }
+
+    /// <summary>
+    /// Check if a slot index is valid
+    /// </summary>
+    public bool IsValidSlot(int slot)
+    {
+        return (slot >= AUTOSAVE_OLDEST && slot <= MANUAL_SLOT_MAX);
+    }
+
+    /// <summary>
+    /// Check if a slot is an autosave slot
+    /// </summary>
+    public bool IsAutosaveSlot(int slot)
+    {
+        return slot >= AUTOSAVE_OLDEST && slot <= AUTOSAVE_NEWEST;
+    }
+
+    /// <summary>
+    /// Check if a slot is a manual save slot
+    /// </summary>
+    public bool IsManualSlot(int slot)
+    {
+        return slot >= MANUAL_SLOT_MIN && slot <= MANUAL_SLOT_MAX;
     }
 
     /// <summary>
@@ -172,7 +275,7 @@ public class SaveLoadManager : MonoBehaviour
             string slotName = GenerateSlotName((int)currentRun, (int)currentDay, checkpointID);
 
             // Determine slot type
-            string slotType = (slot == AUTOSAVE_SLOT) ? "autosave" : "manual";
+            string slotType = IsAutosaveSlot(slot) ? "autosave" : "manual";
 
             // Create save data
             SaveData saveData = new SaveData
@@ -225,15 +328,17 @@ public class SaveLoadManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Load game from a specific slot (0 = autosave, 1-4 = player slots)
-    /// Defaults to autosave slot (0) if no slot specified
+    /// Load game from a specific slot.
+    /// Autosave slots: -2 (oldest), -1 (middle), 0 (newest)
+    /// Manual slots: 1-5
+    /// Defaults to newest autosave slot (0) if no slot specified
     /// </summary>
     public bool LoadGame(int slot = 0)
     {
         // Validate slot range
-        if (slot < AUTOSAVE_SLOT || slot > PLAYER_SLOT_MAX)
+        if (!IsValidSlot(slot))
         {
-            Debug.LogWarning($"SaveLoadManager: Invalid slot {slot}. Must be between {AUTOSAVE_SLOT} and {PLAYER_SLOT_MAX}");
+            Debug.LogWarning($"SaveLoadManager: Invalid slot {slot}. Must be between {AUTOSAVE_OLDEST} and {MANUAL_SLOT_MAX}");
             return false;
         }
 
@@ -356,7 +461,7 @@ public class SaveLoadManager : MonoBehaviour
     public SaveSlotData GetSaveSlotData(int slot)
     {
         // Validate slot range
-        if (slot < AUTOSAVE_SLOT || slot > PLAYER_SLOT_MAX)
+        if (!IsValidSlot(slot))
         {
             return null;
         }
@@ -431,14 +536,52 @@ public class SaveLoadManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Get all save slots (for UI enumeration) - returns slots 0-4
+    /// Get all save slots (for UI enumeration) - returns slots -2 to 5
     /// </summary>
     public List<SaveSlotData> GetAllSaveSlots()
     {
         List<SaveSlotData> slots = new List<SaveSlotData>();
 
-        // Check all slots (0-4)
-        for (int i = AUTOSAVE_SLOT; i <= PLAYER_SLOT_MAX; i++)
+        // Check all slots (-2 to 5)
+        for (int i = AUTOSAVE_OLDEST; i <= MANUAL_SLOT_MAX; i++)
+        {
+            var data = GetSaveSlotData(i);
+            if (data != null)
+            {
+                slots.Add(data);
+            }
+        }
+
+        return slots;
+    }
+
+    /// <summary>
+    /// Get all autosave slots (for UI display)
+    /// </summary>
+    public List<SaveSlotData> GetAutosaveSlots()
+    {
+        List<SaveSlotData> slots = new List<SaveSlotData>();
+
+        for (int i = AUTOSAVE_OLDEST; i <= AUTOSAVE_NEWEST; i++)
+        {
+            var data = GetSaveSlotData(i);
+            if (data != null)
+            {
+                slots.Add(data);
+            }
+        }
+
+        return slots;
+    }
+
+    /// <summary>
+    /// Get all manual save slots (for UI display)
+    /// </summary>
+    public List<SaveSlotData> GetManualSlots()
+    {
+        List<SaveSlotData> slots = new List<SaveSlotData>();
+
+        for (int i = MANUAL_SLOT_MIN; i <= MANUAL_SLOT_MAX; i++)
         {
             var data = GetSaveSlotData(i);
             if (data != null)
@@ -456,7 +599,7 @@ public class SaveLoadManager : MonoBehaviour
     public bool DeleteSave(int slot)
     {
         // Validate slot range
-        if (slot < AUTOSAVE_SLOT || slot > PLAYER_SLOT_MAX)
+        if (!IsValidSlot(slot))
         {
             return false;
         }
@@ -499,11 +642,19 @@ public class SaveLoadManager : MonoBehaviour
     private string GetSaveFilePath(int slot)
     {
         string fileName;
-        if (slot == AUTOSAVE_SLOT)
+        if (slot == AUTOSAVE_NEWEST)
         {
-            fileName = "autosave.json";
+            fileName = "autosave_0.json";
         }
-        else if (slot >= PLAYER_SLOT_MIN && slot <= PLAYER_SLOT_MAX)
+        else if (slot == AUTOSAVE_MIDDLE)
+        {
+            fileName = "autosave_1.json";
+        }
+        else if (slot == AUTOSAVE_OLDEST)
+        {
+            fileName = "autosave_2.json";
+        }
+        else if (slot >= MANUAL_SLOT_MIN && slot <= MANUAL_SLOT_MAX)
         {
             fileName = $"slot{slot}.json";
         }
@@ -831,6 +982,163 @@ public class SaveLoadManager : MonoBehaviour
 
         Debug.Log("Game state reset to defaults");
     }
+
+    // ========================================================================
+    // Export/Import Methods
+    // ========================================================================
+
+    /// <summary>
+    /// Export a save slot to a Base64 string for copy/paste sharing.
+    /// </summary>
+    /// <param name="slot">The slot to export</param>
+    /// <returns>Base64 string, or null if slot is empty or export fails</returns>
+    public string ExportSlotToString(int slot)
+    {
+        if (!IsValidSlot(slot))
+        {
+            Debug.LogWarning($"SaveLoadManager: Cannot export invalid slot {slot}");
+            return null;
+        }
+
+        try
+        {
+            string json = GetSlotJson(slot);
+            if (string.IsNullOrEmpty(json))
+            {
+                Debug.LogWarning($"SaveLoadManager: Slot {slot} is empty, nothing to export");
+                return null;
+            }
+
+            SaveData saveData = JsonUtility.FromJson<SaveData>(json);
+            if (saveData == null)
+            {
+                Debug.LogError($"SaveLoadManager: Failed to parse save data from slot {slot}");
+                return null;
+            }
+
+            string exportString = SaveExporter.ExportToString(saveData);
+            Debug.Log($"SaveLoadManager: Exported slot {slot} ({SaveExporter.GetExportSizeDescription(exportString)})");
+            return exportString;
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"SaveLoadManager: Export failed for slot {slot}: {e.Message}");
+            return null;
+        }
+    }
+
+    /// <summary>
+    /// Import a save from a Base64 string into a specific slot.
+    /// </summary>
+    /// <param name="exportString">The Base64 save string</param>
+    /// <param name="slot">The slot to import into (must be a manual slot 1-5)</param>
+    /// <returns>True if import succeeded</returns>
+    public bool ImportFromString(string exportString, int slot)
+    {
+        // Only allow importing to manual slots
+        if (!IsManualSlot(slot))
+        {
+            Debug.LogWarning($"SaveLoadManager: Can only import to manual slots (1-5), not slot {slot}");
+            return false;
+        }
+
+        if (string.IsNullOrEmpty(exportString))
+        {
+            Debug.LogWarning("SaveLoadManager: Cannot import empty string");
+            return false;
+        }
+
+        try
+        {
+            // Validate and parse the export string
+            if (!SaveExporter.ValidateSaveString(exportString))
+            {
+                Debug.LogError("SaveLoadManager: Invalid save string format");
+                return false;
+            }
+
+            SaveData saveData = SaveExporter.ImportFromString(exportString);
+            if (saveData == null)
+            {
+                Debug.LogError("SaveLoadManager: Failed to parse save data from string");
+                return false;
+            }
+
+            // Update slot metadata to reflect new location
+            saveData.slotType = "manual";
+            saveData.slotNumber = slot;
+            saveData.timestamp = DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss", CultureInfo.InvariantCulture);
+
+            // Serialize and save
+            string json = JsonUtility.ToJson(saveData, true);
+
+#if UNITY_WEBGL && !UNITY_EDITOR
+            string key = GetWebGLSlotKey(slot);
+            PlayerPrefs.SetString(key, json);
+            PlayerPrefs.Save();
+            Debug.Log($"SaveLoadManager: Imported save to slot {slot} (WebGL)");
+#else
+            string filePath = GetSaveFilePath(slot);
+            File.WriteAllText(filePath, json);
+            Debug.Log($"SaveLoadManager: Imported save to slot {slot} ({filePath})");
+#endif
+            return true;
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"SaveLoadManager: Import failed: {e.Message}");
+            return false;
+        }
+    }
+
+    /// <summary>
+    /// Get the raw JSON data for a slot (used internally for export).
+    /// </summary>
+    private string GetSlotJson(int slot)
+    {
+#if UNITY_WEBGL && !UNITY_EDITOR
+        string key = GetWebGLSlotKey(slot);
+        if (!PlayerPrefs.HasKey(key))
+        {
+            return null;
+        }
+        return PlayerPrefs.GetString(key, "");
+#else
+        string filePath = GetSaveFilePath(slot);
+        if (!File.Exists(filePath))
+        {
+            return null;
+        }
+        return File.ReadAllText(filePath);
+#endif
+    }
+
+    /// <summary>
+    /// Check if a slot has save data.
+    /// </summary>
+    public bool HasSaveData(int slot)
+    {
+        if (!IsValidSlot(slot))
+        {
+            return false;
+        }
+
+#if UNITY_WEBGL && !UNITY_EDITOR
+        string key = GetWebGLSlotKey(slot);
+        return PlayerPrefs.HasKey(key) && !string.IsNullOrEmpty(PlayerPrefs.GetString(key, ""));
+#else
+        string filePath = GetSaveFilePath(slot);
+        return File.Exists(filePath);
+#endif
+    }
+
+    /// <summary>
+    /// Get slot range constants for UI.
+    /// </summary>
+    public static int GetAutosaveOldest() => AUTOSAVE_OLDEST;
+    public static int GetAutosaveNewest() => AUTOSAVE_NEWEST;
+    public static int GetManualSlotMin() => MANUAL_SLOT_MIN;
+    public static int GetManualSlotMax() => MANUAL_SLOT_MAX;
 }
 
 // ============================================================================

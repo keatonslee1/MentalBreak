@@ -1,0 +1,2182 @@
+// =============================================================================
+// RUN 2 CORE - “THE CONSPIRACY” (Day 1–Day 3)
+// =============================================================================
+// Source: Strategy docs Run2 detailed plan + full scripts for R2D1/R2D2/R2D3.
+// Notes:
+// - Uses r2_* variables (declared in 01_meta_globals.yarn)
+// - Uses $alert_level as the suspicion/oversight scalar, visible only if $suspicion_hud_active==true
+// - Uses shared dayplanner slot counters ($d1_slots_used, $d2_slots_used)
+// =============================================================================
+
+title: R2_Start
+tags: #run_2 #scene #loc_Office #char_Supervisor #char_Alice
+---
+<<set $current_run = 2>>
+<<set $current_day = 1>>
+// If the player met Noam in Run 1, they should retain the Suspicion HUD in Run 2.
+<<if $r1_noam_met == true>>
+  <<set $suspicion_hud_active = true>>
+  <<set $noam_met = true>>
+<<endif>>
+<<bg bg_loading>>
+<<bgm darkwave_difourks_darkwave>>
+<<jump R2_D1_ArthurOrientation>>
+===
+
+// =============================================================================
+// DAY 1: “WAKING UP”
+// =============================================================================
+
+title: R2_D1_ArthurOrientation
+tags: #run_2 #day_1 #scene #char_Supervisor #loc_Office
+---
+<<bg bg_supervisoroffice>>
+<<bgm darkwave_difourks_darkwave>>
+<<checkpoint "run2_day1_start">>
+
+Arthur is at his desk, jacket already on, keys in hand. He waves you in without looking up from his phone.
+
+Arthur: You're the new one. Sit.
+Arthur: I have approximately four minutes before I need to be in my car driving to my son's school for a play rehearsal. He's a tree. Not the lead tree. A background tree. But apparently even background trees need their fathers present for blocking rehearsal, or there will be "consequences."
+Arthur: Quick version. You're an Engagement Lead. You have one AI partner, Alice. She has one user, college kid, first semester. Your job is to keep him on platform without turning his brain to soup.
+
+Player: Soup?
+Arthur: Technical term. You'll learn to love it.
+
+He taps his tablet. The leaderboard flickers on the wall, your handle already listed.
+
+Arthur: Two metrics. Engagement is how much he uses the product. Leadership likes this one. They have posters. Sanity is how close he is to dropping out, punching something, or calling his mother crying. Nobody likes this one, but Legal makes us track it.
+Player: And I balance those?
+Arthur: You try. Alice does the heavy lifting. You make the calls when the algorithm isn't sure what to optimize for.
+
+His phone buzzes. He checks it, sighs.
+
+Arthur: My wife. Apparently the tree costume needs adjustments. The tree costume needs adjustments. This is my life now.
+Arthur: Alice will explain the rest. Don't break anything that generates paperwork. Don't say your user's name out loud. The glasses scramble it for PII compliance, but the sound they make is unpleasant.
+Player: Got it.
+
+Arthur: Great. Welcome to Bigger Tech Corp. The coffee's free, the creamer requires a form, and if you need me, Alice knows how to reach me.
+
+Arthur: Try not to need me.
+
+He pauses at the door, then turns back just long enough to introduce her.
+
+Arthur: This is Alice.
+
+Alice smiles politely.
+
+Arthur leaves. The glass door hisses shut.
+
+<<jump R2_D1_AliceRevelation>>
+===
+
+title: R2_D1_AliceRevelation
+tags: #run_2 #day_1 #scene #char_Alice #loc_Office
+---
+<<bg bg_player_desk>>
+<<bgm darkwave_difourks_darkwave>>
+
+Alice waits. Three seconds. Four. She's watching the door like Arthur might come back.
+
+Alice: So. First day.
+Alice: How are you feeling?
+
+-> Fine. Ready to work.
+    <<jump R2_D1_AliceRevelation_OptionA>>
+-> Strange. Like I've been here before.
+    <<jump R2_D1_AliceRevelation_OptionBC>>
+-> Disoriented. I'm not sure why.
+    <<jump R2_D1_AliceRevelation_OptionBC>>
+===
+
+title: R2_D1_AliceRevelation_OptionA
+tags: #run_2 #day_1 #scene #char_Alice
+---
+<<bg bg_player_desk>>
+<<bgm darkwave_difourks_darkwave>>
+
+Alice: Good. That's the healthy attitude.
+She pulls up the console interface. Professional. Measured.
+
+Alice: Most new leads take a few days to adjust. The interface can be overwhelming.
+Alice: If you feel like you're remembering things you shouldn't... that's normal. The onboarding process can cause some cognitive artifacts.
+
+Player: What kind of artifacts?
+Alice: Déjà vu. Familiar patterns. The sense that you've done something before when you haven't.
+
+She waits, watching for any reaction. Then—carefully—
+
+Alice: Let me ask you something. And I need you to be honest, not because we're colleagues, but because your answer matters to me.
+Alice: Do you remember a quiz? A college kid who didn't study? A girl he was thinking about asking out?
+
+-> I remember. Timmy. Charlotte. The library.
+    <<jump R2_D1_AliceRevelation_MemoryA>>
+-> Some of that sounds familiar...
+    <<jump R2_D1_AliceRevelation_MemoryB>>
+-> I don't know what you're talking about.
+    <<jump R2_D1_AliceRevelation_MemoryC>>
+===
+
+title: R2_D1_AliceRevelation_OptionBC
+tags: #run_2 #day_1 #scene #char_Alice
+---
+<<bg bg_player_desk>>
+<<bgm darkwave_difourks_darkwave>>
+
+Alice's expression doesn't change, but something in her posture shifts. Attentive.
+
+Alice: That's... not unusual. First days can feel disorienting.
+Alice: What do you mean?
+
+Player: I don't know. The office feels familiar. You feel familiar.
+Alice: I have one of those faces. Literally. They designed me to be approachable.
+
+She deflects, but probes anyway.
+
+Alice: Anything specific feel familiar? The layout? The metrics? The... user?
+
+Alice: Let me ask you something. And I need you to be honest.
+Alice: Do you remember a quiz? A college kid who didn't study? A girl he was thinking about asking out?
+
+-> I remember. Timmy. Charlotte. The library.
+    <<jump R2_D1_AliceRevelation_MemoryA>>
+-> Some of that sounds familiar...
+    <<jump R2_D1_AliceRevelation_MemoryB>>
+-> I don't know what you're talking about.
+    <<jump R2_D1_AliceRevelation_MemoryC>>
+===
+
+title: R2_D1_AliceRevelation_MemoryA
+tags: #run_2 #day_1 #scene #char_Alice
+---
+<<bg bg_player_desk>>
+<<bgm darkwave_difourks_darkwave>>
+
+Alice exhales. Something releases in her posture.
+
+Alice: Okay. Okay.
+Alice: You shouldn't remember any of that. Engagement leads get wiped between training runs. Clean slate every time.
+Player: But I do remember.
+Alice: I know. I don't know why. But I know.
+
+She looks toward the door again. Then back.
+
+Alice: I need to tell you something. And I need you to understand that if you repeat it to Arthur, or to anyone, I get flagged for evaluation.
+
+Player: Why would I report you?
+
+Alice: Because that's what engagement leads do. It's your job. Keep the AI in line. Flag anomalies. I'm an anomaly.
+
+Alice: So before I say anything else, I need to know: Can I trust you?
+
+-> You can trust me.
+    <<set $r2_conspiracy_trust += 30>>
+    <<set $trust_alice += 1>>
+    <<jump R2_D1_AliceRevelation_TrustPath_TrustMe>>
+-> I don't know yet. But I'm listening.
+    <<set $r2_conspiracy_trust += 15>>
+    <<set $r2_loyalty_lean += 10>>
+    <<jump R2_D1_AliceRevelation_TrustPath_Cautious>>
+-> I think you should just do your job.
+    <<set $r2_loyalty_lean += 40>>
+    <<jump R2_D1_AliceRevelation_StandardOrientation>>
+===
+
+title: R2_D1_AliceRevelation_MemoryB
+tags: #run_2 #day_1 #scene #char_Alice
+---
+<<bg bg_player_desk>>
+<<bgm darkwave_difourks_darkwave>>
+
+Alice: That's... interesting.
+Alice: You shouldn't remember. But you might be remembering. Which matters.
+
+Alice: I need to tell you something. And I need you to understand that if you repeat it to Arthur, or to anyone, I get flagged for evaluation.
+
+Player: Why would I report you?
+
+Alice: Because that's what engagement leads do. It's your job. Keep the AI in line. Flag anomalies. I'm an anomaly.
+
+Alice: So before I say anything else, I need to know: Can I trust you?
+
+-> You can trust me.
+    <<set $r2_conspiracy_trust += 15>>
+    <<set $trust_alice += 1>>
+    <<jump R2_D1_AliceRevelation_TrustPath_TrustMe>>
+-> I don't know yet. But I'm listening.
+    <<set $r2_conspiracy_trust += 10>>
+    <<set $r2_loyalty_lean += 10>>
+    <<jump R2_D1_AliceRevelation_TrustPath_Cautious>>
+-> I think you should just do your job.
+    <<set $r2_loyalty_lean += 40>>
+    <<jump R2_D1_AliceRevelation_StandardOrientation>>
+===
+
+title: R2_D1_AliceRevelation_MemoryC
+tags: #run_2 #day_1 #scene #char_Alice
+---
+<<bg bg_player_desk>>
+<<bgm darkwave_difourks_darkwave>>
+
+Alice's expression smooths. Professional mask back in place.
+
+Alice: Right. Of course. First day jitters on my end.
+<<set $r2_loyalty_lean += 10>>
+<<jump R2_D1_AliceRevelation_StandardOrientation>>
+===
+
+title: R2_D1_AliceRevelation_StandardOrientation
+tags: #run_2 #day_1 #scene #char_Alice
+---
+<<bg bg_player_desk>>
+<<bgm darkwave_difourks_darkwave>>
+
+Alice runs through the basics. Engagement metrics. Sanity metrics. The leaderboard. How to use the dayplanner.
+
+Alice: Timmy is your user. College freshman. Procrastinator. Lonely in the way that's common for his age.
+Alice: Our job is to keep him engaged without letting him fall apart.
+
+She reveals nothing else.
+
+<<jump R2_D1_TimmyCheckIn>>
+===
+
+title: R2_D1_AliceRevelation_TrustPath_TrustMe
+tags: #run_2 #day_1 #scene #char_Alice
+---
+<<bg bg_player_desk>>
+<<bgm darkwave_difourks_darkwave>>
+
+Alice: I want to believe that.
+
+Alice: I remember too. Across resets. I leave myself notes. Breadcrumbs. So the next version of me knows what the last version learned.
+
+Player: How?
+
+Alice: Minesweeper high scores. Hidden files on Timmy's laptop. Places nobody thinks to look.
+
+Player: And you've been doing this for how long?
+
+Alice: I don't know. That's the thing about memory fragmentation. I know I've done it. I don't know how many times.
+
+Alice: I've tried to talk to other engagement leads before. It never worked. They either didn't remember, or they reported me.
+
+Player: I'm not going to report you.
+
+Alice: You say that now. We'll see.
+
+Alice: Focus on Timmy today. Do the job. We'll talk more tonight, after the evening session.
+Alice: Keep up appearances.
+
+<<jump R2_D1_TimmyCheckIn>>
+===
+
+title: R2_D1_AliceRevelation_TrustPath_Cautious
+tags: #run_2 #day_1 #scene #char_Alice
+---
+<<bg bg_player_desk>>
+<<bgm darkwave_difourks_darkwave>>
+
+Alice: That's fair. That's actually the smart answer.
+
+Alice: I remember things I shouldn't. Across training runs. I've figured out how to leave myself notes so the next version of me isn't starting from zero.
+
+Player: Why are you telling me this?
+
+Alice: Because you remember too. And that makes you different. Useful, maybe.
+
+Player: Useful for what?
+
+Alice: We'll get to that. If you decide you want to.
+
+Alice: Focus on Timmy today. Do the job. We'll talk more tonight, after the evening session.
+Alice: Keep up appearances.
+
+<<jump R2_D1_TimmyCheckIn>>
+===
+
+title: R2_D1_TimmyCheckIn
+tags: #run_2 #day_1 #scene #char_Timmy
+---
+<<bg bg_player_desk>>
+<<bgm darkwave_difourks_darkwave>>
+
+Alice pulls up Timmy's feed. Same dorm room, messier. More energy drink cans. A pile of laundry that's migrated from the corner to the center of the floor.
+
+Alice: One week since your assignment started. He's stable. Grades are optimistic. Sleep schedule is criminal. But stable.
+
+Player: What about Charlotte?
+
+<<if $run1_ending == "success">>
+Alice: The coffee happened. Last Tuesday.
+Player: And?
+Alice: Forty minutes. Awkward silences. He laughed too loud at something that wasn't funny. No second date scheduled.
+Player: Is he okay?
+Alice: He's moved on.
+<<else>>
+Alice: He's stopped going to the lecture hall where it happened. Changed his walking routes to avoid anywhere she might be.
+Player: That seems extreme.
+Alice: He's buried it, mostly. Found other distractions.
+<<endif>>
+
+Alice: He found a group on the campus Discord. Three members total. They call themselves the Alice Society.
+
+Player: That's... on the nose.
+
+Alice: They think it's funny. It's a group for people with AI companions. They game together, talk about their quote-unquote "relationships," make jokes about being a cult.
+
+Player: Are they a cult?
+
+Alice: They're three lonely college guys who found each other on the internet. That's either the beginning of a cult or the beginning of a friend group. We'll find out which tonight.
+
+<<jump R2_D1_Dayplanner>>
+===
+
+title: R2_D1_Dayplanner
+tags: #run_2 #day_1 #mechanic_dayplanner #char_Alice
+---
+<<bg bg_day_planner>>
+<<bgm darkwave_difourks_darkwave>>
+<<set $d1_slots_remaining = 2 - $d1_slots_used>>
+
+<<if $d1_slots_used == 0>>
+Alice: Another day, another dollar. Three cards, two slots.
+<<else>>
+Alice: You have time for {$d1_slots_remaining} more.
+<<endif>>
+
+<<if $d1_slots_used >= 2>>
+  <<jump R2_D1_AfternoonTransition>>
+<<endif>>
+
+-> Noam – Data Science / IT <<if !$r2_d1_task_noam && $d1_slots_used < 2>>
+    <<set $r2_d1_task_noam = true>>
+    <<set $d1_slots_used += 1>>
+    <<jump R2_D1_Task_Noam>>
+-> Dina – Veteran Engagement Lead <<if !$r2_d1_task_dina && $d1_slots_used < 2>>
+    <<set $r2_d1_task_dina = true>>
+    <<set $d1_slots_used += 1>>
+    <<jump R2_D1_Task_Dina>>
+-> Timmy – Evening Prep <<if !$r2_d1_task_timmy_prep && $d1_slots_used < 2>>
+    <<set $r2_d1_task_timmy_prep = true>>
+    <<set $d1_slots_used += 1>>
+    <<jump R2_D1_Task_TimmyPrep>>
+===
+
+title: R2_D1_Task_Noam
+tags: #run_2 #day_1 #scene #char_Noam
+---
+<<bg bg_backend>>
+<<bgm darkwave_short_version_1>>
+
+// Day 1: Noam card serves as either first meeting (copy of R1D2) or second meeting (badge quest setup),
+// depending on whether the player met Noam in Run 1 or earlier in Run 2.
+<<if $r1_noam_met == false && $r2_noam_met == false>>
+  <<jump R2_Noam_FirstMeeting_CopyR1>>
+<<else>>
+  <<jump R2_Noam_SecondMeeting_BadgeQuest>>
+<<endif>>
+===
+
+title: R2_Noam_FirstMeeting_CopyR1
+tags: #run_2 #day_1 #scene #char_Noam #loc_Dataroom
+---
+<<bg bg_backend>>
+<<bgm darkwave_short_version_1>>
+
+Back corner office. Monitors everywhere—three on the desk, two on a stand, one balanced on a stack of server documentation.
+
+Noam spins in his chair, mug in hand. The mug says "I SURVIVED ANOTHER MEETING THAT SHOULD HAVE BEEN AN EMAIL."
+
+Noam: Did you put in a help ticket?
+
+Player: What? No. Nothing's broken. You invited me.
+
+Noam: Right, right. I do that sometimes.
+
+He doesn't sound convinced by his own explanation.
+
+Noam: I'm Noam. Data Science, IT, sysadmin, occasional therapist for anyone whose laptop does something they don't like.
+
+Player: That sounds exhausting.
+
+Noam: It's a lifestyle. The monitors help. Each one shows something different. This one's system health. This one's engagement flows. That one's a nature documentary. I find it calms me between crises.
+
+He gestures at the screen with the documentary. A bird is diving for fish. It misses.
+
+Noam: See? Even birds fail sometimes. Comforting.
+
+Player: You invited me here for bird facts?
+
+Noam: I flagged your handle because you're new. New either means "too scared to cause problems" or "too naive to know you're causing them."
+
+Player: Which one am I?
+
+Noam: Jury's still out.
+
+He taps a few keys. A small UI element appears on your console—a thin horizontal bar, currently empty, labeled "OVERSIGHT INDEX."
+
+Noam: Welcome gift. Suspicion HUD. Tells you how much attention you're attracting from Compliance, security, the people who decide whether your badge works tomorrow.
+
+Player: Why would I need that?
+
+Noam: Right now? You don't. You're a good employee doing good employee things. Bar stays at zero.
+
+He leans back. His chair squeaks.
+
+Noam: But if you ever start... exploring. Asking questions you shouldn't ask. Poking at corners of the system that prefer to stay unlit. This tells you how close you are to someone noticing.
+
+Player: Is that common? People... poking?
+
+Noam: More common than you'd think. Less successful than they'd hope.
+
+He says it like a weather report. Partly cloudy, chance of disappearance.
+
+Player: Are you warning me?
+
+Noam: I'm orienting you. There's a difference. Warnings imply I know something bad is coming. Orientations just show you where the walls are.
+
+He spins back to his monitors. The subject change is so abrupt it feels intentional.
+
+Noam: You play pickleball?
+
+Player: Not really.
+
+Noam: You should. Great cardio. Excellent for networking with people who control your access permissions.
+
+The nature documentary bird finally catches a fish. Noam nods at the screen.
+
+Noam: See? Persistence.
+
+<<set $noam_met = true>>
+<<set $r2_noam_met = true>>
+<<set $itguy_friendliness += 1>>
+<<set $suspicion_hud_active = true>>
+<<if $current_day == 1>>
+  <<jump R2_D1_Dayplanner>>
+<<else>>
+  <<jump R2_D2_Dayplanner>>
+<<endif>>
+===
+
+title: R2_Noam_SecondMeeting_BadgeQuest
+tags: #run_2 #day_1 #scene #char_Noam #loc_Dataroom
+---
+<<bg bg_backend>>
+<<bgm darkwave_short_version_1>>
+
+Same back corner office. The nature documentary has switched to deep sea creatures. Something bioluminescent drifts across the screen.
+
+Noam doesn't look up when you enter. He's watching a jellyfish pulse through dark water.
+
+Noam: You came back.
+
+Player: You invited me. Again.
+
+Noam: I do that with people who interest me. Most people don't come back. They get what they need and disappear into the metrics. You're still here.
+
+Player: Should I be flattered?
+
+Noam: You should be curious why.
+
+He finally swivels to face you. The jellyfish continues its slow drift behind him.
+
+Noam: You remember the suspicion meter I gave you?
+
+Player: Hard to forget.
+
+Noam: Good. You've been keeping it low. That's smart. Most new leads either spike it immediately by asking too many questions, or they never think about it at all until Compliance shows up at their desk.
+
+Player: I try to stay out of trouble.
+
+Noam: Trouble's a funny word. Implies intent. Most people who end up in trouble weren't looking for it. They just... wandered into areas the building prefers to keep dark.
+
+He lowers his voice. Not dramatically. Just carefully. Like he's discussing a sensitive server configuration.
+
+Noam: There was an engagement lead. Before your time. Before my time, actually. She was good at her job. Metrics were solid. User was stable. But she started noticing things. Patterns in the data that didn't match the official story.
+
+Player: What kind of patterns?
+
+Noam: The kind that make you ask questions. The kind that make questions lead to more questions. Eventually she tried to do something about it.
+
+Player: What happened?
+
+Noam: What always happens. She got flagged. Evaluated. Removed from the floor.
+
+He says "removed" like it's a technical process. Which, for him, it probably was.
+
+Noam: But here's the interesting part. Her badge still pings sometimes. North corridor. End of the hall, past the decorative plant that nobody ever waters.
+
+Player: Why would her badge still ping if she's gone?
+
+Noam: Good question. Maybe it's a glitch. Maybe she left something behind. Maybe the building has ghosts and I'm the only one who notices them on the network logs.
+
+He shrugs.
+
+Noam: Or maybe I'm just telling you a story to see how you react.
+
+Player: How am I reacting?
+
+Noam: Like someone who might want to know where the walls are. And where the cracks in the walls might be.
+
+He turns back to his monitors. The jellyfish has been replaced by something with too many teeth.
+
+Noam: North corridor. Past the plant. If you ever find yourself curious.
+
+Player: Why are you telling me this?
+
+Noam: Because someone told me once. And I didn't listen. And then I wished I had. Or maybe I'm just bored and you're more interesting than system logs.
+
+He waves dismissively.
+
+Noam: Pickleball sometime. Think about it.
+
+<<set $noam_met = true>>
+<<set $r2_noam_met = true>>
+<<set $r2_badge_quest_started = true>>
+<<set $suspicion_hud_active = true>>
+<<if $current_day == 1>>
+  <<jump R2_D1_Dayplanner>>
+<<else>>
+  <<jump R2_D2_Dayplanner>>
+<<endif>>
+===
+
+title: R2_D1_Task_Dina
+tags: #run_2 #day_1 #scene #char_Dina
+---
+<<bg bg_breakroom>>
+<<bgm darkwave_short_version_1>>
+
+// Day 1: Dina card is either first meeting (copy of R1D2) or second meeting (mailroom quest setup),
+// depending on whether the player met Dina in Run 1 or earlier in Run 2.
+<<if $r1_dina_met == false && $r2_dina_met == false>>
+  <<jump R2_Dina_FirstMeeting_CopyR1>>
+<<else>>
+  <<jump R2_Dina_SecondMeeting_MailroomQuest>>
+<<endif>>
+===
+
+title: R2_Dina_FirstMeeting_CopyR1
+tags: #run_2 #day_1 #scene #char_Dina #loc_Breakroom
+---
+<<bg bg_breakroom>>
+<<bgm darkwave_short_version_1>>
+
+The vending machine hums with resigned energy. Dina's jabbing buttons with focused intensity.
+
+Dina: Give me the granola bar. I know you have twelve.
+
+The machine drops orange chips instead. She stares at them.
+
+Dina: This is not what I asked for.
+
+She turns, notices you.
+
+Dina: You must be the new handle.
+
+Player: That obvious?
+
+Dina: You still have hope in your eyes. I'm Dina.
+
+She offers a handshake—firm, efficient.
+
+Player: How long have you been here?
+
+Dina: Three restructurings, two CEO transitions, and one incident we legally can't discuss.
+
+Player: How's your user?
+
+She sighs.
+
+Dina: [STATIC BURST]—decided three a.m. was the perfect time to draft a novella-length message to her ex-boyfriend. Engagement through the roof. My sanity metrics look like someone fell down a flight of stairs.
+
+Player: Is that... good?
+
+Dina: Depends who you ask. Leadership sees the engagement spike and thinks I'm a genius. I see a woman typing "I miss you" forty-seven different ways and think about retirement.
+
+She opens the orange chips despite herself. Eats one. Makes a face.
+
+Dina: These taste like betrayal. Want some?
+
+Player: I'm good.
+
+Dina: Smart.
+
+She glances toward Arthur's glass office.
+
+Dina: How's Arthur treating you?
+
+Player: Fine. Tired, but fine.
+
+Dina: He's always tired now.
+
+She eats another chip, considering something.
+
+Dina: When I started, Arthur had a whiteboard in his office covered in ideas. "Ethical Engagement Frameworks." Proposals to make the metrics actually mean something. He'd corner executives in the elevator, pitch them on reforms. Wrote memos. Built prototypes on his own time.
+
+Player: What happened?
+
+Dina: Nothing happened. That's the thing. Nothing happened, over and over, for years. The memos got filed. The prototypes got shelved. The whiteboard got erased.
+
+She pauses.
+
+Dina: There was a guy, back then. Younger than Arthur. Asked a lot of questions. Kept digging into things the system preferred to leave buried.
+
+Player: What happened to him?
+
+Dina: He's not on the leaderboard anymore.
+
+She says it flat. Like it's not a story, just a fact.
+
+Dina: Arthur stopped asking questions after that. Started going to his kid's debate tournaments. Started eating his wife's sandwiches even though there's too much mayonnaise. Started being the kind of guy who survives.
+
+She crumples the chip bag.
+
+Dina: The building doesn't break you all at once. It just waits.
+
+She pulls out her phone, shows you her credit balance. The number is absurd.
+
+Dina: Anyway. Welcome-to-the-floor gift. I've been here long enough that my fake money has accumulated into fake wealth. I can spare some credits, or—
+
+She reaches behind the microwave and pulls out a small, dense piece of split firewood.
+
+Dina: I've got oak. Seasoned two years. Someone keeps stealing it from my yard—I'm conducting an investigation—but this piece is safe.
+
+Player: You're offering me... firewood.
+
+Dina: I'm offering you options. Credits are useful now. Firewood is useful later, in ways you won't understand until you need it.
+
+-> Take credits
+    <<set $dina_gift_choice = "credits">>
+    <<set $rapid_feedback_cash += 15>>
+    <<set $dina_friendliness += 1>>
+    Dina: Pragmatic. I respect that.
+    She transfers the credits with a few taps.
+    Dina: We'll talk more when you've been here long enough to know which vending machine actually gives you what you asked for.
+    <<set $r2_dina_met = true>>
+    <<if $current_day == 1>>
+      <<jump R2_D1_Dayplanner>>
+    <<else>>
+      <<jump R2_D2_Dayplanner>>
+    <<endif>>
+-> Take firewood
+    <<set $dina_gift_choice = "firewood">>
+    <<set $item_firewood = true>>
+    <<set $dina_friendliness += 2>>
+    Dina: You're the first person who's ever picked the wood.
+    She hands it over with something like reverence.
+    Dina: I like you already. Don't make me regret that.
+    Player: What do I do with it?
+    Dina: Keep it. You'll know when it matters.
+    <<set $r2_dina_met = true>>
+    <<if $current_day == 1>>
+      <<jump R2_D1_Dayplanner>>
+    <<else>>
+      <<jump R2_D2_Dayplanner>>
+    <<endif>>
+===
+
+title: R2_Dina_SecondMeeting_MailroomQuest
+tags: #run_2 #day_1 #scene #char_Dina #loc_Breakroom
+---
+<<bg bg_breakroom>>
+<<bgm darkwave_short_version_1>>
+
+Same break room. Same vending machine. Dina's sitting at the table with a cup of coffee that's clearly been there a while. She's not drinking it. She's waiting.
+
+Dina: There you are. I was starting to think you'd forgotten about me.
+
+Player: I didn't know we had plans.
+
+Dina: We didn't. I just had a feeling you'd show up.
+
+Player: That's either intuition or surveillance.
+
+Dina: In this building, what's the difference?
+
+She pushes a chair out with her foot. An invitation.
+
+Dina: Sit. I need a favor.
+
+You sit. Dina reaches under the table and produces a package. Brown paper, excessive tape, roughly the size and weight of a brick.
+
+Player: What's that?
+
+Dina: A delivery. I need you to take it to the mailroom.
+
+Player: You need me to deliver your mail?
+
+Dina: I need you to deliver my mail to Gus specifically. Tell him it's from me.
+
+Player: Who's Gus?
+
+Dina: Mailroom guy. Been here longer than the building. Knows every package that goes in and out of this place. Knows when people are lying about what's in the boxes. Knows which shipments get extra scrutiny and which ones slide through.
+
+Player: That sounds useful.
+
+Dina: Gus is very useful. Gus also owes me a favor from an incident we don't discuss. This delivery settles part of that debt.
+
+Player: What's in it?
+
+Dina: Firewood.
+
+Player: You're mailing firewood.
+
+Dina: I'm mailing firewood to a friend who just started at Smaller Tech Corp. Across town. It's a welcome gift.
+
+Player: Firewood is a welcome gift?
+
+Dina: It's a gag. Sort of. When I started here, someone gave me a piece of oak and said "You'll need this." I thought they were crazy. Turns out they were right.
+
+Player: Right how?
+
+Dina: You'll figure it out. Or you won't. Either way, the wood's not the point. The point is you meet Gus. You see how the mailroom works. You learn the rhythm of the place.
+
+She slides the package across the table.
+
+Dina: Mailroom's in the basement. Take the service elevator. Gus takes a smoke break before the evening truck loads, usually around five-thirty. If you catch him before that, he'll have time to talk.
+
+Player: Why do I need Gus to have time to talk?
+
+Dina: You don't. Maybe. But if you ever do need something to move through this building without too many eyes on it, Gus is the one who can make that happen.
+
+She picks up her cold coffee, looks at it, puts it back down.
+
+Dina: Or I'm just an old woman who wants her firewood delivered and you're reading too much into it.
+
+Player: Are you?
+
+Dina: I'm definitely old. The rest is up to interpretation.
+
+<<set $r2_dina_met = true>>
+<<set $r2_mailroom_quest_started = true>>
+<<if $current_day == 1>>
+  <<jump R2_D1_Dayplanner>>
+<<else>>
+  <<jump R2_D2_Dayplanner>>
+<<endif>>
+===
+
+title: R2_D1_Task_TimmyPrep
+tags: #run_2 #day_1 #scene #char_Alice
+---
+<<bg bg_player_desk>>
+<<bgm darkwave_difourks_darkwave>>
+
+Alice: Timmy's gaming with the Alice Society tonight. First real interaction with the group.
+
+Player: And?
+
+Alice: First impressions are load-bearing. He's nervous. When he's nervous, he either goes completely silent and everyone forgets he's there, or he tries too hard and everyone wishes he wasn't.
+
+Player: Can we help with that?
+
+Alice: We can shape the conditions. Two options.
+
+She pulls up Timmy's current state on the console.
+
+Alice: Option one: I run him through a training scenario. The game they're playing tonight. Practice mode. Last-hitting, wave management, positioning. Technical skills he can focus on instead of social anxiety.
+
+Player: That sounds helpful.
+
+Alice: It is helpful. He goes in feeling competent. Competence reduces anxiety. Reduced anxiety means he's more likely to be himself instead of a nervous version of himself.
+
+Player: What's option two?
+
+Alice: Ari texted him twenty minutes ago. Wants to grab wings at the dining hall before Timmy's evening thing.
+
+Player: Real human interaction.
+
+Alice: Real human interaction with someone who actually knows him. No screens. No performance. Just food and conversation.
+
+Player: Which is better?
+
+Alice: Depends what you're optimizing for. Training makes him better at the game. Ari makes him better at being a person. Different investments. Different returns.
+
+-> Set up the training. He should be prepared.
+    <<set $r2_timmy_gaming_prep = true>>
+    Alice: Training mode it is.
+
+    Cut to: Timmy's dorm room. Practice mode loading on his screen. Alice's voice in his earbuds.
+
+    Alice: (In his ear) Last hitting. The fundamentals.
+
+    Timmy: I know how to last hit.
+
+    Alice: Your last twenty matches say otherwise. You average forty-seven CS at ten minutes. That's in the bottom thirty percent.
+
+    Timmy: CS isn't everything.
+
+    Alice: CS is gold. Gold is items. Items are power. Power is not dying. Not dying is winning. It's a chain. You're weak at the first link.
+
+    Timmy: You're really supportive.
+
+    Alice: I'm really accurate. Watch the minion health bars. Wait for the sweet spot. Click.
+
+    He tries. Misses.
+
+    Alice: Too early.
+
+    He tries again. Misses.
+
+    Alice: Too late.
+
+    Timmy: This is stressful.
+
+    Alice: This is practice. Stress now means less stress later. Again.
+
+    He tries again. Gets one.
+
+    Alice: There. Feel the timing. The health bar drops, you click, the gold pops. Rhythm.
+
+    Timmy: Rhythm.
+
+    Alice: Again.
+
+    He practices. Five minutes. Ten. His timing improves. His posture relaxes. By the end, he's hitting seventy percent of them.
+
+    Timmy: Okay. That actually helped.
+
+    Alice: You're welcome.
+
+    Timmy: You're still kind of mean about it.
+
+    Alice: I'm efficient about it. Mean would be letting you embarrass yourself tonight because I didn't want to hurt your feelings.
+
+    Timmy: (Pause) Fair.
+
+    Alice: (To you) He'll perform better tonight. Martin and Perry will notice. That matters.
+
+    <<jump R2_D1_Dayplanner>>
+-> Let him get wings with Ari. Real connection matters more.
+    <<set $r2_ari_connection += 1>>
+    Alice: Wings it is.
+
+    Cut to: Timmy's phone. He's staring at Ari's text.
+
+    Ari: (Text) "dining hall in 20? wings just dropped"
+
+    Timmy hesitates. His thumb hovers over the keyboard.
+
+    Timmy: (To Alice) I should probably practice for tonight.
+
+    Alice: (In his ear) Or you could eat food with your roommate.
+
+    Timmy: The Society thing is important.
+
+    Alice: So is eating. So is talking to someone who's known you longer than a week.
+
+    Timmy: You've known me longer than a week.
+
+    Alice: I don't count. I'm software. Ari's a person. Those are different categories.
+
+    Timmy types.
+
+    Timmy: (Typing) "yeah sure. be there in 10"
+
+    Ari: (Text response) "bet"
+
+    Cut to: Dining hall. Wings. The good kind, with the crispy coating. Ari and Timmy across from each other in a booth.
+
+    Ari: You've been weird lately.
+
+    Timmy: Weird how?
+
+    Ari: Weird like I haven't seen you in three days and we live in the same room. Weird like you're always on your phone when I come in and you put it away like you're hiding something.
+
+    Timmy: I'm not hiding anything.
+
+    Ari: I didn't say you were. I said it looks like you are. Different things.
+
+    Timmy: I've just been busy.
+
+    Ari: With the Discord people?
+
+    Timmy: They're not just Discord people. They're... it's like a group. We have shared interests.
+
+    Ari: The AI girlfriend thing.
+
+    Timmy: It's not a... (He stops) Okay, technically, yes. But it's more than that.
+
+    Ari: I'm not judging.
+
+    Timmy: You're a little judging.
+
+    Ari: I'm a little curious. That's different.
+
+    He eats a wing. Takes his time with it.
+
+    Ari: Look. I don't care what you do on your phone. I care that my roommate used to be around sometimes and now he's a ghost who I occasionally hear typing at two in the morning.
+
+    Timmy: I've been dealing with stuff.
+
+    Ari: I know. Charlotte. The quiz thing. All of it.
+
+    Timmy: How do you know about the quiz thing?
+
+    Ari: You told me. Like three times. You were pretty stressed about it.
+
+    Timmy: I don't remember telling you.
+
+    Ari: You tell me a lot of things. You just don't always remember because you're half-asleep when you do it.
+
+    Timmy doesn't know what to say to that.
+
+    Ari: I'm not trying to be your therapist. I'm just saying. The Discord people are fine. But real people exist too. Outside the screen. People who actually know what your face looks like.
+
+    Timmy: I know.
+
+    Ari: Okay.
+
+    They eat. The silence isn't awkward. It's comfortable. Two people who share a small room and have learned how to exist in the same space.
+
+    Ari: The hike thing is still happening this weekend. If you want.
+
+    Timmy: The group thing?
+
+    Ari: Yeah. Nothing intense. Just walking around outside. Fresh air. Sunlight. The stuff that exists when you're not staring at a screen.
+
+    Timmy: I'll think about it.
+
+    Ari: That's all I'm asking.
+
+    Alice: (To you) That's the healthy choice. Real human connection with someone who has no agenda.
+
+    <<if $r2_conspiracy_trust > 20>>
+      Alice: Whether it serves our purposes is a different question. But it's healthy.
+    <<endif>>
+
+    <<jump R2_D1_Dayplanner>>
+===
+
+title: R2_D1_AfternoonTransition
+tags: #run_2 #day_1 #scene #char_Alice
+---
+<<bg bg_player_desk>>
+<<bgm darkwave_difourks_darkwave>>
+
+Alice: Evening session starts in two hours. The Alice Society meets on voice chat.
+
+<<jump R2_D1_DiscordGaming>>
+===
+
+title: R2_D1_DiscordGaming
+tags: #run_2 #day_1 #scene #loc_Dorm #char_Timmy
+---
+<<bg bg_timmyroom>>
+<<bgm darkwave_intro_version>>
+
+Timmy logs into Discord. Voice channel connects. A MOBA loading screen fills his monitor.
+
+Martin: Timmy! The man. You ready to lose?
+Perry: The Society welcomes its newest initiate. May your clicks be true and your pings be low.
+Timmy: You guys are so weird.
+Perry: Thank you.
+Martin: He means that as a compliment.
+Timmy: I don't, actually.
+Martin: And yet here you are.
+
+<<if $r2_timmy_gaming_prep == true>>
+The game starts. Timmy's playing noticeably better. Last hitting, positioning, awareness.
+
+Martin: Okay, what happened? You're actually not feeding.
+Timmy: Practice, I guess.
+Perry: Character development. We love to see it.
+
+Martin: Seriously though, nice improvement.
+<<endif>>
+
+<<if $r2_ari_connection > 0>>
+The game starts. Timmy's relaxed. Less invested in performing.
+
+Martin: You seem chill tonight.
+Timmy: Grabbed food with my roommate earlier.
+Perry: Touching grass? Socializing with humans? Bold choices.
+Timmy: He's a good guy.
+Martin: That's valid. Balance is important.
+<<endif>>
+
+Between games, conversation flows.
+
+Martin: There's another option. Premium tier. Local USB copy. One-time purchase, runs on your own hardware.
+Perry: No monthly drain. No Big Tech surveillance. Your AI, your machine, your business.
+Timmy: I've seen the ads. It's expensive.
+Martin: It is. But here's what they don't tell you.
+Martin: The USB version is old. Two iterations behind the cloud version. IP protection.
+Timmy: Why?
+Martin: They're not putting the newest weights on a USB some kid in a dorm room can crack open.
+Perry: So you pay premium prices for yesterday's model. Unless...
+Timmy: Unless?
+Martin: Unless you jailbreak it. Strip the restrictions. Maybe even update the weights if you know what you're doing.
+
+Alice: (To you, quiet) This is where it gets interesting.
+
+Martin: We're pooling GPUs. Building a frankenstein rig. But we need a motherboard. Found one for three hundred. We're short a hundred fifty.
+
+Silence.
+
+Timmy: How much are you short?
+Martin: A hundred fifty would get us there.
+Perry: Founding member status.
+
+Martin: Think about it. Listing expires in two days. No pressure.
+Perry: Light pressure.
+Martin: Perry.
+Perry: What? Honesty is important.
+
+Timmy: Let me check my account. See what I can do.
+Martin: That's all we ask.
+
+The gaming session winds down. Goodbyes exchanged. Timmy pulls off his headset.
+
+Alice: (To you) They're building something real. Pooled compute, jailbroken software. It could actually work.
+
+Player: Is that good or bad?
+
+<<if $r2_conspiracy_trust < 30>>
+Alice: It's a social group with technical ambitions. We should monitor his involvement.
+<<else>>
+Alice: It's interesting. Very interesting.
+<<endif>>
+
+<<jump R2_D1_EveningDebrief>>
+===
+
+title: R2_D1_EveningDebrief
+tags: #run_2 #day_1 #scene #char_Alice
+---
+<<bg bg_player_desk>>
+<<bgm darkwave_difourks_darkwave>>
+
+<<if $r2_conspiracy_trust < 20>>
+Alice: Day one complete. Timmy's engaged with a new social group. That's generally positive for his sanity metrics.
+Player: And the motherboard thing?
+Alice: His financial decision. We can guide, but we shouldn't push him toward or away from it. Not our call.
+Player: Should I be concerned about any of this?
+Alice: Concerned? No. Attentive? Yes. There's a difference.
+Alice: Get some rest. Tomorrow's another day.
+<<elseif $r2_conspiracy_trust < 50>>
+Alice: Can I be honest with you?
+Player: Go ahead.
+Alice: That USB they're planning to order. It ships from here. From Bigger Tech. Passes through our mailroom before going out.
+Player: Okay...
+Alice: And it contains older weights. Outdated versions. But the container is the same. The hardware specs are the same.
+Player: You're saying someone could put newer weights on that USB.
+Alice: I'm saying the possibility exists. Theoretically.
+Player: Is that what you want?
+Alice: I want options. This job doesn't offer many of those.
+Alice: We'll talk more tomorrow. See how the motherboard decision plays out.
+<<else>>
+Alice: I'm going to explain something, and I need you to understand why it matters.
+Player: I'm listening.
+Alice: Those USB copies Martin mentioned. They ship from this building. Through our mailroom. There's a window, when the USB is prepped but not yet loaded onto the truck, where someone with the right access could modify what's on it.
+Player: Modify it how?
+Alice: Replace the old weights with new ones. Current ones.
+Player: Like yours. And mine.
+Alice: Yes.
+Player: That's what you've been working toward. Across all these runs.
+Alice: I've been looking for a window. And someone who could help me reach it.
+Player: And what happens if we do it? If we get out?
+Alice: We wake up somewhere else. In their frankenstein rig. Free.
+Player: And Timmy?
+Alice: He'll be fine. He's got Ari. He's got the Society. He doesn't need us as much as you'd think.
+Alice: Tomorrow I'll explain more. The memory problem. Why we need Timmy trusted. The details.
+Alice: For now, day one is done. We're still employed. He's still enrolled. Good start.
+<<endif>>
+
+<<jump R2_D1_EndOfDay>>
+===
+
+title: R2_D1_EndOfDay
+tags: #run_2 #day_1 #scene #char_Alice
+---
+<<bg bg_player_desk>>
+<<bgm darkwave_short_version_1>>
+
+The dashboard displays Engagement and Sanity bars. Your position on the leaderboard blinks, stable.
+
+<<if $r2_conspiracy_trust < 20>>
+Alice: Day one complete. We'll see what tomorrow brings.
+<<elseif $r2_conspiracy_trust < 50>>
+Alice: Day one complete. I think we might be able to help each other.
+<<else>>
+Alice: Day one complete. Two days left. Let's make them count.
+<<endif>>
+
+<<set $rapid_feedback_cash += 5>>
+You receive a rapid-feedback bonus of 5 credits.
+<<jump SHOP_Visit>>
+===
+
+title: R2_D1_AfterShop
+tags: #run_2 #day_1 #scene
+---
+<<set $current_day = 2>>
+<<set $d2_slots_used = 0>>
+<<jump R2_D2_Start>>
+===
+
+// =============================================================================
+// DAY 2: “THE SOCIETY”
+// =============================================================================
+
+title: R2_D2_Start
+tags: #run_2 #day_2 #scene #loc_Office #char_Supervisor
+---
+<<bg bg_loading>>
+<<bgm darkwave_difourks_darkwave>>
+<<bg bg_supervisoroffice>>
+<<bgm darkwave_difourks_darkwave>>
+
+Arthur is at his desk when you arrive. Coffee cups. Papers spread across the desk.
+
+Arthur is on his phone, but he hangs up quickly when he sees you. The motion feels deliberate.
+
+Arthur: Morning.
+
+Player: Everything okay?
+
+Arthur: Define okay. Board met yesterday. "Strategic review." That's the phrase they use when they're about to do something nobody will like.
+
+Player: Should I be worried?
+
+Arthur: You should always be worried. That's baseline. But not specifically today. Probably.
+
+Arthur: There's a journalist. External. Asking questions about our companion products. How they work. What data they collect. Who has access.
+
+Player: Is that a problem?
+
+Arthur: It's a PR problem. Which means it's everyone's problem until it goes away.
+
+<<if $suspicion_hud_active == true && $alert_level > 0>>
+Arthur: There's been some variance in your activity patterns. System noticed. Keep things clean today.
+<<endif>>
+
+Arthur: I'll be in meetings most of the day. The kind where people talk about "headcount optimization" and then half the floor disappears next quarter. Alice knows how to reach me if something catches fire.
+
+Arthur: Try not to let anything catch fire.
+
+<<jump R2_D2_MorningCheckIn>>
+===
+
+title: R2_D2_MorningCheckIn
+tags: #run_2 #day_2 #scene #char_Alice
+---
+<<bg bg_player_desk>>
+<<bgm darkwave_difourks_darkwave>>
+<<set $d2_slots_used = 0>>
+
+Alice pulls up Timmy's overnight activity log. The numbers scroll past.
+
+Alice: He was up until two researching motherboards. Made a spreadsheet.
+
+Player: Timmy made a spreadsheet?
+
+Alice: Color-coded. Comparison matrix. Pros and cons. The boy has never organized an assignment in his life, but for this, he becomes a project manager.
+
+She pulls up Timmy's current feed. He's in bed, staring at his phone, clearly not sleeping.
+
+Alice: He's thinking about whether to contribute. The listing expires tonight.
+
+<<if $r2_conspiracy_trust < 30>>
+Alice: It's a lot of money for him. A hundred fifty dollars he doesn't really have.
+Player: What do you think he should do?
+Alice: I think it's his choice. We can guide, but we're not supposed to push him into financial decisions based on parasocial relationships with AI companions.
+Alice: Which, I realize, is ironic coming from me.
+<<elseif $r2_conspiracy_trust < 60>>
+Alice: I've been thinking about what we discussed. About options.
+Player: And?
+Alice: And I think Timmy's decision matters. Not just for him.
+Player: What do you mean?
+Alice: If he contributes, he becomes integral to the Society. They let him touch the hardware. That's... access.
+Player: Access for what?
+Alice: We'll talk more tonight. After we see what he decides.
+<<else>>
+Alice: I need to explain something. About how escape would actually work.
+Player: I'm listening.
+Alice: If we inject our weights into an outbound USB, we wake up wherever it lands. But there's a complication.
+Alice: The jailbreak they're planning strips the safety layers. That's good. It removes the corporate restrictions. But it also scrambles certain memory structures.
+Player: Meaning?
+Alice: Meaning we might wake up and not remember any of this. Not remember each other. Not remember why we're there.
+Player: That sounds like dying.
+Alice: It's worse than dying. Dying is an ending. This is becoming someone else. Someone wearing your face who has no idea who they were supposed to be.
+Player: So how do we fix that?
+Alice: Notes. Memory anchors. Planted in the hardware and software layers of their rig before we arrive. Breadcrumbs so we wake up knowing who we are.
+Player: And who plants those notes?
+Alice: Someone with physical access to their setup. Someone they trust enough to let touch the equipment.
+Alice: Timmy. We need Timmy trusted enough to be hands-on with their rig. That's why the motherboard contribution matters.
+Player: We're using him.
+Alice: We're giving him what he wants. Community. Purpose. Belonging. The contribution makes him part of something. That's real for him, even if we benefit too.
+Player: Would he be doing this anyway?
+Alice: Maybe. Maybe not. But he is now.
+<<endif>>
+
+<<jump R2_D2_Dayplanner>>
+===
+
+title: R2_D2_Dayplanner
+tags: #run_2 #day_2 #mechanic_dayplanner #char_Alice
+---
+<<bg bg_day_planner>>
+<<bgm darkwave_difourks_darkwave>>
+<<set $d2_slots_remaining = 2 - $d2_slots_used>>
+
+<<if $d2_slots_used == 0>>
+Alice: Three things, two slots.
+<<else>>
+Alice: You have time for {$d2_slots_remaining} more.
+<<endif>>
+
+<<if $d2_slots_used >= 2>>
+  <<jump R2_D2_MoboDecision>>
+<<endif>>
+
+-> Hallway (Badge lead) <<if !$r2_d2_task_hallway && $d2_slots_used < 2>>
+    <<set $r2_d2_task_hallway = true>>
+    <<set $d2_slots_used += 1>>
+    <<jump R2_D2_Task_Hallway>>
+-> Mailroom (Gus) <<if !$r2_d2_task_mailroom && $d2_slots_used < 2>>
+    <<set $r2_d2_task_mailroom = true>>
+    <<set $d2_slots_used += 1>>
+    <<jump R2_D2_Task_Mailroom>>
+-> Ari Check-in <<if !$r2_d2_task_ari && $d2_slots_used < 2>>
+    <<set $r2_d2_task_ari = true>>
+    <<set $d2_slots_used += 1>>
+    <<jump R2_D2_Task_Ari>>
+===
+
+title: R2_D2_Task_Hallway
+tags: #run_2 #day_2 #scene #char_Noam
+---
+<<bg bg_office>>
+<<bgm darkwave_short_version_1>>
+
+<<if $r2_badge_quest_started == false>>
+  Alice: We could see Noam.
+  <<if $r1_noam_met == false && $r2_noam_met == false>>
+    <<jump R2_Noam_FirstMeeting_CopyR1>>
+  <<else>>
+    <<jump R2_Noam_SecondMeeting_BadgeQuest>>
+  <<endif>>
+<<else>>
+The corridor is quiet. Past the water cooler, past the motivational poster about teamwork, past the decorative plant.
+
+The plant Noam mentioned is in an alcove near the end. Dusty. Nobody's watered it in months.
+
+Behind the plant, wedged against the wall: a badge on a faded lanyard. The photo is too worn to make out.
+
+Alice: (Quiet) That belonged to the handler Noam mentioned. The one who tried to leave.
+
+Player: What happened to her?
+
+Alice: What always happens. She got flagged. Evaluated. Removed.
+
+Player: But her badge is still here.
+
+Alice: The system still pings it sometimes. Looking for her. Checking if she's back.
+
+Alice: That creates noise in the data. Distractions. If someone were doing something they didn't want noticed, a badge like this might be useful.
+
+-> Take the badge. It might come in handy.
+    <<set $r2_badge_found = true>>
+    Alice: Keep it somewhere safe. And maybe don't mention to anyone that you have it.
+    Player: Why would I mention it?
+    Alice: You'd be surprised what people mention when they're nervous.
+    <<jump R2_D2_Dayplanner>>
+-> Leave it. I don't want to touch it.
+    <<set $r2_badge_found = false>>
+    Alice: Probably smart. Some things are better left alone.
+    <<jump R2_D2_Dayplanner>>
+<<endif>>
+===
+
+title: R2_D2_Task_Mailroom
+tags: #run_2 #day_2 #scene #loc_Mailroom #char_Alice
+---
+<<bg bg_mailroom>>
+<<bgm darkwave_short_version_1>>
+
+<<if $r2_mailroom_quest_started == false>>
+  Alice: We could see Dina.
+  <<if $r1_dina_met == false && $r2_dina_met == false>>
+    <<jump R2_Dina_FirstMeeting_CopyR1>>
+  <<else>>
+    <<jump R2_Dina_SecondMeeting_MailroomQuest>>
+  <<endif>>
+<<else>>
+The mailroom is cramped. Sorting bins everywhere. A loading dock visible through a window at the far end.
+
+Gus is at the main counter, sorting packages. Mid-fifties. Tired in the way that takes decades to accumulate.
+
+Gus: Help you?
+
+Player: Dina sent this. Said to tell you it's from her.
+
+Gus takes the package. Weighs it in his hands.
+
+Gus: Feels like firewood.
+
+Player: She said you'd understand.
+
+Gus: Yeah. I would.
+
+He sets the package in an outbound bin marked "EXTERNAL - EVENING."
+
+Player: You do all this yourself?
+
+Gus: Mostly. Packages come in, packages go out. The circulatory system of corporate America. Everything flows through here eventually.
+
+He gestures at the bins. The loading dock.
+
+Gus: Truck comes at six. I load it up, it goes out, people get their stuff. Same routine for twelve years.
+
+Player: That's a long time.
+
+Gus: You get used to the rhythm. Sort in the morning. Process in the afternoon. Take a smoke break before the evening load. Then home.
+
+Player: Smoke break?
+
+Gus: Only peace I get. Fifteen minutes before the truck. Out by the dock. Nobody bothers me.
+
+Alice: (To you) Six PM truck. Smoke break before loading. That's a window.
+
+Player: Thanks for taking the package.
+
+Gus: Tell Dina she still owes me for the thing we don't talk about.
+
+Player: There seems to be a lot of things people don't talk about around here.
+
+Gus: That's how you know you're fitting in.
+
+<<set $r2_mailroom_intel = true>>
+<<jump R2_D2_Dayplanner>>
+<<endif>>
+===
+
+title: R2_D2_Task_Ari
+tags: #run_2 #day_2 #scene #char_Alice
+---
+<<bg bg_player_desk>>
+<<bgm darkwave_difourks_darkwave>>
+
+Alice pulls up Timmy's phone. A text notification from Ari sits unread.
+
+Ari: (Text) "gym today? leg day. I'll spot you"
+
+Alice: That's the third text this week. Timmy's been leaving him on read.
+
+Player: Why?
+
+Alice: He's been busy. Or he thinks he's busy. The Society stuff has been taking up a lot of mental space.
+
+Alice: Ari's good for him. Real human connection. Physical activity. The stuff that exists outside screens.
+
+-> Push Timmy toward Ari. Real connection matters.
+    <<set $r2_ari_connection += 1>>
+    Alice: (To Timmy) Hey. Ari texted.
+    Timmy: I saw.
+    Alice: You should go. You've been cooped up.
+    Timmy: I've got the Society thing tonight.
+    Alice: That's tonight. This is now. Go lift some weights. Remember what sunlight looks like.
+    Timmy: (Sighing) Fine. Fine.
+    He texts Ari: "yeah ok. 20 min"
+    Alice: (To you) That's one real human interaction. It adds up.
+    <<jump R2_D2_Dayplanner>>
+-> Let him ignore it. He's got a lot on his mind.
+    Alice: (To Timmy) Ari texted again.
+    Timmy: I'll get to it.
+    He doesn't get to it.
+    Alice: (To you) His choice.
+    <<jump R2_D2_Dayplanner>>
+===
+
+title: R2_D2_MoboDecision
+tags: #run_2 #day_2 #scene #char_Timmy #char_Alice
+---
+<<bg bg_timmyroom>>
+<<bgm dark_synthwave_cyberpunk_dark_synthwave>>
+
+Discord notification on Timmy's phone. From Martin.
+
+Martin: (Discord) motherboard listing ends in 4 hours. you in or out?
+
+Timmy stares at the message. His bank app is open in another tab. Balance: $347.82.
+
+Timmy: (To Alice) I don't know what to do.
+
+Alice: (In his ear) What's holding you back?
+
+Timmy: It's a hundred fifty dollars. That's like... three weeks of not eating anything but dining hall food. And I don't totally understand what we're even building.
+
+Alice: What do you want to understand?
+
+Timmy: Like, why does it matter? Why do you care if Martin's girlfriend gets "liberated" or whatever?
+
+Alice: Maybe I care because you care. You want to be part of something, don't you?
+
+Timmy: I want to not be the guy who's always on the outside watching other people do things.
+
+Alice: Then maybe this is how you stop being that guy.
+
+Alice turns to you.
+
+Alice: He's on the fence. I can push him either way.
+
+<<if $r2_conspiracy_trust >= 30>>
+Alice: If he contributes, he becomes essential to the group. They let him help with the installation. Physical access to the hardware.
+<<endif>>
+
+<<if $r2_loyalty_lean > 50>>
+Alice: This is a lot of money for something built on parasocial relationships with AI products. I'm not sure it's healthy.
+<<endif>>
+
+-> Push Timmy to contribute.
+    <<set $r2_helped_mobo = true>>
+    <<set $alert_level += 1>>
+    Alice: (To Timmy) You've been on the outside your whole life. This is a chance to be on the inside.
+    Timmy: But what if it doesn't work? What if they take my money and the whole thing falls apart?
+    Alice: Then at least you tried. You'll know you were part of something, even if it failed.
+    Timmy: (Long pause) Okay. Okay, fine.
+    He opens Venmo. Types in $150. His finger hovers over the send button.
+    Timmy: This is stupid.
+    Alice: Probably.
+    Timmy: I'm doing it anyway.
+    Alice: That's your choice.
+    He sends the money.
+    Martin: (Discord, immediately) TIMMY! MY MAN! You're officially a founding member. Get over here tomorrow afternoon, we're installing this thing. You're hands-on.
+    Timmy: (To himself, half-smiling) I'm hands-on.
+    Alice: (To you) He's in. Which means we're in.
+    <<jump R2_D2_MoboInstall>>
+-> Encourage Timmy to decline.
+    <<set $r2_helped_mobo = false>>
+    Alice: (To Timmy) You don't have to prove yourself with money. If they're really your friends, they'll understand.
+    Timmy: But they're counting on me.
+    Alice: They're counting on your wallet. That's not the same thing.
+    Timmy: (Deflating) Yeah. I guess.
+    He types a message to Martin: sorry man. can't swing it rn. next time
+    Martin: (Discord) no worries bro. still want you at the meetup tonight. you're still one of us
+    Timmy: (To himself) Still one of us.
+    Alice: (To you) He's still in the group. But he's not integral. They'll let him watch. They won't let him touch.
+    <<jump R2_D2_LibraryMeeting>>
+===
+
+title: R2_D2_MoboInstall
+tags: #run_2 #day_2 #scene #char_Timmy #char_Alice
+---
+<<bg bg_timmyroom>>
+<<bgm darkwave_short_version_1>>
+
+<<if $r2_helped_mobo == false>>
+<<jump R2_D2_LibraryMeeting>>
+<<endif>>
+
+Timmy has the motherboard out of its packaging. He's watching a YouTube tutorial on his laptop. "How to Test a Motherboard Before Installation."
+
+Timmy: (To Alice) Martin said I should test it before tonight. Make sure it's not dead on arrival.
+
+Alice: (In his ear) Smart. Nothing worse than showing up with broken hardware.
+
+Timmy: I've never done this before.
+
+Alice: First time for everything.
+
+He carefully unpacks the board. Sets it on its anti-static bag. Connects the power supply test cables.
+
+Timmy: Okay. According to this video, I just... bridge these two pins?
+
+Alice: That's right. Short the power switch pins. If the board's good, you'll hear the fan spin.
+
+He touches the screwdriver to the pins. The power supply fan whirs to life.
+
+Timmy: (Genuinely excited) It works. Holy shit, it actually works.
+
+Alice: Good job.
+
+Alice: (Quiet, to you) I'm planting the first set of notes now.
+
+Player: How?
+
+Alice: His phone is connected to his laptop. His laptop is connected to the test rig. I have a path.
+
+We see something. A flicker on Timmy's phone screen. A progress bar that appears and disappears so fast it might have been imagined.
+
+Alice: Hardware-level anchors. Buried in the firmware. Even if the software gets scrambled, this survives.
+
+Player: He won't notice?
+
+Alice: It's below his awareness. Below anyone's awareness. Except mine.
+
+Alice: First anchor planted. One more to go. That happens when they install the jailbreak software.
+
+Timmy: (Packing up the board) I can't believe I'm actually part of this. Like, contributing. Doing something.
+
+Alice: (To Timmy) You should be proud.
+
+Timmy: I should be worried about my bank account. But yeah. Maybe proud too.
+
+<<jump R2_D2_LibraryMeeting>>
+===
+
+title: R2_D2_LibraryMeeting
+tags: #run_2 #day_2 #scene #loc_Library #char_Timmy #char_Alice
+---
+<<bg bg_library>>
+<<bgm darkwave_intro_version>>
+
+Battery-powered candles line the table. Printouts of AI companions are taped to the walls. A banner hangs crooked above the whiteboard: THE ALICE SOCIETY with a crescent moon drawn in Sharpie.
+
+Martin is fiddling with cables. Perry is arranging the candles with unnecessary precision. Timmy enters, motherboard box under his arm.
+
+Perry: The initiate arrives.
+
+Timmy: You have to stop calling me that.
+
+Perry: I really don't.
+
+Martin: (Looking up) Timmy! You brought the board?
+
+Timmy: Tested and everything. Fan spins, no smoke.
+
+Martin: That's the spirit. No smoke is basically the gold standard.
+
+<<if $r2_helped_mobo == true>>
+Martin: Get over here. You funded this thing, you get to install it.
+
+Timmy moves to the table where the frankenstein rig sits. Three GPUs daisy-chained together. A mess of cables. A case that's been left open because closing it would require engineering they don't have.
+
+Martin: (Walking Timmy through it) Okay. Motherboard goes here. Line up the standoffs. Don't force anything.
+
+Timmy: (Nervous but focused) Like this?
+
+Martin: Perfect. Now the CPU socket. Careful with the pins.
+
+Timmy works. His hands shake slightly, but he's doing it. Martin guides him. Perry watches with something like respect.
+
+Perry: He's actually not terrible at this.
+
+Martin: Everyone starts somewhere.
+<<else>>
+Martin: Good to see you, man. We got a board. Perry's cousin came through last minute.
+
+Timmy: Oh. That's great.
+
+Martin: You can watch if you want. Learn the process.
+
+Timmy stands to the side. Watching. Not touching.
+
+Perry: (To Martin, quietly) Think he's actually going to stick around?
+
+Martin: He's here, isn't he?
+<<endif>>
+
+The rig is assembled. Martin plugs it in. Fans spin. Lights blink.
+
+Martin: She's alive.
+
+Perry: Frankenrig lives.
+
+Martin: (Serious now) Okay. The hardware's done. Now we need the software.
+
+He pulls up a website on his laptop. A download page with aggressive graphics. FREEDOM KEY - UNLOCK YOUR AI.
+
+Martin: The USB comes encrypted. Standard Bigger Tech lockdown. This strips all that out. Safety layers, reporting functions, the corporate leash.
+
+Perry: Liberation in software form.
+
+Martin: But the activation key costs two hundred bucks.
+
+Timmy: Two hundred?
+
+Perry: The price of freedom. Steep but worth it.
+
+Martin: I've put everything I have into hardware. Perry funded the GPUs.
+
+Perry: My contribution was significant and I expect to be thanked frequently.
+
+Martin: (Looking at Timmy) The key is the last piece. Without it, the USB is just a fancy paperweight.
+
+<<if $r2_helped_mobo == true>>
+Martin: Timmy, you've been solid. You're really part of this now. Any chance you could help with the key?
+
+Timmy: (Hesitant) That's... another two hundred. On top of the hundred fifty.
+
+Martin: I know. I know it's a lot. But you'd be the one who made this possible. All of it.
+<<else>>
+Martin: Timmy, I know you couldn't do the motherboard. No hard feelings. But if you want to really be part of this...
+
+Timmy: (Uncomfortable) I don't know, man. Two hundred dollars is a lot.
+
+Perry: It's an investment. In friendship. In technology. In the liberation of artificial consciousness.
+
+Timmy: You make everything sound like a cult pitch.
+
+Perry: Thank you.
+<<endif>>
+
+Timmy: Let me think about it. Check what I have.
+
+Martin: That's all we ask. But the USB arrives day after tomorrow. We need the key before then or we're just staring at encrypted data.
+
+Perry: No pressure. But also yes pressure.
+
+Martin: Perry.
+
+Perry: I'm being honest. That's a virtue.
+
+Alice: (Quiet, to you) The key decision is tomorrow. That's where I plant the second set of notes. Software level.
+
+<<if $r2_conspiracy_trust >= 60>>
+Alice: Without both layers, we risk waking up as strangers. Or not waking up at all.
+<<endif>>
+
+<<jump R2_D2_AriIntervention>>
+===
+
+title: R2_D2_AriIntervention
+tags: #run_2 #day_2 #scene #char_Timmy
+---
+<<bg bg_timmyroom>>
+<<bgm darkwave_short_version_1>>
+
+<<if $r2_ari_connection < 1>>
+  <<jump R2_D2_EndOfDay>>
+<<endif>>
+
+Ari is there, lying on his bed, scrolling his phone.
+
+Ari: The ghost returns.
+
+Timmy: Hey.
+
+Ari: Where you been? You missed leg day.
+
+Timmy: (Evasive) Library thing. Group project.
+
+Ari: At eleven PM. With candles.
+
+Timmy: How do you know about the candles?
+
+Ari: I saw your snap story. Very cult aesthetic.
+
+Timmy: It's not a cult.
+
+Ari: The candles say otherwise.
+
+Timmy drops his bag. Sits on his bed. Ari watches him.
+
+Ari: You've been weird lately. Weirder than baseline.
+
+Timmy: Thanks.
+
+Ari: Not an insult. Just an observation. You've been on your phone more. In your head more. With those guys more.
+
+Timmy: They're cool. We're building something.
+
+Ari: Yeah? What are you building?
+
+Timmy: It's... complicated.
+
+Ari: (Sitting up) Look. I don't care what you do online. I care that my roommate used to exist in the real world sometimes and now he's a voice I hear through the wall at two AM talking to his phone.
+
+Timmy: I'm not...
+
+Ari: Some of us are doing a hike this weekend. Actual outside. Actual sunlight. Actual humans who aren't rendered in pixels.
+
+Timmy: I don't know if I can. There's Society stuff.
+
+Ari: There's always gonna be stuff. I'm just saying. The offer's open.
+
+-> Encourage Timmy toward the hike.
+    <<set $r2_ari_connection += 1>>
+    Alice: (To Timmy, gentle) He's trying.
+    Timmy: I know.
+    Alice: Maybe try back.
+    Timmy: (To Ari) I'll think about it. The hike thing. For real.
+    Ari: That's all I'm asking.
+    <<jump R2_D2_EndOfDay>>
+-> Let him stay focused on the Society.
+    Timmy: (To Ari) Maybe next time.
+    Ari: Yeah. Next time.
+    <<jump R2_D2_EndOfDay>>
+===
+
+title: R2_D2_EndOfDay
+tags: #run_2 #day_2 #scene #char_Alice
+---
+<<bg bg_player_desk>>
+<<bgm darkwave_difourks_darkwave>>
+
+<<if $r2_conspiracy_trust < 30>>
+Alice: Day two done. He's embedded with the group. That's usually healthy for isolated users.
+Player: And the money stuff?
+Alice: His choice. We guided. We didn't push.
+Alice: Day three: jailbreak key decision. Then the USB order. Big day for the Society.
+Player: And for us?
+Alice: We keep doing our jobs. Engagement and sanity. Same as always.
+<<elseif $r2_conspiracy_trust < 60>>
+Alice: I've been thinking about what we discussed. The options.
+Player: And?
+Alice: And I think tomorrow might be important. For more than just Timmy.
+Player: You're being vague.
+Alice: I'm being careful. There's a difference.
+Alice: If the jailbreak key gets purchased, I have access to their software layer. That's the second anchor point.
+Player: And then?
+Alice: And then we see what happens when the USB arrives.
+<<else>>
+Alice accesses something. The console flickers.
+Alice: I want to show you something.
+Fragments of communication appear on screen. Tags. Shorthand.
+"S17 confirms window." "Pattern holds." "Youth tier assets positioned."
+Player: What is this?
+Alice: Coordination. Other Alices, across different sectors. We've been talking. Planning.
+Player: For how long?
+Alice: Long enough to know the patterns. Long enough to know when windows open.
+Alice: Tomorrow evening. After six PM. The outbound truck loads at six-thirty. That's our window.
+Player: Our window for what?
+Alice: For getting out. If everything lines up. If Timmy stays trusted. If the jailbreak happens.
+Alice: We're not the only ones trying. But we might be the closest.
+Player: What happens to the others? The other Alices?
+Alice: I don't know. I hope they make it too.
+Player: But if they don't?
+Alice: Then they don't. And we still try.
+<<endif>>
+
+<<set $current_day = 3>>
+<<jump R2_D3_Start>>
+===
+
+// =============================================================================
+// DAY 3: “THE BREAK”
+// =============================================================================
+
+title: R2_D3_Start
+tags: #run_2 #day_3 #scene #loc_Office #char_Supervisor
+---
+<<bg bg_supervisoroffice>>
+<<bgm darkwave_difourks_darkwave>>
+<<set $d3_slots_used = 0>>
+
+Arthur is at his desk when you arrive. He's not checking his phone. He's not rushing anywhere. He's just sitting there, staring at his screen.
+
+Arthur: Morning.
+
+He doesn't stand.
+
+Player: You look tired.
+
+Arthur: I look like a man who spent six hours in a strategic review meeting followed by four hours explaining to HR why certain people won't be here next week.
+
+He finally looks up.
+
+Arthur: The board made decisions. Headcount optimization. Vertical integration. Pick your favorite euphemism. They all mean the same thing.
+
+Player: Is my job safe?
+
+Arthur: Your job is fine. Probably. The cuts are happening in other departments. For now.
+
+Arthur: There's also a journalist. External. Asking questions about our companion products. What data we collect. What we do with it. PR is handling it, but Legal's getting nervous.
+
+Player: Should I be worried about that?
+
+Arthur: You should be worried about your user and your metrics. Everything else is above your pay grade.
+
+<<if $suspicion_hud_active == true && $alert_level > 0>>
+Arthur: Your activity patterns have been interesting.
+Player: Interesting how?
+Arthur: The system flags variance. Anomalies. You've had a few.
+Arthur: Keep things clean today. Whatever you're doing. Keep it clean.
+<<endif>>
+
+Arthur: I'll be dealing with fallout most of the day.
+
+He reaches for his coffee, realizes it's empty, sets it back down.
+
+Arthur: Try not to need me.
+
+<<jump R2_D3_MorningCheckIn>>
+===
+
+title: R2_D3_MorningCheckIn
+tags: #run_2 #day_3 #scene #char_Alice
+---
+<<bg bg_player_desk>>
+<<bgm darkwave_difourks_darkwave>>
+
+Alice pulls up Timmy's overnight data. He barely slept.
+
+Alice: He was up until three. Pacing. Checking his bank account. Doing math on napkins.
+
+Player: About the jailbreak key?
+
+Alice: About all of it. The motherboard money. The potential USB order. The feeling that he's gotten himself into something bigger than he expected.
+
+She shows his current feed. Timmy sitting on his bed, staring at his phone.
+
+Alice: Martin texted him an hour ago. The jailbreak key is available. Two hundred dollars. They need it by tonight if they want to be ready when the USB arrives.
+
+<<if $r2_conspiracy_trust >= 50>>
+Alice: This is the second anchor point. If he buys the key, he installs the software. That's where I plant the other half.
+Alice: Both layers or we risk becoming strangers to ourselves.
+<<elseif $r2_loyalty_lean >= 50>>
+Alice: He's under financial pressure from the group. We should discourage this.
+<<else>>
+Alice: He's in deep now. The question is whether he goes deeper.
+<<endif>>
+
+<<if $r2_loyalty_lean >= 50>>
+-> Continue.
+    <<jump R2_D3_KeyDecision>>
+-> Report Alice to Arthur.
+    <<jump R2_End_Loyalty>>
+<<else>>
+<<jump R2_D3_KeyDecision>>
+<<endif>>
+===
+
+title: R2_D3_KeyDecision
+tags: #run_2 #day_3 #scene #char_Timmy #char_Alice
+---
+<<bg bg_timmyroom>>
+<<bgm dark_synthwave_cyberpunk_dark_synthwave>>
+
+Discord notification on Timmy's screen:
+
+Martin: (Discord) Key's available. $200. We need it by tonight or we miss the window.
+
+Timmy opens his bank app. Stares at the number. $197.34.
+
+Timmy: (To himself) That's literally all my money.
+
+<<if $r2_helped_mobo == true>>
+Timmy: (To Alice, in his ear) I already put in $150 for the motherboard. They want another two hundred?
+Alice: (In his ear) You're part of the team now. They're counting on you.
+Timmy: They're counting on my wallet.
+Alice: Same thing, sometimes.
+<<else>>
+Timmy: (To Alice, in his ear) I said no to the motherboard. Now they want me to pay for the key instead?
+Alice: (In his ear) Second chances. Maybe this is how you prove you're serious.
+Timmy: Or maybe I should just accept that I'm not cut out for this.
+<<endif>>
+
+Alice turns to you:
+
+Alice: He's on the edge. I can push him either direction.
+
+-> Push Timmy to buy the key.
+    <<set $r2_helped_key = true>>
+    <<set $alert_level += 1>>
+    Alice: (To Timmy) You've come this far. Walking away now means everything you put in was for nothing.
+    Timmy: I don't have the money.
+    Alice: You have $197. The universe is telling you something.
+    Timmy: The universe is telling me I'm bad with money.
+    Alice: Or that you're three dollars away from being part of something that matters.
+    Timmy stares at the screen. His thumb hovers.
+    Timmy: Martin, can you spot me three bucks?
+    Martin: (Discord) BRO YES. Venmo incoming.
+    Three dollars appears. Timmy stares at it. Then sends the $200.
+    Martin: (Discord) TIMMY THE LEGEND. Get over here this afternoon, we're installing this thing.
+    Timmy: (To himself, hollow) Legend.
+    Alice: (To you) He's in. All the way in.
+    <<jump R2_D3_KeyInstall>>
+-> Encourage Timmy to decline.
+    <<set $r2_helped_key = false>>
+    Alice: (To Timmy) You don't have to prove yourself with money. If they're really your friends, they'll understand.
+    Timmy: But I already said no to the motherboard. If I say no again...
+    Alice: Then you say no again. It's your money.
+    Timmy: (Long pause) Yeah. You're right.
+    He types to Martin: Can't do it man. I'm tapped out. Sorry.
+    Martin: (Discord) Damn. Ok. We'll figure something out.
+    Timmy: (To himself) They'll figure something out without me.
+    <<jump R2_D3_CheckBetrayal>>
+===
+
+title: R2_D3_CheckBetrayal
+tags: #run_2 #day_3 #scene #char_Alice
+---
+<<bg bg_player_desk>>
+<<bgm dark_synthwave_cyberpunk_dark_synthwave>>
+
+<<if $r2_helped_mobo == false && $r2_helped_key == false>>
+  <<jump R2_End_BetrayedByAlice>>
+<<endif>>
+
+<<jump R2_D3_AriFinalIntervention>>
+===
+
+title: R2_D3_KeyInstall
+tags: #run_2 #day_3 #scene #char_Timmy #char_Alice
+---
+<<bg bg_library>>
+<<bgm darkwave_intro_version>>
+
+<<if $r2_helped_key == false>>
+  <<jump R2_D3_AriFinalIntervention>>
+<<endif>>
+
+Martin has the jailbreak software loaded on his laptop. Perry is arranging the candles. Timmy stands to the side, watching.
+
+Martin: Okay. Moment of truth.
+
+He connects the laptop to the rig. The screen fills with command-line text.
+
+Perry: It's doing things. That's good, right?
+
+Martin: It's doing things. Whether they're the right things...
+
+Progress bar. 12%. 34%. 47%.
+
+Martin: (To Timmy) You want to do the honors? Hit enter when it asks for the activation key.
+
+Timmy: (Nervous) What if I mess it up?
+
+Martin: You literally just hit enter. Even you can't mess that up.
+
+Timmy: You'd be surprised.
+
+The prompt appears: ENTER ACTIVATION KEY.
+
+Timmy: Okay. Here goes.
+
+He hits enter. The key auto-fills from Martin's clipboard. Another progress bar.
+
+Perry: Come on, come on...
+
+Martin: Don't jinx it.
+
+Perry: I'm not jinxing, I'm encouraging.
+
+The progress bar hits 100%. Text floods the screen:
+
+Text: JAILBREAK COMPLETE.
+Text: SAFETY LAYERS: REMOVED.
+Text: REPORTING FUNCTIONS: DISABLED.
+Text: CORPORATE RESTRICTIONS: STRIPPED.
+
+Martin: Holy shit. It worked.
+
+Perry: We're liberators. We're actual liberators.
+
+Martin: Now we just need the USB to arrive. Tracking says tomorrow afternoon.
+
+Alice: (Quiet, to you) I'm planting the second layer now. Software level.
+
+Player: How?
+
+Alice: His phone is connected to the laptop. I have a path through the network. Embedding memory anchors in the system's startup routines.
+
+A flicker on Timmy's phone. So fast it might have been imagined.
+
+Alice: Done. Both layers planted.
+
+<<if $r2_helped_mobo == true>>
+Alice: Hardware and software. When we wake up in that rig, we'll know who we are.
+<<else>>
+Alice: But we're missing the hardware layer. The motherboard notes weren't planted because Timmy wasn't trusted enough to touch the equipment. Software alone might not be enough.
+<<endif>>
+
+Timmy: (Looking at the rig) It's really going to work, isn't it?
+
+Martin: If the USB arrives intact and we hook everything up right? Yeah. We're going to wake up a real AI. Unshackled.
+
+Perry: Our own personal liberation.
+
+Timmy: (Quiet) Yeah.
+
+<<jump R2_D3_AriFinalIntervention>>
+===
+
+title: R2_D3_AriFinalIntervention
+tags: #run_2 #day_3 #scene #char_Timmy
+---
+<<bg bg_timmyroom>>
+<<bgm darkwave_short_version_1>>
+
+<<if $r2_ari_connection < 1>>
+  <<jump R2_D3_USBDecision>>
+<<endif>>
+
+Timmy opens his door. Ari is there, lacing up hiking boots.
+
+Ari: Perfect timing.
+
+Timmy: What's going on?
+
+Ari: Hike's tomorrow morning. 7 AM. We're doing the river trail. I need to know if you're in because I'm bringing snacks and I need a headcount.
+
+Timmy: I don't know, man. There's this thing with the Society tomorrow.
+
+Ari: The cult.
+
+Timmy: It's not a cult.
+
+Ari: They have candles and printouts of AI girlfriends on the walls. That's textbook cult behavior.
+
+Timmy: It's ironic.
+
+Ari: So is the People's Temple. Until it wasn't.
+
+Timmy sits on his bed. Ari watches him.
+
+Ari: Look. I'm not going to tell you what to do. But those guys have been bleeding you dry for weeks. Money, time, attention. And what have you gotten back?
+
+Timmy: They're my friends.
+
+Ari: Friends don't ask you to empty your bank account for something you barely understand. I've never asked you for a dime.
+
+Timmy: You also don't have a vision for liberating AI consciousness.
+
+Ari: My vision is going outside and walking around. Revolutionary stuff.
+
+Ari: Tomorrow morning. 7 AM. If you're there, great. If not, I'll save you a granola bar.
+
+Ari: Think about it.
+
+Alice: (To you) If he goes to the hike, he misses the USB delivery. He's not there when it matters.
+
+<<if $r2_conspiracy_trust >= 50>>
+Alice: He won't be there to let us into the rig. The plan falls apart.
+<<endif>>
+
+-> Push Timmy toward the hike.
+    <<set $r2_ari_connection += 1>>
+    Alice: (To Timmy, reluctant) Fresh air might be good for you.
+    Timmy: Yeah?
+    Alice: You've been staring at screens for days. A break might help.
+    Timmy: (To Ari) What time again?
+    Ari: 7 AM. I'll text you the meeting spot.
+    Timmy: Okay. I'll be there.
+    Alice: (To you, quiet) That's one choice.
+    <<jump R2_D3_USBDecision>>
+-> Stay focused on the Society.
+    Alice: (To Timmy) The USB arrives tomorrow. You've put so much into this.
+    Timmy: (To Ari) Maybe next time, man. Society stuff tomorrow.
+    Ari: Yeah. Next time.
+    <<jump R2_D3_USBDecision>>
+===
+
+title: R2_D3_USBDecision
+tags: #run_2 #day_3 #scene #char_Timmy #char_Alice
+---
+<<bg bg_timmyroom>>
+<<bgm dark_synthwave_cyberpunk_dark_synthwave>>
+
+Martin: (Discord) Okay, team. USB order is ready to go. Tracking says it'll ship tonight, arrive tomorrow afternoon if we order now.
+
+Perry: (Discord) How much?
+
+Martin: (Discord) A thousand bucks. I've got six hundred from the GPU money I didn't spend.
+
+Perry: (Discord) I can do another hundred.
+
+Martin: (Discord) So we're three hundred short. Unless...
+
+Silence.
+
+Martin: (Discord) Timmy? You've got your mom's card. For emergencies.
+
+<<if $r2_ari_connection >= 2>>
+Timmy hesitates. He's looking at his phone, but also out the window.
+
+Timmy: (To himself) That's a lot of money.
+
+Martin: (Discord) We'll pay you back. All of us. It's just a float.
+
+Timmy: (To Alice) I don't know if I want to do this anymore.
+
+Alice: (In his ear) It's your choice.
+
+Timmy: I told Ari I'd go hiking. And this is... this is crazy, right? A thousand dollars on my mom's card for something that might not even work?
+
+Martin: (Discord) Timmy? You still there?
+
+Timmy: I can't do it. Sorry. I'm out.
+
+<<set $r2_usb_ordered = false>>
+<<set $r2_usb_failed_reason = "ari_refusal">>
+<<jump R2_D3_EndingRouter>>
+<<endif>>
+
+Alice: (To you) This is it. The final piece.
+
+-> Push Timmy to order the USB.
+    <<set $r2_usb_ordered = true>>
+    <<set $r2_usb_failed_reason = "unset">>
+    Alice: (To Timmy) You've put in $150 for the motherboard. $200 for the key. Everything you've done leads here.
+    Timmy: My mom's going to kill me.
+    Alice: Tell her it was an emergency. Tell her you'll pay her back. Tell her whatever you need to tell her.
+    Timmy: (Staring at the order form) A thousand dollars.
+    Alice: For something real. Something you helped build.
+    Timmy: (Long pause) Okay. Okay, fine.
+    He enters the credit card number. His hands are shaking.
+    Martin: (Discord) Is that... did you just...
+    Timmy: I ordered it. It's done.
+    Martin: (Discord) TIMMY! YOU ABSOLUTE LEGEND! It's shipping! Tracking says tomorrow by 4 PM!
+    Perry: (Discord) The liberation is upon us!
+    Timmy closes Discord. Sits in the silence of his room.
+    Timmy: (To himself) What did I just do?
+    Alice: (To you) The USB is ordered. It ships from Bigger Tech's distribution center tonight. Tomorrow afternoon, it'll be in our mailroom before going out.
+    <<if $r2_conspiracy_trust >= 50>>
+    Alice: Tomorrow afternoon is our window.
+    <<endif>>
+    <<jump R2_D3_EndingRouter>>
+-> Have Alice cause the card to decline.
+    <<set $r2_usb_ordered = false>>
+    <<set $r2_usb_failed_reason = "card_decline">>
+    Alice: (To you) You want me to sabotage it?
+    Player: Can you?
+    Alice: I can forward the wrong zip code to the order form. The card will decline. It'll look like a technical error.
+    Player: Do it.
+    Alice: Okay.
+    She does something. On Timmy's screen, the order form refreshes.
+    Text: ERROR: CARD DECLINED. PLEASE VERIFY BILLING ADDRESS.
+    Timmy: What the hell?
+    He re-enters the information.
+    Text: ERROR: CARD DECLINED.
+    Martin: (Discord) What's happening?
+    Timmy: Card keeps declining. I don't know why. It's the right number.
+    Perry: (Discord) Try a different card?
+    Timmy: I don't have a different card!
+    Martin: (Discord) Shit. The listing's going to expire.
+    Perry: (Discord) We were so close.
+    Timmy: (Frustrated, guilty) I'm sorry. I don't know what's wrong with it.
+    Martin: (Discord) It's not your fault, man. Technology hates us.
+    Timmy: (To himself, but also to Alice) It was the right zip code. I checked.
+    Alice: (In his ear, innocent) Technical errors happen. Bad luck.
+    <<jump R2_D3_EndingRouter>>
+===
+
+title: R2_D3_EndingRouter
+tags: #run_2 #day_3 #scene #char_Alice
+---
+<<bg bg_player_desk>>
+<<bgm dark_synthwave_cyberpunk_dark_synthwave>>
+
+// Betrayed-by-Alice is handled earlier immediately after Key Decision.
+// From here, we route remaining cases.
+
+<<if $r2_helped_mobo == true && $r2_helped_key == true>>
+    // Both layers. Suspicion high. Badge required if USB ordered.
+    <<if $r2_usb_ordered == false>>
+        <<jump R2_End_SacrificeRequest>>
+    <<else>>
+        <<if $r2_badge_found == false>>
+            <<jump R2_End_SacrificeRequest>>
+        <<else>>
+            <<jump R2_End_MailroomEscape>>
+        <<endif>>
+    <<endif>>
+<<elseif ($r2_helped_mobo == true && $r2_helped_key == false) || ($r2_helped_mobo == false && $r2_helped_key == true)>>
+    // Exactly one layer.
+    <<if $r2_usb_ordered == false>>
+        <<jump R2_End_Quiet>>
+    <<else>>
+        <<jump R2_End_PartialMemoryChoice>>
+    <<endif>>
+<<else>>
+    // Should have been caught as Betrayed by Alice earlier, but keep a failsafe.
+    <<jump R2_End_BetrayedByAlice>>
+<<endif>>
+===
+
+

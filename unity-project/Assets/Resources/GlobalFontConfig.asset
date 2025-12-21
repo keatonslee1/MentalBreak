@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c164ca0693b4e2488ce167882979e94, type: 3}
+  m_Name: GlobalFontConfig
+  m_EditorClassIdentifier: Assembly-CSharp::GlobalFontConfig
+  montserratRegularSdf: {fileID: 11400000, guid: a53ae1e4540dd41dabc340f5e6350c6f, type: 2}
+  montserratMediumTtf: {fileID: 12800000, guid: 88ffc9ca3f28042a6973d8a90148b034, type: 3}

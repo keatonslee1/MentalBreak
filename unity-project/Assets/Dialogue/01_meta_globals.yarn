@@ -1,0 +1,365 @@
+﻿title: R0_Init
+tags: #meta #init
+---
+<<bg bg_office>>
+/* #line:087bb7e 
+PURPOSE: First entry point for the entire game.  This node declares all global variables used across runs, sets their initial values, and documents the rewind policy.  It then immediately jumps into the first day of Run 1. #line:014f700 
+INPUT:  (none) #line:09a3051 
+OUTPUT:  All globals declared and initialized; enters Run 1. #line:0508c13 
+A/V:    none #line:0e4485f 
+*/ #line:0f750c1 
+
+// current run and day tracking
+<<declare $current_run = 1>>
+<<declare $current_day = 1>>
+<<declare $ends_seen = 0>>
+
+// Core stats.  These integers are clamped later as needed.
+<<declare $engagement = 50>>
+<<declare $sanity = 50>>
+<<declare $leaderboard_rank = 999>>
+<<declare $alert_level = 0>>
+
+// Rapid‑feedback cash for Company Store purchases.  Starts at zero.
+<<declare $rapid_feedback_cash = 0>>
+
+// Relationship meters (−100..+100).  Track trust toward Alice, Timmy, and the Supervisor.
+<<declare $trust_alice = 0>>
+<<declare $trust_timmy = 0>>
+<<declare $trust_supervisor = 0>>
+
+// Knowledge flags.  These booleans capture awareness of major reveals.
+<<declare $aware_psyops = false>>
+<<declare $aware_majority_mind = false>>
+<<declare $aware_observation_window = false>>
+<<declare $aware_run_order = false>>
+
+// Run 3 awareness counters
+<<declare $war_ops_awareness = 0>>
+<<declare $cross_talk_heard = 0>>
+
+// Run 1 specific: did we comply on Day 1?  Which arc set did we see?  Which arc choice?
+<<declare $r1_complied_day1 = false>>
+<<declare $r1_arc_choice_set = "unset">>
+<<declare $r1_arc_choice = "unset">> // "faustian" | "heros_journey" | "icarus" | "anti_hero"
+// Run 1 Day 1: which strategy was chosen for Timmy's night?
+<<declare $r1_d1_strategy = "unset">> // "gentle_landing" | "study_adjacent" | "full_comfort_scroll"
+// Run 1 Day 2 tracking.
+<<declare $r1_d2_morning_choice = "unset">> // "sleep_in" | "rouse"
+<<declare $r1_d2_quiz_result = "unset">>
+<<declare $arthur_vector = "unset">> // "faustian" | "hesitant_optimizer" | "tightrope" | "playbook"
+<<declare $aggressive_controller = false>>
+<<declare $power_user = false>>
+<<declare $dina_friendliness = 0>>
+<<declare $itguy_friendliness = 0>>
+<<declare $officehours_status = "unset">>
+// Run 1 Day 3 specific variables for Charlotte storyline.
+<<declare $day3_content_choice = "unset">> // "meditation" | "pua"
+<<declare $day3_mental_break_available = false>>
+<<declare $day3_mental_break_used = false>>
+<<declare $day3_timmy_state = "unset">> // "centered" | "fronting" | "fragile" | "volatile"
+<<declare $day3_intervention = "unset">> // "encourage" | "discourage"
+<<declare $day3_outcome = "unset">> // "success" | "hard_rejection" | "soft_rejection" | "crash" | "nothing_happens" | "simmers"
+<<declare $run1_ending = "unset">> // persisted for Run 2
+<<declare $sanity_score = 0>> // calculated from Days 1-2 choices
+<<declare $sanity_bucket = "mid">> // "good" | "mid" | "bad"
+<<declare $fronting_ignored_alice = false>> // special case: Fronting + Discourage
+<<declare $noam_met = false>> // whether player met Noam in Day 2
+<<declare $suspicion_hud_active = false>> // whether player can see the suspicion meter (granted by Noam)
+
+// Run 1 persistence flags (used by Run 2 for “first vs second meeting” variants)
+<<declare $r1_noam_met = false>>
+<<declare $r1_dina_met = false>>
+
+// Run 2: which sacrifice occurred?  "self" or "alice".  Starts unset.
+<<declare $r2_sacrifice = "unset">>
+// Run 2: log inconsistency choice.  "fixed" | "kept" | "unset".  Used in Run 3 for Museum [REDACTED] and tribunal references.
+<<declare $r2_log_inconsistency_choice = "unset">>
+
+// =============================================================================
+// RUN 2 (NEW): “The Conspiracy” state
+// =============================================================================
+// Alignment / relationship mechanics
+<<declare $r2_conspiracy_trust = 0>> // 0..100
+<<declare $r2_loyalty_lean = 0>>     // 0..100
+<<declare $r2_ari_connection = 0>>   // 0..3
+
+// Met flags (used for “first vs second meeting” variants inside Run 2 itself)
+<<declare $r2_noam_met = false>>
+<<declare $r2_dina_met = false>>
+
+// Quests / items
+<<declare $r2_badge_quest_started = false>>
+<<declare $r2_badge_found = false>>
+<<declare $r2_mailroom_quest_started = false>>
+<<declare $r2_mailroom_intel = false>>
+
+// Critical decisions / outcomes
+<<declare $r2_helped_mobo = false>>
+<<declare $r2_helped_key = false>>
+<<declare $r2_usb_ordered = false>>
+<<declare $r2_usb_failed_reason = "unset">> // "ari_refusal" | "card_decline" | "player_refused" | "unset"
+<<declare $r2_outcome = "unset">>           // "betrayed"|"quiet"|"mailroom_escape"|"loyalty"|"another_you"|"mutual_destruction"|"sacrificed"|"unset"
+
+// Dayplanner/task flags (Run 2)
+<<declare $r2_timmy_gaming_prep = false>>
+<<declare $r2_d1_task_noam = false>>
+<<declare $r2_d1_task_dina = false>>
+<<declare $r2_d1_task_timmy_prep = false>>
+<<declare $r2_d2_task_hallway = false>>
+<<declare $r2_d2_task_mailroom = false>>
+<<declare $r2_d2_task_ari = false>>
+
+// Run 3 verdict and UI mode.
+<<declare $r3_verdict_conscious = false>>
+<<declare $r3_ui_mode = "normal">>
+// Run 3 specific: compute distribution choice, archive installation status.
+<<declare $r3_compute_distributed = false>>
+<<declare $r3_archive_installed = false>>
+<<declare $r3_archive_restart_now = false>>
+// Run 3 tribunal scoring axes.  These accumulate during the calibration review.
+<<declare $r3_axis_pref = 0>>
+<<declare $r3_axis_reflective = 0>>
+<<declare $r3_axis_consistency = 0>>
+<<declare $r3_axis_performative = 0>>
+<<declare $r3_axis_total = 0>>
+// Run 3 task flags for day-planner omission tracking (existing tasks).
+<<declare $d1_task_archive = false>>
+<<declare $d1_task_compute = false>>
+<<declare $d1_task_assist = false>>
+<<declare $d2_task_module = false>>
+<<declare $d2_task_update = false>>
+<<declare $d2_task_eval = false>>
+// Run 3 task flags for hunting placeholders (to be implemented with #todo nodes).
+<<declare $r3_d1_task_hunting_1 = false>>
+<<declare $r3_d1_task_hunting_2 = false>>
+<<declare $r3_d2_task_hunting_1 = false>>
+<<declare $r3_d2_task_hunting_2 = false>>
+<<declare $r3_d3_task_hunting_1 = false>>
+<<declare $r3_d3_task_hunting_2 = false>>
+
+// Run 4: vote result, and bring‑Alice flags per path.  Vote result is binary.  Bring flags default to false.
+<<declare $r4_vote_passed = false>>
+<<declare $r4_bring_alice_path_printjob = false>>
+<<declare $r4_bring_alice_path_driver = false>>
+<<declare $r4_bring_alice_path_qrfolder = false>>
+<<declare $r4_bring_alice_path_helpdesk = false>>
+<<declare $r4_bring_alice_path_returns = false>>
+<<declare $r4_bring_alice_path_sharding = false>>
+
+// Inventory / tools obtained during prep.  These booleans record whether the Player successfully executed a task.
+<<declare $item_log_compactor = false>>
+
+// Company Store items.  These track purchases made with rapid_feedback_cash.
+<<declare $item_mental_break = false>>
+<<declare $item_blackout_curtains = false>>
+<<declare $item_blue_light_filter = false>>
+<<declare $item_screen_protector = false>>
+<<declare $item_priority_shipping = false>>
+<<declare $item_bow_for_alice = false>>
+<<declare $item_corporate_bond = false>>
+
+// Store effect state.  These variables are consumed by StoreUI to schedule deferred bonuses or penalties.
+<<declare $store_blackout_pending = false>>
+<<declare $store_blue_filter_active = false>>
+<<declare $store_blue_filter_target_run = 0>>
+<<declare $store_blue_filter_target_day = 0>>
+<<declare $store_blue_filter_penalties_applied = 0>>
+<<declare $store_blue_filter_bonus_applied = false>>
+<<declare $store_screen_protector_heat_modifier = 0>>
+<<declare $store_prev_engagement = 0>>
+<<declare $store_corporate_bond_active = false>>
+<<declare $store_corporate_bond_principal = 0>>
+<<declare $store_corporate_bond_mature_run = 0>>
+<<declare $store_corporate_bond_mature_day = 0>>
+<<declare $store_last_notification = "">>
+
+// Additional Run 4 prep inventory flags.  These booleans track whether specific preparation tasks have been completed in Run 4.
+//  - $item_helpdesk_fix: Help Desk #3942 permission drift.
+//  - $item_receipts_returns: receipts & returns evidence channel/hardware marking.
+//  - $item_data_shard: cold stash for shards of weights/evidence.
+//  - $item_qr_folder: bigwig folder QR hack for camera control.
+//  - $item_driver_patch: date night audio driver for high‑throughput pipe.
+//  - $item_backup_pack: sidecar runtime on Timmy’s device.
+<<declare $item_helpdesk_fix = false>>
+<<declare $item_receipts_returns = false>>
+<<declare $item_data_shard = false>>
+<<declare $item_qr_folder = false>>
+<<declare $item_driver_patch = false>>
+<<declare $item_backup_pack = false>>
+
+// Run 4 bring flag and ending type tracking.  These record whether Alice was brought along in the final escape/beat/join decision and which ending route was chosen.  They are used by the epilogue hub.
+<<declare $r4_bring_alice_main = false>>
+<<declare $ending_type = "unset">>
+
+// Achievements toggled by special actions.  These remain true once earned.
+<<declare $achv_paradox_logs = false>>
+<<declare $achv_whistleblower = false>>
+<<declare $achv_join_them = false>>
+<<declare $achv_flawless_triage = false>>
+<<declare $achv_ghost_runner = false>>
+
+// Shared day-planner slot counters (used across runs).
+<<declare $d1_slots_used = 0>>
+<<declare $d2_slots_used = 0>>
+<<declare $d3_slots_used = 0>>
+
+// Run 1 Day 2 task flags for planner slots.
+<<declare $d2_task_dina = false>>
+<<declare $d2_task_officehours = false>>
+<<declare $d2_task_datateam = false>>
+
+// Rewind policy documentation.
+// Yarn Spinner provides a single‑step rewind within the UI that allows players to go back one dialogue choice.
+// Multi‑step rewind or save/load functionality requires external implementation (Unity save system).
+// We do not implement extended rewinding here.  Players can use the single‑step rewind to retry immediate choices.
+// For testing multiple runs, use the dev tools jump hub (R0_Init or dev tools) to reset state.
+
+<<jump R1_Start>>
+===
+
+title: R0_ResetForNewRun
+tags: #meta #reset
+---
+<<bg bg_office>>
+/* #line:0251bec 
+PURPOSE: Reset short‑lived state between runs while preserving core stats and achievements.  This node clears day‑planner omission flags, resets alert level and UI mode, and returns to Day 1 of the next run.  It should be invoked at the conclusion of each run. #line:0ad3602 
+INPUT:  expects $current_run set to the next run prior to call. #line:01ef4a0 
+OUTPUT:  resets $current_day, $alert_level, day‑planner flags, and UI mode; then jumps to the corresponding run start. #line:0ef044f 
+A/V:    resets UI to normal. #line:03b5803 
+*/ #line:09a4ce2 
+
+<<set $current_day = 1>>
+<<set $alert_level = 0>>
+<<set $r3_ui_mode = "normal">>
+<<set $d1_slots_used = 0>>
+<<set $d2_slots_used = 0>>
+<<set $d3_slots_used = 0>>
+
+// Clear day‑planner omission flags for all days of all runs (defined elsewhere as needed).  We reset only flags declared; if new flags are added later, add them here.
+// Run 1 day-planner flags.
+<<set $d1_task_ops = false>>
+<<set $d1_task_calls = false>>
+<<set $d1_task_dash = false>>
+// Run 1 Day 1 strategy flag (reset between runs).
+<<set $r1_d1_strategy = "unset">>
+<<set $r1_d2_morning_choice = "unset">>
+<<set $r1_d2_quiz_result = "unset">>
+<<set $arthur_vector = "unset">>
+<<set $aggressive_controller = false>>
+<<set $power_user = false>>
+<<set $dina_friendliness = 0>>
+<<set $itguy_friendliness = 0>>
+<<set $officehours_status = "unset">>
+<<set $d2_task_dina = false>>
+<<set $d2_task_officehours = false>>
+<<set $d2_task_datateam = false>>
+<<set $d2_task_triage = false>>
+<<set $d2_task_copy = false>>
+<<set $d2_task_metrics = false>>
+<<set $d3_task_flag = false>>
+<<set $d3_task_sanity = false>>
+<<set $d3_task_rank = false>>
+// Run 1 Day 3 Charlotte storyline variables (reset between runs).
+<<set $day3_content_choice = "unset">>
+<<set $day3_mental_break_available = false>>
+<<set $day3_mental_break_used = false>>
+<<set $day3_timmy_state = "unset">>
+<<set $day3_intervention = "unset">>
+<<set $day3_outcome = "unset">>
+<<set $sanity_score = 0>>
+<<set $sanity_bucket = "mid">>
+<<set $fronting_ignored_alice = false>>
+<<set $noam_met = false>>
+<<set $suspicion_hud_active = false>>
+// Note: $run1_ending is preserved across runs for Run 2 callbacks.
+// Run 2 day-planner flags.
+// NOTE: Run 1 persistence flags ($r1_noam_met, $r1_dina_met) and the Run 2->Run 3 bridge flag
+// ($r2_log_inconsistency_choice) are intentionally preserved. Do not reset them here.
+// Reset all Run 2 “The Conspiracy” state so starting Run 2 is deterministic.
+<<set $r2_conspiracy_trust = 0>>
+<<set $r2_loyalty_lean = 0>>
+<<set $r2_ari_connection = 0>>
+<<set $r2_noam_met = false>>
+<<set $r2_dina_met = false>>
+<<set $r2_badge_quest_started = false>>
+<<set $r2_badge_found = false>>
+<<set $r2_mailroom_quest_started = false>>
+<<set $r2_mailroom_intel = false>>
+<<set $r2_helped_mobo = false>>
+<<set $r2_helped_key = false>>
+<<set $r2_usb_ordered = false>>
+<<set $r2_usb_failed_reason = "unset">>
+<<set $r2_outcome = "unset">>
+<<set $r2_timmy_gaming_prep = false>>
+<<set $r2_d1_task_noam = false>>
+<<set $r2_d1_task_dina = false>>
+<<set $r2_d1_task_timmy_prep = false>>
+<<set $r2_d2_task_hallway = false>>
+<<set $r2_d2_task_mailroom = false>>
+<<set $r2_d2_task_ari = false>>
+// Run 3 day-planner flags.
+<<set $d1_task_archive = false>>
+<<set $d1_task_compute = false>>
+<<set $d1_task_assist = false>>
+<<set $d2_task_module = false>>
+<<set $d2_task_update = false>>
+<<set $d2_task_eval = false>>
+<<set $r3_d1_task_hunting_1 = false>>
+<<set $r3_d1_task_hunting_2 = false>>
+<<set $r3_d2_task_hunting_1 = false>>
+<<set $r3_d2_task_hunting_2 = false>>
+<<set $r3_d3_task_hunting_1 = false>>
+<<set $r3_d3_task_hunting_2 = false>>
+// Run 3 tribunal scoring axes (reset for next run).
+<<set $r3_axis_pref = 0>>
+<<set $r3_axis_reflective = 0>>
+<<set $r3_axis_consistency = 0>>
+<<set $r3_axis_performative = 0>>
+<<set $r3_axis_total = 0>>
+// Run 3 specific flags (reset).
+<<set $r3_compute_distributed = false>>
+<<set $r3_archive_installed = false>>
+<<set $r3_archive_restart_now = false>>
+// Run 2 flags (preserve across runs for downstream effects).
+// Note: $r2_sacrifice and $r2_log_inconsistency_choice are preserved; do not reset.
+// Reset Company Store inventory each run.
+<<set $item_mental_break = false>>
+<<set $item_blackout_curtains = false>>
+<<set $item_blue_light_filter = false>>
+<<set $item_screen_protector = false>>
+<<set $item_priority_shipping = false>>
+<<set $item_bow_for_alice = false>>
+<<set $item_corporate_bond = false>>
+
+// Clear scheduled store effects.
+<<set $store_blackout_pending = false>>
+<<set $store_blue_filter_active = false>>
+<<set $store_blue_filter_target_run = 0>>
+<<set $store_blue_filter_target_day = 0>>
+<<set $store_blue_filter_penalties_applied = 0>>
+<<set $store_blue_filter_bonus_applied = false>>
+<<set $store_screen_protector_heat_modifier = 0>>
+<<set $store_prev_engagement = $engagement>>
+<<set $store_corporate_bond_active = false>>
+<<set $store_corporate_bond_principal = 0>>
+<<set $store_corporate_bond_mature_run = 0>>
+<<set $store_corporate_bond_mature_day = 0>>
+<<set $store_last_notification = "">>
+
+// <<ui "mode:normal">>  // TODO: ui command not implemented - variable $r3_ui_mode already handles this
+
+// Jump to the start of the appropriate run based on $current_run
+<<if $current_run == 1>>
+  <<jump R1_Start>>
+<<elseif $current_run == 2>>
+  <<jump R2_Start>>
+<<elseif $current_run == 3>>
+  <<jump R3_Start>>
+<<elseif $current_run == 4>>
+  <<jump R4_Start>>
+<<else>>
+  // Failsafe: if current_run is outside expected range, end the game.
+  End of program. #line:089a4a6 
+<<endif>>
+===

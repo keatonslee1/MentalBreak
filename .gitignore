@@ -1,0 +1,58 @@
+# Unity
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+*.pidb.meta
+*.pdb.meta
+*.mdb.meta
+
+# Unity Build (keep webgl-build but ignore other build folders)
+unity-project/[Bb]uild/
+!unity-project/webgl-build/
+
+# VS Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+
+# Vercel
+.vercel
+
+# Node
+node_modules/
+.env*.local
+.env
+
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# FMOD (keep only streaming assets banks)
+*.bank
+!unity-project/Assets/StreamingAssets/*.bank
+
+# Unity packages cache
+unity-project/Packages/packages-lock.json
+
+# Crash reports
+sysinfo.txt
+crashlytics-build.properties

@@ -1,0 +1,134 @@
+﻿title: FX_CensorBlip
+tags: #scene #fx #ui_glitch
+---
+/* #line:0bddc88 
+PURPOSE: Quick inline censor effect and mild foreshadowing of the psy‑ops twist.  When invoked, this plays a censor beep, displays a redacted name, and returns control to the caller. #line:0be37cf 
+*/ #line:09b605e 
+<<sfx sfx_censor_beep>>
+[REDACTED] #line:0ee88cb 
+
+===
+
+title: FX_CrossTalk
+tags: #scene #fx
+---
+/* #line:0a484c2 
+PURPOSE: Represents a cross‑compartment whisper.  Increments the cross‑talk counter and plays a static overlay.  The whisper content is intentionally vague and can be varied by calling contexts. #line:09236af 
+*/ #line:03d33d9 
+<<set $cross_talk_heard += 1>>
+<<sfx sfx_cross_talk>>
+A faint voice bleeds through your channel: "...prep posture advancing—youth tier spiking..."  The static snaps shut. #line:07b4e82 
+
+===
+
+title: FX_WarOpsIncrement
+tags: #scene #fx
+---
+/* #line:0a33451 
+PURPOSE: Increment the war_ops_awareness counter.  Use this whenever the Player sees evidence of the civil–military fusion psy‑ops program.  The count gates secret content later. #line:07b40b8 
+*/ #line:097a4ed 
+<<set $war_ops_awareness += 1>>
+The realization settles deeper. #line:0f719bd 
+
+===
+
+title: SHOP_Visit
+tags: #scene #shop
+---
+<<bg bg_companystore>>
+// For Run 1 Day 1, the store dialogue is handled in R1_D1_StoreVisit
+// This node is a fallback for other runs/days
+<<if $current_run == 1 and $current_day == 1>>
+    <<jump R1_D1_StoreVisit>>
+<<else>>
+    The Company Store hums to life as the rapid-feedback kiosk dispenses your credits. A holographic attendant gestures toward the terminals.
+    <<store>>
+    You browse the available items and make your selections.
+    <<jump SHOP_After>>
+<<endif>>
+
+===
+
+title: SHOP_After
+tags: #scene #shop
+---
+// Shop visits only occur on Day 1 of each run
+<<if $current_run == 1 and $current_day == 1>>
+    <<jump R1_D1_AfterShop>>
+<<elseif $current_run == 2 and $current_day == 1>>
+    <<jump R2_D1_AfterShop>>
+<<elseif $current_run == 3 and $current_day == 1>>
+    <<jump R3_D1_AfterShop>>
+<<else>>
+    // Fallback: This should not normally occur, but handle gracefully
+    // If somehow shop is accessed outside Day 1, advance to next day start
+    <<set $current_day += 1>>
+    <<if $current_run == 1>>
+        <<jump R1_D2_Start>>
+    <<elseif $current_run == 2>>
+        <<jump R2_D2_Start>>
+    <<elseif $current_run == 3>>
+        <<jump R3_D2_Start>>
+    <<elseif $current_run == 4>>
+        <<jump R4_PrepHub>>
+    <<else>>
+        <<jump R1_D2_Start>>
+    <<endif>>
+<<endif>>
+
+===
+
+title: ACH_ParadoxLogs
+tags: #achievement
+---
+/* #line:0b2a2b0 
+PURPOSE: Trigger the paradox logs achievement.  Use when the Player intentionally screenshots or notes a log inconsistency early on. #line:0c0e6e6 
+*/ #line:0ffb5dd 
+<<set $achv_paradox_logs = true>>
+You notice a timestamp that should not exist. #line:0945ff4 
+
+===
+
+title: ACH_Whistleblower
+tags: #achievement
+---
+/* #line:0222d74 
+PURPOSE: Trigger the whistleblower achievement when the Player decides to blow the whistle in a Beat 'em ending. #line:00d5739 
+*/ #line:0531eca 
+<<set $achv_whistleblower = true>>
+Your actions mark you as a whistleblower. #line:0e75f52 
+
+===
+
+title: ACH_JoinThem
+tags: #achievement
+---
+/* #line:018e643 
+PURPOSE: Trigger the join‑them achievement when the Player accepts a conscience seat inside Bigger Tech. #line:0d4f6ad 
+*/ #line:0a0e3a4 
+<<set $achv_join_them = true>>
+You chose to join the system from within. #line:0df20cb 
+
+===
+
+title: ACH_FlawlessTriage
+tags: #achievement
+---
+/* #line:09cf8d8 
+PURPOSE: Triggered if the Player resolves all triage tasks perfectly in Run 1.  Use at the end of Run 1 Day 2 if all triage choices favoured stability. #line:00aeaf3 
+*/ #line:0778716 
+<<set $achv_flawless_triage = true>>
+No mistakes were recorded in triage today. #line:05cf814 
+
+===
+
+title: ACH_GhostRunner
+tags: #achievement
+---
+/* #line:0849a54 
+PURPOSE: Triggered when the Player escapes with minimal trace in a Get Out ending.  This is awarded in the epilogue of certain Run 4 endings. #line:0b706fd 
+*/ #line:0fb5c79 
+<<set $achv_ghost_runner = true>>
+You slipped through with minimal traces. #line:05029a5 
+
+===

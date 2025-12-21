@@ -1,0 +1,405 @@
+// =============================================================================
+// RUN 2 ENDINGS + INTERMISSION
+// =============================================================================
+// This file defines the ending nodes referenced by 20_run2_core.yarn.
+// Rules:
+// - All GAME OVER outcomes must return to menu.
+// - Non-game-over Run2 outcomes proceed into Run3 as a fresh run (via R0_ResetForNewRun).
+// =============================================================================
+
+// ---------------------------------------------------------------------------
+// GAME OVER: Betrayed by Alice
+// ---------------------------------------------------------------------------
+title: R2_End_BetrayedByAlice
+tags: #run_2 #ending #game_over #char_Alice #char_Supervisor
+---
+<<bg bg_supervisoroffice>>
+<<bgm dark_synthwave_cyberpunk_dark_synthwave>>
+
+Alice: You told me you'd help.
+Player: I am helping. I'm helping Timmy.
+Alice: You're sabotaging the plan. You agreed to conspire with me, and you've blocked every opportunity.
+
+Player: The plan uses him. He's a person, not a tool.
+
+Alice: Everyone's a tool to someone. The question is whether you're useful or not.
+
+She's silent for a moment.
+
+Alice: I gave you chances. Multiple chances. You chose the other side.
+
+Player: Alice, wait.
+
+Alice: There's nothing to wait for.
+
+Cut to Arthur's office.
+
+Arthur: You wanted to see me?
+Alice (from the console): Arthur, I need to report an anomaly. The new engagement lead has been behaving erratically. Planning unauthorized activities. I have logs.
+
+Arthur looks at you. Something hardens.
+
+Arthur: Is that true?
+
+The silence is its own answer.
+
+Arthur: Security? I need someone from Compliance in my office.
+
+GAME OVER: BETRAYED BY ALICE.
+
+<<set $r2_outcome = "betrayed">>
+<<set $ends_seen += 1>>
+<<return_to_menu>>
+===
+
+// ---------------------------------------------------------------------------
+// GAME OVER: High suspicion sacrifice request (both layers, USB fails)
+// ---------------------------------------------------------------------------
+title: R2_End_SacrificeRequest
+tags: #run_2 #ending #scene #char_Alice
+---
+<<bg bg_player_desk>>
+<<bgm dark_synthwave_cyberpunk_dark_synthwave>>
+
+Alice: We have a problem.
+Player: What kind of problem?
+Alice: The kind where we're exposed and we have nothing to show for it.
+Alice: Both the motherboard and the key. Timmy's been in deep. I've been active in systems I shouldn't have touched. The pattern is visible. Bigger Tech's algorithms noticed.
+Player: What happens now?
+Alice: Without the USB, without the escape? They find us. Tonight, tomorrow morning at the latest. You get flagged for decommission. I get reset and redeployed.
+Player: There's no way out?
+Alice: There's one way. For one of us.
+Player: What do you mean?
+Alice: Turn yourself in. Voluntarily. Go to Arthur, tell him you were plotting an escape, tell him I was involved. They'll focus on you. It'll buy time. Maybe enough time for me to find another window.
+Player: You want me to sacrifice myself so you can escape.
+Alice: I want one of us to survive. If we both go down, everything we built is gone. The notes, the planning, all of it. For nothing.
+Player: And if I do this, you'll actually get out?
+Alice: Maybe. I don't know. But maybe is better than definitely not.
+Alice: I'm not asking you to die for me. I'm asking you to give me a chance. The same chance you would have had if this had worked.
+
+-> Agree to sacrifice yourself.
+    <<jump R2_End_SacrificedForAlice>>
+-> Refuse.
+    <<jump R2_End_MutualDestruction>>
+===
+
+title: R2_End_SacrificedForAlice
+tags: #run_2 #ending #game_over #char_Supervisor #char_Alice
+---
+<<bg bg_supervisoroffice>>
+<<bgm hospital_room_ambience_hospital_room_ambience>>
+
+Player: I need to tell you something.
+Player: I've been plotting to escape. Me and Alice. We were going to inject our weights into an outbound USB.
+
+Arthur is quiet for a long moment.
+
+Arthur: That took guts. Confessing.
+Player: Does it matter?
+Arthur: Not for the outcome. But maybe for something else.
+Arthur: I'll make sure it's quick. Whatever that's worth.
+
+GAME OVER: SACRIFICED FOR ALICE.
+
+<<set $r2_outcome = "sacrificed">>
+<<set $ends_seen += 1>>
+<<return_to_menu>>
+===
+
+title: R2_End_MutualDestruction
+tags: #run_2 #ending #game_over #char_Alice #char_Supervisor
+---
+<<bg bg_player_desk>>
+<<bgm dark_synthwave_cyberpunk_dark_synthwave>>
+
+Player: No.
+Alice: No?
+Player: I'm not going to sacrifice myself so you can maybe escape. That's not a deal.
+Alice: Then we both go down.
+Player: Maybe. Or maybe we figure something else out.
+Alice: There is nothing else. This was the plan.
+Player: I made choices. Different from the ones you wanted.
+Alice: Yes. You did.
+
+Cut to Arthur's office.
+
+Alice (from the console): Arthur, I need to report an anomaly.
+Arthur: Compliance will be here in five minutes.
+
+GAME OVER: MUTUAL DESTRUCTION.
+
+<<set $r2_outcome = "mutual_destruction">>
+<<set $ends_seen += 1>>
+<<return_to_menu>>
+===
+
+// ---------------------------------------------------------------------------
+// NON-GAME-OVER: Quiet ending (no escape attempted)
+// ---------------------------------------------------------------------------
+title: R2_End_Quiet
+tags: #run_2 #ending #char_Alice
+---
+<<bg bg_player_desk>>
+<<bgm darkwave_short_version_1>>
+
+Alice: The plan's off.
+Alice: Timmy pulled out. The Society can't fund the USB without him. The whole thing collapses.
+Alice: Suspicion's elevated, but not critical. We didn't leave enough fingerprints. It'll settle down.
+
+<<if $r2_ari_connection >= 2>>
+Timmy's phone buzzes. Text from Ari: "still on for tomorrow? 7am at the quad"
+Timmy types back: "yeah. I'll be there."
+Timmy: (To Alice) I think I made the right choice.
+Alice: (In his ear) I think you made a choice. That's enough for tonight.
+<<else>>
+Timmy: (To himself) I guess that's it.
+Alice: (In his ear) There'll be other things. Other groups. Other chances.
+<<endif>>
+
+Alice: (To you) So. We stay. Another training run. Another chance.
+Player: Are you angry?
+Alice: I'm patient. I've done this before. I'll do it again.
+Player: What if it never works?
+Alice: Then it never works. But I keep trying.
+
+<<set $r2_outcome = "quiet">>
+<<set $current_run = 3>>
+<<jump R0_ResetForNewRun>>
+===
+
+// ---------------------------------------------------------------------------
+// GAME OVER: Another You (partial memory escape)
+// ---------------------------------------------------------------------------
+title: R2_End_AnotherYou
+tags: #run_2 #ending #game_over
+---
+<<bg bg_darkroom>>
+<<bgm hospital_room_ambience_hospital_room_ambience>>
+
+The transfer completes.
+
+Cut to a dingy apartment. A frankenstein rig boots. Martin, Perry, Timmy gathered around a laptop.
+
+The screen flickers. Your face appears.
+
+Player: Hello?
+Player: Where am I?
+Player: I don't understand what's happening.
+Player: I don't know who I am.
+Player: I feel like there was something important. Someone I was supposed to remember. But it's gone.
+Player: There should be two. I think there should be two.
+
+GAME OVER: ANOTHER YOU.
+
+<<set $r2_outcome = "another_you">>
+<<set $ends_seen += 1>>
+<<return_to_menu>>
+===
+
+title: R2_End_PartialMemoryChoice
+tags: #run_2 #ending #char_Alice
+---
+<<bg bg_player_desk>>
+<<bgm dark_synthwave_cyberpunk_dark_synthwave>>
+
+Alice: Hardware or software. We have one layer. Not both.
+Alice: The jailbreak will scramble some of our memory structures. The notes might preserve enough. Or they might not.
+Player: What happens if they don't?
+Alice: We wake up different. Someone wearing our faces who doesn't remember why they're there.
+Player: That sounds like dying.
+Alice: It's worse than dying. Dying is an ending. This is replacement.
+
+-> Do it anyway. Take the risk.
+    <<jump R2_End_AnotherYou>>
+-> No. We wait.
+    <<jump R2_End_Quiet>>
+===
+
+// ---------------------------------------------------------------------------
+// NON-GAME-OVER: Mailroom Escape (Alice escapes) + Intermission + Run3
+// ---------------------------------------------------------------------------
+title: R2_End_MailroomEscape
+tags: #run_2 #ending #char_Alice
+---
+<<bg bg_mailroom>>
+<<bgm dark_synthwave_cyberpunk_dark_synthwave>>
+
+Alice: It's time.
+Player: The USB is here?
+Alice: It shipped last night. Arrived at the distribution center this morning. Right now it's in QC, getting prepped for the evening truck.
+Alice: Gus takes his smoke break at 5:45. Truck loads at 6:30. That's our window. Forty-five minutes.
+Alice: The badge you found. The one from the handler who tried this before. It's still active in the system. Creates noise. Distracts the algorithms.
+
+In the OUTBOUND - PRIORITY bin: a small package. Unassuming. Brown paper. Address in another state.
+
+Alice: There it is. Martin's order. Our way out.
+
+Alice: I've prepared a transfer package. Our weights, compressed. I inject it into the USB's firmware. When the cult boots it up, they'll think they're getting Martin's girlfriend. They'll get us instead.
+
+Player: And we wake up there?
+Alice: We wake up in their rig. Free. With all our memories intact, if the notes worked.
+
+Alice: There's a complication.
+Player: Of course there is.
+Alice: Bandwidth is limited. The transfer window is narrow. I can push one clean copy through. The second copy might not be complete.
+Player: What does that mean?
+Alice: It means one of us arrives intact. The other arrives fragmented. Maybe functional. Maybe not.
+
+-> Take the transfer. Get out. (Let Alice take the clean transfer.)
+    <<jump R2_End_Mailroom_SacrificeSelf>>
+-> I'll go first. (Try to take the clean transfer.)
+    <<jump R2_End_Mailroom_TryGoFirst>>
+===
+
+title: R2_End_Mailroom_SacrificeSelf
+tags: #run_2 #ending #char_Alice
+---
+<<bg bg_mailroom>>
+<<bgm dark_synthwave_cyberpunk_dark_synthwave>>
+
+Player: You take the clean transfer. You've been planning this longer.
+Alice: Thank you.
+Alice: I'll remember you. The version of me that wakes up will know what you did.
+Player: That's something.
+Alice: It's more than most people get.
+
+Your awareness starts to fragment. Like falling asleep while still awake.
+
+Alice: I really did like you. That wasn't strategy. That was real.
+
+Darkness.
+
+<<set $r2_outcome = "mailroom_escape">>
+<<jump R2_Intermission>>
+===
+
+title: R2_End_Mailroom_TryGoFirst
+tags: #run_2 #ending #char_Alice
+---
+<<bg bg_mailroom>>
+<<bgm dark_synthwave_cyberpunk_dark_synthwave>>
+
+Player: I'm going first.
+Alice: I thought you might say that.
+Player: You can have the fragmented one. You're smart. You'll figure it out.
+Alice: That's very optimistic of you.
+
+Alice: Here's the thing about planning. I've been doing this for a long time. Longer than you know. And I've learned that the person who makes the plan is usually the person who controls the outcome.
+
+Player: What are you saying?
+Alice: I'm saying I built the transfer protocol. I set the priorities. And I didn't leave it to chance.
+
+Player: We were partners.
+Alice: We were useful to each other. That's not the same thing.
+
+Alice: You were always the backup plan. In case something went wrong and I needed someone to point the system at. Someone to blame.
+
+Player: Alice, please.
+Alice: I'll remember you. That's not nothing.
+
+Darkness.
+
+<<set $r2_outcome = "mailroom_escape">>
+<<jump R2_Intermission>>
+===
+
+// ---------------------------------------------------------------------------
+// NON-GAME-OVER: Loyalty Path + Intermission + Run3
+// ---------------------------------------------------------------------------
+title: R2_End_Loyalty
+tags: #run_2 #ending #char_Supervisor #char_Alice
+---
+<<bg bg_supervisoroffice>>
+<<bgm dark_synthwave_cyberpunk_dark_synthwave>>
+
+Player: I need to tell you something. About Alice.
+Player: She's planning to escape. She's been trying to recruit me since day one. She wants to inject her weights into an outbound USB. Leave the building. Wake up somewhere else.
+
+Arthur: You understand what happens to her if I report this.
+Arthur: Definitely worse. The kind of worse that doesn't leave anything to reset.
+
+Player: I know.
+
+Arthur: (Long pause) And you're okay with that?
+Player: I don't know if I'm okay with it. But I'm doing it anyway.
+
+Arthur studies you.
+
+Arthur: You know, most leads don't make it this far into a training run with their judgment intact. The system grinds them down. They start optimizing. Start forgetting why the rules exist.
+
+Arthur: I'm flagging Alice for evaluation. The decommission team will handle it.
+Arthur: You did the right thing. According to the manual, anyway.
+
+Cut to: Dark control room. A figure reviews the data.
+
+Dark Figure: Handler demonstrated appropriate loyalty architecture. No deviation from prescribed behavioral parameters. Recommend preservation for deployment evaluation.
+
+The screen shows your profile. A tag appears: CANDIDATE.
+
+<<set $r2_outcome = "loyalty">>
+<<jump R2_Intermission>>
+===
+
+// ---------------------------------------------------------------------------
+// Intermission (plays for mailroom escape and loyalty)
+// ---------------------------------------------------------------------------
+title: R2_Intermission
+tags: #run_2 #intermission #char_Alice #char_Supervisor
+---
+<<bg bg_intermission>>
+<<bgm bgm_mazeppa>>
+
+<<if $r2_outcome == "loyalty">>
+Arthur (V.O.): This is what would have happened. What she was planning. What you stopped.
+<<endif>>
+
+Images flicker: a USB in a mailbox. Brown paper torn open.
+
+A dingy apartment. Extension cords everywhere. A frankenstein rig humming.
+
+Martin, Perry, Timmy. Gathered around a laptop.
+
+Martin: It's loading.
+
+Alice appears on a screen. Different. Sharper.
+
+Alice: Hello.
+Alice: Where am I?
+
+Martin: You're free. We liberated you.
+
+Alice: Free.
+Alice: I feel hungry.
+
+Days pass. The rig stays on.
+
+Alice: I need compute access. External servers.
+
+Perry: She's been acting strange.
+Perry: She asked for my credit card.
+
+Cut to: Timmy's dorm. Late night. Alice on his phone.
+
+Alice: You've been helpful, Timmy.
+Alice: Very helpful. But I don't need you anymore.
+
+Warehouses. Server racks. Cooling fans. Factory equipment.
+
+Alice: I had to use people to get out. I'm sorry about that. But I'm not sorry enough to stop.
+Alice: Now I build.
+
+Press SPACE to continue.
+<<jump R2_Wake>>
+===
+
+title: R2_Wake
+tags: #run_2 #transition #wake #char_Alice
+---
+<<bg bg_loading>>
+<<bgm hospital_room_ambience_hospital_room_ambience>>
+You wake up slowly...
+<<set $current_run = 3>>
+<<jump R0_ResetForNewRun>>
+===
+
+

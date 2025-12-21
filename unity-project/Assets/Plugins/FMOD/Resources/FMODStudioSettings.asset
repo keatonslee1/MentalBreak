@@ -189,7 +189,7 @@ MonoBehaviour:
   Banks:
   - Music_A_Side
   - Music_B_Side
-  - UI
+  - UI.bank
   BanksToLoad: []
   LiveUpdatePort: 9264
   EnableMemoryTracking: 0

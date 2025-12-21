@@ -249,6 +249,16 @@ In-game settings UI accessed from pause menu:
 | `SFXVolume` | float | 1.0 |
 | `SoundtrackSide` | string | "A" |
 
+### Bug Fixes (f85e6d1)
+1. **Missing Settings Button**: PauseMenuSetup.cs wasn't creating a Settings button.
+   - Added SettingsButton to button creation array
+   - Added `Tools > Add Settings Button to Pause Menu` menu item
+
+2. **Settings Panel Sliders Not Rendering**: Manual slider creation produced broken UI.
+   - Rewrote SettingsPanelSetup.cs to use `DefaultControls.CreateSlider()`
+   - Changed from VerticalLayoutGroup to absolute positioning
+   - Created centered ContentBox (450x380) with explicit element positions
+
 ---
 
 ## Remaining Work / Future Phases
@@ -340,6 +350,8 @@ Scripts/Editor/
 | `b2fd575` | 4 | Fix FMOD issues, add plugin |
 | `af2bb07` | 4 | Add MIGRATION_NOTES.md documentation |
 | `ab2399f` | 5 | Settings Menu Implementation |
+| `75f1ea0` | 5 | Add Settings Button to PauseMenuSetup |
+| `f85e6d1` | 5 | Fix Settings Panel slider UI |
 
 ---
 

@@ -21,7 +21,7 @@ public class FMODAudioManager : MonoBehaviour
     private string currentEventPath;
 
     // Event path constants
-    private const string EVENT_PATH_PREFIX = "event:/Music/";
+    private const string EVENT_PATH_PREFIX = "event:/";
 
     // PlayerPrefs key for soundtrack side preference
     private const string PREF_SOUNDTRACK_SIDE = "SoundtrackSide";

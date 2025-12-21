@@ -48,9 +48,14 @@ Thumbs.db
 Desktop.ini
 nul
 
-# FMOD (keep only streaming assets banks)
+# FMOD (keep only streaming assets banks and plugin)
 *.bank
 !unity-project/Assets/StreamingAssets/*.bank
+fmod audio.zip
+fmod-extracted/
+*.fspro
+*.fmod
+unity-project/fmod_editor.log
 
 # Unity packages cache
 unity-project/Packages/packages-lock.json

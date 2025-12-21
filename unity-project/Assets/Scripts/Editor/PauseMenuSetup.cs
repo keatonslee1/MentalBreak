@@ -170,9 +170,9 @@ public class PauseMenuSetup : EditorWindow
 
     private static void CreateMenuButtons(Transform panelParent)
     {
-        string[] buttonNames = { "ResumeButton", "SaveGameButton", "LoadGameButton", "MainMenuButton", "ExitButton", "SkipDayButton", "RestartDayButton" };
+        string[] buttonNames = { "ResumeButton", "SaveGameButton", "LoadGameButton", "SettingsButton", "MainMenuButton", "ExitButton", "SkipDayButton", "RestartDayButton" };
         // NOTE: Exit is repurposed in-game as a Debug Menu entry.
-        string[] buttonTexts = { "Resume", "Save Game", "Load Game", "Main Menu", "Debug Menu", "Skip Day", "Restart Day" };
+        string[] buttonTexts = { "Resume", "Save Game", "Load Game", "Settings", "Main Menu", "Debug Menu", "Skip Day", "Restart Day" };
 
         for (int i = 0; i < buttonNames.Length; i++)
         {
@@ -281,6 +281,7 @@ public class PauseMenuSetup : EditorWindow
         AssignButtonReference(serializedManager, "resumeButton", "ResumeButton", panelObj.transform);
         AssignButtonReference(serializedManager, "saveGameButton", "SaveGameButton", panelObj.transform);
         AssignButtonReference(serializedManager, "loadGameButton", "LoadGameButton", panelObj.transform);
+        AssignButtonReference(serializedManager, "settingsButton", "SettingsButton", panelObj.transform);
         AssignButtonReference(serializedManager, "mainMenuButton", "MainMenuButton", panelObj.transform);
         AssignButtonReference(serializedManager, "exitButton", "ExitButton", panelObj.transform);
         AssignButtonReference(serializedManager, "skipDayButton", "SkipDayButton", panelObj.transform);
@@ -307,6 +308,113 @@ public class PauseMenuSetup : EditorWindow
                 }
             }
         }
+    }
+
+    [MenuItem("Tools/Add Settings Button to Pause Menu")]
+    public static void AddSettingsButton()
+    {
+        // Find PauseMenuManager
+        PauseMenuManager pauseMenu = FindFirstObjectByType<PauseMenuManager>();
+        if (pauseMenu == null)
+        {
+            EditorUtility.DisplayDialog("Error", "PauseMenuManager not found in scene.", "OK");
+            return;
+        }
+
+        if (pauseMenu.pauseMenuPanel == null)
+        {
+            EditorUtility.DisplayDialog("Error", "PauseMenuPanel not assigned in PauseMenuManager.", "OK");
+            return;
+        }
+
+        Transform panelTransform = pauseMenu.pauseMenuPanel.transform;
+
+        // Check if Settings button already exists
+        Transform existingButton = panelTransform.Find("SettingsButton");
+        if (existingButton != null)
+        {
+            // Button exists, just make sure it's assigned
+            Button btn = existingButton.GetComponent<Button>();
+            if (btn != null && pauseMenu.settingsButton == null)
+            {
+                pauseMenu.settingsButton = btn;
+                EditorUtility.SetDirty(pauseMenu);
+                EditorUtility.DisplayDialog("Fixed", "Settings button was already present. Assigned it to PauseMenuManager.", "OK");
+            }
+            else
+            {
+                EditorUtility.DisplayDialog("Already Exists", "SettingsButton already exists in the pause menu.", "OK");
+            }
+            Selection.activeGameObject = existingButton.gameObject;
+            return;
+        }
+
+        // Find the position after LoadGameButton
+        Transform loadGameButton = panelTransform.Find("LoadGameButton");
+        int insertIndex = 3; // Default position
+        if (loadGameButton != null)
+        {
+            insertIndex = loadGameButton.GetSiblingIndex() + 1;
+        }
+
+        // Create Settings button
+        GameObject buttonObj = new GameObject("SettingsButton");
+        Undo.RegisterCreatedObjectUndo(buttonObj, "Create Settings Button");
+        buttonObj.transform.SetParent(panelTransform, false);
+        buttonObj.transform.SetSiblingIndex(insertIndex);
+
+        RectTransform rectTransform = buttonObj.AddComponent<RectTransform>();
+        rectTransform.sizeDelta = new Vector2(200f, 50f);
+
+        Image image = buttonObj.AddComponent<Image>();
+        image.color = new Color(0.2f, 0.2f, 0.2f, 1f);
+
+        Button button = buttonObj.AddComponent<Button>();
+        ColorBlock colors = button.colors;
+        colors.normalColor = new Color(0.2f, 0.2f, 0.2f, 1f);
+        colors.highlightedColor = new Color(0.3f, 0.3f, 0.3f, 1f);
+        colors.pressedColor = new Color(0.1f, 0.1f, 0.1f, 1f);
+        colors.selectedColor = new Color(0.25f, 0.25f, 0.25f, 1f);
+        button.colors = colors;
+
+        // Create text child
+        GameObject textObj = new GameObject("Text");
+        textObj.transform.SetParent(buttonObj.transform, false);
+
+        RectTransform textRect = textObj.AddComponent<RectTransform>();
+        textRect.anchorMin = Vector2.zero;
+        textRect.anchorMax = Vector2.one;
+        textRect.sizeDelta = Vector2.zero;
+        textRect.anchoredPosition = Vector2.zero;
+
+#if USE_TMP
+        TextMeshProUGUI text = textObj.AddComponent<TextMeshProUGUI>();
+        text.text = "Settings";
+        text.fontSize = 18;
+        text.color = Color.white;
+        text.alignment = TextAlignmentOptions.Center;
+#else
+        Text text = textObj.AddComponent<Text>();
+        text.text = "Settings";
+        text.fontSize = 18;
+        text.color = Color.white;
+        text.alignment = TextAnchor.MiddleCenter;
+        text.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+#endif
+
+        // Assign to PauseMenuManager
+        pauseMenu.settingsButton = button;
+        EditorUtility.SetDirty(pauseMenu);
+        EditorUtility.SetDirty(pauseMenu.pauseMenuPanel);
+
+        Selection.activeGameObject = buttonObj;
+
+        EditorUtility.DisplayDialog("Success",
+            "Settings button added to pause menu!\n\n" +
+            "Next steps:\n" +
+            "1. Run 'Tools > Setup Settings Panel in Pause Menu'\n" +
+            "2. Run 'Tools > Setup SettingsManager in Scene'\n" +
+            "3. Save the scene", "OK");
     }
 }
 

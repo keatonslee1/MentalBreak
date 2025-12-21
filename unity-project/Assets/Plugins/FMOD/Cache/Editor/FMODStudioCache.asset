@@ -83,11 +83,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/UI.bank.bank
+  m_Name: bank:/UI
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorBankRef
-  Path: Assets/StreamingAssets/UI.bank.bank
-  Name: UI.bank
-  StudioPath: bank:/UI.bank
+  Path: Assets/StreamingAssets/UI.bank
+  Name: UI
+  StudioPath: bank:/UI
   lastModified: 639018787486635971
   FileSizes: []
   Exists: 1

@@ -34,9 +34,6 @@ public class PauseMenuManager : MonoBehaviour
     [Tooltip("Hint text showing 'Press ESC to pause' at top-right")]
     public Component pauseHintText;
 
-    [Tooltip("Warning text above pause menu buttons (optional - will be created if null)")]
-    public Component pauseWarningText;
-
     [Tooltip("Run/Day tracker text on middle-left (optional - will be created if null)")]
     public Component runDayTrackerText;
 
@@ -207,9 +204,6 @@ public class PauseMenuManager : MonoBehaviour
         // Disable the keybind tooltip entirely (no "esc = pause, space/enter = forward" hints).
         showHintWhenNotPaused = false;
         UpdateHintVisibility();
-
-        // Setup warning text if needed
-        SetupWarningText();
 
         // Setup run/day tracker if needed
         SetupRunDayTracker();
@@ -572,7 +566,6 @@ public class PauseMenuManager : MonoBehaviour
         {
             pauseMenuPanel.SetActive(true);
             ShowPauseMenuButtons(); // Always ensure buttons are visible when showing pause menu
-            ShowWarningText(); // Show warning text
             VerifyPauseMenuButtons("PauseGame");
         }
         else
@@ -621,7 +614,6 @@ public class PauseMenuManager : MonoBehaviour
         if (pauseMenuPanel != null)
         {
             ShowPauseMenuButtons(); // Restore buttons before hiding
-            HideWarningText(); // Hide warning text
             pauseMenuPanel.SetActive(false);
         }
 
@@ -640,57 +632,6 @@ public class PauseMenuManager : MonoBehaviour
         {
             pauseMenuPanel.SetActive(true);
             ShowPauseMenuButtons();
-            ShowWarningText();
-        }
-    }
-
-    /// <summary>
-    /// Show warning text above pause menu
-    /// </summary>
-    private void ShowWarningText()
-    {
-        if (pauseWarningText == null) return;
-
-        GameObject warningObj = null;
-#if USE_TMP
-        if (pauseWarningText is TextMeshProUGUI tmpText)
-        {
-            warningObj = tmpText.gameObject;
-        }
-#endif
-        if (pauseWarningText is Text regularText)
-        {
-            warningObj = regularText.gameObject;
-        }
-
-        if (warningObj != null)
-        {
-            warningObj.SetActive(true);
-        }
-    }
-
-    /// <summary>
-    /// Hide warning text
-    /// </summary>
-    private void HideWarningText()
-    {
-        if (pauseWarningText == null) return;
-
-        GameObject warningObj = null;
-#if USE_TMP
-        if (pauseWarningText is TextMeshProUGUI tmpText)
-        {
-            warningObj = tmpText.gameObject;
-        }
-#endif
-        if (pauseWarningText is Text regularText)
-        {
-            warningObj = regularText.gameObject;
-        }
-
-        if (warningObj != null)
-        {
-            warningObj.SetActive(false);
         }
     }
 
@@ -708,7 +649,6 @@ public class PauseMenuManager : MonoBehaviour
         if (exitButton != null) exitButton.gameObject.SetActive(false);
         if (skipDayButton != null) skipDayButton.gameObject.SetActive(false);
         if (restartDayButton != null) restartDayButton.gameObject.SetActive(false);
-        HideWarningText(); // Hide warning text when hiding buttons
         Debug.Log("PauseMenuManager: HidePauseMenuButtons() - after state: " + DescribeButtonStates());
         // NOTE: LoadMenuPanel is NOT affected by this method - it's a separate child of PauseMenuPanel
     }
@@ -728,7 +668,6 @@ public class PauseMenuManager : MonoBehaviour
         if (exitButton != null) exitButton.gameObject.SetActive(true);
         if (skipDayButton != null) skipDayButton.gameObject.SetActive(true);
         if (restartDayButton != null) restartDayButton.gameObject.SetActive(true);
-        ShowWarningText(); // Show warning text when showing buttons
         Debug.Log("PauseMenuManager: ShowPauseMenuButtons() - after state: " + DescribeButtonStates());
     }
 
@@ -884,101 +823,6 @@ public class PauseMenuManager : MonoBehaviour
     {
         return "esc = pause\n" +
                "space/enter = forward";
-    }
-
-    /// <summary>
-    /// Setup warning text above pause menu buttons
-    /// </summary>
-    private void SetupWarningText()
-    {
-        if (pauseMenuPanel == null) return;
-
-        // If warning text is not assigned, create it programmatically
-        if (pauseWarningText == null)
-        {
-            GameObject warningObj = new GameObject("PauseWarningText");
-            warningObj.transform.SetParent(pauseMenuPanel.transform, false);
-
-            RectTransform rect = warningObj.AddComponent<RectTransform>();
-            rect.anchorMin = new Vector2(0.5f, 1f);
-            rect.anchorMax = new Vector2(0.5f, 1f);
-            rect.pivot = new Vector2(0.5f, 1f);
-            rect.anchoredPosition = new Vector2(0f, -30f); // Position above buttons
-            rect.sizeDelta = new Vector2(600f, 40f);
-
-#if USE_TMP
-            TextMeshProUGUI tmpText = warningObj.AddComponent<TextMeshProUGUI>();
-            if (TMPro.TMP_Settings.instance != null && TMPro.TMP_Settings.instance.defaultFontAsset != null)
-            {
-                tmpText.font = TMPro.TMP_Settings.instance.defaultFontAsset;
-            }
-            tmpText.text = "Save/load buttons don't work first time, idk lol";
-            tmpText.fontSize = 20;
-            tmpText.fontStyle = TMPro.FontStyles.Bold;
-            tmpText.alignment = TextAlignmentOptions.Center;
-            tmpText.color = new Color(1f, 0.8f, 0f, 1f); // Bright orange/yellow
-            pauseWarningText = tmpText;
-#else
-            Text text = warningObj.AddComponent<Text>();
-            text.text = "Save/load buttons don't work first time, idk lol";
-            text.fontSize = 20;
-            text.fontStyle = FontStyle.Bold;
-            text.alignment = TextAnchor.UpperCenter;
-            text.color = new Color(1f, 0.8f, 0f, 1f); // Bright orange/yellow
-            text.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
-            pauseWarningText = text;
-#endif
-        }
-        else
-        {
-            // Update existing warning text
-            UpdateWarningText();
-        }
-
-        // Initially hide the warning (will show when pause menu opens)
-        GameObject warningGameObj = null;
-#if USE_TMP
-        if (pauseWarningText is TextMeshProUGUI tmpText)
-        {
-            warningGameObj = tmpText.gameObject;
-        }
-#endif
-        if (pauseWarningText is Text regularText)
-        {
-            warningGameObj = regularText.gameObject;
-        }
-        if (warningGameObj != null)
-        {
-            warningGameObj.SetActive(false);
-        }
-    }
-
-    /// <summary>
-    /// Update warning text content and style
-    /// </summary>
-    private void UpdateWarningText()
-    {
-        if (pauseWarningText == null) return;
-
-        string warningMessage = "Save/load buttons don't work first time, idk lol";
-        Color warningColor = new Color(1f, 0.8f, 0f, 1f); // Bright orange/yellow
-
-#if USE_TMP
-        if (pauseWarningText is TextMeshProUGUI tmpText)
-        {
-            tmpText.text = warningMessage;
-            tmpText.color = warningColor;
-            tmpText.fontStyle = TMPro.FontStyles.Bold;
-            tmpText.fontSize = 20;
-        }
-#endif
-        if (pauseWarningText is Text regularText)
-        {
-            regularText.text = warningMessage;
-            regularText.color = warningColor;
-            regularText.fontStyle = FontStyle.Bold;
-            regularText.fontSize = 20;
-        }
     }
 
     /// <summary>

@@ -1,3 +1,6 @@
+// Suppress TreeViewItem deprecation warnings from FMOD plugin
+#pragma warning disable CS0618
+
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEditor;

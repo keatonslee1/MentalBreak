@@ -1,159 +1,133 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-us">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Mental Break · Alpha v3.5</title>
-    <meta
-      name="description"
-      content="A satirical choose your own adventure game about AI, humans, free will, and consciousness."
-    />
-    <meta name="author" content="Keaton Media LLC" />
-
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://mentalbreak.io/index.html" />
-    <meta property="og:title" content="Mental Break · Alpha v3.5" />
-    <meta
-      property="og:description"
-      content="A satirical choose your own adventure game about AI, humans, free will, and consciousness."
-    />
-    <meta property="og:image" content="https://mentalbreak.io/TemplateData/og-image.png" />
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Mental Break · Alpha v3.5" />
-    <meta
-      name="twitter:description"
-      content="A satirical choose your own adventure game about AI, humans, free will, and consciousness."
-    />
-    <meta name="twitter:image" content="https://mentalbreak.io/TemplateData/og-image.png" />
-
-    <link rel="icon" type="image/png" href="TemplateData/alice.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-
-    <link rel="stylesheet" href="assets/css/landing-v35.css?v=20251216a" />
-    <script defer src="/_vercel/insights/script.js"></script>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Unity Web Player | Mental Break</title>
+    <link rel="shortcut icon" href="TemplateData/favicon.ico">
+    <link rel="stylesheet" href="TemplateData/style.css">
   </head>
-
   <body>
-    <div class="mb-page">
-      <header class="mb-thin-nav" role="banner">
-        <div class="mb-brand">
-          <h1 class="mb-brand__title">
-            <a class="mb-brand__titleLink" href="index.html">MENTAL BREAK</a>
-          </h1>
-          <h2 class="mb-brand__subtitle">
-            The Satirical CYOA<br />
-            About a Dangerous AI Girlfriend
-          </h2>
+    <div id="unity-container" class="unity-desktop">
+      <canvas id="unity-canvas" width=960 height=600 tabindex="-1"></canvas>
+      <div id="unity-loading-bar">
+        <div id="unity-logo"></div>
+        <div id="unity-progress-bar-empty">
+          <div id="unity-progress-bar-full"></div>
         </div>
-        <button
-          class="mb-navtoggle"
-          type="button"
-          aria-label="Open menu"
-          aria-expanded="false"
-          aria-controls="mb-primary-nav"
-        >
-          <span class="mb-navtoggle__icon" aria-hidden="true"></span>
-          <span class="mb-navtoggle__label">Menu</span>
-        </button>
-        <nav class="mb-navlinks" id="mb-primary-nav" aria-label="Primary navigation">
-          <a href="index.html">Home</a>
-          <a href="/play" data-mb-nav-play>Play</a>
-          <a href="/about">About</a>
-          <a href="/blog">Blog</a>
-          <a href="https://discord.gg/N8KEbzPmTh" target="_blank" rel="noopener">Discord</a>
-        </nav>
-      </header>
-
-      <main class="mb-hero">
-        <div class="mb-hero-wrap">
-          <section class="mb-hero-intro" aria-label="Scenario">
-            <h2 class="mb-hero-intro__title">Welcome to Bigger Tech Corp!</h2>
-            <p class="mb-hero-intro__body">
-              Keep our user Timmy hooked on his AI girlfriend. Hit your engagement targets or get fired.
-            </p>
-          </section>
-
-          <div class="mb-hero-stage" data-mb-hero-stage>
-            <video
-              class="mb-hero-stage__bg"
-              data-mb-hero-video
-              autoplay
-              muted
-              loop
-              playsinline
-              preload="auto"
-            >
-              <source src="StreamingAssets/Videos/bg_supervisoroffice.mp4" type="video/mp4" />
-            </video>
-
-            <img
-              class="mb-hero-stage__alice"
-              src="assets/images/landing/characters/alice.png"
-              alt="Alice portrait"
-            />
-
-            <img
-              class="mb-hero-stage__timmy"
-              src="assets/images/landing/characters/timmy.png"
-              alt="Timmy portrait"
-            />
-          </div>
-
-          <section class="mb-dialogue" aria-label="Dialogue">
-            <p class="mb-dialogue__text" data-mb-dialogue-text>
-              Timmy is losing interest. What subreddit shall we send him to?
-            </p>
-            <div class="mb-dialogue__choices" role="group" aria-label="Choices">
-              <button class="mb-choice" type="button" data-mb-choice="meditation">&gt; r/ Meditation</button>
-              <button class="mb-choice" type="button" data-mb-choice="pickup">&gt; r/ PickupArtists</button>
-            </div>
-          </section>
-        </div>
-      </main>
-
-      <footer class="mb-thin-footer">
-        © 2025 Keaton Media LLC All Rights Reserved - Coming to all platforms soon
-      </footer>
+      </div>
+      <div id="unity-warning"> </div>
+      <div id="unity-footer">
+        <div id="unity-logo-title-footer"></div>
+        <div id="unity-fullscreen-button"></div>
+        <div id="unity-build-title">Mental Break</div>
+      </div>
     </div>
-
     <script>
-      (function () {
-        var header = document.querySelector(".mb-thin-nav");
-        if (!header) return;
+      var canvas = document.querySelector("#unity-canvas");
 
-        var btn = header.querySelector(".mb-navtoggle");
-        var nav = header.querySelector("#mb-primary-nav");
-        if (!btn || !nav) return;
-
-        function setOpen(isOpen) {
-          header.classList.toggle("mb-nav-open", isOpen);
-          btn.setAttribute("aria-expanded", isOpen ? "true" : "false");
-          btn.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
+      // Shows a temporary message banner/ribbon for a few seconds, or
+      // a permanent error message on top of the canvas if type=='error'.
+      // If type=='warning', a yellow highlight color is used.
+      // Modify or remove this function to customize the visually presented
+      // way that non-critical warnings and error messages are presented to the
+      // user.
+      function unityShowBanner(msg, type) {
+        var warningBanner = document.querySelector("#unity-warning");
+        function updateBannerVisibility() {
+          warningBanner.style.display = warningBanner.children.length ? 'block' : 'none';
         }
+        var div = document.createElement('div');
+        div.innerHTML = msg;
+        warningBanner.appendChild(div);
+        if (type == 'error') div.style = 'background: red; padding: 10px;';
+        else {
+          if (type == 'warning') div.style = 'background: yellow; padding: 10px;';
+          setTimeout(function() {
+            warningBanner.removeChild(div);
+            updateBannerVisibility();
+          }, 5000);
+        }
+        updateBannerVisibility();
+      }
 
-        btn.addEventListener("click", function () {
-          var isOpen = header.classList.contains("mb-nav-open");
-          setOpen(!isOpen);
-        });
+      var buildUrl = "Build";
+      var loaderUrl = buildUrl + "/webgl-build.loader.js";
+      var config = {
+        arguments: [],
+        dataUrl: buildUrl + "/webgl-build.data.unityweb",
+        frameworkUrl: buildUrl + "/webgl-build.framework.js.unityweb",
+        codeUrl: buildUrl + "/webgl-build.wasm.unityweb",
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: "Keaton Media",
+        productName: "Mental Break",
+        productVersion: "3.1",
+        showBanner: unityShowBanner,
+        // errorHandler: function(err, url, line) {
+        //    alert("error " + err + " occurred at line " + line);
+        //    // Return 'true' if you handled this error and don't want Unity
+        //    // to process it further, 'false' otherwise.
+        //    return true;
+        // },
+      };
 
-        nav.addEventListener("click", function (e) {
-          var target = e.target;
-          if (target && target.tagName === "A") setOpen(false);
-        });
+      // By default, Unity keeps WebGL canvas render target size matched with
+      // the DOM size of the canvas element (scaled by window.devicePixelRatio)
+      // Set this to false if you want to decouple this synchronization from
+      // happening inside the engine, and you would instead like to size up
+      // the canvas DOM size and WebGL render target sizes yourself.
+      // config.matchWebGLToCanvasSize = false;
 
-        document.addEventListener("keydown", function (e) {
-          if (e.key === "Escape") setOpen(false);
-        });
-      })();
+      // If you would like all file writes inside Unity Application.persistentDataPath
+      // directory to automatically persist so that the contents are remembered when
+      // the user revisits the site the next time, uncomment the following line:
+      // config.autoSyncPersistentDataPath = true;
+      // This autosyncing is currently not the default behavior to avoid regressing
+      // existing user projects that might rely on the earlier manual
+      // JS_FileSystem_Sync() behavior, but in future Unity version, this will be
+      // expected to change.
+
+      if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+        // Mobile device style: fill the whole browser client area with the game canvas:
+
+        var meta = document.createElement('meta');
+        meta.name = 'viewport';
+        meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
+        document.getElementsByTagName('head')[0].appendChild(meta);
+        document.querySelector("#unity-container").className = "unity-mobile";
+        canvas.className = "unity-mobile";
+
+        // To lower canvas resolution on mobile devices to gain some
+        // performance, uncomment the following line:
+        // config.devicePixelRatio = 1;
+
+
+      } else {
+        // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
+        canvas.style.width = "960px";
+        canvas.style.height = "600px";
+      }
+
+      document.querySelector("#unity-loading-bar").style.display = "block";
+
+      var script = document.createElement("script");
+      script.src = loaderUrl;
+      script.onload = () => {
+        createUnityInstance(canvas, config, (progress) => {
+          document.querySelector("#unity-progress-bar-full").style.width = 100 * progress + "%";
+              }).then((unityInstance) => {
+                document.querySelector("#unity-loading-bar").style.display = "none";
+                document.querySelector("#unity-fullscreen-button").onclick = () => {
+                  unityInstance.SetFullscreen(1);
+                };
+
+              }).catch((message) => {
+                alert(message);
+              });
+            };
+
+      document.body.appendChild(script);
+
     </script>
-    <script src="assets/js/landing-v35.js?v=20251216a"></script>
   </body>
 </html>
-
-

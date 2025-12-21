@@ -147,10 +147,10 @@ public class PauseMenuSetup : EditorWindow
         Image image = panelObj.AddComponent<Image>();
         image.color = new Color(0f, 0f, 0f, 200f / 255f);
 
-        // Vertical Layout Group
+        // Vertical Layout Group with better spacing
         VerticalLayoutGroup layoutGroup = panelObj.AddComponent<VerticalLayoutGroup>();
-        layoutGroup.padding = new RectOffset(50, 50, 50, 50);
-        layoutGroup.spacing = 20f;
+        layoutGroup.padding = new RectOffset(50, 50, 80, 80);
+        layoutGroup.spacing = 15f; // Spacing between buttons
         layoutGroup.childAlignment = TextAnchor.MiddleCenter;
         layoutGroup.childControlWidth = false;
         layoutGroup.childControlHeight = false;
@@ -187,23 +187,23 @@ public class PauseMenuSetup : EditorWindow
             GameObject buttonObj = new GameObject(buttonNames[i]);
             buttonObj.transform.SetParent(panelParent, false);
 
-            // RectTransform
+            // RectTransform - larger buttons
             RectTransform rectTransform = buttonObj.AddComponent<RectTransform>();
-            rectTransform.sizeDelta = new Vector2(200f, 50f);
+            rectTransform.sizeDelta = new Vector2(280f, 55f); // Larger buttons
 
             // Image (button background)
             Image image = buttonObj.AddComponent<Image>();
-            image.color = new Color(0.2f, 0.2f, 0.2f, 1f);
+            image.color = new Color(0.2f, 0.2f, 0.25f, 1f);
 
             // Button component
             Button button = buttonObj.AddComponent<Button>();
-            
+
             // Set button colors
             ColorBlock colors = button.colors;
-            colors.normalColor = new Color(0.2f, 0.2f, 0.2f, 1f);
-            colors.highlightedColor = new Color(0.3f, 0.3f, 0.3f, 1f);
-            colors.pressedColor = new Color(0.1f, 0.1f, 0.1f, 1f);
-            colors.selectedColor = new Color(0.25f, 0.25f, 0.25f, 1f);
+            colors.normalColor = new Color(0.2f, 0.2f, 0.25f, 1f);
+            colors.highlightedColor = new Color(0.3f, 0.3f, 0.35f, 1f);
+            colors.pressedColor = new Color(0.15f, 0.15f, 0.2f, 1f);
+            colors.selectedColor = new Color(0.25f, 0.25f, 0.3f, 1f);
             colors.disabledColor = new Color(0.1f, 0.1f, 0.1f, 0.5f);
             button.colors = colors;
 
@@ -220,13 +220,13 @@ public class PauseMenuSetup : EditorWindow
 #if USE_TMP
             TextMeshProUGUI text = textObj.AddComponent<TextMeshProUGUI>();
             text.text = buttonTexts[i];
-            text.fontSize = 18;
+            text.fontSize = 22; // Larger font
             text.color = Color.white;
             text.alignment = TextAlignmentOptions.Center;
 #else
             Text text = textObj.AddComponent<Text>();
             text.text = buttonTexts[i];
-            text.fontSize = 18;
+            text.fontSize = 22; // Larger font
             text.color = Color.white;
             text.alignment = TextAnchor.MiddleCenter;
             text.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
@@ -357,24 +357,24 @@ public class PauseMenuSetup : EditorWindow
             insertIndex = loadGameButton.GetSiblingIndex() + 1;
         }
 
-        // Create Settings button
+        // Create Settings button - larger size to match other buttons
         GameObject buttonObj = new GameObject("SettingsButton");
         Undo.RegisterCreatedObjectUndo(buttonObj, "Create Settings Button");
         buttonObj.transform.SetParent(panelTransform, false);
         buttonObj.transform.SetSiblingIndex(insertIndex);
 
         RectTransform rectTransform = buttonObj.AddComponent<RectTransform>();
-        rectTransform.sizeDelta = new Vector2(200f, 50f);
+        rectTransform.sizeDelta = new Vector2(280f, 55f); // Larger button
 
         Image image = buttonObj.AddComponent<Image>();
-        image.color = new Color(0.2f, 0.2f, 0.2f, 1f);
+        image.color = new Color(0.2f, 0.2f, 0.25f, 1f);
 
         Button button = buttonObj.AddComponent<Button>();
         ColorBlock colors = button.colors;
-        colors.normalColor = new Color(0.2f, 0.2f, 0.2f, 1f);
-        colors.highlightedColor = new Color(0.3f, 0.3f, 0.3f, 1f);
-        colors.pressedColor = new Color(0.1f, 0.1f, 0.1f, 1f);
-        colors.selectedColor = new Color(0.25f, 0.25f, 0.25f, 1f);
+        colors.normalColor = new Color(0.2f, 0.2f, 0.25f, 1f);
+        colors.highlightedColor = new Color(0.3f, 0.3f, 0.35f, 1f);
+        colors.pressedColor = new Color(0.15f, 0.15f, 0.2f, 1f);
+        colors.selectedColor = new Color(0.25f, 0.25f, 0.3f, 1f);
         button.colors = colors;
 
         // Create text child
@@ -390,13 +390,13 @@ public class PauseMenuSetup : EditorWindow
 #if USE_TMP
         TextMeshProUGUI text = textObj.AddComponent<TextMeshProUGUI>();
         text.text = "Settings";
-        text.fontSize = 18;
+        text.fontSize = 22; // Larger font
         text.color = Color.white;
         text.alignment = TextAlignmentOptions.Center;
 #else
         Text text = textObj.AddComponent<Text>();
         text.text = "Settings";
-        text.fontSize = 18;
+        text.fontSize = 22; // Larger font
         text.color = Color.white;
         text.alignment = TextAnchor.MiddleCenter;
         text.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");

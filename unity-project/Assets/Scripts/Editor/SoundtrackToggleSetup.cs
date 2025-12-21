@@ -7,9 +7,53 @@ using UnityEditor;
 /// </summary>
 public class SoundtrackToggleSetup : EditorWindow
 {
+    [MenuItem("Tools/Remove Soundtrack Toggle from Pause Menu")]
+    public static void RemoveSoundtrackToggleFromPauseMenu()
+    {
+        // Find PauseMenuManager
+        PauseMenuManager pauseMenu = Object.FindFirstObjectByType<PauseMenuManager>();
+        if (pauseMenu == null)
+        {
+            EditorUtility.DisplayDialog("Not Found", "PauseMenuManager not found in scene.", "OK");
+            return;
+        }
+
+        if (pauseMenu.pauseMenuPanel == null)
+        {
+            EditorUtility.DisplayDialog("Not Found", "PauseMenuPanel not assigned in PauseMenuManager.", "OK");
+            return;
+        }
+
+        Transform panelTransform = pauseMenu.pauseMenuPanel.transform;
+        Transform existing = panelTransform.Find("SoundtrackToggleButton");
+
+        if (existing == null)
+        {
+            EditorUtility.DisplayDialog("Not Found", "SoundtrackToggleButton not found in pause menu.\n\n(It may have already been removed, or the soundtrack toggle is now in the Settings panel.)", "OK");
+            return;
+        }
+
+        Undo.DestroyObjectImmediate(existing.gameObject);
+        EditorUtility.SetDirty(pauseMenu.pauseMenuPanel);
+
+        EditorUtility.DisplayDialog("Removed",
+            "SoundtrackToggleButton has been removed from the pause menu.\n\n" +
+            "The soundtrack toggle is now available in the Settings panel.\n\n" +
+            "Remember to save the scene!", "OK");
+    }
+
     [MenuItem("Tools/Setup Soundtrack Toggle in Pause Menu")]
     public static void SetupSoundtrackToggle()
     {
+        // Warn that this is deprecated
+        bool proceed = EditorUtility.DisplayDialog("Deprecated",
+            "The soundtrack toggle is now part of the Settings panel.\n\n" +
+            "Use 'Tools > Setup Settings Panel in Pause Menu' instead.\n\n" +
+            "Do you still want to add the standalone toggle to the pause menu?",
+            "Yes, Add Anyway", "Cancel");
+
+        if (!proceed) return;
+
         // Find PauseMenuManager
         PauseMenuManager pauseMenu = Object.FindFirstObjectByType<PauseMenuManager>();
         if (pauseMenu == null)

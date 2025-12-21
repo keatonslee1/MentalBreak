@@ -30,19 +30,34 @@ public class LoadMenuPanelSetup : EditorWindow
         Undo.RecordObject(saveSlotUI, "Setup Load Menu Panel");
         Undo.RecordObject(loadMenuPanel, "Setup Load Menu Panel");
 
-        // Get or add VerticalLayoutGroup
+        // Get or add VerticalLayoutGroup with better spacing
         VerticalLayoutGroup layoutGroup = loadMenuPanel.GetComponent<VerticalLayoutGroup>();
         if (layoutGroup == null)
         {
             layoutGroup = Undo.AddComponent<VerticalLayoutGroup>(loadMenuPanel);
         }
-        layoutGroup.spacing = 5;
-        layoutGroup.padding = new RectOffset(10, 10, 10, 10);
+        layoutGroup.spacing = 12; // Increased spacing between buttons
+        layoutGroup.padding = new RectOffset(25, 25, 25, 25); // More padding around edges
         layoutGroup.childAlignment = TextAnchor.UpperCenter;
         layoutGroup.childControlWidth = true;
         layoutGroup.childControlHeight = false;
         layoutGroup.childForceExpandWidth = true;
         layoutGroup.childForceExpandHeight = false;
+
+        // Set panel size and add background
+        RectTransform panelRect = loadMenuPanel.GetComponent<RectTransform>();
+        if (panelRect != null)
+        {
+            panelRect.sizeDelta = new Vector2(320f, 580f); // Larger panel
+        }
+
+        // Add/update background Image
+        Image panelBg = loadMenuPanel.GetComponent<Image>();
+        if (panelBg == null)
+        {
+            panelBg = Undo.AddComponent<Image>(loadMenuPanel);
+        }
+        panelBg.color = new Color(0.08f, 0.08f, 0.12f, 0.95f); // Dark semi-transparent
 
         // Get or add ContentSizeFitter
         ContentSizeFitter sizeFitter = loadMenuPanel.GetComponent<ContentSizeFitter>();
@@ -147,27 +162,27 @@ public class LoadMenuPanelSetup : EditorWindow
         Undo.RegisterCreatedObjectUndo(buttonObj, "Create Button");
         buttonObj.transform.SetParent(parent, false);
 
-        // Add RectTransform
+        // Add RectTransform with larger size
         RectTransform rectTransform = buttonObj.AddComponent<RectTransform>();
-        rectTransform.sizeDelta = new Vector2(200, 40);
+        rectTransform.sizeDelta = new Vector2(270, 55); // Larger buttons
 
         // Add Image (background)
         Image image = buttonObj.AddComponent<Image>();
-        image.color = new Color(0.2f, 0.2f, 0.2f, 0.9f);
+        image.color = new Color(0.2f, 0.2f, 0.25f, 1f);
 
-        // Add Button
+        // Add Button with better color scheme
         Button button = buttonObj.AddComponent<Button>();
         ColorBlock colors = button.colors;
-        colors.normalColor = new Color(0.2f, 0.2f, 0.2f, 0.9f);
-        colors.highlightedColor = new Color(0.3f, 0.3f, 0.3f, 1f);
-        colors.pressedColor = new Color(0.15f, 0.15f, 0.15f, 1f);
-        colors.selectedColor = new Color(0.25f, 0.25f, 0.25f, 1f);
+        colors.normalColor = new Color(0.2f, 0.2f, 0.25f, 1f);
+        colors.highlightedColor = new Color(0.3f, 0.3f, 0.35f, 1f);
+        colors.pressedColor = new Color(0.15f, 0.15f, 0.2f, 1f);
+        colors.selectedColor = new Color(0.25f, 0.25f, 0.3f, 1f);
         button.colors = colors;
 
         // Add LayoutElement for sizing
         LayoutElement layoutElement = buttonObj.AddComponent<LayoutElement>();
-        layoutElement.minHeight = 40;
-        layoutElement.preferredHeight = 50;
+        layoutElement.minHeight = 55;
+        layoutElement.preferredHeight = 60;
 
         // Create Text child
         GameObject textObj = new GameObject("Text");
@@ -183,16 +198,16 @@ public class LoadMenuPanelSetup : EditorWindow
 #if USE_TMP
         TMPro.TextMeshProUGUI tmpText = textObj.AddComponent<TMPro.TextMeshProUGUI>();
         tmpText.text = labelText;
-        tmpText.fontSize = 14;
+        tmpText.fontSize = 18; // Larger font
         tmpText.alignment = TMPro.TextAlignmentOptions.Center;
         tmpText.color = Color.white;
 #else
         Text text = textObj.AddComponent<Text>();
         text.text = labelText;
-        text.fontSize = 14;
+        text.fontSize = 18; // Larger font
         text.alignment = TextAnchor.MiddleCenter;
         text.color = Color.white;
-        // Try to find a font
+        // Font will be overridden by GlobalFontOverride at runtime
         text.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
         if (text.font == null)
         {
@@ -219,24 +234,24 @@ public class LoadMenuPanelSetup : EditorWindow
         headerObj.transform.SetParent(parent, false);
 
         RectTransform rectTransform = headerObj.AddComponent<RectTransform>();
-        rectTransform.sizeDelta = new Vector2(200, 25);
+        rectTransform.sizeDelta = new Vector2(270, 30);
 
         LayoutElement layoutElement = headerObj.AddComponent<LayoutElement>();
-        layoutElement.minHeight = 25;
-        layoutElement.preferredHeight = 25;
+        layoutElement.minHeight = 30;
+        layoutElement.preferredHeight = 30;
 
 #if USE_TMP
         TMPro.TextMeshProUGUI tmpText = headerObj.AddComponent<TMPro.TextMeshProUGUI>();
         tmpText.text = headerText;
-        tmpText.fontSize = 12;
+        tmpText.fontSize = 14; // Larger header font
         tmpText.alignment = TMPro.TextAlignmentOptions.Center;
-        tmpText.color = new Color(0.7f, 0.7f, 0.7f, 1f);
+        tmpText.color = new Color(0.8f, 0.8f, 0.8f, 1f);
 #else
         Text text = headerObj.AddComponent<Text>();
         text.text = headerText;
-        text.fontSize = 12;
+        text.fontSize = 14; // Larger header font
         text.alignment = TextAnchor.MiddleCenter;
-        text.color = new Color(0.7f, 0.7f, 0.7f, 1f);
+        text.color = new Color(0.8f, 0.8f, 0.8f, 1f);
         text.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
         if (text.font == null)
         {

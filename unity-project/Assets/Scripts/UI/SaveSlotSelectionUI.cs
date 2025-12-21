@@ -459,18 +459,14 @@ public class SaveSlotSelectionUI : MonoBehaviour
                 Debug.Log($"SaveSlotSelectionUI: Moved LoadMenuPanel to sibling index {selectionPanel.transform.GetSiblingIndex()} (last) to ensure it renders on top");
             }
             
-            // CRITICAL FIX: Disable or make transparent the Image component on LoadMenuPanel
-            // The black Image is covering the buttons, making it appear as a black square
+            // Set panel background to semi-transparent dark (matching pause menu style)
             Image panelImage = selectionPanel.GetComponent<Image>();
             if (panelImage != null)
             {
-                // Option 1: Disable the Image (recommended - buttons provide their own backgrounds)
-                panelImage.enabled = false;
-                Debug.Log("SaveSlotSelectionUI: Disabled LoadMenuPanel Image component to prevent covering buttons");
-                
-                // Alternative: Make it fully transparent instead of disabling
-                // panelImage.color = new Color(0, 0, 0, 0);
-                // panelImage.raycastTarget = false;
+                panelImage.enabled = true;
+                panelImage.color = new Color(0.08f, 0.08f, 0.12f, 0.95f); // Dark semi-transparent
+                panelImage.raycastTarget = true;
+                Debug.Log("SaveSlotSelectionUI: Set LoadMenuPanel background to semi-transparent dark");
             }
             
             // DIAGNOSTIC: Log state AFTER activation
@@ -724,24 +720,26 @@ public class SaveSlotSelectionUI : MonoBehaviour
             if (success)
             {
                 Debug.Log($"Saved game to slot {slot}");
+                ToastManager.ShowSuccess($"Game saved to Slot {slot}");
+
                 // Update button labels to show new save
                 UpdateButtonLabels();
                 // Hide selection UI
                 HideSelectionUI();
-                
+
                 // Return to pause menu if it exists
                 if (pauseMenuManager != null)
                 {
                     pauseMenuManager.ShowPauseMenu();
                 }
-                
+
                 // CRITICAL: Return early to prevent any fall-through or double execution
                 return;
             }
             else
             {
                 Debug.LogWarning($"Failed to save to slot {slot}");
-                // Could show an error message to the player here
+                ToastManager.ShowError("Failed to save game");
                 return;
             }
         }
@@ -752,7 +750,8 @@ public class SaveSlotSelectionUI : MonoBehaviour
             if (success)
             {
                 Debug.Log($"Loaded save from slot {slot}");
-                
+                ToastManager.ShowSuccess("Game loaded");
+
                 // Hide selection UI
                 HideSelectionUI();
 
@@ -765,7 +764,15 @@ public class SaveSlotSelectionUI : MonoBehaviour
             else
             {
                 Debug.LogWarning($"No save found in slot {slot} or failed to load");
-                // Could show an error message to the player here
+                // Check if slot is empty vs failed to load
+                if (!saveLoadManager.HasSaveData(slot))
+                {
+                    ToastManager.ShowWarning("No save data in this slot");
+                }
+                else
+                {
+                    ToastManager.ShowError("Failed to load save");
+                }
             }
         }
     }
@@ -867,14 +874,14 @@ public class SaveSlotSelectionUI : MonoBehaviour
         if (string.IsNullOrEmpty(clipboardContent))
         {
             Debug.LogWarning("SaveSlotSelectionUI: Clipboard is empty. Copy a save string first.");
-            // TODO: Show user feedback
+            ToastManager.ShowWarning("Clipboard is empty - copy a save string first");
             return;
         }
 
         if (!SaveExporter.ValidateSaveString(clipboardContent))
         {
             Debug.LogWarning("SaveSlotSelectionUI: Clipboard content is not a valid save string.");
-            // TODO: Show user feedback
+            ToastManager.ShowError("Invalid save string in clipboard");
             return;
         }
 
@@ -884,18 +891,19 @@ public class SaveSlotSelectionUI : MonoBehaviour
         {
             targetSlot = 5; // Use slot 5 as fallback (will overwrite)
             Debug.Log("SaveSlotSelectionUI: All manual slots full, importing to Slot 5");
+            ToastManager.ShowWarning($"All slots full - importing to Slot {targetSlot}");
         }
 
         if (saveLoadManager.ImportFromString(clipboardContent, targetSlot))
         {
             Debug.Log($"SaveSlotSelectionUI: Successfully imported save to Slot {targetSlot}");
             UpdateButtonLabels();
-            // TODO: Show success feedback
+            ToastManager.ShowSuccess($"Save imported to Slot {targetSlot}");
         }
         else
         {
             Debug.LogError("SaveSlotSelectionUI: Import failed");
-            // TODO: Show error feedback
+            ToastManager.ShowError("Failed to import save data");
         }
     }
 
@@ -922,6 +930,7 @@ public class SaveSlotSelectionUI : MonoBehaviour
         if (saveLoadManager == null)
         {
             Debug.LogError("SaveSlotSelectionUI: SaveLoadManager not found");
+            ToastManager.ShowError("Save system not available");
             return;
         }
 
@@ -930,11 +939,19 @@ public class SaveSlotSelectionUI : MonoBehaviour
         {
             GUIUtility.systemCopyBuffer = exportString;
             Debug.Log($"SaveSlotSelectionUI: Copied save from slot {slot} to clipboard ({SaveExporter.GetExportSizeDescription(exportString)})");
-            // TODO: Show success feedback
+            ToastManager.ShowSuccess("Save copied to clipboard");
         }
         else
         {
             Debug.LogWarning($"SaveSlotSelectionUI: Slot {slot} is empty or export failed");
+            if (!saveLoadManager.HasSaveData(slot))
+            {
+                ToastManager.ShowWarning("This slot is empty");
+            }
+            else
+            {
+                ToastManager.ShowError("Failed to export save");
+            }
         }
     }
 

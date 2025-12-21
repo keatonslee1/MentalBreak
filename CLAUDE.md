@@ -88,7 +88,7 @@ python -m http.server 8000
 |--------|---------|-----------|
 | Core/ | Game state, saves, settings | GameManager, SaveLoadManager, SaveExporter, SettingsManager |
 | Dialogue/ | Dialogue flow | DialogueAdvanceHandler, OptionsInputHandler |
-| UI/ | User interface | MenuManager, PauseMenuManager, SettingsPanel, StoreUI |
+| UI/ | User interface | MenuManager, PauseMenuManager, SettingsPanel, StoreUI, ToastManager |
 | Audio/ | Audio commands | AudioCommandHandler, FMODAudioManager |
 | Characters/ | Portraits | CharacterSpriteManager, CharacterTalkAnimation |
 | Commands/ | Yarn handlers | BackgroundCommandHandler, CheckpointCommandHandler |

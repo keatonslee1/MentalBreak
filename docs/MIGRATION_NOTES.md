@@ -261,12 +261,58 @@ In-game settings UI accessed from pause menu:
 
 ---
 
-## Remaining Work / Future Phases
+## Phase 6: Save/Load UI Feedback
+**Date:** Dec 21, 2025
 
-### Phase 6: Save/Load UI Feedback (Planned)
-- Toast notifications for save/load success/failure
-- Visual feedback for export/import operations
-- Better error messages for corrupted saves
+### What Was Done
+
+#### ToastManager System (`Scripts/UI/ToastManager.cs`)
+Created a toast notification system for user feedback:
+
+**Features:**
+- Singleton pattern with static API: `ToastManager.Show("Message")`
+- Four toast types: Info, Success, Warning, Error
+- Auto-dismissing with fade in/out animations
+- Queue system for multiple simultaneous toasts
+- Positioned at bottom-center, non-intrusive
+- Renders on top of all other UI (sortingOrder 1000)
+- Uses unscaledTime so toasts work when game is paused
+
+**API:**
+```csharp
+ToastManager.Show("Message");                    // Info toast
+ToastManager.Show("Message", ToastType.Success); // With type
+ToastManager.ShowSuccess("Game saved!");         // Convenience method
+ToastManager.ShowError("Failed to load");        // Error toast
+ToastManager.ShowWarning("Slot will overwrite"); // Warning toast
+ToastManager.ClearAll();                         // Clear all toasts
+```
+
+**Styling:**
+| Type | Background | Text |
+|------|------------|------|
+| Info | Dark gray | White |
+| Success | Dark green | Light green |
+| Warning | Dark yellow | Light yellow |
+| Error | Dark red | Light red |
+
+#### SaveSlotSelectionUI Integration
+Updated save/load UI to show toast notifications:
+
+| Operation | Success | Failure |
+|-----------|---------|---------|
+| Save | "Game saved to Slot X" | "Failed to save game" |
+| Load | "Game loaded" | "No save data in this slot" / "Failed to load save" |
+| Import | "Save imported to Slot X" | "Invalid save string" / "Clipboard empty" |
+| Export | "Save copied to clipboard" | "This slot is empty" / "Failed to export" |
+
+#### Editor Setup
+- `Tools > Setup ToastManager in Scene` - Adds ToastManager component
+- `Tools > Test Toast Notifications` - Test all toast types in Play Mode
+
+---
+
+## Remaining Work / Future Phases
 
 ### Phase 7: WebGL Build Verification (Planned)
 - Full build with FMOD integration
@@ -302,13 +348,15 @@ Scripts/Commands/
 
 Scripts/UI/
 ├── PauseMenuManager.cs      # Pause menu with save/load/settings
-├── SaveSlotSelectionUI.cs   # 8-slot save UI
+├── SaveSlotSelectionUI.cs   # 8-slot save UI with toast feedback
 ├── SettingsPanel.cs         # Volume sliders and settings UI
-└── SoundtrackToggleUI.cs    # A/B side toggle button
+├── SoundtrackToggleUI.cs    # A/B side toggle button
+└── ToastManager.cs          # Toast notification system
 
 Scripts/Editor/
 ├── SettingsPanelSetup.cs    # Creates settings panel in scene
-└── SoundtrackToggleSetup.cs # Creates soundtrack toggle
+├── SoundtrackToggleSetup.cs # Creates soundtrack toggle
+└── ToastManagerSetup.cs     # Sets up toast notification system
 ```
 
 ### Yarn Command Quick Reference
@@ -352,6 +400,7 @@ Scripts/Editor/
 | `ab2399f` | 5 | Settings Menu Implementation |
 | `75f1ea0` | 5 | Add Settings Button to PauseMenuSetup |
 | `f85e6d1` | 5 | Fix Settings Panel slider UI |
+| *(pending)* | 6 | Toast notification system for save/load feedback |
 
 ---
 

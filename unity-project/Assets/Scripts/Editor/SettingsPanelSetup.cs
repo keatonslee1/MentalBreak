@@ -93,7 +93,7 @@ public class SettingsPanelSetup : EditorWindow
         SettingsPanel settingsPanelComp = panelObj.AddComponent<SettingsPanel>();
         settingsPanelComp.settingsPanel = panelObj;
 
-        // Create centered content box
+        // Create centered content box - larger size
         GameObject contentBox = new GameObject("ContentBox");
         contentBox.transform.SetParent(panelObj.transform, false);
 
@@ -101,7 +101,7 @@ public class SettingsPanelSetup : EditorWindow
         contentRect.anchorMin = new Vector2(0.5f, 0.5f);
         contentRect.anchorMax = new Vector2(0.5f, 0.5f);
         contentRect.pivot = new Vector2(0.5f, 0.5f);
-        contentRect.sizeDelta = new Vector2(450f, 380f);
+        contentRect.sizeDelta = new Vector2(500f, 480f); // Larger content box
         contentRect.anchoredPosition = Vector2.zero;
 
         Image contentBg = contentBox.AddComponent<Image>();
@@ -111,7 +111,7 @@ public class SettingsPanelSetup : EditorWindow
         CreateTitle(contentBox.transform);
 
         // Volume sliders
-        float yPos = 40f;
+        float yPos = 115f;
         settingsPanelComp.masterVolumeSlider = CreateVolumeRow(contentBox.transform, "Master", yPos, out Component masterLabel);
         settingsPanelComp.masterVolumeLabel = masterLabel;
 
@@ -151,7 +151,7 @@ public class SettingsPanelSetup : EditorWindow
 
         Text text = titleObj.AddComponent<Text>();
         text.text = "SETTINGS";
-        text.fontSize = 32;
+        text.fontSize = 36; // Larger title
         text.fontStyle = FontStyle.Bold;
         text.alignment = TextAnchor.MiddleCenter;
         text.color = Color.white;
@@ -169,9 +169,9 @@ public class SettingsPanelSetup : EditorWindow
         rowRect.anchorMax = new Vector2(1f, 0.5f);
         rowRect.pivot = new Vector2(0.5f, 0.5f);
         rowRect.anchoredPosition = new Vector2(0f, yPos);
-        rowRect.sizeDelta = new Vector2(-40f, 45f);
-        rowRect.offsetMin = new Vector2(20f, rowRect.offsetMin.y);
-        rowRect.offsetMax = new Vector2(-20f, rowRect.offsetMax.y);
+        rowRect.sizeDelta = new Vector2(-40f, 50f); // Taller rows
+        rowRect.offsetMin = new Vector2(25f, rowRect.offsetMin.y);
+        rowRect.offsetMax = new Vector2(-25f, rowRect.offsetMax.y);
 
         Image rowBg = rowObj.AddComponent<Image>();
         rowBg.color = RowBackgroundColor;
@@ -185,11 +185,11 @@ public class SettingsPanelSetup : EditorWindow
         labelRect.anchorMax = new Vector2(0f, 1f);
         labelRect.pivot = new Vector2(0f, 0.5f);
         labelRect.anchoredPosition = new Vector2(15f, 0f);
-        labelRect.sizeDelta = new Vector2(80f, 0f);
+        labelRect.sizeDelta = new Vector2(90f, 0f);
 
         Text labelText = labelObj.AddComponent<Text>();
         labelText.text = label;
-        labelText.fontSize = 20;
+        labelText.fontSize = 22; // Larger font
         labelText.alignment = TextAnchor.MiddleLeft;
         labelText.color = Color.white;
         labelText.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
@@ -238,7 +238,7 @@ public class SettingsPanelSetup : EditorWindow
 
         Text valueText = valueObj.AddComponent<Text>();
         valueText.text = "70%";
-        valueText.fontSize = 18;
+        valueText.fontSize = 20; // Larger font
         valueText.alignment = TextAnchor.MiddleRight;
         valueText.color = Color.white;
         valueText.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
@@ -258,9 +258,9 @@ public class SettingsPanelSetup : EditorWindow
         rowRect.anchorMax = new Vector2(1f, 0.5f);
         rowRect.pivot = new Vector2(0.5f, 0.5f);
         rowRect.anchoredPosition = new Vector2(0f, yPos);
-        rowRect.sizeDelta = new Vector2(-40f, 45f);
-        rowRect.offsetMin = new Vector2(20f, rowRect.offsetMin.y);
-        rowRect.offsetMax = new Vector2(-20f, rowRect.offsetMax.y);
+        rowRect.sizeDelta = new Vector2(-40f, 50f); // Taller row
+        rowRect.offsetMin = new Vector2(25f, rowRect.offsetMin.y);
+        rowRect.offsetMax = new Vector2(-25f, rowRect.offsetMax.y);
 
         Image rowBg = rowObj.AddComponent<Image>();
         rowBg.color = RowBackgroundColor;
@@ -274,11 +274,11 @@ public class SettingsPanelSetup : EditorWindow
         labelRect.anchorMax = new Vector2(0f, 1f);
         labelRect.pivot = new Vector2(0f, 0.5f);
         labelRect.anchoredPosition = new Vector2(15f, 0f);
-        labelRect.sizeDelta = new Vector2(120f, 0f);
+        labelRect.sizeDelta = new Vector2(130f, 0f);
 
         Text labelText = labelObj.AddComponent<Text>();
         labelText.text = "Soundtrack";
-        labelText.fontSize = 20;
+        labelText.fontSize = 22; // Larger font
         labelText.alignment = TextAnchor.MiddleLeft;
         labelText.color = Color.white;
         labelText.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
@@ -292,7 +292,7 @@ public class SettingsPanelSetup : EditorWindow
         buttonRect.anchorMax = new Vector2(1f, 0.5f);
         buttonRect.pivot = new Vector2(1f, 0.5f);
         buttonRect.anchoredPosition = new Vector2(-15f, 0f);
-        buttonRect.sizeDelta = new Vector2(180f, 35f);
+        buttonRect.sizeDelta = new Vector2(200f, 40f); // Larger button
 
         Image buttonImage = buttonObj.AddComponent<Image>();
         buttonImage.color = new Color(0.3f, 0.25f, 0.4f, 1f);
@@ -315,7 +315,7 @@ public class SettingsPanelSetup : EditorWindow
 
         Text text = textObj.AddComponent<Text>();
         text.text = "Nela's Score";
-        text.fontSize = 16;
+        text.fontSize = 18; // Larger font
         text.alignment = TextAnchor.MiddleCenter;
         text.color = Color.white;
         text.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
@@ -333,8 +333,8 @@ public class SettingsPanelSetup : EditorWindow
         rect.anchorMin = new Vector2(0.5f, 0f);
         rect.anchorMax = new Vector2(0.5f, 0f);
         rect.pivot = new Vector2(0.5f, 0f);
-        rect.anchoredPosition = new Vector2(0f, 20f);
-        rect.sizeDelta = new Vector2(150f, 45f);
+        rect.anchoredPosition = new Vector2(0f, 35f);
+        rect.sizeDelta = new Vector2(180f, 50f); // Larger button
 
         Image image = buttonObj.AddComponent<Image>();
         image.color = ButtonColor;
@@ -356,7 +356,7 @@ public class SettingsPanelSetup : EditorWindow
 
         Text text = textObj.AddComponent<Text>();
         text.text = "Back";
-        text.fontSize = 20;
+        text.fontSize = 22; // Larger font
         text.alignment = TextAnchor.MiddleCenter;
         text.color = Color.white;
         text.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");

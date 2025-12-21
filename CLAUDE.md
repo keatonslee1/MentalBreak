@@ -15,9 +15,16 @@ mentalbreak/                               # Repository root
 ├── unity-project/                         # Unity project
 │   ├── Assets/
 │   │   ├── Dialogue/                      # .yarn files (numbered 01-99)
-│   │   ├── Scripts/                       # C# game logic
+│   │   ├── Scripts/                       # C# game logic (organized)
+│   │   │   ├── Core/                      # GameManager, SaveLoad, RunTransition
+│   │   │   ├── Dialogue/                  # Dialogue handling, options, navigation
+│   │   │   ├── UI/                        # All UI components
+│   │   │   ├── Audio/                     # Audio command handler
+│   │   │   ├── Characters/                # Portrait/sprite management
+│   │   │   ├── Commands/                  # Yarn command handlers
+│   │   │   └── Editor/                    # Editor-only utilities
 │   │   ├── Graphics/                      # Backgrounds, portraits, UI
-│   │   ├── Audio/                         # BGM and SFX
+│   │   ├── Audio/                         # BGM and SFX assets
 │   │   ├── Dialogue Wheel for Yarn Spinner/
 │   │   ├── Speech Bubbles for Yarn Spinner/
 │   │   └── StreamingAssets/               # FMOD banks (future)
@@ -49,20 +56,32 @@ python -m http.server 8000
 
 ## Architecture
 
-### Core Systems
+### Core Systems (Scripts/Core/)
 
-**GameManager** (`Assets/Scripts/GameManager.cs`)
+**GameManager** (`Scripts/Core/GameManager.cs`)
 - Central coordinator for game state and run transitions
 - 4-run structure (R1_Start through R4_End)
 
-**SaveLoadManager** (`Assets/Scripts/SaveLoadManager.cs`)
+**SaveLoadManager** (`Scripts/Core/SaveLoadManager.cs`)
 - Planned: 5 manual slots + 3 autosave FIFO
 - WebGL: PlayerPrefs (IndexedDB-backed)
 - Desktop: JSON files in persistentDataPath
 
-**CommandHandlerRegistrar** (`Assets/Scripts/CommandHandlerRegistrar.cs`)
+**CommandHandlerRegistrar** (`Scripts/Commands/CommandHandlerRegistrar.cs`)
 - Registers Yarn commands with DialogueRunner
 - Required for WebGL builds (attribute discovery fails)
+
+### Script Organization
+
+| Folder | Purpose | Key Files |
+|--------|---------|-----------|
+| Core/ | Game state, saves | GameManager, SaveLoadManager, RunTransitionManager |
+| Dialogue/ | Dialogue flow | DialogueAdvanceHandler, OptionsInputHandler |
+| UI/ | User interface | MenuManager, PauseMenuManager, StoreUI, DayplannerUI |
+| Audio/ | Audio commands | AudioCommandHandler |
+| Characters/ | Portraits | CharacterSpriteManager, CharacterTalkAnimation |
+| Commands/ | Yarn handlers | BackgroundCommandHandler, CheckpointCommandHandler |
+| Editor/ | Dev tools | DialogueSystemUIAutoWire, various setup scripts |
 
 ### Yarn Commands
 

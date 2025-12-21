@@ -46,6 +46,7 @@ node_modules/
 .DS_Store
 Thumbs.db
 Desktop.ini
+nul
 
 # FMOD (keep only streaming assets banks)
 *.bank

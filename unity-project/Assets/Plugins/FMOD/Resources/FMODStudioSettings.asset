@@ -175,7 +175,7 @@ MonoBehaviour:
   TargetBankFolder: 
   EventLinkage: 0
   SerializeGUIDsOnly: 0
-  LoggingLevel: 2
+  LoggingLevel: 3
   SpeakerModeSettings: []
   SampleRateSettings: []
   LiveUpdateSettings: []
@@ -189,7 +189,7 @@ MonoBehaviour:
   Banks:
   - Music_A_Side
   - Music_B_Side
-  - UI.bank
+  - UI
   BanksToLoad: []
   LiveUpdatePort: 9264
   EnableMemoryTracking: 0

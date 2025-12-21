@@ -31,57 +31,88 @@ public class CommandHandlerRegistrar : MonoBehaviour
 
     private void Awake()
     {
-        // Find DialogueRunner if not assigned
+        Debug.Log("CommandHandlerRegistrar: Awake() starting - finding and registering command handlers");
+
+        // Find DialogueRunner - check multiple locations
         if (dialogueRunner == null)
         {
-            dialogueRunner = FindFirstObjectByType<DialogueRunner>();
+            dialogueRunner = GetComponent<DialogueRunner>();
+            if (dialogueRunner == null) dialogueRunner = GetComponentInParent<DialogueRunner>();
+            if (dialogueRunner == null) dialogueRunner = GetComponentInChildren<DialogueRunner>();
+            if (dialogueRunner == null) dialogueRunner = FindFirstObjectByType<DialogueRunner>();
         }
 
-        // Find command handlers if not assigned - auto-create if missing
-        if (backgroundHandler == null)
+        if (dialogueRunner != null)
         {
-            backgroundHandler = FindFirstObjectByType<BackgroundCommandHandler>();
-            if (backgroundHandler == null)
-            {
-                Debug.LogWarning("CommandHandlerRegistrar: BackgroundCommandHandler not found, creating one on this GameObject");
-                backgroundHandler = gameObject.AddComponent<BackgroundCommandHandler>();
-            }
+            Debug.Log($"CommandHandlerRegistrar: Found DialogueRunner on '{dialogueRunner.gameObject.name}'");
+        }
+        else
+        {
+            Debug.LogError("CommandHandlerRegistrar: DialogueRunner NOT FOUND - commands will not work!");
         }
 
-        if (audioHandler == null)
-        {
-            audioHandler = FindFirstObjectByType<AudioCommandHandler>();
-            if (audioHandler == null)
-            {
-                Debug.LogWarning("CommandHandlerRegistrar: AudioCommandHandler not found, creating one on this GameObject");
-                audioHandler = gameObject.AddComponent<AudioCommandHandler>();
-            }
-        }
-
-        if (checkpointHandler == null)
-        {
-            checkpointHandler = FindFirstObjectByType<CheckpointCommandHandler>();
-            if (checkpointHandler == null)
-            {
-                Debug.LogWarning("CommandHandlerRegistrar: CheckpointCommandHandler not found, creating one on this GameObject");
-                checkpointHandler = gameObject.AddComponent<CheckpointCommandHandler>();
-            }
-        }
+        // Find command handlers - check own GameObject first, then search scene, then create
+        backgroundHandler = FindOrCreateHandler<BackgroundCommandHandler>(ref backgroundHandler, "BackgroundCommandHandler");
+        audioHandler = FindOrCreateHandler<AudioCommandHandler>(ref audioHandler, "AudioCommandHandler");
+        checkpointHandler = FindOrCreateHandler<CheckpointCommandHandler>(ref checkpointHandler, "CheckpointCommandHandler");
+        fmodHandler = FindOrCreateHandler<FMODAudioManager>(ref fmodHandler, "FMODAudioManager");
 
         if (storeHandler == null)
         {
             storeHandler = ResolveStoreHandler();
         }
 
-        if (fmodHandler == null)
+        Debug.Log("CommandHandlerRegistrar: Awake() complete");
+    }
+
+    /// <summary>
+    /// Find a handler component, checking multiple locations, or create if not found.
+    /// </summary>
+    private T FindOrCreateHandler<T>(ref T handler, string handlerName) where T : Component
+    {
+        // If already assigned via Inspector, use it
+        if (handler != null)
         {
-            fmodHandler = FindFirstObjectByType<FMODAudioManager>();
-            if (fmodHandler == null)
-            {
-                Debug.LogWarning("CommandHandlerRegistrar: FMODAudioManager not found, creating one on this GameObject");
-                fmodHandler = gameObject.AddComponent<FMODAudioManager>();
-            }
+            Debug.Log($"CommandHandlerRegistrar: {handlerName} already assigned via Inspector on '{handler.gameObject.name}'");
+            return handler;
         }
+
+        // Check own GameObject first (most reliable for WebGL)
+        handler = GetComponent<T>();
+        if (handler != null)
+        {
+            Debug.Log($"CommandHandlerRegistrar: Found {handlerName} on same GameObject");
+            return handler;
+        }
+
+        // Check parent hierarchy
+        handler = GetComponentInParent<T>();
+        if (handler != null)
+        {
+            Debug.Log($"CommandHandlerRegistrar: Found {handlerName} in parent hierarchy on '{handler.gameObject.name}'");
+            return handler;
+        }
+
+        // Check children
+        handler = GetComponentInChildren<T>();
+        if (handler != null)
+        {
+            Debug.Log($"CommandHandlerRegistrar: Found {handlerName} in children on '{handler.gameObject.name}'");
+            return handler;
+        }
+
+        // Search entire scene (less reliable in WebGL)
+        handler = FindFirstObjectByType<T>();
+        if (handler != null)
+        {
+            Debug.Log($"CommandHandlerRegistrar: Found {handlerName} via scene search on '{handler.gameObject.name}'");
+            return handler;
+        }
+
+        // Not found anywhere - create on this GameObject
+        Debug.LogWarning($"CommandHandlerRegistrar: {handlerName} not found anywhere, creating on this GameObject");
+        handler = gameObject.AddComponent<T>();
+        return handler;
     }
 
     /// <summary>

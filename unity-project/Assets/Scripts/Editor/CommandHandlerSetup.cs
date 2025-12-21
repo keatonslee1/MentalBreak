@@ -33,45 +33,74 @@ public class CommandHandlerSetup : EditorWindow
         Undo.RecordObject(dialogueSystem, "Setup Command Handlers");
 
         int addedCount = 0;
+        string report = "";
+
+        // IMPORTANT: For WebGL reliability, ALL handlers should be on the SAME GameObject
+        // This ensures GetComponent works reliably
 
         // Check/Add CommandHandlerRegistrar
         if (dialogueSystem.GetComponent<CommandHandlerRegistrar>() == null)
         {
             Undo.AddComponent<CommandHandlerRegistrar>(dialogueSystem);
             Debug.Log("Added CommandHandlerRegistrar to Dialogue System");
+            report += "- Added CommandHandlerRegistrar\n";
             addedCount++;
         }
+        else
+        {
+            report += "- CommandHandlerRegistrar: OK\n";
+        }
 
-        // Check/Add CheckpointCommandHandler
-        if (Object.FindFirstObjectByType<CheckpointCommandHandler>() == null)
+        // Check/Add CheckpointCommandHandler - MUST be on same GameObject for WebGL
+        if (dialogueSystem.GetComponent<CheckpointCommandHandler>() == null)
         {
             Undo.AddComponent<CheckpointCommandHandler>(dialogueSystem);
             Debug.Log("Added CheckpointCommandHandler to Dialogue System");
+            report += "- Added CheckpointCommandHandler\n";
             addedCount++;
         }
+        else
+        {
+            report += "- CheckpointCommandHandler: OK\n";
+        }
 
-        // Check/Add FMODAudioManager
-        if (Object.FindFirstObjectByType<FMODAudioManager>() == null)
+        // Check/Add FMODAudioManager - MUST be on same GameObject for WebGL
+        if (dialogueSystem.GetComponent<FMODAudioManager>() == null)
         {
             Undo.AddComponent<FMODAudioManager>(dialogueSystem);
             Debug.Log("Added FMODAudioManager to Dialogue System");
+            report += "- Added FMODAudioManager\n";
             addedCount++;
         }
+        else
+        {
+            report += "- FMODAudioManager: OK\n";
+        }
 
-        // Check/Add BackgroundCommandHandler
-        if (Object.FindFirstObjectByType<BackgroundCommandHandler>() == null)
+        // Check/Add BackgroundCommandHandler - MUST be on same GameObject for WebGL
+        if (dialogueSystem.GetComponent<BackgroundCommandHandler>() == null)
         {
             Undo.AddComponent<BackgroundCommandHandler>(dialogueSystem);
             Debug.Log("Added BackgroundCommandHandler to Dialogue System");
+            report += "- Added BackgroundCommandHandler\n";
             addedCount++;
         }
+        else
+        {
+            report += "- BackgroundCommandHandler: OK\n";
+        }
 
-        // Check/Add AudioCommandHandler
-        if (Object.FindFirstObjectByType<AudioCommandHandler>() == null)
+        // Check/Add AudioCommandHandler - MUST be on same GameObject for WebGL
+        if (dialogueSystem.GetComponent<AudioCommandHandler>() == null)
         {
             Undo.AddComponent<AudioCommandHandler>(dialogueSystem);
             Debug.Log("Added AudioCommandHandler to Dialogue System");
+            report += "- Added AudioCommandHandler\n";
             addedCount++;
+        }
+        else
+        {
+            report += "- AudioCommandHandler: OK\n";
         }
 
         EditorUtility.SetDirty(dialogueSystem);
@@ -79,24 +108,18 @@ public class CommandHandlerSetup : EditorWindow
         string message;
         if (addedCount > 0)
         {
-            message = $"Added {addedCount} command handler(s) to Dialogue System.\n\n" +
-                "Remember to SAVE THE SCENE!\n\n" +
-                "Components added:\n";
-
-            if (dialogueSystem.GetComponent<CommandHandlerRegistrar>() != null)
-                message += "- CommandHandlerRegistrar\n";
-            if (dialogueSystem.GetComponent<CheckpointCommandHandler>() != null)
-                message += "- CheckpointCommandHandler\n";
-            if (dialogueSystem.GetComponent<FMODAudioManager>() != null)
-                message += "- FMODAudioManager\n";
-            if (dialogueSystem.GetComponent<BackgroundCommandHandler>() != null)
-                message += "- BackgroundCommandHandler\n";
-            if (dialogueSystem.GetComponent<AudioCommandHandler>() != null)
-                message += "- AudioCommandHandler\n";
+            message = $"Added {addedCount} command handler(s) to '{dialogueSystem.name}'.\n\n" +
+                "IMPORTANT: Remember to SAVE THE SCENE!\n\n" +
+                report;
         }
         else
         {
-            message = "All command handlers are already present in the scene.";
+            message = $"All command handlers are already on '{dialogueSystem.name}'.\n\n" +
+                report + "\n" +
+                "If commands still don't work in WebGL, try:\n" +
+                "1. Run 'Tools > Verify Command Handlers'\n" +
+                "2. Check if handlers are on DIFFERENT GameObjects\n" +
+                "3. Save scene and rebuild";
         }
 
         EditorUtility.DisplayDialog("Setup Complete", message, "OK");

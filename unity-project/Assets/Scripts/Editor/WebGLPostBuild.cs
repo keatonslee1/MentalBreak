@@ -6,9 +6,8 @@ using System.IO;
 
 /// <summary>
 /// Post-build processor for WebGL builds.
-/// After Unity builds, this script:
-/// 1. Renames the generated index.html to play.html (the game page)
-/// 2. Restores the original website index.html from backup
+/// After Unity builds, this script restores the custom website index.html from backup.
+/// It does NOT touch play.html (which is a separate custom file).
 ///
 /// This prevents Unity from overwriting your custom website landing page.
 /// </summary>
@@ -27,42 +26,25 @@ public class WebGLPostBuild : IPostprocessBuildWithReport
 
         string buildPath = report.summary.outputPath;
         string indexPath = Path.Combine(buildPath, "index.html");
-        string playPath = Path.Combine(buildPath, "play.html");
         string backupPath = Path.Combine(buildPath, BACKUP_FILENAME);
 
         Debug.Log($"[WebGLPostBuild] Processing build at: {buildPath}");
 
-        // Step 1: If play.html exists and is the old version, back it up
-        if (File.Exists(playPath))
+        // Restore the website index.html from backup (Unity overwrites it with its template)
+        if (File.Exists(backupPath))
         {
-            string playBackup = Path.Combine(buildPath, "play.html.old");
-            File.Copy(playPath, playBackup, true);
-            Debug.Log($"[WebGLPostBuild] Backed up existing play.html to play.html.old");
+            File.Copy(backupPath, indexPath, true);
+            Debug.Log($"[WebGLPostBuild] Restored website index.html from backup");
+        }
+        else
+        {
+            Debug.LogWarning($"[WebGLPostBuild] No backup found at {backupPath}. " +
+                "Run 'Tools > WebGL > Backup Website Index.html' before building to preserve your website.\n" +
+                "Unity's default index.html will be used (you may want to restore manually).");
         }
 
-        // Step 2: Rename Unity's new index.html to play.html
-        if (File.Exists(indexPath))
-        {
-            // Check if this is Unity's generated file (contains Unity template markers)
-            string content = File.ReadAllText(indexPath);
-
-            // If backup exists, restore the website index.html
-            if (File.Exists(backupPath))
-            {
-                // First, move Unity's index.html to play.html
-                File.Copy(indexPath, playPath, true);
-                Debug.Log($"[WebGLPostBuild] Copied Unity's index.html to play.html");
-
-                // Then restore the website backup
-                File.Copy(backupPath, indexPath, true);
-                Debug.Log($"[WebGLPostBuild] Restored website index.html from backup");
-            }
-            else
-            {
-                Debug.LogWarning($"[WebGLPostBuild] No backup found at {backupPath}. " +
-                    "Run 'Tools > Backup Website Index.html' before building to preserve your website.");
-            }
-        }
+        // NOTE: We do NOT touch play.html - it's a separate custom file that references
+        // the Build/ folder files. Update play.html manually if build filenames change.
 
         Debug.Log("[WebGLPostBuild] Build post-processing complete!");
     }

@@ -3917,6 +3917,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7262066351540048079, guid: 52571f68872914e24837210513edea1d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 793329309}
+    - targetCorrespondingSourceObject: {fileID: 7262066351540048079, guid: 52571f68872914e24837210513edea1d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 793329325}
+    - targetCorrespondingSourceObject: {fileID: 7262066351540048079, guid: 52571f68872914e24837210513edea1d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 793329324}
     - targetCorrespondingSourceObject: {fileID: 3777764613968297427, guid: 52571f68872914e24837210513edea1d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1942533508}
@@ -3984,6 +3990,40 @@ MonoBehaviour:
   successTextColor: {r: 0.7, g: 1, b: 0.7, a: 1}
   warningTextColor: {r: 1, g: 0.95, b: 0.7, a: 1}
   errorTextColor: {r: 1, g: 0.7, b: 0.7, a: 1}
+--- !u!114 &793329324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 748757389}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e279dd45945e34142994b8f5e0eb6f3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AudioCommandHandler
+  bgmSource: {fileID: 0}
+  sfxSource: {fileID: 0}
+  bgmClips: []
+  sfxClips: []
+--- !u!114 &793329325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 748757389}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22b1205b4868cc845b365822f2e0d812, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BackgroundCommandHandler
+  backgroundImage: {fileID: 0}
+  videoRawImage: {fileID: 0}
+  videoPlayer: {fileID: 0}
+  backgroundSprites: []
+  backgroundFolderPath: Graphics/Backgrounds
+  videoFolderPath: Videos
 --- !u!1 &821034230
 GameObject:
   m_ObjectHideFlags: 0

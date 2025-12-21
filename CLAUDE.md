@@ -89,7 +89,7 @@ python -m http.server 8000
 | Core/ | Game state, saves, settings | GameManager, SaveLoadManager, SaveExporter, SettingsManager |
 | Dialogue/ | Dialogue flow | DialogueAdvanceHandler, OptionsInputHandler |
 | UI/ | User interface | MenuManager, PauseMenuManager, SettingsPanel, StoreUI, ToastManager |
-| Audio/ | Audio commands | AudioCommandHandler, FMODAudioManager |
+| Audio/ | Audio commands | AudioCommandHandler, FMODAudioManager, FMODWebGLBankLoader |
 | Characters/ | Portraits | CharacterSpriteManager, CharacterTalkAnimation |
 | Commands/ | Yarn handlers | BackgroundCommandHandler, CheckpointCommandHandler |
 | Editor/ | Dev tools | DialogueSystemUIAutoWire, SettingsPanelSetup, various scripts |
@@ -177,6 +177,54 @@ Use `LoopChange` + ending parameters:
 <<fmod_param EndFade 1>>           // Manual parameter control
 ```
 
+### FMOD WebGL Setup
+
+FMOD requires special handling for WebGL builds due to async bank loading.
+
+**Key Components** (in `Scripts/Audio/`):
+
+| File | Purpose |
+|------|---------|
+| `FMODWebGLBankLoader.cs` | Custom WebGL bank loader that downloads banks via UnityWebRequest |
+| `FMODAudioManager.cs` | Main audio manager with retry mechanism for race conditions |
+| `FMODCacheFixer.cs` | Editor script that fixes FMOD cache naming bugs |
+
+**How it works:**
+1. `FMODWebGLBankLoader` auto-creates itself via `[RuntimeInitializeOnLoadMethod]` in WebGL builds
+2. Downloads all banks from StreamingAssets using UnityWebRequest
+3. Loads banks into FMOD via `loadBankMemory()`
+4. `FMODAudioManager.PlayMusic()` uses retry mechanism (10 attempts, 0.5s delay) to handle race conditions where music commands fire before banks finish loading
+
+**vercel.json Configuration:**
+The deployment config includes CORS headers for .bank files:
+```json
+{
+  "src": "/StreamingAssets/(.*\\.bank)",
+  "dest": "/StreamingAssets/$1",
+  "headers": {
+    "Content-Type": "application/octet-stream",
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "GET, OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type"
+  }
+}
+```
+
+### FMOD WebGL Troubleshooting
+
+| Issue | Cause | Solution |
+|-------|-------|----------|
+| 404 errors for .bank files | CDN cache stale after deployment | Clear browser cache completely (Ctrl+Shift+Delete), not just incognito |
+| "Event not found" errors | Banks still loading when music command fires | Retry mechanism handles this automatically; check console for retry logs |
+| Banks load but no sound | FMOD system not initialized | Check `[FMODWebGLBankLoader]` logs in browser console |
+| `UI.bank.bank` naming bug | FMOD cache corruption | Run Unity, let `FMODCacheFixer` auto-fix, rebuild |
+
+**Debug Logging:**
+In WebGL builds, look for these console prefixes:
+- `[FMODWebGLBankLoader]` - Bank download and loading status
+- `[FMOD]` - FMOD system messages and retry attempts
+- `[FMODAudioManager]` - Music playback commands
+
 ## Settings System
 
 **SettingsManager** (`Scripts/Core/SettingsManager.cs`)
@@ -208,6 +256,8 @@ Use `LoopChange` + ending parameters:
 - Power Preference: "Low Power" or "Default" (iOS crash prevention)
 - PlayerPrefs = IndexedDB (browser-local, cleared with browser data)
 - vercel.json handles .unityweb MIME types and encoding headers
+- **FMOD banks**: Loaded async via custom `FMODWebGLBankLoader` (see FMOD WebGL Setup section)
+- **Browser caching**: After deploying changes, users may need to fully clear browser cache (Ctrl+Shift+Delete) - incognito mode alone may not bypass CDN cache
 
 ## Key Variables
 

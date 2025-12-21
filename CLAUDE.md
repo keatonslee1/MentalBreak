@@ -8,6 +8,26 @@ Mental Break is a Unity 6.2 WebGL narrative game deployed via Vercel. It uses Ya
 
 **Current Version**: 4.0.0 (Clean restructure from v3.5.3)
 
+---
+
+## IMPORTANT: Git Policy for Claude
+
+**DO NOT push to git.** All pushing to GitHub must be done manually by the user via GitHub Desktop.
+
+Claude is allowed to:
+- `git add` (stage files)
+- `git commit` (create commits)
+- `git status`, `git log`, `git diff` (read operations)
+
+Claude is **NOT allowed to**:
+- `git push` (user will push manually via GitHub Desktop)
+- `git push --force` or any force operations
+- Any remote-modifying operations
+
+This ensures the user maintains full control over what gets deployed to the remote repository.
+
+---
+
 ## Directory Structure
 
 ```
@@ -43,11 +63,9 @@ mentalbreak/                               # Repository root
 3. Output directly to `unity-project/webgl-build/`
 
 ### Deploy to Vercel
-```powershell
-cd C:\Users\epick\OneDrive\Documents\mentalbreak
-git add . && git commit -m "Update" && git push
-# Vercel auto-deploys from main branch
-```
+1. Claude stages and commits changes: `git add . && git commit -m "message"`
+2. User pushes via **GitHub Desktop** (Claude does NOT push)
+3. Vercel auto-deploys from main branch
 
 ### Local Testing
 ```powershell

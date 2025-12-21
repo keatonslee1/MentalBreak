@@ -37,20 +37,35 @@ public class CommandHandlerRegistrar : MonoBehaviour
             dialogueRunner = FindFirstObjectByType<DialogueRunner>();
         }
 
-        // Find command handlers if not assigned
+        // Find command handlers if not assigned - auto-create if missing
         if (backgroundHandler == null)
         {
             backgroundHandler = FindFirstObjectByType<BackgroundCommandHandler>();
+            if (backgroundHandler == null)
+            {
+                Debug.LogWarning("CommandHandlerRegistrar: BackgroundCommandHandler not found, creating one on this GameObject");
+                backgroundHandler = gameObject.AddComponent<BackgroundCommandHandler>();
+            }
         }
 
         if (audioHandler == null)
         {
             audioHandler = FindFirstObjectByType<AudioCommandHandler>();
+            if (audioHandler == null)
+            {
+                Debug.LogWarning("CommandHandlerRegistrar: AudioCommandHandler not found, creating one on this GameObject");
+                audioHandler = gameObject.AddComponent<AudioCommandHandler>();
+            }
         }
 
         if (checkpointHandler == null)
         {
             checkpointHandler = FindFirstObjectByType<CheckpointCommandHandler>();
+            if (checkpointHandler == null)
+            {
+                Debug.LogWarning("CommandHandlerRegistrar: CheckpointCommandHandler not found, creating one on this GameObject");
+                checkpointHandler = gameObject.AddComponent<CheckpointCommandHandler>();
+            }
         }
 
         if (storeHandler == null)
@@ -61,6 +76,11 @@ public class CommandHandlerRegistrar : MonoBehaviour
         if (fmodHandler == null)
         {
             fmodHandler = FindFirstObjectByType<FMODAudioManager>();
+            if (fmodHandler == null)
+            {
+                Debug.LogWarning("CommandHandlerRegistrar: FMODAudioManager not found, creating one on this GameObject");
+                fmodHandler = gameObject.AddComponent<FMODAudioManager>();
+            }
         }
     }
 

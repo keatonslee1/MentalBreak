@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mental Break · Play</title>
+    <meta name="author" content="Keaton Media LLC" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://mentalbreak.io/play" />
+    <meta property="og:title" content="Mental Break · Play" />
+    <meta property="og:description" content="Play Mental Break in your browser." />
+    <meta property="og:image" content="https://mentalbreak.io/TemplateData/og-image.png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Mental Break · Play" />
+    <meta name="twitter:description" content="Play Mental Break in your browser." />
+    <meta name="twitter:image" content="https://mentalbreak.io/TemplateData/og-image.png" />
+
+    <link rel="icon" type="image/png" href="TemplateData/alice.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="assets/css/landing-v35.css?v=20251216a" />
+    <link rel="stylesheet" href="TemplateData/style.css?v=2.1" />
+    <script defer src="/_vercel/insights/script.js"></script>
+
+    <script>
+      // Mobile should see ONLY the Unity game (no thin nav here).
+      (function () {
+        var ua = navigator.userAgent || "";
+        var isMobile = /iPhone|iPad|iPod|Android/i.test(ua);
+        if (isMobile) window.location.replace("/mobile-play");
+      })();
+    </script>
+
+    <style>
+      html,
+      body {
+        margin: 0;
+        height: 100%;
+        background: #000;
+      }
+
+      .mb-page {
+        height: 100vh;
+      }
+
+      .mb-play {
+        flex: 1;
+        min-height: 0;
+        background: #000;
+      }
+
+      #unity-container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        background: #000;
+      }
+
+      #unity-aspect {
+        position: relative;
+        background: #000;
+        overflow: hidden;
+        flex: 0 0 auto;
+      }
+
+      #unity-canvas {
+        display: block;
+        width: 100%;
+        height: 100%;
+        touch-action: none;
+        background: #000;
+      }
+
+      #unity-loading-bar {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      #unity-warning {
+        position: absolute;
+        left: 50%;
+        top: 10px;
+        transform: translateX(-50%);
+        color: #fff;
+        font-family: Inter, system-ui, sans-serif;
+        font-size: 14px;
+        text-align: center;
+        padding: 8px 12px;
+        background: rgba(0, 0, 0, 0.7);
+        border-radius: 6px;
+        display: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="mb-page">
+      <header class="mb-thin-nav" role="banner">
+        <div class="mb-brand">
+          <a class="mb-brand__title" href="index.html">MENTAL BREAK</a>
+        </div>
+        <button
+          class="mb-navtoggle"
+          type="button"
+          aria-label="Open menu"
+          aria-expanded="false"
+          aria-controls="mb-primary-nav"
+        >
+          <span class="mb-navtoggle__icon" aria-hidden="true"></span>
+          <span class="mb-navtoggle__label">Menu</span>
+        </button>
+        <nav class="mb-navlinks" id="mb-primary-nav" aria-label="Primary navigation">
+          <a href="index.html">Home</a>
+          <a href="/play" aria-current="page">Play</a>
+          <a href="/about">About</a>
+          <a href="/blog">Blog</a>
+          <a href="https://discord.gg/N8KEbzPmTh" target="_blank" rel="noopener">Discord</a>
+        </nav>
+      </header>
+
+      <main class="mb-play">
+        <div id="unity-container">
+          <div id="unity-aspect">
+            <canvas id="unity-canvas" width="1280" height="720" tabindex="-1"></canvas>
+            <div id="unity-loading-bar">
+              <div id="unity-logo"></div>
+              <div id="unity-progress-bar-empty">
+                <div id="unity-progress-bar-full"></div>
+              </div>
+            </div>
+            <div id="unity-warning"></div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script src="assets/js/unity-aspect-16x9.js?v=1"></script>
+    <script>
+      (function () {
+        var header = document.querySelector(".mb-thin-nav");
+        if (!header) return;
+
+        var btn = header.querySelector(".mb-navtoggle");
+        var nav = header.querySelector("#mb-primary-nav");
+        if (!btn || !nav) return;
+
+        function setOpen(isOpen) {
+          header.classList.toggle("mb-nav-open", isOpen);
+          btn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+          btn.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
+        }
+
+        btn.addEventListener("click", function () {
+          var isOpen = header.classList.contains("mb-nav-open");
+          setOpen(!isOpen);
+        });
+
+        nav.addEventListener("click", function (e) {
+          var target = e.target;
+          if (target && target.tagName === "A") setOpen(false);
+        });
+
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape") setOpen(false);
+        });
+      })();
+    </script>
+    <script>
+      const canvas = document.querySelector("#unity-canvas");
+      const loadingBar = document.querySelector("#unity-loading-bar");
+      const progressBarFull = document.querySelector("#unity-progress-bar-full");
+
+      function unityShowBanner(msg, type) {
+        const warningBanner = document.querySelector("#unity-warning");
+        warningBanner.style.display = "block";
+        warningBanner.textContent = msg;
+        if (type === "error") {
+          warningBanner.style.background = "rgba(255, 51, 102, 0.85)";
+        } else {
+          warningBanner.style.background = "rgba(255, 170, 0, 0.85)";
+          setTimeout(() => {
+            warningBanner.style.display = "none";
+          }, 5000);
+        }
+      }
+
+      const buildUrl = "Build";
+      const loaderUrl = `${buildUrl}/webgl-build.loader.js`;
+      const config = {
+        arguments: [],
+        dataUrl: `${buildUrl}/webgl-build.data.unityweb`,
+        frameworkUrl: `${buildUrl}/webgl-build.framework.js.unityweb`,
+        codeUrl: `${buildUrl}/webgl-build.wasm.unityweb`,
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: "Keaton Media",
+        productName: "Mental Break",
+        productVersion: "3.5",
+        showBanner: unityShowBanner,
+        devicePixelRatio: 1,
+        matchWebGLToCanvasSize: true,
+      };
+
+      const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+      if (isIOS) {
+        config.webglContextAttributes = {
+          powerPreference: "low-power",
+          antialias: false,
+          depth: true,
+          stencil: false,
+          alpha: false,
+          preserveDrawingBuffer: false,
+        };
+      }
+
+      function showLoading(progress) {
+        if (loadingBar) loadingBar.style.display = "block";
+        if (progressBarFull) progressBarFull.style.width = `${progress * 100}%`;
+      }
+
+      function hideLoading() {
+        if (loadingBar) loadingBar.style.display = "none";
+      }
+
+      const script = document.createElement("script");
+      script.src = loaderUrl;
+      script.onload = () => {
+        createUnityInstance(canvas, config, showLoading)
+          .then((unityInstance) => {
+            hideLoading();
+            window.unityInstance = unityInstance;
+          })
+          .catch((message) => {
+            hideLoading();
+            console.error("[Unity Web] Failed to load game", message);
+            const reason =
+              typeof message === "string" ? message : message?.message || "Unknown error";
+            unityShowBanner(`Failed to load game: ${reason}`, "error");
+          });
+      };
+      script.onerror = () => {
+        unityShowBanner(
+          "Failed to load Unity loader script. Please check your connection and try again.",
+          "error"
+        );
+      };
+      document.body.appendChild(script);
+    </script>
+  </body>
+</html>
+
+

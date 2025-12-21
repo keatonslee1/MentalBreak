@@ -9,10 +9,11 @@ using UnityEditor;
 public class SettingsPanelSetup : EditorWindow
 {
     private static readonly Color PanelBackgroundColor = new Color(0.1f, 0.1f, 0.15f, 0.95f);
-    private static readonly Color SliderBackgroundColor = new Color(0.2f, 0.2f, 0.25f, 1f);
-    private static readonly Color SliderFillColor = new Color(0.4f, 0.6f, 0.8f, 1f);
+    private static readonly Color RowBackgroundColor = new Color(0.15f, 0.15f, 0.2f, 0.8f);
     private static readonly Color ButtonColor = new Color(0.25f, 0.25f, 0.3f, 1f);
     private static readonly Color ButtonHighlightColor = new Color(0.35f, 0.35f, 0.4f, 1f);
+    private static readonly Color SliderBgColor = new Color(0.2f, 0.2f, 0.25f, 1f);
+    private static readonly Color SliderFillColor = new Color(0.4f, 0.6f, 0.9f, 1f);
 
     [MenuItem("Tools/Setup Settings Panel in Pause Menu")]
     public static void SetupSettingsPanel()
@@ -33,13 +34,19 @@ public class SettingsPanelSetup : EditorWindow
 
         Transform panelTransform = pauseMenu.pauseMenuPanel.transform;
 
-        // Check if settings panel already exists
+        // Check if settings panel already exists - delete it to recreate
         Transform existing = panelTransform.Find("SettingsPanel");
         if (existing != null)
         {
-            EditorUtility.DisplayDialog("Already Exists", "SettingsPanel already exists in the pause menu.", "OK");
-            Selection.activeGameObject = existing.gameObject;
-            return;
+            bool recreate = EditorUtility.DisplayDialog("Settings Panel Exists",
+                "SettingsPanel already exists. Delete and recreate it?",
+                "Yes, Recreate", "Cancel");
+            if (!recreate)
+            {
+                Selection.activeGameObject = existing.gameObject;
+                return;
+            }
+            Undo.DestroyObjectImmediate(existing.gameObject);
         }
 
         // Create the settings panel
@@ -55,20 +62,19 @@ public class SettingsPanelSetup : EditorWindow
         Selection.activeGameObject = settingsPanelObj;
 
         EditorUtility.DisplayDialog("Success",
-            "Settings Panel created in pause menu!\n\n" +
+            "Settings Panel created!\n\n" +
             "Features:\n" +
             "- Master Volume slider\n" +
             "- Music Volume slider\n" +
             "- SFX Volume slider\n" +
-            "- Soundtrack Toggle (Nela/Franco)\n" +
-            "- Reset to Defaults button\n" +
+            "- Soundtrack Toggle\n" +
             "- Back button\n\n" +
             "Remember to save the scene!", "OK");
     }
 
     private static GameObject CreateSettingsPanel(Transform parent)
     {
-        // Main panel
+        // Main panel - full screen overlay
         GameObject panelObj = new GameObject("SettingsPanel");
         Undo.RegisterCreatedObjectUndo(panelObj, "Create Settings Panel");
         panelObj.transform.SetParent(parent, false);
@@ -81,78 +87,49 @@ public class SettingsPanelSetup : EditorWindow
 
         Image panelImage = panelObj.AddComponent<Image>();
         panelImage.color = PanelBackgroundColor;
+        panelImage.raycastTarget = true;
 
         // Add SettingsPanel component
-        SettingsPanel settingsPanel = panelObj.AddComponent<SettingsPanel>();
+        SettingsPanel settingsPanelComp = panelObj.AddComponent<SettingsPanel>();
+        settingsPanelComp.settingsPanel = panelObj;
 
-        // Create content container with vertical layout
-        GameObject contentObj = new GameObject("Content");
-        contentObj.transform.SetParent(panelObj.transform, false);
+        // Create centered content box
+        GameObject contentBox = new GameObject("ContentBox");
+        contentBox.transform.SetParent(panelObj.transform, false);
 
-        RectTransform contentRect = contentObj.AddComponent<RectTransform>();
+        RectTransform contentRect = contentBox.AddComponent<RectTransform>();
         contentRect.anchorMin = new Vector2(0.5f, 0.5f);
         contentRect.anchorMax = new Vector2(0.5f, 0.5f);
         contentRect.pivot = new Vector2(0.5f, 0.5f);
-        contentRect.sizeDelta = new Vector2(500f, 450f);
+        contentRect.sizeDelta = new Vector2(450f, 380f);
         contentRect.anchoredPosition = Vector2.zero;
 
-        VerticalLayoutGroup layout = contentObj.AddComponent<VerticalLayoutGroup>();
-        layout.spacing = 20f;
-        layout.padding = new RectOffset(30, 30, 30, 30);
-        layout.childAlignment = TextAnchor.UpperCenter;
-        layout.childControlWidth = true;
-        layout.childControlHeight = false;
-        layout.childForceExpandWidth = true;
-        layout.childForceExpandHeight = false;
+        Image contentBg = contentBox.AddComponent<Image>();
+        contentBg.color = new Color(0.08f, 0.08f, 0.12f, 0.95f);
 
         // Title
-        CreateLabel(contentObj.transform, "Settings", 36, TextAnchor.MiddleCenter, 50f);
+        CreateTitle(contentBox.transform);
 
-        // Master Volume
-        var masterSlider = CreateSliderRow(contentObj.transform, "Master Volume", out Component masterLabel);
-        settingsPanel.masterVolumeSlider = masterSlider;
-        settingsPanel.masterVolumeLabel = masterLabel;
+        // Volume sliders
+        float yPos = 40f;
+        settingsPanelComp.masterVolumeSlider = CreateVolumeRow(contentBox.transform, "Master", yPos, out Component masterLabel);
+        settingsPanelComp.masterVolumeLabel = masterLabel;
 
-        // Music Volume
-        var musicSlider = CreateSliderRow(contentObj.transform, "Music Volume", out Component musicLabel);
-        settingsPanel.musicVolumeSlider = musicSlider;
-        settingsPanel.musicVolumeLabel = musicLabel;
+        yPos -= 60f;
+        settingsPanelComp.musicVolumeSlider = CreateVolumeRow(contentBox.transform, "Music", yPos, out Component musicLabel);
+        settingsPanelComp.musicVolumeLabel = musicLabel;
 
-        // SFX Volume
-        var sfxSlider = CreateSliderRow(contentObj.transform, "SFX Volume", out Component sfxLabel);
-        settingsPanel.sfxVolumeSlider = sfxSlider;
-        settingsPanel.sfxVolumeLabel = sfxLabel;
+        yPos -= 60f;
+        settingsPanelComp.sfxVolumeSlider = CreateVolumeRow(contentBox.transform, "SFX", yPos, out Component sfxLabel);
+        settingsPanelComp.sfxVolumeLabel = sfxLabel;
 
-        // Soundtrack Toggle
-        var soundtrackButton = CreateSoundtrackToggle(contentObj.transform, out Component soundtrackLabel);
-        settingsPanel.soundtrackToggleButton = soundtrackButton;
-        settingsPanel.soundtrackLabel = soundtrackLabel;
-
-        // Spacer
-        CreateSpacer(contentObj.transform, 20f);
-
-        // Button row
-        GameObject buttonRow = new GameObject("ButtonRow");
-        buttonRow.transform.SetParent(contentObj.transform, false);
-
-        RectTransform buttonRowRect = buttonRow.AddComponent<RectTransform>();
-        buttonRowRect.sizeDelta = new Vector2(0f, 50f);
-
-        HorizontalLayoutGroup buttonLayout = buttonRow.AddComponent<HorizontalLayoutGroup>();
-        buttonLayout.spacing = 20f;
-        buttonLayout.childAlignment = TextAnchor.MiddleCenter;
-        buttonLayout.childControlWidth = false;
-        buttonLayout.childControlHeight = true;
-        buttonLayout.childForceExpandWidth = false;
-        buttonLayout.childForceExpandHeight = true;
-
-        // Reset button
-        var resetButton = CreateButton(buttonRow.transform, "Reset Defaults", 150f);
-        settingsPanel.resetButton = resetButton;
+        // Soundtrack toggle
+        yPos -= 70f;
+        settingsPanelComp.soundtrackToggleButton = CreateSoundtrackRow(contentBox.transform, yPos, out Component soundtrackLabel);
+        settingsPanelComp.soundtrackLabel = soundtrackLabel;
 
         // Back button
-        var backButton = CreateButton(buttonRow.transform, "Back", 150f);
-        settingsPanel.backButton = backButton;
+        settingsPanelComp.backButton = CreateBackButton(contentBox.transform);
 
         // Start hidden
         panelObj.SetActive(false);
@@ -160,186 +137,144 @@ public class SettingsPanelSetup : EditorWindow
         return panelObj;
     }
 
-    private static void CreateLabel(Transform parent, string text, int fontSize, TextAnchor alignment, float height)
+    private static void CreateTitle(Transform parent)
     {
-        GameObject labelObj = new GameObject("Label_" + text.Replace(" ", ""));
-        labelObj.transform.SetParent(parent, false);
+        GameObject titleObj = new GameObject("Title");
+        titleObj.transform.SetParent(parent, false);
 
-        RectTransform rect = labelObj.AddComponent<RectTransform>();
-        rect.sizeDelta = new Vector2(0f, height);
+        RectTransform rect = titleObj.AddComponent<RectTransform>();
+        rect.anchorMin = new Vector2(0.5f, 1f);
+        rect.anchorMax = new Vector2(0.5f, 1f);
+        rect.pivot = new Vector2(0.5f, 1f);
+        rect.anchoredPosition = new Vector2(0f, -15f);
+        rect.sizeDelta = new Vector2(300f, 50f);
 
-        LayoutElement layoutElement = labelObj.AddComponent<LayoutElement>();
-        layoutElement.preferredHeight = height;
-
-        Text uiText = labelObj.AddComponent<Text>();
-        uiText.text = text;
-        uiText.fontSize = fontSize;
-        uiText.alignment = alignment;
-        uiText.color = Color.white;
-        uiText.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+        Text text = titleObj.AddComponent<Text>();
+        text.text = "SETTINGS";
+        text.fontSize = 32;
+        text.fontStyle = FontStyle.Bold;
+        text.alignment = TextAnchor.MiddleCenter;
+        text.color = Color.white;
+        text.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
     }
 
-    private static Slider CreateSliderRow(Transform parent, string labelText, out Component valueLabel)
+    private static Slider CreateVolumeRow(Transform parent, string label, float yPos, out Component valueLabel)
     {
-        GameObject rowObj = new GameObject("SliderRow_" + labelText.Replace(" ", ""));
+        // Row container
+        GameObject rowObj = new GameObject($"{label}VolumeRow");
         rowObj.transform.SetParent(parent, false);
 
         RectTransform rowRect = rowObj.AddComponent<RectTransform>();
-        rowRect.sizeDelta = new Vector2(0f, 40f);
+        rowRect.anchorMin = new Vector2(0f, 0.5f);
+        rowRect.anchorMax = new Vector2(1f, 0.5f);
+        rowRect.pivot = new Vector2(0.5f, 0.5f);
+        rowRect.anchoredPosition = new Vector2(0f, yPos);
+        rowRect.sizeDelta = new Vector2(-40f, 45f);
+        rowRect.offsetMin = new Vector2(20f, rowRect.offsetMin.y);
+        rowRect.offsetMax = new Vector2(-20f, rowRect.offsetMax.y);
 
-        LayoutElement rowLayout = rowObj.AddComponent<LayoutElement>();
-        rowLayout.preferredHeight = 40f;
-
-        HorizontalLayoutGroup hLayout = rowObj.AddComponent<HorizontalLayoutGroup>();
-        hLayout.spacing = 10f;
-        hLayout.childAlignment = TextAnchor.MiddleLeft;
-        hLayout.childControlWidth = false;
-        hLayout.childControlHeight = true;
-        hLayout.childForceExpandWidth = false;
-        hLayout.childForceExpandHeight = true;
+        Image rowBg = rowObj.AddComponent<Image>();
+        rowBg.color = RowBackgroundColor;
 
         // Label
         GameObject labelObj = new GameObject("Label");
         labelObj.transform.SetParent(rowObj.transform, false);
 
         RectTransform labelRect = labelObj.AddComponent<RectTransform>();
-        labelRect.sizeDelta = new Vector2(150f, 40f);
+        labelRect.anchorMin = new Vector2(0f, 0f);
+        labelRect.anchorMax = new Vector2(0f, 1f);
+        labelRect.pivot = new Vector2(0f, 0.5f);
+        labelRect.anchoredPosition = new Vector2(15f, 0f);
+        labelRect.sizeDelta = new Vector2(80f, 0f);
 
-        LayoutElement labelLayout = labelObj.AddComponent<LayoutElement>();
-        labelLayout.preferredWidth = 150f;
+        Text labelText = labelObj.AddComponent<Text>();
+        labelText.text = label;
+        labelText.fontSize = 20;
+        labelText.alignment = TextAnchor.MiddleLeft;
+        labelText.color = Color.white;
+        labelText.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
 
-        Text label = labelObj.AddComponent<Text>();
-        label.text = labelText;
-        label.fontSize = 20;
-        label.alignment = TextAnchor.MiddleLeft;
-        label.color = Color.white;
-        label.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
-
-        // Slider
-        GameObject sliderObj = new GameObject("Slider");
+        // Slider using DefaultControls for proper setup
+        GameObject sliderObj = DefaultControls.CreateSlider(new DefaultControls.Resources());
+        sliderObj.name = $"{label}Slider";
         sliderObj.transform.SetParent(rowObj.transform, false);
 
-        RectTransform sliderRect = sliderObj.AddComponent<RectTransform>();
-        sliderRect.sizeDelta = new Vector2(220f, 30f);
+        RectTransform sliderRect = sliderObj.GetComponent<RectTransform>();
+        sliderRect.anchorMin = new Vector2(0f, 0.5f);
+        sliderRect.anchorMax = new Vector2(1f, 0.5f);
+        sliderRect.pivot = new Vector2(0.5f, 0.5f);
+        sliderRect.anchoredPosition = new Vector2(20f, 0f);
+        sliderRect.sizeDelta = new Vector2(-180f, 20f);
+        sliderRect.offsetMin = new Vector2(100f, -10f);
+        sliderRect.offsetMax = new Vector2(-70f, 10f);
 
-        LayoutElement sliderLayout = sliderObj.AddComponent<LayoutElement>();
-        sliderLayout.preferredWidth = 220f;
-
-        Slider slider = sliderObj.AddComponent<Slider>();
+        Slider slider = sliderObj.GetComponent<Slider>();
         slider.minValue = 0f;
         slider.maxValue = 1f;
         slider.value = 0.7f;
 
-        // Slider background
-        GameObject bgObj = new GameObject("Background");
-        bgObj.transform.SetParent(sliderObj.transform, false);
+        // Style the slider
+        Image bgImage = sliderObj.transform.Find("Background").GetComponent<Image>();
+        bgImage.color = SliderBgColor;
 
-        RectTransform bgRect = bgObj.AddComponent<RectTransform>();
-        bgRect.anchorMin = new Vector2(0f, 0.25f);
-        bgRect.anchorMax = new Vector2(1f, 0.75f);
-        bgRect.offsetMin = Vector2.zero;
-        bgRect.offsetMax = Vector2.zero;
-
-        Image bgImage = bgObj.AddComponent<Image>();
-        bgImage.color = SliderBackgroundColor;
-
-        // Slider fill area
-        GameObject fillAreaObj = new GameObject("Fill Area");
-        fillAreaObj.transform.SetParent(sliderObj.transform, false);
-
-        RectTransform fillAreaRect = fillAreaObj.AddComponent<RectTransform>();
-        fillAreaRect.anchorMin = new Vector2(0f, 0.25f);
-        fillAreaRect.anchorMax = new Vector2(1f, 0.75f);
-        fillAreaRect.offsetMin = new Vector2(5f, 0f);
-        fillAreaRect.offsetMax = new Vector2(-5f, 0f);
-
-        // Slider fill
-        GameObject fillObj = new GameObject("Fill");
-        fillObj.transform.SetParent(fillAreaObj.transform, false);
-
-        RectTransform fillRect = fillObj.AddComponent<RectTransform>();
-        fillRect.anchorMin = Vector2.zero;
-        fillRect.anchorMax = Vector2.one;
-        fillRect.offsetMin = Vector2.zero;
-        fillRect.offsetMax = Vector2.zero;
-
-        Image fillImage = fillObj.AddComponent<Image>();
+        Transform fillArea = sliderObj.transform.Find("Fill Area");
+        Image fillImage = fillArea.Find("Fill").GetComponent<Image>();
         fillImage.color = SliderFillColor;
 
-        slider.fillRect = fillRect;
-
-        // Slider handle area
-        GameObject handleAreaObj = new GameObject("Handle Slide Area");
-        handleAreaObj.transform.SetParent(sliderObj.transform, false);
-
-        RectTransform handleAreaRect = handleAreaObj.AddComponent<RectTransform>();
-        handleAreaRect.anchorMin = Vector2.zero;
-        handleAreaRect.anchorMax = Vector2.one;
-        handleAreaRect.offsetMin = new Vector2(10f, 0f);
-        handleAreaRect.offsetMax = new Vector2(-10f, 0f);
-
-        // Slider handle
-        GameObject handleObj = new GameObject("Handle");
-        handleObj.transform.SetParent(handleAreaObj.transform, false);
-
-        RectTransform handleRect = handleObj.AddComponent<RectTransform>();
-        handleRect.sizeDelta = new Vector2(20f, 0f);
-
-        Image handleImage = handleObj.AddComponent<Image>();
+        Transform handleArea = sliderObj.transform.Find("Handle Slide Area");
+        Image handleImage = handleArea.Find("Handle").GetComponent<Image>();
         handleImage.color = Color.white;
 
-        slider.handleRect = handleRect;
-
         // Value label
-        GameObject valueLabelObj = new GameObject("Value");
-        valueLabelObj.transform.SetParent(rowObj.transform, false);
+        GameObject valueObj = new GameObject("Value");
+        valueObj.transform.SetParent(rowObj.transform, false);
 
-        RectTransform valueRect = valueLabelObj.AddComponent<RectTransform>();
-        valueRect.sizeDelta = new Vector2(60f, 40f);
+        RectTransform valueRect = valueObj.AddComponent<RectTransform>();
+        valueRect.anchorMin = new Vector2(1f, 0f);
+        valueRect.anchorMax = new Vector2(1f, 1f);
+        valueRect.pivot = new Vector2(1f, 0.5f);
+        valueRect.anchoredPosition = new Vector2(-15f, 0f);
+        valueRect.sizeDelta = new Vector2(50f, 0f);
 
-        LayoutElement valueLayout = valueLabelObj.AddComponent<LayoutElement>();
-        valueLayout.preferredWidth = 60f;
-
-        Text valueText = valueLabelObj.AddComponent<Text>();
+        Text valueText = valueObj.AddComponent<Text>();
         valueText.text = "70%";
-        valueText.fontSize = 20;
+        valueText.fontSize = 18;
         valueText.alignment = TextAnchor.MiddleRight;
         valueText.color = Color.white;
         valueText.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
 
         valueLabel = valueText;
-
         return slider;
     }
 
-    private static Button CreateSoundtrackToggle(Transform parent, out Component label)
+    private static Button CreateSoundtrackRow(Transform parent, float yPos, out Component label)
     {
-        GameObject rowObj = new GameObject("SoundtrackToggle");
+        // Row container
+        GameObject rowObj = new GameObject("SoundtrackRow");
         rowObj.transform.SetParent(parent, false);
 
         RectTransform rowRect = rowObj.AddComponent<RectTransform>();
-        rowRect.sizeDelta = new Vector2(0f, 50f);
+        rowRect.anchorMin = new Vector2(0f, 0.5f);
+        rowRect.anchorMax = new Vector2(1f, 0.5f);
+        rowRect.pivot = new Vector2(0.5f, 0.5f);
+        rowRect.anchoredPosition = new Vector2(0f, yPos);
+        rowRect.sizeDelta = new Vector2(-40f, 45f);
+        rowRect.offsetMin = new Vector2(20f, rowRect.offsetMin.y);
+        rowRect.offsetMax = new Vector2(-20f, rowRect.offsetMax.y);
 
-        LayoutElement rowLayout = rowObj.AddComponent<LayoutElement>();
-        rowLayout.preferredHeight = 50f;
-
-        HorizontalLayoutGroup hLayout = rowObj.AddComponent<HorizontalLayoutGroup>();
-        hLayout.spacing = 10f;
-        hLayout.childAlignment = TextAnchor.MiddleLeft;
-        hLayout.childControlWidth = false;
-        hLayout.childControlHeight = true;
-        hLayout.childForceExpandWidth = false;
-        hLayout.childForceExpandHeight = true;
+        Image rowBg = rowObj.AddComponent<Image>();
+        rowBg.color = RowBackgroundColor;
 
         // Label
         GameObject labelObj = new GameObject("Label");
         labelObj.transform.SetParent(rowObj.transform, false);
 
         RectTransform labelRect = labelObj.AddComponent<RectTransform>();
-        labelRect.sizeDelta = new Vector2(150f, 50f);
-
-        LayoutElement labelLayout = labelObj.AddComponent<LayoutElement>();
-        labelLayout.preferredWidth = 150f;
+        labelRect.anchorMin = new Vector2(0f, 0f);
+        labelRect.anchorMax = new Vector2(0f, 1f);
+        labelRect.pivot = new Vector2(0f, 0.5f);
+        labelRect.anchoredPosition = new Vector2(15f, 0f);
+        labelRect.sizeDelta = new Vector2(120f, 0f);
 
         Text labelText = labelObj.AddComponent<Text>();
         labelText.text = "Soundtrack";
@@ -349,24 +284,24 @@ public class SettingsPanelSetup : EditorWindow
         labelText.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
 
         // Toggle button
-        GameObject buttonObj = new GameObject("Button");
+        GameObject buttonObj = new GameObject("ToggleButton");
         buttonObj.transform.SetParent(rowObj.transform, false);
 
         RectTransform buttonRect = buttonObj.AddComponent<RectTransform>();
-        buttonRect.sizeDelta = new Vector2(200f, 40f);
-
-        LayoutElement buttonLayout = buttonObj.AddComponent<LayoutElement>();
-        buttonLayout.preferredWidth = 200f;
+        buttonRect.anchorMin = new Vector2(1f, 0.5f);
+        buttonRect.anchorMax = new Vector2(1f, 0.5f);
+        buttonRect.pivot = new Vector2(1f, 0.5f);
+        buttonRect.anchoredPosition = new Vector2(-15f, 0f);
+        buttonRect.sizeDelta = new Vector2(180f, 35f);
 
         Image buttonImage = buttonObj.AddComponent<Image>();
-        buttonImage.color = new Color(0.25f, 0.2f, 0.35f, 0.9f); // Purple tint
+        buttonImage.color = new Color(0.3f, 0.25f, 0.4f, 1f);
 
         Button button = buttonObj.AddComponent<Button>();
         ColorBlock colors = button.colors;
-        colors.normalColor = new Color(0.25f, 0.2f, 0.35f, 0.9f);
-        colors.highlightedColor = new Color(0.35f, 0.3f, 0.45f, 1f);
-        colors.pressedColor = new Color(0.2f, 0.15f, 0.3f, 1f);
-        colors.selectedColor = new Color(0.3f, 0.25f, 0.4f, 1f);
+        colors.normalColor = new Color(0.3f, 0.25f, 0.4f, 1f);
+        colors.highlightedColor = new Color(0.4f, 0.35f, 0.5f, 1f);
+        colors.pressedColor = new Color(0.25f, 0.2f, 0.35f, 1f);
         button.colors = colors;
 
         // Button text
@@ -376,43 +311,30 @@ public class SettingsPanelSetup : EditorWindow
         RectTransform textRect = textObj.AddComponent<RectTransform>();
         textRect.anchorMin = Vector2.zero;
         textRect.anchorMax = Vector2.one;
-        textRect.offsetMin = new Vector2(10, 5);
-        textRect.offsetMax = new Vector2(-10, -5);
+        textRect.sizeDelta = Vector2.zero;
 
         Text text = textObj.AddComponent<Text>();
         text.text = "Nela's Score";
-        text.fontSize = 18;
+        text.fontSize = 16;
         text.alignment = TextAnchor.MiddleCenter;
         text.color = Color.white;
         text.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
 
         label = text;
-
         return button;
     }
 
-    private static void CreateSpacer(Transform parent, float height)
+    private static Button CreateBackButton(Transform parent)
     {
-        GameObject spacerObj = new GameObject("Spacer");
-        spacerObj.transform.SetParent(parent, false);
-
-        RectTransform rect = spacerObj.AddComponent<RectTransform>();
-        rect.sizeDelta = new Vector2(0f, height);
-
-        LayoutElement layout = spacerObj.AddComponent<LayoutElement>();
-        layout.preferredHeight = height;
-    }
-
-    private static Button CreateButton(Transform parent, string text, float width)
-    {
-        GameObject buttonObj = new GameObject("Button_" + text.Replace(" ", ""));
+        GameObject buttonObj = new GameObject("BackButton");
         buttonObj.transform.SetParent(parent, false);
 
         RectTransform rect = buttonObj.AddComponent<RectTransform>();
-        rect.sizeDelta = new Vector2(width, 50f);
-
-        LayoutElement layout = buttonObj.AddComponent<LayoutElement>();
-        layout.preferredWidth = width;
+        rect.anchorMin = new Vector2(0.5f, 0f);
+        rect.anchorMax = new Vector2(0.5f, 0f);
+        rect.pivot = new Vector2(0.5f, 0f);
+        rect.anchoredPosition = new Vector2(0f, 20f);
+        rect.sizeDelta = new Vector2(150f, 45f);
 
         Image image = buttonObj.AddComponent<Image>();
         image.color = ButtonColor;
@@ -422,25 +344,22 @@ public class SettingsPanelSetup : EditorWindow
         colors.normalColor = ButtonColor;
         colors.highlightedColor = ButtonHighlightColor;
         colors.pressedColor = new Color(0.2f, 0.2f, 0.25f, 1f);
-        colors.selectedColor = ButtonHighlightColor;
         button.colors = colors;
 
-        // Text
         GameObject textObj = new GameObject("Text");
         textObj.transform.SetParent(buttonObj.transform, false);
 
         RectTransform textRect = textObj.AddComponent<RectTransform>();
         textRect.anchorMin = Vector2.zero;
         textRect.anchorMax = Vector2.one;
-        textRect.offsetMin = Vector2.zero;
-        textRect.offsetMax = Vector2.zero;
+        textRect.sizeDelta = Vector2.zero;
 
-        Text uiText = textObj.AddComponent<Text>();
-        uiText.text = text;
-        uiText.fontSize = 20;
-        uiText.alignment = TextAnchor.MiddleCenter;
-        uiText.color = Color.white;
-        uiText.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+        Text text = textObj.AddComponent<Text>();
+        text.text = "Back";
+        text.fontSize = 20;
+        text.alignment = TextAnchor.MiddleCenter;
+        text.color = Color.white;
+        text.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
 
         return button;
     }

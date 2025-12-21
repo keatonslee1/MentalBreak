@@ -26,6 +26,9 @@ public class CommandHandlerRegistrar : MonoBehaviour
     [Tooltip("StoreUI component")]
     public StoreUI storeHandler;
 
+    [Tooltip("FMODAudioManager component")]
+    public FMODAudioManager fmodHandler;
+
     private void Awake()
     {
         // Find DialogueRunner if not assigned
@@ -53,6 +56,11 @@ public class CommandHandlerRegistrar : MonoBehaviour
         if (storeHandler == null)
         {
             storeHandler = ResolveStoreHandler();
+        }
+
+        if (fmodHandler == null)
+        {
+            fmodHandler = FindFirstObjectByType<FMODAudioManager>();
         }
     }
 
@@ -334,6 +342,37 @@ public class CommandHandlerRegistrar : MonoBehaviour
         {
             Debug.LogWarning("CommandHandlerRegistrar: StoreUI not found! Store command will not be available. Make sure StorePanel exists in the scene.");
             // Don't mark as failed - store is optional if UI isn't set up yet
+        }
+
+        // Register FMODAudioManager commands
+        if (fmodHandler != null)
+        {
+            try
+            {
+                try { dialogueRunner.RemoveCommandHandler("music"); } catch { }
+                try { dialogueRunner.RemoveCommandHandler("music_stop"); } catch { }
+                try { dialogueRunner.RemoveCommandHandler("fmod"); } catch { }
+                try { dialogueRunner.RemoveCommandHandler("fmod_stop"); } catch { }
+                try { dialogueRunner.RemoveCommandHandler("fmod_loop"); } catch { }
+                try { dialogueRunner.RemoveCommandHandler("fmod_param"); } catch { }
+
+                dialogueRunner.AddCommandHandler("music", new System.Action<string, int>(fmodHandler.YarnPlayTheme));
+                dialogueRunner.AddCommandHandler("music_stop", new System.Action<bool>(fmodHandler.YarnStopTheme));
+                dialogueRunner.AddCommandHandler("fmod", new System.Action<string, int>(fmodHandler.YarnPlayMusic));
+                dialogueRunner.AddCommandHandler("fmod_stop", new System.Action<bool>(fmodHandler.YarnStopMusic));
+                dialogueRunner.AddCommandHandler("fmod_loop", new System.Action<string>(fmodHandler.YarnSetLoop));
+                dialogueRunner.AddCommandHandler("fmod_param", new System.Action<string, float>(fmodHandler.YarnSetParameter));
+                Debug.Log("CommandHandlerRegistrar: Registered FMOD commands (music, music_stop, fmod, fmod_stop, fmod_loop, fmod_param)");
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogError($"CommandHandlerRegistrar: Failed to register FMOD commands: {e.Message}");
+                allRegistered = false;
+            }
+        }
+        else
+        {
+            Debug.LogWarning("CommandHandlerRegistrar: FMODAudioManager not found. FMOD commands will not be available.");
         }
 
         if (allRegistered)

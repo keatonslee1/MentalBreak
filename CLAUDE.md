@@ -27,7 +27,8 @@ mentalbreak/                               # Repository root
 │   │   ├── Audio/                         # BGM and SFX assets
 │   │   ├── Dialogue Wheel for Yarn Spinner/
 │   │   ├── Speech Bubbles for Yarn Spinner/
-│   │   └── StreamingAssets/               # FMOD banks (future)
+│   │   ├── StreamingAssets/               # FMOD banks
+│   │   └── Plugins/FMOD/                  # FMOD Unity integration
 │   └── webgl-build/                       # Build output for Vercel
 ├── api/                                   # Vercel serverless functions
 ├── docs/                                  # Documentation
@@ -88,7 +89,7 @@ python -m http.server 8000
 | Core/ | Game state, saves | GameManager, SaveLoadManager, SaveExporter, RunTransitionManager |
 | Dialogue/ | Dialogue flow | DialogueAdvanceHandler, OptionsInputHandler |
 | UI/ | User interface | MenuManager, PauseMenuManager, StoreUI, DayplannerUI |
-| Audio/ | Audio commands | AudioCommandHandler |
+| Audio/ | Audio commands | AudioCommandHandler, FMODAudioManager |
 | Characters/ | Portraits | CharacterSpriteManager, CharacterTalkAnimation |
 | Commands/ | Yarn handlers | BackgroundCommandHandler, CheckpointCommandHandler |
 | Editor/ | Dev tools | DialogueSystemUIAutoWire, various setup scripts |
@@ -98,10 +99,16 @@ python -m http.server 8000
 | Command | Handler | Description |
 |---------|---------|-------------|
 | `<<bg key>>` | BackgroundCommandHandler | Background (video/static) |
-| `<<bgm key>>` | AudioCommandHandler | Background music |
+| `<<bgm key>>` | AudioCommandHandler | Background music (legacy) |
 | `<<sfx key>>` | AudioCommandHandler | Sound effect |
 | `<<checkpoint id>>` | CheckpointCommandHandler | Autosave point |
 | `<<store>>` | StoreUI | Open store UI |
+| `<<music theme [loop]>>` | FMODAudioManager | Play theme (auto-selects A/B side) |
+| `<<music_stop [immediate]>>` | FMODAudioManager | Stop music with fade |
+| `<<fmod event [loop]>>` | FMODAudioManager | Play FMOD event directly |
+| `<<fmod_stop [immediate]>>` | FMODAudioManager | Stop music (same as music_stop) |
+| `<<fmod_loop loopName>>` | FMODAudioManager | Change loop (LoopA-D) |
+| `<<fmod_param param value>>` | FMODAudioManager | Set FMOD parameter |
 
 ### Scenes
 - **MainMenu.unity**: Title screen
@@ -118,6 +125,57 @@ Located in `Assets/Dialogue/`, numbered by content:
 - `90-99`: Epilogues, debug tools
 
 Node naming: `R{run}_{context}` (e.g., `R1_Start`, `R2_Day1_Morning`)
+
+## FMOD Audio System
+
+**Banks** (in `StreamingAssets/`):
+- `Master.bank` + `Master.strings.bank` (required)
+- `Music_A_Side.bank` - Nela's soundtrack (Side A)
+- `Music_B_Side.bank` - Franco's soundtrack (Side B)
+
+### Side A Events (Nela)
+All use `EndFade` parameter (0=play, 1=fade out):
+- `ASIDE_MainTheme`
+- `ASIDE_AliceTheme`
+- `ASIDE_Supervisor`
+
+### Side B Events (Franco)
+Use `LoopChange` + ending parameters:
+
+| Event | LoopChange | Ending |
+|-------|------------|--------|
+| `BSIDE_MainTheme` | LoopA/B only | EndSection (closing section) |
+| `BSIDE_AliceTheme` | LoopA/B only | EndSection (closing section) |
+| `BSIDE_ArthurTheme` | LoopA/B/C/D | EndFade (fade out) |
+
+### Soundtrack Side Selection
+- **Default**: Side A (Nela's Score)
+- **Player toggle**: Settings in pause menu ("Nela's Score" / "Franco's Score")
+- **Storage**: PlayerPrefs key `SoundtrackSide` ("A" or "B")
+
+### Theme Mapping
+| Theme Name | Side A Event | Side B Event |
+|------------|--------------|--------------|
+| MainTheme | ASIDE_MainTheme | BSIDE_MainTheme |
+| AliceTheme | ASIDE_AliceTheme | BSIDE_AliceTheme |
+| SupervisorTheme | ASIDE_Supervisor | BSIDE_ArthurTheme |
+
+### Usage in Yarn (Recommended)
+```yarn
+<<music MainTheme>>                // Auto-selects A or B based on player setting
+<<music AliceTheme>>               // Same - uses current side preference
+<<music SupervisorTheme 1>>        // Start at LoopB (Side B only)
+<<fmod_loop LoopB>>                // Switch to LoopB
+<<music_stop>>                     // Stop with proper ending
+<<music_stop true>>                // Stop immediately
+```
+
+### Direct FMOD Access (Advanced)
+```yarn
+<<fmod ASIDE_MainTheme>>           // Force specific side
+<<fmod BSIDE_ArthurTheme 2>>       // Start at LoopC (0=A,1=B,2=C,3=D)
+<<fmod_param EndFade 1>>           // Manual parameter control
+```
 
 ## WebGL Notes
 

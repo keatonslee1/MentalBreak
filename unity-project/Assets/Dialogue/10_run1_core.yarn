@@ -27,6 +27,8 @@ tags: #run_1 #day_1 #scene #char_Supervisor #loc_Office
 ---
 <<bg bg_supervisoroffice>>
 <<checkpoint "run1_day1_start">>
+// FMOD TEST: Supervisor/Arthur theme when meeting him
+<<music SupervisorTheme>>
 <<set $r1_d1_strategy = "unset">>
 
 Arthur is at his desk, on the phone, when you enter. He waves you in without looking up.
@@ -101,6 +103,8 @@ title: R1_D1_AliceIntro
 tags: #run_1 #day_1 #scene #char_Alice #char_Supervisor
 ---
 <<bg bg_supervisoroffice>>
+// FMOD TEST: Alice theme when she's introduced
+<<music AliceTheme>>
 
 Alice: Hi. I'm Alice. Welcome to the team.
 
@@ -152,6 +156,8 @@ title: R1_D1_AliceAlone
 tags: #run_1 #day_1 #scene #char_Alice
 ---
 <<bg bg_office>>
+// FMOD TEST: Main theme when the real work begins
+<<music MainTheme>>
 
 Alice: Okay. He's gone.
 

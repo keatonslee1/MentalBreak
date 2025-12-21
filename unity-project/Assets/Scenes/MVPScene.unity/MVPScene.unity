@@ -1213,7 +1213,11 @@ MonoBehaviour:
   slot3Button: {fileID: 1504170645}
   slot4Button: {fileID: 729632894}
   slot5Button: {fileID: 878650880}
+  autosave0Button: {fileID: 0}
+  autosave1Button: {fileID: 0}
+  autosave2Button: {fileID: 0}
   cancelButton: {fileID: 1697173380}
+  importButton: {fileID: 0}
   saveLoadManager: {fileID: 0}
   pauseMenuManager: {fileID: 0}
 --- !u!1 &1596755498

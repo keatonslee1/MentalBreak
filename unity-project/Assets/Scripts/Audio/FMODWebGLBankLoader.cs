@@ -216,14 +216,22 @@ public class FMODWebGLBankLoader : MonoBehaviour
                 out bank
             );
 
-            if (result != FMOD.RESULT.OK)
+            if (result == FMOD.RESULT.ERR_EVENT_ALREADY_LOADED)
+            {
+                // Bank was already loaded by FMOD's automatic loading - this is fine!
+                Debug.Log($"[FMODWebGLBankLoader] Bank already loaded (by FMOD auto-load): {bankFileName}");
+                banksLoadedCount++;
+            }
+            else if (result != FMOD.RESULT.OK)
             {
                 Debug.LogError($"[FMODWebGLBankLoader] FMOD loadBankMemory FAILED for {bankFileName}: {result}");
                 yield break;
             }
-
-            Debug.Log($"[FMODWebGLBankLoader] SUCCESS - Bank loaded: {bankFileName}");
-            banksLoadedCount++;
+            else
+            {
+                Debug.Log($"[FMODWebGLBankLoader] SUCCESS - Bank loaded: {bankFileName}");
+                banksLoadedCount++;
+            }
 
             // Log bank info
             if (bank.isValid())

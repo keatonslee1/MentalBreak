@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Yarn.Unity;
@@ -13,6 +14,9 @@ using FMODUnity;
 /// </summary>
 public class FMODAudioManager : MonoBehaviour
 {
+    // Retry settings for when banks aren't loaded yet
+    private const int MAX_RETRY_ATTEMPTS = 10;
+    private const float RETRY_DELAY_SECONDS = 0.5f;
     public static FMODAudioManager Instance { get; private set; }
 
     [Header("Event References")]
@@ -257,10 +261,19 @@ public class FMODAudioManager : MonoBehaviour
 
     /// <summary>
     /// Play an FMOD music event by name.
+    /// Will retry if banks aren't loaded yet.
     /// </summary>
     /// <param name="eventName">Event name (e.g., "ASIDE_MainTheme")</param>
     /// <param name="startLoop">Starting loop for Side B events (0=LoopA, 1=LoopB, etc.)</param>
     public void PlayMusic(string eventName, int startLoop = 0)
+    {
+        StartCoroutine(PlayMusicWithRetry(eventName, startLoop));
+    }
+
+    /// <summary>
+    /// Internal coroutine that attempts to play music with retries.
+    /// </summary>
+    private IEnumerator PlayMusicWithRetry(string eventName, int startLoop)
     {
         string fullPath = EVENT_PATH_PREFIX + eventName;
 
@@ -268,31 +281,86 @@ public class FMODAudioManager : MonoBehaviour
         if (currentEventPath == fullPath && IsPlaying())
         {
             Debug.Log($"[FMOD] {eventName} already playing, skipping");
-            return;
+            yield break;
         }
 
         // Stop current music with proper ending
         StopCurrentMusic(immediate: false);
 
-        // Start new event - wrapped in try-catch to prevent breaking dialogue if banks aren't loaded
+        // Try to create the event instance, with retries if banks aren't loaded yet
         currentEventPath = fullPath;
-        try
+        bool success = false;
+        bool shouldRetry = false;
+
+        for (int attempt = 0; attempt < MAX_RETRY_ATTEMPTS; attempt++)
         {
-            currentMusicInstance = RuntimeManager.CreateInstance(fullPath);
-        }
-        catch (System.Exception e)
-        {
-            Debug.LogWarning($"[FMOD] Could not create event instance for '{fullPath}': {e.Message}. " +
-                "This may happen if FMOD banks failed to load (check StreamingAssets). Dialogue will continue without music.");
-            currentEventPath = null;
-            return;
+            shouldRetry = false;
+
+            // Try to get the event (outside try-catch since we can't yield inside)
+            FMOD.RESULT result = FMOD.RESULT.ERR_EVENT_NOTFOUND;
+            EventDescription eventDesc = default;
+            bool hadException = false;
+
+            try
+            {
+                result = RuntimeManager.StudioSystem.getEvent(fullPath, out eventDesc);
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogWarning($"[FMOD] Exception on attempt {attempt + 1}: {e.Message}");
+                hadException = true;
+                shouldRetry = true;
+            }
+
+            if (!hadException)
+            {
+                if (result == FMOD.RESULT.OK && eventDesc.isValid())
+                {
+                    // Banks are loaded, create instance
+                    try
+                    {
+                        currentMusicInstance = RuntimeManager.CreateInstance(fullPath);
+                        if (currentMusicInstance.isValid())
+                        {
+                            success = true;
+                            Debug.Log($"[FMOD] Event found on attempt {attempt + 1}: {eventName}");
+                        }
+                    }
+                    catch (System.Exception e)
+                    {
+                        Debug.LogWarning($"[FMOD] CreateInstance exception: {e.Message}");
+                        shouldRetry = true;
+                    }
+                }
+                else if (result == FMOD.RESULT.ERR_EVENT_NOTFOUND)
+                {
+                    Debug.Log($"[FMOD] Event not found (attempt {attempt + 1}/{MAX_RETRY_ATTEMPTS}), banks may still be loading...");
+                    shouldRetry = true;
+                }
+                else
+                {
+                    Debug.LogWarning($"[FMOD] getEvent returned {result} for {fullPath}");
+                    shouldRetry = true;
+                }
+            }
+
+            if (success)
+            {
+                break;
+            }
+
+            if (shouldRetry && attempt < MAX_RETRY_ATTEMPTS - 1)
+            {
+                yield return new WaitForSeconds(RETRY_DELAY_SECONDS);
+            }
         }
 
-        if (!currentMusicInstance.isValid())
+        if (!success)
         {
-            Debug.LogWarning($"[FMOD] Failed to create instance for: {fullPath}. Dialogue will continue without music.");
+            Debug.LogWarning($"[FMOD] Failed to create instance for '{fullPath}' after {MAX_RETRY_ATTEMPTS} attempts. " +
+                "Banks may not have loaded correctly. Dialogue will continue without music.");
             currentEventPath = null;
-            return;
+            yield break;
         }
 
         // Set initial loop if Side B

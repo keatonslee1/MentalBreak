@@ -897,12 +897,42 @@ retry:
 #if UNITY_ANDROID || UNITY_WEBGL
         private IEnumerator loadFromWeb(string bankPath, string bankName, bool loadSamples)
         {
+            RuntimeUtils.DebugLogFormat("[FMOD] loadFromWeb START: bankPath={0}, bankName={1}", bankPath, bankName);
+
             byte[] loadWebResult;
             FMOD.RESULT loadResult;
 
             UnityEngine.Networking.UnityWebRequest www = UnityEngine.Networking.UnityWebRequest.Get(bankPath);
+            RuntimeUtils.DebugLogFormat("[FMOD] loadFromWeb: Sending request to {0}", bankPath);
+
             yield return www.SendWebRequest();
+
+            // Check for HTTP errors
+#if UNITY_2020_1_OR_NEWER
+            if (www.result != UnityEngine.Networking.UnityWebRequest.Result.Success)
+            {
+                RuntimeUtils.DebugLogErrorFormat("[FMOD] loadFromWeb HTTP ERROR: {0} - {1} (URL: {2})", www.result, www.error, bankPath);
+                loadingBanksRef--;
+                yield break;
+            }
+#else
+            if (www.isNetworkError || www.isHttpError)
+            {
+                RuntimeUtils.DebugLogErrorFormat("[FMOD] loadFromWeb HTTP ERROR: {0} (URL: {1})", www.error, bankPath);
+                loadingBanksRef--;
+                yield break;
+            }
+#endif
+
             loadWebResult = www.downloadHandler.data;
+            RuntimeUtils.DebugLogFormat("[FMOD] loadFromWeb: Downloaded {0} bytes for {1}", loadWebResult != null ? loadWebResult.Length : 0, bankName);
+
+            if (loadWebResult == null || loadWebResult.Length == 0)
+            {
+                RuntimeUtils.DebugLogErrorFormat("[FMOD] loadFromWeb: No data received for {0}", bankPath);
+                loadingBanksRef--;
+                yield break;
+            }
 
             LoadedBank loadedBank = new LoadedBank();
             loadResult = Instance.studioSystem.loadBankMemory(loadWebResult, FMOD.Studio.LOAD_BANK_FLAGS.NORMAL, out loadedBank.Bank);
@@ -924,18 +954,23 @@ retry:
 
         private static void LoadBank(string bankName, bool loadSamples, string bankId)
         {
+            RuntimeUtils.DebugLogFormat("[FMOD] LoadBank called: bankName={0}, bankId={1}", bankName, bankId);
+
             if (Instance.loadedBanks.ContainsKey(bankId))
             {
+                RuntimeUtils.DebugLogFormat("[FMOD] LoadBank: Bank already loaded: {0}", bankId);
                 ReferenceLoadedBank(bankId, loadSamples);
             }
             else
             {
                 string bankFolder = Instance.currentPlatform.GetBankFolder();
+                RuntimeUtils.DebugLogFormat("[FMOD] LoadBank: bankFolder={0}", bankFolder);
 
 #if !UNITY_EDITOR
                 if (!string.IsNullOrEmpty(Settings.Instance.TargetSubFolder))
                 {
                     bankFolder = RuntimeUtils.GetCommonPlatformPath(Path.Combine(bankFolder, Settings.Instance.TargetSubFolder));
+                    RuntimeUtils.DebugLogFormat("[FMOD] LoadBank: bankFolder with subfolder={0}", bankFolder);
                 }
 #endif
 
@@ -951,16 +986,21 @@ retry:
                 {
                     bankPath = string.Format("{0}/{1}", bankFolder, bankName);
                 }
+
+                RuntimeUtils.DebugLogFormat("[FMOD] LoadBank: Final bankPath={0}", bankPath);
+
                 Instance.loadingBanksRef++;
 #if UNITY_ANDROID && !UNITY_EDITOR
                 if (Settings.Instance.AndroidUseOBB)
                 {
+                    RuntimeUtils.DebugLogFormat("[FMOD] LoadBank: Starting Android OBB loadFromWeb for {0}", bankPath);
                     Instance.StartCoroutine(Instance.loadFromWeb(bankPath, bankName, loadSamples));
                 }
                 else
 #elif UNITY_WEBGL && !UNITY_EDITOR
                 if (true)
                 {
+                    RuntimeUtils.DebugLogFormat("[FMOD] LoadBank: Starting WebGL loadFromWeb coroutine for {0}", bankPath);
                     Instance.StartCoroutine(Instance.loadFromWeb(bankPath, bankName, loadSamples));
                 }
                 else
@@ -1040,8 +1080,13 @@ retry:
 
         private void LoadBanks(Settings fmodSettings)
         {
+            RuntimeUtils.DebugLogFormat("[FMOD] LoadBanks: ImportType={0}, AutomaticEventLoading={1}, BankLoadType={2}",
+                fmodSettings.ImportType, fmodSettings.AutomaticEventLoading, fmodSettings.BankLoadType);
+
             if (fmodSettings.ImportType == ImportType.StreamingAssets)
             {
+                RuntimeUtils.DebugLog("[FMOD] LoadBanks: ImportType is StreamingAssets, proceeding with bank load");
+
                 if (fmodSettings.AutomaticSampleLoading)
                 {
                     sampleLoadRequests.AddRange(BanksToLoad(fmodSettings));
@@ -1049,8 +1094,12 @@ retry:
 
                 try
                 {
-                    foreach (string bankName in BanksToLoad(fmodSettings))
+                    var banksToLoad = BanksToLoad(fmodSettings).ToList();
+                    RuntimeUtils.DebugLogFormat("[FMOD] LoadBanks: Will load {0} banks: [{1}]", banksToLoad.Count, string.Join(", ", banksToLoad));
+
+                    foreach (string bankName in banksToLoad)
                     {
+                        RuntimeUtils.DebugLogFormat("[FMOD] LoadBanks: Calling LoadBank for '{0}'", bankName);
                         LoadBank(bankName);
                     }
 

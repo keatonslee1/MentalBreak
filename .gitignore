@@ -2,10 +2,14 @@
 [Ll]ibrary/
 [Tt]emp/
 [Oo]bj/
-[Bb]uild/
 [Bb]uilds/
 [Ll]ogs/
 [Uu]ser[Ss]ettings/
+
+# Ignore Unity Build folder but keep webgl-build/Build
+unity-project/[Bb]uild/
+!unity-project/webgl-build/
+!unity-project/webgl-build/Build/
 *.csproj
 *.unityproj
 *.sln
@@ -24,9 +28,6 @@
 *.pdb.meta
 *.mdb.meta
 
-# Unity Build (keep webgl-build but ignore other build folders)
-unity-project/[Bb]uild/
-!unity-project/webgl-build/
 
 # VS Code
 .vscode/*

@@ -23,8 +23,8 @@ public class CommandHandlerRegistrar : MonoBehaviour
     [Tooltip("CheckpointCommandHandler component")]
     public CheckpointCommandHandler checkpointHandler;
 
-    [Tooltip("StoreUI component")]
-    public StoreUI storeHandler;
+    [Tooltip("CompanyStore component")]
+    public CompanyStore companyStore;
 
     [Tooltip("FMODAudioManager component")]
     public FMODAudioManager fmodHandler;
@@ -57,9 +57,10 @@ public class CommandHandlerRegistrar : MonoBehaviour
         checkpointHandler = FindOrCreateHandler<CheckpointCommandHandler>(ref checkpointHandler, "CheckpointCommandHandler");
         fmodHandler = FindOrCreateHandler<FMODAudioManager>(ref fmodHandler, "FMODAudioManager");
 
-        if (storeHandler == null)
+        // Find CompanyStore if not assigned (include inactive objects since panel starts hidden)
+        if (companyStore == null)
         {
-            storeHandler = ResolveStoreHandler();
+            companyStore = FindFirstObjectByType<CompanyStore>(FindObjectsInactive.Include);
         }
 
         // Register commands immediately in Awake() to ensure they're available before dialogue starts
@@ -119,168 +120,11 @@ public class CommandHandlerRegistrar : MonoBehaviour
         return handler;
     }
 
-    /// <summary>
-    /// Recursively search for a child Transform by name
-    /// </summary>
-    private Transform FindChildRecursive(Transform parent, string name)
-    {
-        foreach (Transform child in parent)
-        {
-            if (child.name == name)
-            {
-                return child;
-            }
-            Transform found = FindChildRecursive(child, name);
-            if (found != null)
-            {
-                return found;
-            }
-        }
-        return null;
-    }
-
-    /// <summary>
-    /// Attempt to locate the StoreUI component, including on inactive objects.
-    /// </summary>
-    private StoreUI ResolveStoreHandler()
-    {
-        if (storeHandler != null && storeHandler.gameObject != null)
-        {
-            return storeHandler;
-        }
-
-        // Try multiple search strategies
-#if UNITY_2022_2_OR_NEWER
-        storeHandler = FindFirstObjectByType<StoreUI>(FindObjectsInactive.Include);
-        if (storeHandler != null)
-        {
-            Debug.Log($"CommandHandlerRegistrar: Found StoreUI via FindFirstObjectByType (inactive included) on {storeHandler.gameObject.name}");
-            return storeHandler;
-        }
-#endif
-
-        // Fallback for older Unity versions or if above didn't work
-#if UNITY_2023_1_OR_NEWER
-        var storeCandidates = FindObjectsByType<StoreUI>(FindObjectsInactive.Include, FindObjectsSortMode.None);
-#else
-        var storeCandidates = FindObjectsOfType<StoreUI>(true);
-#endif
-        if (storeCandidates != null && storeCandidates.Length > 0)
-        {
-            foreach (var candidate in storeCandidates)
-            {
-                if (candidate == null || candidate.gameObject == null)
-                {
-                    continue;
-                }
-
-                // Skip prefabs or assets not in a valid scene
-                if (!candidate.gameObject.scene.IsValid())
-                {
-                    continue;
-                }
-
-                storeHandler = candidate;
-                Debug.Log($"CommandHandlerRegistrar: Found StoreUI via FindObjectsOfType on {storeHandler.gameObject.name} (active: {storeHandler.gameObject.activeSelf})");
-                return storeHandler;
-            }
-        }
-
-        // Last resort: search by GameObject name in DontDestroyOnLoad hierarchy
-        GameObject dontDestroyRoot = GameObject.Find("DontDestroyOnLoad");
-        if (dontDestroyRoot != null)
-        {
-            // Search in DontDestroyOnLoad/Dialogue System/Canvas hierarchy
-            Transform dialogueSystem = dontDestroyRoot.transform.Find("Dialogue System");
-            if (dialogueSystem != null)
-            {
-                Transform canvas = dialogueSystem.Find("Canvas");
-                if (canvas != null)
-                {
-                    Transform storePanel = canvas.Find("StorePanel");
-                    if (storePanel != null)
-                    {
-                        storeHandler = storePanel.GetComponent<StoreUI>();
-                        if (storeHandler != null)
-                        {
-                            Debug.Log($"CommandHandlerRegistrar: Found StoreUI in DontDestroyOnLoad/Dialogue System/Canvas/StorePanel");
-                            return storeHandler;
-                        }
-                    }
-                }
-            }
-            
-            // Also search recursively in DontDestroyOnLoad
-            Transform storePanelRecursive = FindChildRecursive(dontDestroyRoot.transform, "StorePanel");
-            if (storePanelRecursive != null)
-            {
-                storeHandler = storePanelRecursive.GetComponent<StoreUI>();
-                if (storeHandler != null)
-                {
-                    Debug.Log($"CommandHandlerRegistrar: Found StoreUI in DontDestroyOnLoad hierarchy");
-                    return storeHandler;
-                }
-            }
-        }
-
-        // Final fallback: search by GameObject name (searches all scenes)
-        GameObject storePanelGameObject = GameObject.Find("StorePanel");
-        if (storePanelGameObject != null)
-        {
-            storeHandler = storePanelGameObject.GetComponent<StoreUI>();
-            if (storeHandler != null)
-            {
-                Debug.Log($"CommandHandlerRegistrar: Found StoreUI via GameObject.Find('StorePanel') on {storeHandler.gameObject.name}");
-                return storeHandler;
-            }
-        }
-
-        Debug.LogWarning("CommandHandlerRegistrar: Could not find StoreUI component in scene. Store command will not be available. Ensure StorePanel exists in the scene (run Tools > Setup Store UI if needed).");
-        return null;
-    }
-
     private void Start()
     {
         // Commands should already be registered in Awake(), but re-register as safety net
         // This handles edge cases where component was added at runtime after Awake()
         RegisterCommands();
-
-        // In WebGL, SceneManagers can be stripped; ensure the store handler exists and registers (again) after start.
-        StartCoroutine(DeferredStoreRegistration());
-    }
-
-    private System.Collections.IEnumerator DeferredStoreRegistration()
-    {
-        // Wait until end of frame to ensure StoreUI canvas objects have instantiated.
-        yield return null;
-        yield return new WaitForEndOfFrame();
-
-        if (storeHandler == null || !storeHandler.gameObject.scene.IsValid())
-        {
-            storeHandler = ResolveStoreHandler();
-        }
-
-        if (storeHandler == null)
-        {
-            Debug.LogWarning("CommandHandlerRegistrar: Deferred store registration skipped; StoreUI still missing.");
-            yield break;
-        }
-
-        try
-        {
-            dialogueRunner.RemoveCommandHandler("store");
-        }
-        catch { }
-
-        try
-        {
-            dialogueRunner.AddCommandHandler("store", new System.Func<System.Collections.IEnumerator>(storeHandler.OpenStore));
-            Debug.Log("CommandHandlerRegistrar: Deferred 'store' command registration succeeded.");
-        }
-        catch (System.Exception e)
-        {
-            Debug.LogError($"CommandHandlerRegistrar: Deferred 'store' registration failed: {e.Message}");
-        }
     }
 
     /// <summary>
@@ -371,32 +215,27 @@ public class CommandHandlerRegistrar : MonoBehaviour
             // Don't mark as failed - checkpoint is optional for backwards compatibility
         }
 
-        // Register StoreUI method via bound delegate
+        // Register CompanyStore method via bound delegate
         // Note: OpenStore returns IEnumerator, so we use Func<IEnumerator> instead of Action
-        var resolvedStore = ResolveStoreHandler();
-        if (resolvedStore != null)
+        if (companyStore != null)
         {
             try
             {
-                // Remove if already registered (safe to call)
-                try { dialogueRunner.RemoveCommandHandler("store"); } catch { }
-                
                 // Create the delegate bound to the specific instance
-                System.Func<IEnumerator> storeCommand = resolvedStore.OpenStore;
+                System.Func<IEnumerator> storeCommand = companyStore.OpenStore;
                 dialogueRunner.AddCommandHandler("store", storeCommand);
-                
-                Debug.Log($"CommandHandlerRegistrar: Successfully registered 'store' command with StoreUI on {resolvedStore.gameObject.name}");
+
+                Debug.Log($"CommandHandlerRegistrar: Registered 'store' command with CompanyStore on {companyStore.gameObject.name}");
             }
             catch (System.Exception e)
             {
-                Debug.LogError($"CommandHandlerRegistrar: Failed to register 'store': {e.Message}\nStack trace: {e.StackTrace}");
+                Debug.LogError($"CommandHandlerRegistrar: Failed to register 'store': {e.Message}");
                 allRegistered = false;
             }
         }
         else
         {
-            Debug.LogWarning("CommandHandlerRegistrar: StoreUI not found! Store command will not be available. Make sure StorePanel exists in the scene.");
-            // Don't mark as failed - store is optional if UI isn't set up yet
+            Debug.LogWarning("CommandHandlerRegistrar: CompanyStore not found! Store command will not be available. Run Tools > Setup Company Store.");
         }
 
         // Register FMODAudioManager commands

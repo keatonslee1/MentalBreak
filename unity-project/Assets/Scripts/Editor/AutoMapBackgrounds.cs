@@ -22,7 +22,7 @@ public class AutoMapBackgrounds : EditorWindow
         GUILayout.Label("Background Sprite Auto-Mapping", EditorStyles.boldLabel);
         GUILayout.Space(10);
 
-        GUILayout.Label("This will automatically map background sprites from Assets/Graphics/Backgrounds/");
+        GUILayout.Label("This will automatically map background sprites from Assets/Resources/Graphics/Backgrounds/");
         GUILayout.Label("to BackgroundCommandHandler based on filenames (bg_*.png).");
         GUILayout.Space(10);
 
@@ -46,8 +46,8 @@ public class AutoMapBackgrounds : EditorWindow
             return;
         }
 
-        // Find all textures in Assets/Graphics/Backgrounds/
-        string backgroundsPath = "Assets/Graphics/Backgrounds";
+        // Find all textures in Assets/Resources/Graphics/Backgrounds/
+        string backgroundsPath = "Assets/Resources/Graphics/Backgrounds";
         string[] textureGuids = AssetDatabase.FindAssets("t:Texture2D", new[] { backgroundsPath });
         
         if (textureGuids.Length == 0)

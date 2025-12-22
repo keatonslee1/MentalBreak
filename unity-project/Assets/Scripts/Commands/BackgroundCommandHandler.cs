@@ -348,7 +348,7 @@ public class BackgroundCommandHandler : MonoBehaviour
 #if UNITY_EDITOR
     void LoadFromFolder()
     {
-        string fullPath = "Assets/" + backgroundFolderPath;
+        string fullPath = "Assets/Resources/" + backgroundFolderPath;
         
         if (!AssetDatabase.IsValidFolder(fullPath))
         {

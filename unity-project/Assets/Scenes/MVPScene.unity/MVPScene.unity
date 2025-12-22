@@ -6301,7 +6301,73 @@ MonoBehaviour:
   backgroundImage: {fileID: 0}
   videoRawImage: {fileID: 0}
   videoPlayer: {fileID: 0}
-  backgroundSprites: []
+  backgroundSprites:
+  - key: bg_office
+    sprite: {fileID: -365783909165478826, guid: cee58cf5697025444bb6eb7f0eb470e0, type: 3}
+  - key: bg_tribunal
+    sprite: {fileID: 8574827762293735927, guid: 27f898ff878e864458b5fab473493a2b, type: 3}
+  - key: bg_museum
+    sprite: {fileID: 2325158806435770309, guid: e511c177c5e403a40909c392df8d188f, type: 3}
+  - key: bg_mosaic
+    sprite: {fileID: 4647979385626771089, guid: 0f597a40898b0784b8a40c6061fa3ae3, type: 3}
+  - key: bg_mailroom
+    sprite: {fileID: 7099061470148076390, guid: 47d66490d4d954d4bae8e42f2b26d904, type: 3}
+  - key: bg_hallway
+    sprite: {fileID: -3118469143783807367, guid: af74d6cfb7bbaf14ab0ed0625a1a256c, type: 3}
+  - key: bg_darkroom
+    sprite: {fileID: 120310245831454886, guid: 910fa84e6536cec4e988dcf5fdf9f70b, type: 3}
+  - key: bg_backend
+    sprite: {fileID: 573127864173520741, guid: 73a225b71c6cc154fae05007119932d2, type: 3}
+  - key: bg_backend_0
+    sprite: {fileID: 573127864173520741, guid: 73a225b71c6cc154fae05007119932d2, type: 3}
+  - key: bg_breakroom_0
+    sprite: {fileID: -7496671888308936122, guid: 8933d70721750894c81d5bbc194213a2, type: 3}
+  - key: bg_bsod_0
+    sprite: {fileID: 3860272531875263951, guid: 40a2918c566b5e146b4b4ee6a3a11dce, type: 3}
+  - key: bg_classroom_0
+    sprite: {fileID: 1851226315671141383, guid: 5a07030fc214c19469623bd7347462cf, type: 3}
+  - key: bg_companystore_0
+    sprite: {fileID: 3193613871547378692, guid: bc83c062140cbc34d9c95443f058d567, type: 3}
+  - key: bg_conferenceroom_0
+    sprite: {fileID: -5014177588787181308, guid: c125aabccc83df047bd3addadfbe743e, type: 3}
+  - key: bg_darkroom_0
+    sprite: {fileID: 120310245831454886, guid: 910fa84e6536cec4e988dcf5fdf9f70b, type: 3}
+  - key: bg_day_planner_0
+    sprite: {fileID: 8159620513756181495, guid: e003b3c750367894c8b62b656818f092, type: 3}
+  - key: bg_hall_0
+    sprite: {fileID: -3118469143783807367, guid: af74d6cfb7bbaf14ab0ed0625a1a256c, type: 3}
+  - key: bg_intermission_0
+    sprite: {fileID: -7596039765792462565, guid: e10efc463002e7e4ab72b87bbd41d571, type: 3}
+  - key: bg_library_0
+    sprite: {fileID: 3963695694569025565, guid: 48fdd15e85408a1498faad850c51d2da, type: 3}
+  - key: bg_loading_0
+    sprite: {fileID: 485270085429314605, guid: 9b139420c9ab2d74e946dbbb5fba371d, type: 3}
+  - key: bg_mailroom_0
+    sprite: {fileID: 7099061470148076390, guid: 47d66490d4d954d4bae8e42f2b26d904, type: 3}
+  - key: bg_mainmenu_0
+    sprite: {fileID: -1992147709828625530, guid: 36e63f3475d50e94690d3fbb21e9cc8d, type: 3}
+  - key: bg_majoritymind_0
+    sprite: {fileID: 8051300745891077948, guid: 6faa181089ab443418835bbaec6340af, type: 3}
+  - key: bg_mind_meld_0
+    sprite: {fileID: -3925129753518467036, guid: 5ed34d1a76d470448abb00c1d9218d61, type: 3}
+  - key: bg_minesweeper_0
+    sprite: {fileID: -6800501024756510825, guid: 643affde86a659e49a16379c63e88803, type: 3}
+  - key: bg_mosaic_0
+    sprite: {fileID: 4647979385626771089, guid: 0f597a40898b0784b8a40c6061fa3ae3, type: 3}
+  - key: bg_museum_0
+    sprite: {fileID: 2325158806435770309, guid: e511c177c5e403a40909c392df8d188f, type: 3}
+  - key: bg_office_0
+    sprite: {fileID: -365783909165478826, guid: cee58cf5697025444bb6eb7f0eb470e0, type: 3}
+  - key: bg_player_desk_0
+    sprite: {fileID: 85241576622122766, guid: 1032fc937d952134189c03c31688d2fe, type: 3}
+  - key: bg_supervisoroffice_0
+    sprite: {fileID: -7935479676821032977, guid: abaae6cf1804cb947996b74545a8cfb8, type: 3}
+  - key: bg_timmyroom_0
+    sprite: {fileID: -2656262493304440942, guid: 560e86542b1aa274faa95f40661e1535, type: 3}
+  - key: bg_tribunal_0
+    sprite: {fileID: 8574827762293735927, guid: 27f898ff878e864458b5fab473493a2b, type: 3}
+  - key: bg_timmydesk_0
+    sprite: {fileID: 7749211443084330209, guid: 7663e25696304804fb051eef6a5729b0, type: 3}
   backgroundFolderPath: Graphics/Backgrounds
   videoFolderPath: Videos
 --- !u!1 &813810795

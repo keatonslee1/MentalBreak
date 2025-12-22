@@ -256,6 +256,7 @@ h1.mb-brand__title {
   width: 100%;
   margin: 0 0 12px 0;
   padding: 12px 14px;
+  box-sizing: border-box;
   border-radius: 16px;
   background: var(--mb-panel);
   border: 1px solid var(--mb-border);

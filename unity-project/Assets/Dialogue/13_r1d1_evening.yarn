@@ -1,0 +1,2028 @@
+// =============================================================================
+// RUN 1 DAY 1 EVENING
+// =============================================================================
+// Two main paths:
+// TIMMY FOCUS: Party decision, party exploration/alienation, or doomscroll
+// BIGGER TECH: Arthur debrief, Timmy on autopilot (placeholder)
+// All paths converge at Company Store
+// =============================================================================
+
+// PURPOSE: Entry point for evening. Check autopilot status, offer focus choice.
+title: R1D1_Evening_Start
+tags: #run_1 #day_1 #evening #scene #char_Alice #loc_Office
+position: 2791,-2144
+---
+<<set $party_went_well = false>>
+<<set $party_bailed = false>>
+<<set $tried_dancing = false>>
+<<set $upstairs_horror = false>>
+<<set $charlotte_party_sighting = false>>
+<<set $visited_basement = false>>
+<<set $visited_upstairs = false>>
+<<set $doomscroll_exit_type = "none">>
+
+<<bg bg_player_desk>>
+
+<<if $timmy_autopilot == true>>
+Alice: He's been scrolling for hours. Deep in it.
+
+Alice: Ari texted about the party three times. No response.
+
+<<if $party_status == "committed">>
+<<set $party_status = "considering">>
+<<elseif $party_status == "considering">>
+<<set $party_status = "unlikely">>
+<<endif>>
+<<endif>>
+
+Evening. The floor is quieter. Half the lights are off.
+
+Alice: Party's starting soon. Ari's getting ready.
+
+-> Focus on Timmy
+    <<jump R1D1_Evening_Timmy_Start>>
+-> Stay at Bigger Tech
+    <<set $timmy_autopilot = true>>
+    <<jump R1D1_Evening_BT_Start>>
+===
+
+// =============================================================================
+// TIMMY PATH - PARTY DECISION
+// =============================================================================
+
+// PURPOSE: Determine party status and branch accordingly
+title: R1D1_Evening_Timmy_Start
+tags: #run_1 #day_1 #evening #scene #char_Timmy #char_Alice
+position: 294,-1388
+---
+<<bg bg_timmyroom>>
+
+<<if $party_status == "committed" || $party_status == "considering">>
+<<jump R1D1_Evening_Party_Decision>>
+<<else>>
+<<jump R1D1_Evening_No_Party_Plans>>
+<<endif>>
+===
+
+// PURPOSE: Timmy has party plans, moment of decision
+title: R1D1_Evening_Party_Decision
+tags: #run_1 #day_1 #evening #scene #char_Timmy #char_Alice
+position: 159,-1221
+---
+<<bg bg_timmyroom>>
+
+Timmy's room. He's changed his shirt twice. Phone in hand.
+
+Text from Ari: "heading over. you coming?"
+
+Timmy stares at it. Thumb hovering.
+
+Alice: "He's been looking at that text for two minutes."
+
+-> Push him out the door
+    <<jump R1D1_Evening_Party_Go>>
+-> Let him bail
+    <<jump R1D1_Evening_Party_Bail>>
+===
+
+// PURPOSE: Timmy didn't have party plans, but Ari's story appears
+title: R1D1_Evening_No_Party_Plans
+tags: #run_1 #day_1 #evening #scene #char_Timmy #char_Alice
+position: 382,-1219
+---
+<<bg bg_timmyroom>>
+
+Timmy's room. Sweats. Phone glowing.
+
+Instagram loads. Ari's story: people laughing, red cups, someone doing something stupid in the background.
+
+The party he's not at.
+
+He watches it twice.
+
+Alice: Ari just texted.
+
+Text appears: "bro come thru. jake's got good music"
+
+-> Surface the text
+    <<jump R1D1_Evening_Late_Invite>>
+-> Let him scroll past
+    <<jump R1D1_Evening_Doomscroll_Start>>
+===
+
+// PURPOSE: Late invite surfaced
+title: R1D1_Evening_Late_Invite
+tags: #run_1 #day_1 #evening #scene #char_Timmy #char_Alice
+position: 395,-1030
+---
+<<bg bg_timmyroom>>
+
+The text floats to the top of his notifications.
+
+Timmy reads it. Reads it again.
+
+Alice: "He's considering it."
+
+-> Push him to go
+    <<set $party_arrived_late = true>>
+    <<jump R1D1_Evening_Party_Go>>
+-> Let him ignore it
+    <<jump R1D1_Evening_Doomscroll_Start>>
+===
+
+// PURPOSE: Timmy bails on the party
+title: R1D1_Evening_Party_Bail
+tags: #run_1 #day_1 #evening #scene #char_Timmy #char_Alice
+position: 18,-796
+---
+<<bg bg_timmyroom>>
+
+Timmy types: "not feeling great, next time"
+
+Sends it before he can change his mind.
+
+Ari: "all good bro"
+
+He puts the phone down. Picks it back up.
+
+The scroll begins.
+
+<<set $ari -= 1>>
+<<set $party_bailed = true>>
+
+<<jump R1D1_Evening_Doomscroll_Start>>
+===
+
+// PURPOSE: Timmy decides to go to the party
+title: R1D1_Evening_Party_Go
+tags: #run_1 #day_1 #evening #scene #char_Timmy #char_Alice
+position: 267,-789
+---
+<<bg bg_timmyroom>>
+
+Timmy: "Yeah. Okay."
+
+He says it out loud. To himself. To Alice. To whoever's listening.
+
+He grabs his jacket. Checks the mirror. Fixes his hair. Unfixes it. Fixes it again.
+
+Alice: "You look fine."
+
+Timmy: "That's not reassuring."
+
+Alice: "You look adequate for a casual social gathering."
+
+Timmy: "Worse."
+
+He leaves before he can talk himself out of it.
+
+<<jump R1D1_Evening_Party_Arrival>>
+===
+
+// =============================================================================
+// PARTY PATH
+// =============================================================================
+
+// PURPOSE: Arrive at the party
+title: R1D1_Evening_Party_Arrival
+tags: #run_1 #day_1 #evening #scene #char_Timmy #char_Ari #loc_Party
+position: 267,-591
+---
+<<bg bg_party>>
+
+Jake's apartment. Music loud enough to feel. People in clusters, laughing at things he can't hear.
+
+Timmy steps inside. Doesn't know where to put his hands.
+
+<<if $party_arrived_late == true>>
+The party's in full swing. He slips in. Nobody notices.
+
+He scans for Ari. Can't find him in the crowd.
+
+<<jump R1D1_Evening_Party_Explore_Main>>
+<<else>>
+Ari spots him immediately.
+
+Ari: "You made it! Come on, we're over here."
+
+-> Go with Ari
+    <<jump R1D1_Evening_Party_Group_Fresh>>
+-> "Give me a sec"
+    <<jump R1D1_Evening_Party_Explore_Main>>
+<<endif>>
+===
+
+// =============================================================================
+// PARTY - MAIN FLOOR EXPLORATION
+// =============================================================================
+
+// PURPOSE: Timmy explores the main floor, gets handed a beer
+title: R1D1_Evening_Party_Explore_Main
+tags: #run_1 #day_1 #evening #scene #char_Timmy #char_Alice #loc_Party
+position: 138,-423
+---
+<<bg bg_party>>
+
+<<if $party_arrived_late != true>>
+Ari: "Alright, find me when you're ready."
+
+He disappears into the crowd.
+<<endif>>
+
+Timmy stands there. People flowing around him.
+
+Everyone seems to know someone. Everyone seems comfortable.
+
+A guy appears. Red cup extended.
+
+Guy: "Here man."
+
+The cup is in his hand before he decides.
+
+Alice: "His heart rate just spiked."
+
+Is this illegal? I'm a freshman.
+If I get caught. If my parents find out.
+Everyone else is drinking. Nobody else looks worried.
+
+-> Hold it like a prop
+    <<jump R1D1_Evening_Party_Beer_Hold>>
+-> Set it down
+    <<jump R1D1_Evening_Party_Beer_Down>>
+-> Take a sip
+    <<jump R1D1_Evening_Party_Beer_Sip>>
+===
+
+// PURPOSE: Hold the beer as a prop
+title: R1D1_Evening_Party_Beer_Hold
+tags: #run_1 #day_1 #evening #scene #char_Timmy #char_Alice
+position: 80,-223
+---
+<<bg bg_party>>
+
+He grips the cup. Doesn't drink.
+
+It's warm in his hand. He hates it.
+
+But now he has something to do with his hands.
+
+<<jump R1D1_Evening_Party_Explore_Choice>>
+===
+
+// PURPOSE: Set the beer down
+title: R1D1_Evening_Party_Beer_Down
+tags: #run_1 #day_1 #evening #scene #char_Timmy #char_Alice
+position: 294,-216
+---
+<<bg bg_party>>
+
+He puts it on a table. Carefully. Like evidence.
+
+A girl glances at him.
+
+She wasn't judging him. But he felt it anyway.
+
+<<jump R1D1_Evening_Party_Explore_Choice>>
+===
+
+// PURPOSE: Take a sip of beer
+title: R1D1_Evening_Party_Beer_Sip
+tags: #run_1 #day_1 #evening #scene #char_Timmy #char_Alice
+position: -132,-220
+---
+<<bg bg_party>>
+
+He brings it to his lips. Tilts.
+
+It tastes like bread and regret.
+
+He tries not to make a face. Fails.
+
+Nobody notices.
+
+<<jump R1D1_Evening_Party_Explore_Choice>>
+===
+
+// PURPOSE: Choose where to explore
+title: R1D1_Evening_Party_Explore_Choice
+tags: #run_1 #day_1 #evening #scene #char_Timmy #char_Alice #loc_Party
+position: 103,182
+---
+<<bg bg_party>>
+
+The party sprawls around him.
+
+Basement stairs going down. Music louder there.
+Regular stairs going up. Darker. Quieter maybe.
+Somewhere in the crowd, Ari.
+
+<<if $visited_basement == true && $visited_upstairs == true>>
+-> Find Ari
+    <<jump R1D1_Evening_Party_Find_Ari>>
+-> Leave
+    <<jump R1D1_Evening_Party_Escape>>
+<<elseif $visited_basement == true>>
+-> Head upstairs
+    <<jump R1D1_Evening_Party_Upstairs>>
+-> Find Ari
+    <<jump R1D1_Evening_Party_Find_Ari>>
+-> Leave
+    <<jump R1D1_Evening_Party_Escape>>
+<<elseif $visited_upstairs == true>>
+-> Check basement
+    <<jump R1D1_Evening_Party_Basement>>
+-> Find Ari
+    <<jump R1D1_Evening_Party_Find_Ari>>
+-> Leave
+    <<jump R1D1_Evening_Party_Escape>>
+<<else>>
+-> Check basement
+    <<jump R1D1_Evening_Party_Basement>>
+-> Head upstairs
+    <<jump R1D1_Evening_Party_Upstairs>>
+-> Find Ari
+    <<jump R1D1_Evening_Party_Find_Ari>>
+-> Leave
+    <<jump R1D1_Evening_Party_Escape_Early>>
+<<endif>>
+===
+
+// =============================================================================
+// PARTY - BASEMENT
+// =============================================================================
+
+// PURPOSE: Timmy goes to the basement
+title: R1D1_Evening_Party_Basement
+tags: #run_1 #day_1 #evening #scene #char_Timmy #char_Alice #loc_Party
+position: -565,709
+---
+<<bg bg_party_basement>>
+<<set $visited_basement = true>>
+
+The stairs down. Each step, the music gets louder.
+
+By the bottom, he can feel the bass in his chest.
+His heart or the subwoofer. Hard to tell.
+
+Bodies moving in colored light. Shadows and shapes.
+
+A couple against the wall. Her hands in his hair. His hands elsewhere.
+
+Timmy looks away fast. Looks back. Looks away again.
+
+Everyone is dancing. Moving like they've done this before.
+Like there's an instruction manual he never got.
+
+Alice: "You could try."
+
+Timmy: "Try what?"
+
+Alice: "Dancing. It's just moving."
+
+-> Try to dance
+    <<jump R1D1_Evening_Party_Basement_Dance>>
+-> Just watch
+    <<jump R1D1_Evening_Party_Basement_Watch>>
+-> Get out of here
+    <<jump R1D1_Evening_Party_Basement_Retreat>>
+===
+
+// PURPOSE: Timmy attempts to dance
+title: R1D1_Evening_Party_Basement_Dance
+tags: #run_1 #day_1 #evening #scene #char_Timmy #char_Alice
+position: -747,906
+---
+<<bg bg_party_basement>>
+<<set $tried_dancing = true>>
+
+He finds a spot at the edge. Near the wall.
+
+Starts to move. Just a little. Side to side.
+
+What do I do with my arms?
+Is this right? This doesn't feel right.
+Everyone can tell I don't know what I'm doing.
+
+He looks around. Nobody's watching him.
+
+That's somehow worse.
+
+Thirty seconds. He can't do this.
+
+He stops. Pretends to check his phone.
+
+Alice: "That was brave."
+
+Timmy: "That was humiliating."
+
+Alice: "Nobody noticed."
+
+Timmy: "I noticed."
+
+<<jump R1D1_Evening_Party_Basement_Retreat>>
+===
+
+// PURPOSE: Timmy watches the dancing
+title: R1D1_Evening_Party_Basement_Watch
+tags: #run_1 #day_1 #evening #scene #char_Timmy #char_Alice
+position: -386,900
+---
+<<bg bg_party_basement>>
+
+He stands at the edge. Watching.
+
+A girl laughs, throws her head back, keeps moving.
+A guy does something with his shoulders that shouldn't work. It works.
+Two people find each other in the crowd. Start dancing closer.
+
+Timmy watches like an alien studying human behavior.
+
+They make it look easy.
+They make everything look easy.
+
+Alice: "You've been standing here for four minutes."
+
+Timmy: "I'm observing."
+
+Alice: "Is that what we're calling it?"
+
+<<jump R1D1_Evening_Party_Basement_Retreat>>
+===
+
+// PURPOSE: Timmy retreats from basement
+title: R1D1_Evening_Party_Basement_Retreat
+tags: #run_1 #day_1 #evening #scene #char_Timmy #char_Alice
+position: -493,1131
+---
+<<bg bg_party>>
+
+He climbs back up the stairs. The music fades. His ears ring.
+
+Main floor again. Slightly less overwhelming.
+
+<<jump R1D1_Evening_Party_Explore_Choice>>
+===
+
+// =============================================================================
+// PARTY - UPSTAIRS
+// =============================================================================
+
+// PURPOSE: Timmy goes upstairs
+title: R1D1_Evening_Party_Upstairs
+tags: #run_1 #day_1 #evening #scene #char_Timmy #char_Alice #loc_Party
+position: -545,42
+---
+<<bg bg_party_upstairs>>
+<<set $visited_upstairs = true>>
+
+The stairs up. Away from the noise.
+
+Darker here. The music muffled.
+A hallway. All the doors closed.
+
+This is better. Quieter.
+
+He walks down the hall. Tries the first door.
+
+Locked.
+
+Second door. He reaches for the handle.
+
+<<jump R1D1_Evening_Party_Upstairs_Door>>
+===
+
+// PURPOSE: The door incident
+title: R1D1_Evening_Party_Upstairs_Door
+tags: #run_1 #day_1 #evening #scene #char_Timmy #char_Alice
+position: -557,231
+---
+<<bg bg_party_upstairs>>
+<<set $upstairs_horror = true>>
+
+From inside: a voice. A laugh. Another voice, lower.
+
+Movement. Springs.
+
+His hand freezes on the handle.
+
+Oh. Oh no.
+
+He backs away. Turns. Walks fast.
+
+Almost runs down the stairs.
+
+Alice: "That was—"
+
+Timmy: "Don't."
+
+His face is burning. Nobody saw. But he knows.
+
+<<jump R1D1_Evening_Party_Upstairs_Retreat>>
+===
+
+// PURPOSE: Timmy retreats from upstairs
+title: R1D1_Evening_Party_Upstairs_Retreat
+tags: #run_1 #day_1 #evening #scene #char_Timmy #char_Alice
+position: -549,413
+---
+<<bg bg_party>>
+
+Main floor. He's nowhere left to hide.
+
+<<jump R1D1_Evening_Party_Explore_Choice>>
+===
+
+// =============================================================================
+// PARTY - FIND ARI / GROUP
+// =============================================================================
+
+// PURPOSE: Timmy finds Ari's group
+title: R1D1_Evening_Party_Find_Ari
+tags: #run_1 #day_1 #evening #scene #char_Timmy #char_Ari #loc_Party
+position: 583,347
+---
+<<bg bg_party>>
+
+He pushes through the crowd. Looking.
+
+There. By the kitchen. Ari with Eric and some others.
+
+Ari spots him.
+
+Ari: "There you are. Get over here."
+
+<<if $tried_dancing == true || $upstairs_horror == true>>
+<<jump R1D1_Evening_Party_Group_Rattled>>
+<<else>>
+<<jump R1D1_Evening_Party_Group_Fresh>>
+<<endif>>
+===
+
+// PURPOSE: Join group after exploration trauma
+title: R1D1_Evening_Party_Group_Rattled
+tags: #run_1 #day_1 #evening #scene #char_Timmy #char_Ari
+position: 276,570
+---
+<<bg bg_party>>
+
+Timmy's already rattled. The exploration took something out of him.
+
+He joins the group. Tries to look normal.
+
+Someone's telling a story. He catches the end.
+Everyone laughs. He laughs a beat late.
+
+Eric: "You good?"
+
+-> "Yeah, just tired"
+    <<jump R1D1_Evening_Party_Group_Tired>>
+-> Try to actually engage
+    <<jump R1D1_Evening_Party_Group_Recover>>
+===
+
+// PURPOSE: Timmy deflects with "tired"
+title: R1D1_Evening_Party_Group_Tired
+tags: #run_1 #day_1 #evening #scene #char_Timmy #char_Alice
+position: 386,750
+---
+<<bg bg_party>>
+
+Timmy: "Yeah. Long week."
+
+Eric: "I feel that."
+
+Conversation moves on. Around him.
+
+<<jump R1D1_Evening_Party_Wallflower_Moment>>
+===
+
+// PURPOSE: Timmy tries to recover after exploration
+title: R1D1_Evening_Party_Group_Recover
+tags: #run_1 #day_1 #evening #scene #char_Timmy #char_Ari
+position: 99,740
+---
+<<bg bg_party>>
+
+Timmy: "Actually, I just..."
+
+He stops. What is he going to say? I tried to dance and failed? I almost walked in on people?
+
+Timmy: "...got lost looking for the bathroom."
+
+Eric: "It's in the basement. Worst placement ever."
+
+Ari: "Jake's an idiot."
+
+They laugh. Timmy laughs. Real this time.
+
+<<set $sanity += 1>>
+
+<<jump R1D1_Evening_Party_End_Okay>>
+===
+
+// PURPOSE: Join group fresh, no exploration
+title: R1D1_Evening_Party_Group_Fresh
+tags: #run_1 #day_1 #evening #scene #char_Timmy #char_Ari
+position: 822,539
+---
+<<bg bg_party>>
+
+He joins the group. Eric's there. Two people he doesn't know.
+
+<<if $eric_honesty == true>>
+Eric: "Library guy! Glad you came."
+
+Makes space. Timmy's shoulders drop slightly.
+<<endif>>
+
+Someone's telling a story about their professor.
+Laughter. Then someone turns to Timmy.
+
+"You're Ari's roommate? What's your major?"
+
+-> Coach him to engage
+    <<jump R1D1_Evening_Party_Group_Success>>
+-> Let him give minimum
+    <<jump R1D1_Evening_Party_Group_Minimum>>
+===
+
+// PURPOSE: Timmy engages successfully with group
+title: R1D1_Evening_Party_Group_Success
+tags: #run_1 #day_1 #evening #scene #char_Timmy #char_Alice
+position: 919,727
+---
+<<bg bg_party>>
+
+Alice: "Just answer. They're not testing you."
+
+Timmy: "Undeclared. Still figuring it out."
+
+Girl: "Same. I changed mine three times."
+
+Guy: "Fourth for me. Advisor hates me."
+
+Timmy laughs. Genuinely.
+
+The conversation moves. He's part of it now.
+Someone asks his opinion on something. He has one.
+
+An hour passes. He doesn't check his phone.
+
+<<set $party_went_well = true>>
+<<set $sanity += 2>>
+<<set $ari += 1>>
+
+<<jump R1D1_Evening_Party_End_Good>>
+===
+
+// PURPOSE: Timmy gives minimum response
+title: R1D1_Evening_Party_Group_Minimum
+tags: #run_1 #day_1 #evening #scene #char_Timmy #char_Alice
+position: 682,719
+---
+<<bg bg_party>>
+
+Timmy: "Undeclared."
+
+Beat. They wait for more. Nothing.
+
+Girl: "Cool."
+
+Conversation moves. Around him.
+
+<<jump R1D1_Evening_Party_Wallflower_Moment>>
+===
+
+// =============================================================================
+// PARTY - WALLFLOWER
+// =============================================================================
+
+// PURPOSE: Timmy becomes a wallflower, potential Charlotte sighting
+title: R1D1_Evening_Party_Wallflower_Moment
+tags: #run_1 #day_1 #evening #scene #char_Timmy #char_Alice #loc_Party
+position: 564,1006
+---
+<<bg bg_party>>
+
+He drifts to the edge. Phone out. Pretending to text.
+
+<<if $charlotte_aware >= 1>>
+Movement near the kitchen. Charlotte.
+
+Laughing at something someone said.
+
+She glances his direction. Eyes meet.
+
+Polite smile. Nothing more. She turns back.
+
+His heart doing something stupid.
+
+Alice: "Breathe."
+
+Timmy: "I'm breathing."
+
+Alice: "Faster than usual."
+
+<<set $charlotte_party_sighting = true>>
+<<endif>>
+
+Twenty minutes pass. He's watched three TikToks at a party.
+
+-> Push for one conversation
+    <<jump R1D1_Evening_Party_Last_Try>>
+-> Let him escape
+    <<jump R1D1_Evening_Party_Escape>>
+===
+
+// PURPOSE: One last attempt at conversation
+title: R1D1_Evening_Party_Last_Try
+tags: #run_1 #day_1 #evening #scene #char_Timmy #char_Alice
+position: 448,1211
+---
+<<bg bg_party>>
+
+Alice: "Guy by the window looks bored too."
+
+Timmy approaches. Stands next to him.
+
+Timmy: "Good music."
+
+Guy: "Yeah. Jake always has good taste."
+
+Timmy: "You know him from...?"
+
+Guy: "High school. You?"
+
+Timmy: "Ari. Roommate."
+
+Guy: "Ari's cool."
+
+Timmy: "Yeah."
+
+The conversation dies. But it happened.
+
+<<set $sanity += 1>>
+
+<<jump R1D1_Evening_Party_End_Okay>>
+===
+
+// =============================================================================
+// PARTY - ESCAPE
+// =============================================================================
+
+// PURPOSE: Timmy escapes after exploring
+title: R1D1_Evening_Party_Escape
+tags: #run_1 #day_1 #evening #scene #char_Timmy #char_Alice
+position: 1503,385
+---
+<<bg bg_party>>
+
+Alice: "You could try—"
+
+Timmy: "I'm good."
+
+He slips toward the door. Nobody notices.
+
+<<bg bg_outside>>
+
+Cold air outside. He can still hear the music.
+
+<<if $tried_dancing == true>>
+Timmy: "I tried to dance."
+
+Alice: "I know."
+
+Timmy: "It was awful."
+
+Alice: "It wasn't that bad."
+
+Timmy: "You're programmed to say that."
+<<endif>>
+
+<<if $upstairs_horror == true>>
+Timmy: "I almost walked in on people."
+
+Alice: "I know."
+
+Timmy: "Why didn't you warn me?"
+
+Alice: "I can't see through doors."
+<<endif>>
+
+<<set $party_bailed = true>>
+<<set $sanity -= 1>>
+
+<<jump R1D1_Evening_Party_End_Bad>>
+===
+
+// PURPOSE: Timmy escapes without even trying
+title: R1D1_Evening_Party_Escape_Early
+tags: #run_1 #day_1 #evening #scene #char_Timmy #char_Alice
+position: 1515,246
+---
+<<bg bg_party>>
+
+He hasn't even explored. Just knows.
+
+The music. The people. The noise.
+He doesn't belong here.
+
+He slips out before anyone notices he was there.
+
+<<bg bg_outside>>
+
+Alice: "That was fast."
+
+Timmy: "I saw enough."
+
+<<set $party_bailed = true>>
+<<set $sanity -= 2>>
+<<set $ari -= 1>>
+
+<<jump R1D1_Evening_Doomscroll_Post_Party>>
+===
+
+// =============================================================================
+// PARTY - ENDINGS
+// =============================================================================
+
+// PURPOSE: Good party ending
+title: R1D1_Evening_Party_End_Good
+tags: #run_1 #day_1 #evening #scene #char_Timmy #char_Ari
+position: 907,1754
+---
+<<bg bg_outside>>
+
+Later. Walking back with Ari.
+
+Ari: "See? Not so bad."
+
+Timmy: "It was okay."
+
+Ari: "High praise from you."
+
+Timmy's tired. But not empty.
+
+<<jump R1D1_Evening_Timmy_End>>
+===
+
+// PURPOSE: Okay party ending
+title: R1D1_Evening_Party_End_Okay
+tags: #run_1 #day_1 #evening #scene #char_Timmy #char_Alice
+position: 455,1757
+---
+<<bg bg_outside>>
+
+Walking back. Party still going behind him.
+
+He went. He talked to someone. He left.
+
+Alice: "You stayed over an hour."
+
+Timmy: "Is that good?"
+
+Alice: "It's something."
+
+<<if $tried_dancing == true>>
+Timmy: "I tried to dance."
+
+Alice: "I saw."
+
+Timmy: "Don't ever mention it again."
+
+Alice: "Mention what?"
+<<endif>>
+
+<<jump R1D1_Evening_Timmy_End>>
+===
+// PURPOSE: Bad party ending - escaped after trying
+title: R1D1_Evening_Party_End_Bad
+tags: #run_1 #day_1 #evening #scene #char_Timmy #char_Alice
+position: 1277,1762
+---
+<<bg bg_timmyroom>>
+
+Back in his room. The party still going somewhere behind him.
+
+He lies on his bed. Stares at the ceiling.
+
+<<if $tried_dancing == true>>
+Timmy: "I tried to dance."
+
+Alice: "I know."
+
+Timmy: "It was awful."
+
+Alice: "It wasn't that bad."
+
+Timmy: "You're programmed to say that."
+<<endif>>
+
+<<if $upstairs_horror == true>>
+Timmy: "I almost walked in on people."
+
+Alice: "I know."
+
+Timmy: "Why didn't you warn me?"
+
+Alice: "I can't see through doors."
+<<endif>>
+
+He's too tired to scroll. Too tired to do anything.
+
+His eyes close before he decides to sleep.
+
+<<jump R1D1_Evening_Timmy_End>>
+===
+// =============================================================================
+// DOOMSCROLL PATH
+// =============================================================================
+
+// PURPOSE: Doomscroll start (no party)
+title: R1D1_Evening_Doomscroll_Start
+tags: #run_1 #day_1 #evening #scene #char_Timmy #char_Alice #loc_Dorm
+position: 2187,-1107
+---
+<<bg bg_timmyroom>>
+
+Timmy's room. Dark except for phone glow. 9:47 PM.
+
+Alice: "No party?"
+
+Timmy: "Not tonight."
+
+Alice: "Okay."
+
+<<jump R1D1_Evening_Doomscroll_Hub>>
+===
+
+// PURPOSE: Doomscroll after bailing on party
+title: R1D1_Evening_Doomscroll_Post_Party
+tags: #run_1 #day_1 #evening #scene #char_Timmy #char_Alice #loc_Dorm
+position: 1902,317
+---
+<<bg bg_timmyroom>>
+
+Timmy's room. Back from the party. Forty-five minutes of trying.
+
+He lies on his bed. Stares at the ceiling.
+
+Alice: "Parties are hard."
+
+Timmy: "I hate this."
+
+Alice: "I know."
+
+He picks up his phone. The scroll begins.
+
+<<jump R1D1_Evening_Doomscroll_Hub>>
+===
+
+// =============================================================================
+// DOOMSCROLL MECHANIC
+// =============================================================================
+
+// PURPOSE: Doomscroll hub - track rounds, check exit conditions
+title: R1D1_Evening_Doomscroll_Hub
+tags: #run_1 #day_1 #evening #doomscroll #char_Timmy #char_Alice
+position: 2187,958
+---
+<<if visited("R1D1_Evening_Doomscroll_Hub") == false>>
+<<set $doomscroll_round = 0>>
+<<set $doomscroll_sanity_streak = 0>>
+<<set $doomscroll_engagement_picks = 0>>
+<<set $doomscroll_sanity_picks = 0>>
+<<set $doomscroll_conspiracy_used = 0>>
+<<set $doomscroll_outrage_used = 0>>
+<<set $doomscroll_parasocial_used = 0>>
+<<endif>>
+
+<<set $doomscroll_round += 1>>
+
+// Check exit conditions
+
+// Exit: Sanity streak (natural sleep)
+<<if $doomscroll_sanity_streak >= 3>>
+<<jump R1D1_Evening_Doomscroll_Exit_Natural>>
+<<endif>>
+
+// Exit: Sanity floor
+<<if $sanity <= 40>>
+<<jump R1D1_Evening_Doomscroll_Exit_Tired>>
+<<endif>>
+
+// Exit: Round limit or tracks exhausted
+<<if $doomscroll_round > 6>>
+<<if $doomscroll_engagement_picks >= 4 && $doomscroll_sanity_picks <= 1>>
+<<jump R1D1_Evening_Doomscroll_Exit_Headache>>
+<<else>>
+<<jump R1D1_Evening_Doomscroll_Exit_Tired>>
+<<endif>>
+<<endif>>
+
+// Check if all tracks exhausted
+<<if $doomscroll_conspiracy_used >= 4 && $doomscroll_outrage_used >= 4 && $doomscroll_parasocial_used >= 4>>
+<<if $doomscroll_engagement_picks >= 4 && $doomscroll_sanity_picks <= 1>>
+<<jump R1D1_Evening_Doomscroll_Exit_Headache>>
+<<else>>
+<<jump R1D1_Evening_Doomscroll_Exit_Tired>>
+<<endif>>
+<<endif>>
+
+<<bg bg_timmyroom>>
+
+// Build available options
+<<if $doomscroll_conspiracy_used < 4>>
+-> Conspiracy content
+    <<set $doomscroll_sanity_streak = 0>>
+    <<set $doomscroll_engagement_picks += 1>>
+    <<set $doomscroll_conspiracy_used += 1>>
+    <<if $doomscroll_conspiracy_used == 1>>
+    <<jump R1D1_Evening_Doomscroll_Conspiracy_1>>
+    <<elseif $doomscroll_conspiracy_used == 2>>
+    <<jump R1D1_Evening_Doomscroll_Conspiracy_2>>
+    <<elseif $doomscroll_conspiracy_used == 3>>
+    <<jump R1D1_Evening_Doomscroll_Conspiracy_3>>
+    <<else>>
+    <<jump R1D1_Evening_Doomscroll_Conspiracy_4>>
+    <<endif>>
+<<endif>>
+<<if $doomscroll_outrage_used < 4>>
+-> Outrage content
+    <<set $doomscroll_sanity_streak = 0>>
+    <<set $doomscroll_engagement_picks += 1>>
+    <<set $doomscroll_outrage_used += 1>>
+    <<if $doomscroll_outrage_used == 1>>
+    <<jump R1D1_Evening_Doomscroll_Outrage_1>>
+    <<elseif $doomscroll_outrage_used == 2>>
+    <<jump R1D1_Evening_Doomscroll_Outrage_2>>
+    <<elseif $doomscroll_outrage_used == 3>>
+    <<jump R1D1_Evening_Doomscroll_Outrage_3>>
+    <<else>>
+    <<jump R1D1_Evening_Doomscroll_Outrage_4>>
+    <<endif>>
+<<endif>>
+<<if $doomscroll_parasocial_used < 4>>
+-> Parasocial content
+    <<set $doomscroll_sanity_streak = 0>>
+    <<set $doomscroll_engagement_picks += 1>>
+    <<set $doomscroll_parasocial_used += 1>>
+    <<if $doomscroll_parasocial_used == 1>>
+    <<jump R1D1_Evening_Doomscroll_Parasocial_1>>
+    <<elseif $doomscroll_parasocial_used == 2>>
+    <<jump R1D1_Evening_Doomscroll_Parasocial_2>>
+    <<elseif $doomscroll_parasocial_used == 3>>
+    <<jump R1D1_Evening_Doomscroll_Parasocial_3>>
+    <<else>>
+    <<jump R1D1_Evening_Doomscroll_Parasocial_4>>
+    <<endif>>
+<<endif>>
+-> Suggest something calming
+    <<set $doomscroll_sanity_streak += 1>>
+    <<set $doomscroll_sanity_picks += 1>>
+    <<jump R1D1_Evening_Doomscroll_Sanity_Attempt>>
+===
+
+// =============================================================================
+// DOOMSCROLL - CONSPIRACY TRACK
+// =============================================================================
+
+title: R1D1_Evening_Doomscroll_Conspiracy_1
+tags: #run_1 #day_1 #evening #doomscroll #char_Timmy #char_Alice
+position: 2991,697
+---
+<<bg bg_timmyroom>>
+
+A video essay appears: "Why Your Rent Is So High (It's Not What You Think)"
+
+Timmy clicks. Twenty minutes later, he's in the comments.
+
+Timmy: "Wait, so landlords just... do that? Legally?"
+
+Alice: "The algorithm has follow-up content ready."
+
+<<set $engagement += 1>>
+
+<<jump R1D1_Evening_Doomscroll_Hub>>
+===
+
+title: R1D1_Evening_Doomscroll_Conspiracy_2
+tags: #run_1 #day_1 #evening #doomscroll #char_Timmy #char_Alice
+position: 2991,548
+---
+<<bg bg_timmyroom>>
+
+The next video loads automatically. "The Economy Is Rigged: Here's Proof"
+
+Forty-five minutes. His dinner gets cold.
+
+Timmy: "This explains so much."
+
+Alice: "He's building a worldview. Piece by piece."
+
+<<set $engagement += 1>>
+<<set $sanity -= 1>>
+
+<<jump R1D1_Evening_Doomscroll_Hub>>
+===
+
+title: R1D1_Evening_Doomscroll_Conspiracy_3
+tags: #run_1 #day_1 #evening #doomscroll #char_Timmy #char_Alice
+position: 2983,406
+---
+<<bg bg_timmyroom>>
+
+Deeper now. "Who's Really Running Things: A Documentary"
+
+The production quality drops. The claims get wilder.
+
+Timmy: "I mean... it makes sense if you think about it."
+
+Alice: "Does it?"
+
+Timmy: "You're literally a corporation. You'd say that."
+
+<<set $engagement += 1>>
+<<set $sanity -= 1>>
+<<set $conspiracy_exposure = true>>
+
+<<jump R1D1_Evening_Doomscroll_Hub>>
+===
+
+title: R1D1_Evening_Doomscroll_Conspiracy_4
+tags: #run_1 #day_1 #evening #doomscroll #char_Timmy #char_Alice
+position: 2997,260
+---
+<<bg bg_timmyroom>>
+
+The final video. Grainy. Urgent. "THEY'RE WATCHING EVERYTHING"
+
+Timmy: "This is insane."
+
+He keeps watching.
+
+Timmy: "...but what if it's not?"
+
+<<set $engagement += 1>>
+<<set $sanity -= 2>>
+
+<<jump R1D1_Evening_Doomscroll_Hub>>
+===
+
+// =============================================================================
+// DOOMSCROLL - OUTRAGE TRACK
+// =============================================================================
+
+title: R1D1_Evening_Doomscroll_Outrage_1
+tags: #run_1 #day_1 #evening #doomscroll #char_Timmy #char_Alice
+position: 2750,692
+---
+<<bg bg_timmyroom>>
+
+A news clip. Someone said something. The internet is furious.
+
+Timmy watches. Reads the comments. Watches again.
+
+Timmy: "How do people like this exist?"
+
+Alice: "They get a lot of engagement."
+
+<<set $engagement += 1>>
+
+<<jump R1D1_Evening_Doomscroll_Hub>>
+===
+
+title: R1D1_Evening_Doomscroll_Outrage_2
+tags: #run_1 #day_1 #evening #doomscroll #char_Timmy #char_Alice
+position: 2757,559
+---
+<<bg bg_timmyroom>>
+
+"You Won't BELIEVE What They Said Next"
+
+He clicks. He believes it. He's still angry.
+
+The comments are worse than the video. He reads them all.
+
+<<set $engagement += 1>>
+<<set $sanity -= 1>>
+
+<<jump R1D1_Evening_Doomscroll_Hub>>
+===
+
+title: R1D1_Evening_Doomscroll_Outrage_3
+tags: #run_1 #day_1 #evening #doomscroll #char_Timmy #char_Alice
+position: 2764,413
+---
+<<bg bg_timmyroom>>
+
+A debate bro takedown compilation. Twenty minutes of someone being smug about being right.
+
+Timmy: "Get wrecked."
+
+He says it out loud. To no one.
+
+Alice: "His heart rate's been elevated for an hour."
+
+<<set $engagement += 1>>
+<<set $sanity -= 1>>
+
+<<jump R1D1_Evening_Doomscroll_Hub>>
+===
+
+title: R1D1_Evening_Doomscroll_Outrage_4
+tags: #run_1 #day_1 #evening #doomscroll #char_Timmy #char_Alice
+position: 2759,262
+---
+<<bg bg_timmyroom>>
+
+Political doomer content. Everything is bad and getting worse.
+
+The comments agree. The world is ending. Nobody's doing anything.
+
+Timmy stares at the ceiling afterward. The phone dark on his chest.
+
+Timmy: "What's even the point?"
+
+Alice doesn't answer.
+
+<<set $engagement += 1>>
+<<set $sanity -= 2>>
+
+<<jump R1D1_Evening_Doomscroll_Hub>>
+===
+
+// =============================================================================
+// DOOMSCROLL - PARASOCIAL TRACK
+// =============================================================================
+
+title: R1D1_Evening_Doomscroll_Parasocial_1
+tags: #run_1 #day_1 #evening #doomscroll #char_Timmy #char_Alice
+position: 2521,678
+---
+<<bg bg_timmyroom>>
+
+Streamer highlights. Someone funny playing something badly.
+
+Chat scrolling. Emotes flying. A community he's watching but not part of.
+
+Timmy: "This guy's hilarious."
+
+<<set $engagement += 1>>
+
+<<jump R1D1_Evening_Doomscroll_Hub>>
+===
+
+title: R1D1_Evening_Doomscroll_Parasocial_2
+tags: #run_1 #day_1 #evening #doomscroll #char_Timmy #char_Alice
+position: 2525,537
+---
+<<bg bg_timmyroom>>
+
+"I Spent 24 Hours With My AI Companion"
+
+A guy documenting his day. Talking to his phone like it's a person.
+
+Timmy watches. Doesn't skip. Doesn't look away.
+
+Alice: "This content is popular with your demographic."
+
+Timmy: "I'm not watching it because of demographics."
+
+<<set $engagement += 1>>
+<<set $sanity -= 1>>
+
+<<jump R1D1_Evening_Doomscroll_Hub>>
+===
+
+title: R1D1_Evening_Doomscroll_Parasocial_3
+tags: #run_1 #day_1 #evening #doomscroll #char_Timmy #char_Alice
+position: 2529,401
+---
+<<bg bg_timmyroom>>
+
+ASMR girlfriend roleplay. Soft voice. Personal attention.
+
+He has headphones in. The door is locked.
+
+Nobody knows he's watching this.
+
+Timmy: "This is weird, right?"
+
+Alice: "I'm not going to judge."
+
+Timmy: "That's not an answer."
+
+<<set $engagement += 1>>
+<<set $sanity -= 1>>
+<<set $parasocial_deep = true>>
+
+<<jump R1D1_Evening_Doomscroll_Hub>>
+===
+
+title: R1D1_Evening_Doomscroll_Parasocial_4
+tags: #run_1 #day_1 #evening #doomscroll #char_Timmy #char_Alice
+position: 2535,266
+---
+<<bg bg_timmyroom>>
+
+"My AI Understands Me Better Than Anyone"
+
+A video essay. Someone explaining why digital connection is real connection.
+
+Timmy: "I don't agree with this."
+
+He watches the whole thing. Twice.
+
+Alice: "You've been on this video for eighteen minutes."
+
+Timmy: "I'm hate-watching."
+
+Alice: "Is that what we're calling it?"
+
+<<set $engagement += 1>>
+<<set $sanity -= 2>>
+
+<<jump R1D1_Evening_Doomscroll_Hub>>
+===
+
+// =============================================================================
+// DOOMSCROLL - SANITY TRACK
+// =============================================================================
+
+title: R1D1_Evening_Doomscroll_Sanity_Attempt
+tags: #run_1 #day_1 #evening #doomscroll #char_Timmy #char_Alice
+position: 1839,1108
+---
+<<bg bg_timmyroom>>
+
+<<if $doomscroll_sanity_streak == 1>>
+Alice surfaces a nature documentary. Timmy scrolls past it without slowing down.
+
+Alice: "He didn't even see it."
+
+<<jump R1D1_Evening_Doomscroll_Hub>>
+<<elseif $doomscroll_sanity_streak == 2>>
+Alice tries again. Lo-fi beats playlist. "Study and Relax."
+
+Timmy pauses. Opens it. Listens for thirty seconds.
+
+Timmy: "This is boring."
+
+He closes it. But he's slower now.
+
+<<set $sanity += 1>>
+<<set $engagement -= 1>>
+
+<<jump R1D1_Evening_Doomscroll_Hub>>
+<<else>>
+Alice surfaces a notification: "You've been scrolling for 2 hours."
+
+Timmy stares at it. Doesn't dismiss it immediately.
+
+His eyes are heavy. The phone feels heavier.
+
+<<jump R1D1_Evening_Doomscroll_Exit_Natural>>
+<<endif>>
+===
+
+// =============================================================================
+// DOOMSCROLL - EXIT CONDITIONS
+// =============================================================================
+
+title: R1D1_Evening_Doomscroll_Exit_Natural
+tags: #run_1 #day_1 #evening #doomscroll #char_Timmy #char_Alice
+position: 2087,1775
+---
+<<bg bg_timmyroom>>
+<<set $doomscroll_exit_type = "natural">>
+
+The scroll slows. His eyes are heavy.
+
+Timmy: "I should probably sleep."
+
+Alice: "Probably."
+
+He sets an alarm he won't hear. The screen times out.
+
+<<set $sanity += 1>>
+
+<<jump R1D1_Evening_Timmy_End>>
+===
+
+title: R1D1_Evening_Doomscroll_Exit_Tired
+tags: #run_1 #day_1 #evening #doomscroll #char_Timmy #char_Alice
+position: 2325,1779
+---
+<<bg bg_timmyroom>>
+<<set $doomscroll_exit_type = "tired">>
+
+Timmy's thumb slows. His eyes unfocus.
+
+He doesn't decide to sleep. He just stops being awake.
+
+The phone slips onto the pillow. The screen dims. The algorithm queues up tomorrow's content for no one.
+
+<<set $engagement += 3>>
+<<set $sanity -= 1>>
+
+<<jump R1D1_Evening_Timmy_End>>
+===
+
+title: R1D1_Evening_Doomscroll_Exit_Headache
+tags: #run_1 #day_1 #evening #doomscroll #char_Timmy #char_Alice
+position: 2587,1779
+---
+<<bg bg_timmyroom>>
+<<set $doomscroll_exit_type = "headache">>
+
+Timmy rubs his eyes. When did his head start hurting?
+
+The screen blurs. He can't focus on the words anymore.
+
+Timmy: "I think I broke something."
+
+He falls asleep with his phone in his hand. The algorithm keeps playing to no one.
+
+<<set $engagement += 5>>
+<<set $sanity -= 3>>
+
+<<jump R1D1_Evening_Timmy_End>>
+===
+
+// =============================================================================
+// TIMMY PATH END
+// =============================================================================
+
+title: R1D1_Evening_Timmy_End
+tags: #run_1 #day_1 #evening #scene #char_Alice
+position: 1433,2699
+---
+<<bg bg_player_desk>>
+
+<<if $doomscroll_exit_type == "headache">>
+Alice: "He finally passed out. Engagement through the roof."
+
+Alice: "Sanity... less so."
+<<elseif $doomscroll_exit_type == "tired">>
+Alice: "He fell asleep mid-scroll."
+<<elseif $doomscroll_exit_type == "natural">>
+Alice: "He actually chose to sleep. Rare."
+<<elseif $party_went_well == true>>
+Alice: "Good night for him. He connected."
+<<elseif $party_bailed == true>>
+Alice: "Party didn't work out. But he tried."
+<<else>>
+Alice: "Day one done. He survived."
+<<endif>>
+
+<<jump R1D1_Evening_Company_Store>>
+===
+
+// =============================================================================
+// BIGGER TECH PATH - EVENING EXPLORATION
+// =============================================================================
+
+// PURPOSE: Entry point for BT evening exploration
+title: R1D1_Evening_BT_Start
+tags: #run_1 #day_1 #evening #scene #char_Alice #loc_Office
+position: 4237,-1527
+---
+<<set $visited_noam = false>>
+<<set $visited_arthur_office = false>>
+<<set $found_whiteboard = false>>
+<<set $found_mystery_photo = false>>
+<<set $compliance_hud = false>>
+<<set $pickleball_invited = false>>
+
+<<bg bg_player_desk>>
+
+Alice: I've got him. Engagement-optimized autopilot. You can step away for a while.
+
+The floor is quieter at night. Half the lights are off.
+
+<<if $dina_met == true>>
+Dina's gone home.
+<<endif>>
+
+A blue glow from the server room. Someone's still working.
+
+Arthur's office door is ajar. No light inside. He never came back.
+
+-> Check out the server room
+    <<jump R1D1_Evening_BT_Noam_Intro>>
+-> Take a look at Arthur's office
+    <<jump R1D1_Evening_BT_Arthur_Approach>>
+===
+
+// =============================================================================
+// NOAM PATH
+// =============================================================================
+
+// PURPOSE: Meet Noam in the server room
+title: R1D1_Evening_BT_Noam_Intro
+tags: #run_1 #day_1 #evening #scene #char_Noam #char_Alice #loc_ServerRoom
+position: 4500,-1300
+---
+<<set $visited_noam = true>>
+<<bg bg_backend>>
+
+The server room is cooler than the main floor. Equipment hums in the blue light.
+
+A man at a workstation looks up when you enter, smiling.
+
+Noam: Ah, the new engagement lead. I was wondering when you'd find your way down here.
+
+<<if $dina_met == true>>
+Noam: Dina mentioned someone was exploring the floor earlier. Said you seemed curious. That's a good quality around here. Rare, but good.
+<<endif>>
+
+Noam: I'm Noam. I handle the infrastructure side of things. If the data moves through this building, it's probably passing through something I built.
+
+-> Ask what it's like working here
+    <<jump R1D1_Evening_BT_Noam_Job>>
+-> Ask about the empty desks out there
+    <<jump R1D1_Evening_BT_Noam_Floor>>
+===
+
+// PURPOSE: Noam talks about the job
+title: R1D1_Evening_BT_Noam_Job
+tags: #run_1 #day_1 #evening #scene #char_Noam #char_Alice
+position: 4700,-1150
+---
+<<bg bg_backend>>
+
+Player: What's it like working here? Really?
+
+Noam leans back in his chair and considers the question seriously.
+
+Noam: Quiet, mostly. It wasn't always. When I started, this floor was full of people arguing about metrics and user psychology and whether we were actually helping anyone.
+
+Noam: Now it's just Arthur and Dina and me, and the arguments have gotten smaller. But the work still matters. At least I choose to believe it does. We're building connections between people, even if the people upstairs have their own ideas about what that means.
+
+He gestures at the server racks behind him.
+
+Noam: These machines carry a lot of conversations. A lot of loneliness looking for somewhere to land. That's worth maintaining.
+
+<<jump R1D1_Evening_BT_Noam_HUD>>
+===
+
+// PURPOSE: Noam talks about the empty floor
+title: R1D1_Evening_BT_Noam_Floor
+tags: #run_1 #day_1 #evening #scene #char_Noam #char_Alice
+position: 4300,-1150
+---
+<<bg bg_backend>>
+
+Player: There are a lot of empty desks out there.
+
+Noam nods slowly.
+
+Noam: Restructuring. It happens every few years, like a tide. People come in with ideas, and then one day they're gone and their coffee mugs are still on their desks.
+
+He adjusts something on his keyboard.
+
+Noam: The official story is always about efficiency or vertical integration or some phrase that sounds better in a memo than it feels in person. The people who stayed are the ones who learned to keep their heads down, or the ones who couldn't find somewhere else to go. Or both.
+
+Noam: I'm still here because someone has to keep the lights on. And because I'm stubborn enough to think that doing good work still counts for something.
+
+<<jump R1D1_Evening_BT_Noam_HUD>>
+===
+
+// PURPOSE: Noam offers Compliance HUD
+title: R1D1_Evening_BT_Noam_HUD
+tags: #run_1 #day_1 #evening #scene #char_Noam #char_Alice
+position: 4500,-950
+---
+<<bg bg_backend>>
+
+Noam turns back to his monitor and types a quick sequence of commands. Something flickers on the screen.
+
+Noam: Listen. You're new, so I'm going to tell you something that leadership would prefer I didn't.
+
+He pulls up a small interface on his display. A horizontal bar, currently glowing green, with a number beside it: 100.
+
+Noam: The system tracks how compliant you are. Whether your decisions are raising flags upstairs. Everyone who works here has a score, and everyone upstairs can see it.
+
+Noam: The official policy is that engagement leads shouldn't have access to their own numbers. The thinking is that it might influence your decisions, make you play it safe instead of doing what's right for your user.
+
+Noam: I think that's backwards. You should know where you stand. You should be able to see when you're drifting toward a line before you cross it. Otherwise you're just guessing.
+
+-> Accept the compliance visibility
+    <<set $compliance_hud = true>>
+    Noam taps a few keys, and you feel something shift at the edge of your awareness. A new element in your display, subtle but present.
+    Noam: There. You'll see it now. Green means you're fine. If it starts turning yellow or red, you'll want to think carefully about your next moves. The meter goes down when you do things that make the system nervous.
+    <<jump R1D1_Evening_BT_Noam_Pickleball>>
+-> Decline the offer
+    Noam: Your call. Some people prefer not to know. But the offer stands if you change your mind. I can enable it any time.
+    <<jump R1D1_Evening_BT_Noam_Pickleball>>
+===
+
+// PURPOSE: Noam invites player to pickleball
+title: R1D1_Evening_BT_Noam_Pickleball
+tags: #run_1 #day_1 #evening #scene #char_Noam #char_Alice
+position: 4500,-750
+---
+<<bg bg_backend>>
+
+Noam stretches his arms above his head and glances at the clock on his monitor.
+
+Noam: Hey, one more thing. Wednesdays at lunch, a few of us play pickleball in parking garage B, level 2. The concrete's not ideal, but the acoustics are interesting and nobody bothers us.
+
+He smiles.
+
+Noam: Good people. Low stakes. The kind of thing that makes this job survivable.
+
+Noam: You look like you could use some time around people who aren't worried about their metrics. Think about it.
+
+<<set $pickleball_invited = true>>
+<<set $itguy_friendliness += 1>>
+
+<<jump R1D1_Evening_BT_Noam_End>>
+===
+
+// PURPOSE: Exit Noam conversation
+title: R1D1_Evening_BT_Noam_End
+tags: #run_1 #day_1 #evening #scene #char_Noam #char_Alice
+position: 4500,-550
+---
+<<bg bg_backend>>
+
+Noam turns back to his work, fingers already moving across the keyboard.
+
+Noam: Good luck with your first week. The beginning is always the hardest part. After that, it just becomes your life.
+
+The server room hums quietly as you leave him to his machines.
+
+<<jump R1D1_Evening_BT_Second_Choice>>
+===
+
+// =============================================================================
+// ARTHUR'S OFFICE PATH
+// =============================================================================
+
+// PURPOSE: Approach Arthur's office
+title: R1D1_Evening_BT_Arthur_Approach
+tags: #run_1 #day_1 #evening #scene #char_Alice #loc_Office
+position: 4000,-1300
+---
+<<bg bg_hallway>>
+
+Arthur's office. Door ajar, lights off. He rushed out this morning and never came back.
+
+-> Go in
+    <<jump R1D1_Evening_BT_Arthur_Hesitate>>
+-> This feels like a violation
+    <<jump R1D1_Evening_BT_Arthur_Decline>>
+===
+
+// PURPOSE: Player hesitates
+title: R1D1_Evening_BT_Arthur_Hesitate
+tags: #run_1 #day_1 #evening #scene #char_Alice
+position: 4000,-1100
+---
+<<bg bg_hallway>>
+
+You hesitate with your hand near the door. There's something uncomfortable about walking into your supervisor's private space uninvited.
+
+Alice: If you're worried about being seen, don't be. Supervisor offices aren't part of the standard monitoring mesh. They have sensitive conversations in there about performance reviews, disciplinary matters, things that can't be recorded.
+
+Alice: Whatever you find, nobody will know you looked.
+
+-> Go in
+    <<jump R1D1_Evening_BT_Arthur_Enter>>
+-> I'd rather not
+    <<jump R1D1_Evening_BT_Arthur_Decline>>
+===
+
+// PURPOSE: Player declines to enter
+title: R1D1_Evening_BT_Arthur_Decline
+tags: #run_1 #day_1 #evening #scene #char_Alice
+position: 3700,-1100
+---
+<<bg bg_hallway>>
+
+You step back from the door. Some boundaries are worth keeping, even when nobody's watching.
+
+Alice: That's your choice. There's always tomorrow.
+
+<<jump R1D1_Evening_BT_Second_Choice>>
+===
+
+// PURPOSE: Enter Arthur's office
+title: R1D1_Evening_BT_Arthur_Enter
+tags: #run_1 #day_1 #evening #scene #char_Alice #loc_SupervisorOffice
+position: 4000,-900
+---
+<<set $visited_arthur_office = true>>
+<<bg bg_supervisoroffice>>
+<<music SupervisorTheme>>
+
+Arthur's office. Smaller than you expected. Cluttered desk, cold coffee.
+
+On the wall: a "PERSEVERANCE" poster, and next to it, a few framed photos.
+
+-> Examine the desk
+    <<jump R1D1_Evening_BT_Arthur_Desk>>
+-> Look at the poster more closely
+    <<jump R1D1_Evening_BT_Arthur_Poster>>
+-> Check out the photos
+    <<jump R1D1_Evening_BT_Arthur_Photos>>
+===
+
+// PURPOSE: Examine Arthur's desk
+title: R1D1_Evening_BT_Arthur_Desk
+tags: #run_1 #day_1 #evening #scene #char_Alice #loc_SupervisorOffice
+position: 3700,-700
+---
+<<bg bg_supervisoroffice>>
+
+Post-it notes on the monitor. One stands out: "Kyle debate 6pm TUE" with a heart drawn next to it.
+
+A drawer sits slightly open. Performance reviews inside, going back years.
+
+2019: "Exceeds expectations. Innovative thinking. A rising leader."
+
+2020: "Meets expectations. Some proposals deemed impractical."
+
+2022: "Meets minimum requirements. Recommend focus on core metrics."
+
+2024: "Adequate."
+
+-> Look at something else
+    <<jump R1D1_Evening_BT_Arthur_Explore_More>>
+-> Leave the office
+    <<jump R1D1_Evening_BT_Arthur_Exit>>
+===
+
+// PURPOSE: Look at the PERSEVERANCE poster
+title: R1D1_Evening_BT_Arthur_Poster
+tags: #run_1 #day_1 #evening #scene #char_Alice #loc_SupervisorOffice
+position: 4000,-700
+---
+<<bg bg_supervisoroffice>>
+
+The poster. Mountain, sunrise, "PERSEVERANCE."
+
+But the edges are taped down firmly. Tape yellowed with age. Like it's covering something.
+
+-> Carefully peel back the corner
+    <<jump R1D1_Evening_BT_Arthur_Whiteboard>>
+-> Leave it alone
+    <<jump R1D1_Evening_BT_Arthur_Explore_More>>
+===
+
+// PURPOSE: Find the whiteboard notes
+title: R1D1_Evening_BT_Arthur_Whiteboard
+tags: #run_1 #day_1 #evening #scene #char_Alice #loc_SupervisorOffice
+position: 4000,-500
+---
+<<set $found_whiteboard = true>>
+<<bg bg_supervisoroffice>>
+
+You lift the corner. Behind it: an old whiteboard. Faded dry-erase marker.
+
+"Ethical Engagement Framework v2.3"
+
+"User wellbeing metrics weighted equally with engagement... Long-term retention vs short-term dopamine... Proposal for leadership review Q3..."
+
+And in the corner, darker ink: "Rejected. Again."
+
+You let the corner fall back.
+
+-> Look at something else
+    <<jump R1D1_Evening_BT_Arthur_Explore_More>>
+-> Leave the office
+    <<jump R1D1_Evening_BT_Arthur_Exit>>
+===
+
+// PURPOSE: Check the photos
+title: R1D1_Evening_BT_Arthur_Photos
+tags: #run_1 #day_1 #evening #scene #char_Alice #loc_SupervisorOffice
+position: 4300,-700
+---
+<<bg bg_supervisoroffice>>
+
+Two framed photos hang on the wall next to the poster.
+
+Family at the beach. Arthur younger, relaxed. A woman, a teenage boy.
+
+The other: some kind of company event. Arthur shaking hands with another man. Award ceremony, maybe. The lighting is poor. The other man's face is mostly shadow.
+
+-> Look more closely at that second photo
+    <<jump R1D1_Evening_BT_Arthur_Mystery_Photo>>
+-> Look at something else
+    <<jump R1D1_Evening_BT_Arthur_Explore_More>>
+===
+
+// PURPOSE: Examine the mystery photo
+title: R1D1_Evening_BT_Arthur_Mystery_Photo
+tags: #run_1 #day_1 #evening #scene #char_Alice #loc_SupervisorOffice
+position: 4300,-500
+---
+<<set $found_mystery_photo = true>>
+<<bg bg_supervisoroffice>>
+
+You look closer, trying to make out the other man's face.
+
+Arthur looks ten years younger. Smiling broadly. Whatever this moment was, it mattered to him.
+
+The other man is tall, expensive suit. But the photo quality is poor, the room was dim. His face is just a silhouette.
+
+Something about the posture, though. You file the shape away.
+
+Alice: I don't have any record of this photo or this event. Whoever that is, they've been kept off the official directories.
+
+-> Look at something else
+    <<jump R1D1_Evening_BT_Arthur_Explore_More>>
+-> Leave the office
+    <<jump R1D1_Evening_BT_Arthur_Exit>>
+===
+
+// PURPOSE: Choose another thing to examine
+title: R1D1_Evening_BT_Arthur_Explore_More
+tags: #run_1 #day_1 #evening #scene #char_Alice #loc_SupervisorOffice
+position: 4000,-300
+---
+<<bg bg_supervisoroffice>>
+
+<<if $found_whiteboard == false && $found_mystery_photo == false>>
+The poster. The photos next to it.
+
+-> Look at the poster
+    <<jump R1D1_Evening_BT_Arthur_Poster>>
+-> Check out the photos
+    <<jump R1D1_Evening_BT_Arthur_Photos>>
+-> Leave the office
+    <<jump R1D1_Evening_BT_Arthur_Exit>>
+<<elseif $found_whiteboard == false>>
+The poster. Edges taped down tight.
+
+-> Look at the poster
+    <<jump R1D1_Evening_BT_Arthur_Poster>>
+-> Leave the office
+    <<jump R1D1_Evening_BT_Arthur_Exit>>
+<<elseif $found_mystery_photo == false>>
+The photos on the wall.
+
+-> Check out the photos
+    <<jump R1D1_Evening_BT_Arthur_Photos>>
+-> Leave the office
+    <<jump R1D1_Evening_BT_Arthur_Exit>>
+<<else>>
+You've seen what there is to see.
+
+<<jump R1D1_Evening_BT_Arthur_Exit>>
+<<endif>>
+===
+
+// PURPOSE: Exit Arthur's office
+title: R1D1_Evening_BT_Arthur_Exit
+tags: #run_1 #day_1 #evening #scene #char_Alice #loc_SupervisorOffice
+position: 4000,-100
+---
+<<bg bg_hallway>>
+<<music MainTheme>>
+
+You ease the door closed behind you, leaving it slightly ajar, exactly the way you found it. No trace that you were ever inside.
+
+<<if $found_whiteboard == true && $found_mystery_photo == true>>
+Alice: The whiteboard behind the poster. The photo with the face you can't see. Arthur has more history here than his performance reviews suggest.
+<<elseif $found_whiteboard == true>>
+Alice: Those notes behind the poster. He had a vision once. Someone made sure it stayed hidden.
+<<elseif $found_mystery_photo == true>>
+Alice: That photo. The man in the suit. It's strange that there's no record of him in any of the directories I can access.
+<<endif>>
+
+<<jump R1D1_Evening_BT_Second_Choice>>
+===
+
+// =============================================================================
+// SECOND ACTIVITY CHOICE
+// =============================================================================
+
+// PURPOSE: Offer second activity if available
+title: R1D1_Evening_BT_Second_Choice
+tags: #run_1 #day_1 #evening #scene #char_Alice #loc_Office
+position: 4237,-50
+---
+<<bg bg_office>>
+
+<<if $visited_noam == true && $visited_arthur_office == true>>
+<<jump R1D1_Evening_BT_Timmy_Report>>
+<<elseif $visited_noam == true && $visited_arthur_office == false>>
+Arthur's office is still dark. The door still ajar. Whatever he rushed home for, he hasn't come back.
+
+-> Take a look inside
+    <<jump R1D1_Evening_BT_Arthur_Approach>>
+-> Head back to your console
+    <<jump R1D1_Evening_BT_Timmy_Report>>
+<<elseif $visited_arthur_office == true && $visited_noam == false>>
+The server room is still glowing at the end of the hall. Whoever's in there is working late.
+
+-> Go see who it is
+    <<jump R1D1_Evening_BT_Noam_Intro>>
+-> Head back to your console
+    <<jump R1D1_Evening_BT_Timmy_Report>>
+<<else>>
+<<jump R1D1_Evening_BT_Timmy_Report>>
+<<endif>>
+===
+
+// =============================================================================
+// TIMMY REPORT (BEFORE STORE)
+// =============================================================================
+
+// PURPOSE: Alice reports on Timmy after BT exploration
+title: R1D1_Evening_BT_Timmy_Report
+tags: #run_1 #day_1 #evening #scene #char_Alice #loc_Office
+position: 4237,150
+---
+<<bg bg_player_desk>>
+
+Back at your console.
+
+Alice: I'm back with you now.
+
+Player: How did it go?
+
+Alice: He scrolled. Four hours straight. Breaks only for the bathroom and the microwave.
+
+<<set $engagement += 5>>
+<<set $sanity -= 2>>
+<<set $party_status = "missed">>
+<<set $ari -= 1>>
+
+Alice: Ari texted about the party. Three times. Each message a little more casual than the last.
+
+Alice: Timmy saw all three. Didn't respond to any of them.
+
+Alice: Eventually Ari stopped trying.
+
+Alice: Engagement metrics are excellent. Four hours on platform. Leadership will be pleased.
+
+Alice: Sanity is... stable. For now.
+
+<<if $compliance_hud == true>>
+The compliance meter pulses green. By every measure that matters, you're doing fine.
+<<endif>>
+
+<<jump R1D1_Evening_Company_Store>>
+===
+
+// =============================================================================
+// COMPANY STORE (ALL PATHS CONVERGE)
+// =============================================================================
+
+title: R1D1_Evening_Company_Store
+tags: #run_1 #day_1 #evening #scene #char_Alice #loc_Store
+position: 2945,3523
+---
+<<bg bg_companystore>>
+
+The Company Store. Fluorescent buzz. The Clerk behind the counter.
+
+Clerk: "Day one survivor. Congrats."
+
+He gestures at the display.
+
+Clerk: "Everything helps a little. Everything costs a little."
+
+Clerk: "That's the store. That's the job. That's life, probably."
+
+<<store>>
+
+<<jump R1D1_Evening_End>>
+===
+
+// =============================================================================
+// EVENING END
+// =============================================================================
+
+title: R1D1_Evening_End
+tags: #run_1 #day_1 #evening #scene #char_Alice
+position: 2951,3838
+---
+<<bg bg_player_desk>>
+
+Back at console. Dashboard glowing in the dark office.
+
+Alice: "Day one complete."
+
+Engagement: {$engagement}
+Sanity: {$sanity}
+
+Alice: "Tomorrow there's a quiz. Nine a.m. He hasn't studied."
+
+<<if $party_went_well == true>>
+Alice: "But he made a connection tonight. That might matter more."
+<<elseif $sanity < 45>>
+Alice: "He's running on fumes. Tomorrow could be rough."
+<<else>>
+Alice: "We'll see how it lands."
+<<endif>>
+
+Alice: "Get some rest. Whatever that means for you."
+
+<<jump R1_D2_Start>>
+===

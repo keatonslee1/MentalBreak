@@ -20,8 +20,8 @@ A/V:    none #line:0e4485f
 <<declare $leaderboard_rank = 999>>
 <<declare $alert_level = 0>>
 
-// Rapid‑feedback cash for Company Store purchases.  Starts at zero.
-<<declare $rapid_feedback_cash = 0>>
+// Rapid‑feedback cash for Company Store purchases.  Starts at 15.
+<<declare $rapid_feedback_cash = 15>>
 
 // Relationship meters (−100..+100).  Track trust toward Alice, Timmy, and the Supervisor.
 <<declare $trust_alice = 0>>
@@ -65,9 +65,77 @@ A/V:    none #line:0e4485f
 <<declare $sanity_bucket = "mid">> // "good" | "mid" | "bad"
 <<declare $fronting_ignored_alice = false>> // special case: Fronting + Discourage
 <<declare $noam_met = false>> // whether player met Noam in Day 2
-<<declare $suspicion_hud_active = false>> // whether player can see the suspicion meter (granted by Noam)
+<<declare $compliance_hud = false>> // whether player can see the compliance meter (granted by Noam)
 
-// Run 1 persistence flags (used by Run 2 for “first vs second meeting” variants)
+// =============================================================================
+// RUN 1 DAY 1 (December Rewrite): Expanded branching variables
+// =============================================================================
+// Relationship meters for R1D1 characters
+<<declare $ari = 0>>
+<<declare $eric = 0>>
+<<declare $mom = 0>>
+<<declare $martin = 0>>
+<<declare $charlotte = 0>>
+<<declare $alice_bond = 0>>
+
+// Charlotte tracking
+<<declare $charlotte_aware = 0>>
+<<declare $charlotte_obsession = 0>>
+<<declare $charlotte_contact = 0>>
+<<declare $charlotte_party_sighting = false>>
+
+// Party state
+<<declare $party_status = "none">> // "none" | "committed" | "maybe" | "considering" | "unlikely" | "missed"
+<<declare $party_went_well = false>>
+<<declare $party_bailed = false>>
+<<declare $party_arrived_late = false>>
+
+// Morning state
+<<declare $made_class = false>>
+<<declare $mom_call_morning = false>>
+<<declare $guilt = false>>
+<<declare $shame = false>>
+<<declare $academic = 0>>
+
+// Afternoon state
+<<declare $afternoon_path = "unset">> // "bigger_tech" | "cafeteria" | "gaming" | "unset"
+<<declare $ai_normalized = false>>
+<<declare $eric_honesty = false>>
+<<declare $alice_conversation = false>>
+<<declare $timmy_autopilot = false>>
+<<declare $david_mentioned = false>>
+<<declare $minesweeper_noticed = false>>
+<<declare $dina_met = false>> // did you meet Dina this session (vs $r1_dina_met for persistence)
+
+// Evening state
+<<declare $tried_dancing = false>>
+<<declare $upstairs_horror = false>>
+<<declare $visited_basement = false>>
+<<declare $visited_upstairs = false>>
+<<declare $doomscroll_exit_type = "none">> // "none" | "natural" | "tired" | "headache"
+<<declare $visited_noam = false>>
+<<declare $visited_arthur_office = false>>
+<<declare $found_whiteboard = false>>
+<<declare $found_mystery_photo = false>>
+<<declare $pickleball_invited = false>>
+
+// Doomscroll tracking
+<<declare $doomscroll_round = 0>>
+<<declare $doomscroll_sanity_streak = 0>>
+<<declare $doomscroll_engagement_picks = 0>>
+<<declare $doomscroll_sanity_picks = 0>>
+<<declare $doomscroll_conspiracy_used = 0>>
+<<declare $doomscroll_outrage_used = 0>>
+<<declare $doomscroll_parasocial_used = 0>>
+<<declare $conspiracy_exposure = false>>
+<<declare $parasocial_deep = false>>
+
+// Additional store items
+<<declare $item_bluelight = false>>
+<<declare $item_notif_delay = false>>
+<<declare $item_firewood = false>>
+
+// Run 1 persistence flags (used by Run 2 for "first vs second meeting" variants)
 <<declare $r1_noam_met = false>>
 <<declare $r1_dina_met = false>>
 
@@ -271,7 +339,57 @@ A/V:    resets UI to normal. #line:03b5803
 <<set $sanity_bucket = "mid">>
 <<set $fronting_ignored_alice = false>>
 <<set $noam_met = false>>
-<<set $suspicion_hud_active = false>>
+<<set $compliance_hud = false>>
+// Run 1 Day 1 (December Rewrite) resets
+<<set $ari = 0>>
+<<set $eric = 0>>
+<<set $mom = 0>>
+<<set $martin = 0>>
+<<set $charlotte = 0>>
+<<set $alice_bond = 0>>
+<<set $charlotte_aware = 0>>
+<<set $charlotte_obsession = 0>>
+<<set $charlotte_contact = 0>>
+<<set $charlotte_party_sighting = false>>
+<<set $party_status = "none">>
+<<set $party_went_well = false>>
+<<set $party_bailed = false>>
+<<set $party_arrived_late = false>>
+<<set $made_class = false>>
+<<set $mom_call_morning = false>>
+<<set $guilt = false>>
+<<set $shame = false>>
+<<set $academic = 0>>
+<<set $afternoon_path = "unset">>
+<<set $ai_normalized = false>>
+<<set $eric_honesty = false>>
+<<set $alice_conversation = false>>
+<<set $timmy_autopilot = false>>
+<<set $david_mentioned = false>>
+<<set $minesweeper_noticed = false>>
+<<set $dina_met = false>>
+<<set $tried_dancing = false>>
+<<set $upstairs_horror = false>>
+<<set $visited_basement = false>>
+<<set $visited_upstairs = false>>
+<<set $doomscroll_exit_type = "none">>
+<<set $visited_noam = false>>
+<<set $visited_arthur_office = false>>
+<<set $found_whiteboard = false>>
+<<set $found_mystery_photo = false>>
+<<set $pickleball_invited = false>>
+<<set $doomscroll_round = 0>>
+<<set $doomscroll_sanity_streak = 0>>
+<<set $doomscroll_engagement_picks = 0>>
+<<set $doomscroll_sanity_picks = 0>>
+<<set $doomscroll_conspiracy_used = 0>>
+<<set $doomscroll_outrage_used = 0>>
+<<set $doomscroll_parasocial_used = 0>>
+<<set $conspiracy_exposure = false>>
+<<set $parasocial_deep = false>>
+<<set $item_bluelight = false>>
+<<set $item_notif_delay = false>>
+<<set $item_firewood = false>>
 // Note: $run1_ending is preserved across runs for Run 2 callbacks.
 // Run 2 day-planner flags.
 // NOTE: Run 1 persistence flags ($r1_noam_met, $r1_dina_met) and the Run 2->Run 3 bridge flag

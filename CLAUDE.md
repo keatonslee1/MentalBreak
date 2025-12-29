@@ -144,104 +144,34 @@ Located in `Assets/Dialogue/`, numbered by content:
 
 Node naming: `R{run}_{context}` (e.g., `R1_Start`, `R2_Day1_Morning`)
 
-## FMOD Audio System
+## Audio System
 
-**Banks** (in `StreamingAssets/`):
-- `Master.bank` + `Master.strings.bank` (required)
-- `Music_A_Side.bank` - Nela's soundtrack (Side A)
-- `Music_B_Side.bank` - Franco's soundtrack (Side B)
+See `docs/audio_guide.md` for comprehensive audio documentation including FMOD setup, theme mapping, WebGL troubleshooting, and usage examples.
 
-### Side A Events (Nela)
-All use `EndFade` parameter (0=play, 1=fade out):
-- `ASIDE_MainTheme`
-- `ASIDE_AliceTheme`
-- `ASIDE_Supervisor`
+### Quick Reference
+```yarn
+<<music MainTheme>>           // Play theme (auto-selects Side A/B)
+<<music AliceTheme>>          // Alice's theme
+<<music SupervisorTheme>>     // Arthur's theme
+<<music_stop>>                // Stop with proper fade
+<<bgm key>>                   // Legacy background music
+<<sfx key>>                   // Sound effects
+```
 
-### Side B Events (Franco)
-Use `LoopChange` + ending parameters:
-
-| Event | LoopChange | Ending |
-|-------|------------|--------|
-| `BSIDE_MainTheme` | LoopA/B only | EndSection (closing section) |
-| `BSIDE_AliceTheme` | LoopA/B only | EndSection (closing section) |
-| `BSIDE_ArthurTheme` | LoopA/B/C/D | EndFade (fade out) |
-
-### Soundtrack Side Selection
-- **Default**: Side A (Nela's Score)
-- **Player toggle**: Settings in pause menu ("Nela's Score" / "Franco's Score")
-- **Storage**: PlayerPrefs key `SoundtrackSide` ("A" or "B")
+### Key Files
+| File | Location | Purpose |
+|------|----------|---------|
+| `FMODAudioManager.cs` | `Scripts/Audio/` | Main FMOD manager, Yarn commands |
+| `FMODWebGLBankLoader.cs` | `Scripts/Audio/` | WebGL bank loader |
+| `AudioCommandHandler.cs` | `Scripts/Audio/` | Legacy bgm/sfx commands |
+| `FMODCacheFixer.cs` | `Scripts/Editor/` | Editor script for cache bugs |
 
 ### Theme Mapping
-| Theme Name | Side A Event | Side B Event |
-|------------|--------------|--------------|
+| Theme | Side A (Nela) | Side B (Franco) |
+|-------|---------------|-----------------|
 | MainTheme | ASIDE_MainTheme | BSIDE_MainTheme |
 | AliceTheme | ASIDE_AliceTheme | BSIDE_AliceTheme |
 | SupervisorTheme | ASIDE_Supervisor | BSIDE_ArthurTheme |
-
-### Usage in Yarn (Recommended)
-```yarn
-<<music MainTheme>>                // Auto-selects A or B based on player setting
-<<music AliceTheme>>               // Same - uses current side preference
-<<music SupervisorTheme 1>>        // Start at LoopB (Side B only)
-<<fmod_loop LoopB>>                // Switch to LoopB
-<<music_stop>>                     // Stop with proper ending
-<<music_stop true>>                // Stop immediately
-```
-
-### Direct FMOD Access (Advanced)
-```yarn
-<<fmod ASIDE_MainTheme>>           // Force specific side
-<<fmod BSIDE_ArthurTheme 2>>       // Start at LoopC (0=A,1=B,2=C,3=D)
-<<fmod_param EndFade 1>>           // Manual parameter control
-```
-
-### FMOD WebGL Setup
-
-FMOD requires special handling for WebGL builds due to async bank loading.
-
-**Key Components** (in `Scripts/Audio/`):
-
-| File | Purpose |
-|------|---------|
-| `FMODWebGLBankLoader.cs` | Custom WebGL bank loader that downloads banks via UnityWebRequest |
-| `FMODAudioManager.cs` | Main audio manager with retry mechanism for race conditions |
-| `FMODCacheFixer.cs` | Editor script that fixes FMOD cache naming bugs |
-
-**How it works:**
-1. `FMODWebGLBankLoader` auto-creates itself via `[RuntimeInitializeOnLoadMethod]` in WebGL builds
-2. Downloads all banks from StreamingAssets using UnityWebRequest
-3. Loads banks into FMOD via `loadBankMemory()`
-4. `FMODAudioManager.PlayMusic()` uses retry mechanism (10 attempts, 0.5s delay) to handle race conditions where music commands fire before banks finish loading
-
-**vercel.json Configuration:**
-The deployment config includes CORS headers for .bank files:
-```json
-{
-  "src": "/StreamingAssets/(.*\\.bank)",
-  "dest": "/StreamingAssets/$1",
-  "headers": {
-    "Content-Type": "application/octet-stream",
-    "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Methods": "GET, OPTIONS",
-    "Access-Control-Allow-Headers": "Content-Type"
-  }
-}
-```
-
-### FMOD WebGL Troubleshooting
-
-| Issue | Cause | Solution |
-|-------|-------|----------|
-| 404 errors for .bank files | CDN cache stale after deployment | Clear browser cache completely (Ctrl+Shift+Delete), not just incognito |
-| "Event not found" errors | Banks still loading when music command fires | Retry mechanism handles this automatically; check console for retry logs |
-| Banks load but no sound | FMOD system not initialized | Check `[FMODWebGLBankLoader]` logs in browser console |
-| `UI.bank.bank` naming bug | FMOD cache corruption | Run Unity, let `FMODCacheFixer` auto-fix, rebuild |
-
-**Debug Logging:**
-In WebGL builds, look for these console prefixes:
-- `[FMODWebGLBankLoader]` - Bank download and loading status
-- `[FMOD]` - FMOD system messages and retry attempts
-- `[FMODAudioManager]` - Music playback commands
 
 ## Settings System
 
@@ -292,5 +222,3 @@ This project is a clean restructure from `Mental_Break_AlphaV2.0`. Key changes:
 - Unity project now in `unity-project/` subdirectory
 - Build output goes directly to `unity-project/webgl-build/`
 - New GitHub repo: https://github.com/keatonslee1/MentalBreak
-
-See `docs/MIGRATION_NOTES.md` for detailed migration history.

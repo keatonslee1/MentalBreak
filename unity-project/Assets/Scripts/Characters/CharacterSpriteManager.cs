@@ -85,6 +85,11 @@ public class CharacterSpriteManager : MonoBehaviour
         { "char_Supervisor", "supervisor" },
         { "char_Timmy", "timmy" },
         { "char_BTC", "btc" },
+        { "char_Ari", "ari" },
+        { "char_Charlotte", "charlotte" },
+        { "char_Dina", "dina" },
+        { "char_Noam", "noam" },
+        { "char_Max", "max" },
         { "char_Player", null }, // Player doesn't have a sprite
         { "char_DarkFigure", null }, // Dark Figure doesn't have a sprite
     };

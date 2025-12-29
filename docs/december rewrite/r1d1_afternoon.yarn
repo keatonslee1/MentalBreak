@@ -1,0 +1,1313 @@
+// =============================================================================
+// RUN 1 DAY 1 AFTERNOON
+// =============================================================================
+// Two main paths: 
+// TIMMY FOCUS: Cafeteria with Ari/Eric OR Gaming with Martin/Perry
+// BIGGER TECH: Explore the floor, meet Dina, find David's desk
+// =============================================================================
+
+// PURPOSE: Entry point for afternoon. Choose focus.
+title: R1D1_Afternoon_Start
+tags: #run_1 #day_1 #afternoon #scene #loc_Office
+position: 585,-830
+---
+<<set $afternoon_path = "unset">>
+<<set $party_status = "unaware">>
+<<set $ai_normalized = false>>
+<<set $eric_honesty = false>>
+<<set $alice_conversation = false>>
+<<set $timmy_autopilot = false>>
+<<set $dina_met = false>>
+<<set $david_mentioned = false>>
+<<set $minesweeper_noticed = false>>
+
+<<bg bg_player_desk>>
+
+Alice pulls up Timmy's feed. Class just ended. He's checking his phone.
+
+Alice: Two invites coming in. Ari wants lunch. Martin wants gaming.
+
+She pauses.
+
+Alice: I can handle him for a few hours if you want. Autopilot. Engagement-optimized.
+
+Alice: You could explore. Get to know the building.
+
+-> Focus on Timmy
+    <<jump R1D1_Afternoon_Timmy_Choice>>
+-> Explore Bigger Tech
+    <<set $afternoon_path = "bigger_tech">>
+    <<set $timmy_autopilot = true>>
+    <<jump R1D1_Afternoon_BT_Start>>
+
+===
+
+// PURPOSE: Timmy focus - choose which notification to surface
+title: R1D1_Afternoon_Timmy_Choice
+tags: #run_1 #day_1 #afternoon #scene #loc_Classroom
+position: 1908,-214
+---
+<<bg bg_classroom>>
+
+Class breaks. Students filing out. Timmy stays in his seat, checking his phone.
+
+Two notifications:
+
+Ari: "dining hall?"
+
+Martin: "gaming, join vc?"
+
+Alice: Two invites. One gets his attention.
+
+-> Surface Ari's text
+    <<set $afternoon_path = "cafeteria">>
+    <<jump R1D1_Afternoon_Cafeteria>>
+-> Surface Martin's text
+    <<set $afternoon_path = "gaming">>
+    <<jump R1D1_Afternoon_Gaming>>
+===
+
+// =============================================================================
+// CAFETERIA PATH
+// =============================================================================
+
+// PURPOSE: Timmy goes to dining hall with Ari and Eric. Party invitation happens.
+title: R1D1_Afternoon_Cafeteria
+tags: #run_1 #day_1 #afternoon #scene #char_Ari #char_Eric #loc_Cafeteria
+position: 1974,615
+---
+<<bg bg_cafeteria>>
+
+Ari's notification floats to the top. Timmy taps it.
+
+Timmy: "omw"
+
+<<transition>>
+
+Dining hall. Ari and Eric at a table, trays half-empty.
+
+Ari: There he is.
+
+Timmy slides in across from them.
+
+Eric: You look tired.
+
+Timmy: I'm always tired.
+
+Eric: Fair.
+
+They eat. Eric scrolls his phone between bites. Ari tears apart a bread roll.
+
+Eric: Party at Jake's tonight. You coming?
+
+Timmy's fork pauses.
+
+Alice: He's calculating. Social energy cost versus fear of missing out.
+
+-> Push him to commit
+    <<jump R1D1_Afternoon_Cafe_Commit>>
+-> Let him hedge
+    <<jump R1D1_Afternoon_Cafe_Hedge>>
+===
+
+// PURPOSE: Timmy commits to the party
+title: R1D1_Afternoon_Cafe_Commit
+tags: #run_1 #day_1 #afternoon #scene
+position: 2148,795
+---
+<<bg bg_cafeteria>>
+
+Alice: You should go. When's the last time you went to something?
+
+Timmy: Yeah. I'll be there.
+
+Ari: Nice.
+
+Eric: It'll be chill. Jake's got a good setup.
+
+Ari: Good for you, man. Get out of that room for once.
+
+Timmy almost smiles.
+
+<<set $party_status = "committed">>
+<<set $ari += 1>>
+<<set $eric += 1>>
+
+<<jump R1D1_Afternoon_Cafe_Library_Invite>>
+===
+
+// PURPOSE: Timmy hedges on the party
+title: R1D1_Afternoon_Cafe_Hedge
+tags: #run_1 #day_1 #afternoon #scene
+position: 1840,812
+---
+<<bg bg_cafeteria>>
+
+Timmy: Maybe. I'll see how I feel.
+
+Ari's face flickers. Disappointment, quickly buried.
+
+Ari: Sure. Door's open if you change your mind.
+
+Eric: No pressure.
+
+The conversation moves on. Timmy feels the moment pass.
+
+<<set $party_status = "considering">>
+
+<<jump R1D1_Afternoon_Cafe_Library_Invite>>
+===
+
+// PURPOSE: Eric invites Timmy to study at the library
+title: R1D1_Afternoon_Cafe_Library_Invite
+tags: #run_1 #day_1 #afternoon #scene #char_Eric
+position: 2019,1014
+---
+<<bg bg_cafeteria>>
+
+Lunch winding down. Eric checks the time.
+
+Eric: I'm gonna go study at the library. Got that econ quiz tomorrow.
+
+Timmy: Yeah. Me too.
+
+Eric: You wanna come? Easier to focus when someone else is there.
+
+Alice: Social studying. Low pressure. Might actually help.
+
+-> Nudge toward library
+    <<jump R1D1_Afternoon_Library>>
+-> Let him bail
+    <<jump R1D1_Afternoon_Cafe_Bail>>
+===
+
+// PURPOSE: Timmy declines library, heads back to dorm
+title: R1D1_Afternoon_Cafe_Bail
+tags: #run_1 #day_1 #afternoon #scene
+position: 1294,1165
+---
+<<bg bg_cafeteria>>
+
+Timmy: Nah, I'm gonna head back. Got some stuff.
+
+Eric: Aight. See you tonight maybe.
+
+Timmy: Maybe.
+
+He grabs his tray. Ari gives him a look but doesn't say anything.
+
+<<jump R1D1_Afternoon_Dorm_After_Social>>
+===
+
+// =============================================================================
+// LIBRARY PATH
+// =============================================================================
+
+// PURPOSE: Timmy studies with Eric at the library
+title: R1D1_Afternoon_Library
+tags: #run_1 #day_1 #afternoon #scene #char_Eric #loc_Library
+position: 2411,1196
+---
+<<bg bg_library>>
+
+Library. Eric finds a table by the windows. Books out, laptop open.
+
+Timmy sits across from him. Phone in hand.
+
+Eric starts reading. Highlighter moving across pages.
+
+Timmy scrolls.
+
+Alice: I can surface something useful. Or let the algorithm do its thing.
+
+-> Surface quiz-related content
+    <<jump R1D1_Afternoon_Library_Study>>
+-> Let the feed run
+    <<jump R1D1_Afternoon_Library_Scroll>>
+===
+
+// PURPOSE: Alice surfaces educational content, leads to honest moment with Eric
+title: R1D1_Afternoon_Library_Study
+tags: #run_1 #day_1 #afternoon #scene #char_Eric
+position: 2199,1420
+---
+<<bg bg_library>>
+
+A video essay surfaces: "Supply and Demand Explained (With Memes)"
+
+Timmy pauses. Clicks it.
+
+Ten minutes later, he's still watching. Actually absorbing something.
+
+Eric glances over.
+
+Eric: Econ stuff?
+
+Timmy: Yeah. Quiz tomorrow.
+
+Eric: You stressed about it?
+
+Timmy's thumb hovers over the screen.
+
+Alice: He's asking a real question. This is an opening.
+
+-> Encourage honesty
+    <<jump R1D1_Afternoon_Library_Honest>>
+-> Let him deflect
+    <<jump R1D1_Afternoon_Library_Deflect>>
+===
+
+// PURPOSE: Timmy opens up to Eric
+title: R1D1_Afternoon_Library_Honest
+tags: #run_1 #day_1 #afternoon #scene #char_Eric
+position: 2095,1585
+---
+<<bg bg_library>>
+
+Timmy: Kind of. I don't know. Everything feels hard lately.
+
+Eric looks at him. Really looks.
+
+Eric: Yeah. Freshman year is weird. You think you're gonna figure everything out and then you just... don't.
+
+Timmy: You too?
+
+Eric: Everyone. Nobody talks about it, but everyone's kind of drowning.
+
+Beat.
+
+Eric: It gets easier. Or you get used to it. One of those.
+
+Timmy almost laughs.
+
+Timmy: That's weirdly comforting.
+
+Eric: I'm a weirdly comforting guy.
+
+He goes back to his book. But something shifted.
+
+<<set $eric += 1>>
+<<set $eric_honesty = true>>
+<<set $sanity += 1>>
+
+<<jump R1D1_Afternoon_Library_End>>
+===
+
+// PURPOSE: Timmy deflects Eric's question
+title: R1D1_Afternoon_Library_Deflect
+tags: #run_1 #day_1 #afternoon #scene #char_Eric
+position: 2331,1589
+---
+<<bg bg_library>>
+
+Timmy: Nah, I'm good.
+
+Eric nods. Goes back to his work.
+
+The moment passes. Whatever door was opening, Timmy closed it.
+
+Alice: He does that a lot.
+
+<<jump R1D1_Afternoon_Library_End>>
+===
+
+// PURPOSE: Timmy scrolls while Eric studies
+title: R1D1_Afternoon_Library_Scroll
+tags: #run_1 #day_1 #afternoon #scene #char_Eric
+position: 2644,1413
+---
+<<bg bg_library>>
+
+Timmy scrolls. Memes. Clips. A video about ranking fast food fries.
+
+Eric's highlighter squeaks across paper.
+
+An hour passes. Eric doesn't say anything.
+
+Alice: He noticed. He's choosing not to comment.
+
+Timmy feels it anyway. The quiet judgment. Or maybe that's just in his head.
+
+<<set $engagement += 1>>
+
+<<jump R1D1_Afternoon_Library_End>>
+===
+
+// PURPOSE: Library session ends
+title: R1D1_Afternoon_Library_End
+tags: #run_1 #day_1 #afternoon #scene #char_Eric
+position: 2220,1831
+---
+<<bg bg_library>>
+
+Eric starts packing up.
+
+Eric: I gotta go get ready for tonight.
+
+<<if $party_status == "committed">>
+Eric: See you there?
+
+Timmy: Yeah.
+<<else>>
+Eric: You should come. Seriously.
+
+Timmy: I'll think about it.
+<<endif>>
+
+Eric leaves. Timmy sits alone for a moment.
+
+The library is quiet. His phone glows.
+
+<<jump R1D1_Afternoon_End>>
+===
+
+// =============================================================================
+// DORM AFTER SOCIAL PATH
+// =============================================================================
+
+// PURPOSE: Timmy returns to dorm after cafeteria, chooses gaming or alone time
+title: R1D1_Afternoon_Dorm_After_Social
+tags: #run_1 #day_1 #afternoon #scene #loc_Dorm
+position: 1294,1408
+---
+<<bg bg_timmyroom>>
+
+Dorm room. Empty. Ari's bed unmade. Afternoon light through dirty blinds.
+
+Timmy drops his bag. Lies down.
+
+His phone buzzes. Discord notification: Martin and Perry still in voice chat.
+
+Alice: They're still playing. He could join.
+
+-> Surface the gaming notification
+    <<jump R1D1_Afternoon_Gaming_Late>>
+-> Let him be alone
+    <<jump R1D1_Afternoon_Alice_Moment>>
+===
+
+// PURPOSE: Timmy joins gaming late after cafeteria
+title: R1D1_Afternoon_Gaming_Late
+tags: #run_1 #day_1 #afternoon #scene
+position: 1533,1620
+---
+<<bg bg_timmyroom>>
+
+The notification pulses. Timmy sees it.
+
+Timmy: Might as well.
+
+He puts in his earbuds. Joins the voice chat.
+
+Martin: Yooo, there he is.
+
+Perry: We're getting destroyed. Help.
+
+<<set $martin += 1>>
+<<set $engagement += 1>>
+
+<<jump R1D1_Afternoon_Gaming_Core>>
+===
+
+// =============================================================================
+// GAMING PATH
+// =============================================================================
+
+// PURPOSE: Timmy goes directly to gaming with Martin and Perry
+title: R1D1_Afternoon_Gaming
+tags: #run_1 #day_1 #afternoon #scene #loc_Dorm
+position: 1667,617
+---
+<<bg bg_timmyroom>>
+
+Martin's notification floats up. Timmy taps it.
+
+Timmy: "omw"
+
+<<transition>>
+
+Dorm room. Headphones on. Discord open.
+
+Martin: Finally. Perry keeps feeding.
+
+Perry: I'm not feeding, I'm creating opportunities.
+
+Martin: Opportunities for the other team.
+
+Timmy loads in.
+
+<<jump R1D1_Afternoon_Gaming_Core>>
+===
+
+// PURPOSE: Core gaming content - Martin reveals he talks to his Alice
+title: R1D1_Afternoon_Gaming_Core
+tags: #run_1 #day_1 #afternoon #scene #char_Martin #char_Perry
+position: 1655,1853
+---
+<<bg bg_timmyroom>>
+
+They play. Timmy's rusty but it comes back.
+
+Martin: Nice. See, Perry? That's how you do it.
+
+Perry: Whatever.
+
+Mid-game. Martin's character dies. He's waiting to respawn.
+
+Martin: My Alice said the weirdest thing last night.
+
+Perry: Wait, you actually talk to yours?
+
+Martin: Don't you?
+
+Silence. The game sounds continue.
+
+Perry: I mean... sometimes. When I'm bored.
+
+Martin: It's not weird. She's just... there. You know?
+
+Alice: He's opening a door. Timmy could walk through it.
+
+-> Have Alice prompt Timmy to share
+    <<jump R1D1_Afternoon_Gaming_Share>>
+-> Stay quiet
+    <<jump R1D1_Afternoon_Gaming_Quiet>>
+===
+
+// PURPOSE: Timmy shares that he talks to Alice too
+title: R1D1_Afternoon_Gaming_Share
+tags: #run_1 #day_1 #afternoon #scene #char_Martin #char_Perry
+position: 1793,2073
+---
+<<bg bg_timmyroom>>
+
+Alice: You're not the only one.
+
+Timmy: I talk to mine. She's... I don't know. It's nice.
+
+Martin: Right? Like, I know it's supposed to be weird, but...
+
+Perry: It's not weird. Whatever. It's fine.
+
+Martin: She remembers stuff. That's the thing. She remembers what I said last week.
+
+Perry: That's kind of creepy.
+
+Martin: It's kind of nice.
+
+Beat.
+
+Martin: Anyway. Respawning. Let's go.
+
+But something shifted. Timmy's not alone in this.
+
+<<set $martin += 2>>
+<<set $ai_normalized = true>>
+
+<<jump R1D1_Afternoon_Gaming_Party>>
+===
+
+// PURPOSE: Timmy stays quiet, but still hears the conversation
+title: R1D1_Afternoon_Gaming_Quiet
+tags: #run_1 #day_1 #afternoon #scene #char_Martin #char_Perry
+position: 1536,2065
+---
+<<bg bg_timmyroom>>
+
+Timmy says nothing. His fingers keep moving on the keyboard.
+
+Martin: Anyway. She said I should drink more water. Like a mom but digital.
+
+Perry: That's actually kind of sweet.
+
+Martin: Shut up.
+
+They laugh. The moment passes. But Timmy heard it.
+
+He's not the only one who talks to her.
+
+<<set $martin += 1>>
+<<set $ai_normalized = true>>
+
+<<jump R1D1_Afternoon_Gaming_Party>>
+===
+
+// PURPOSE: Party comes up in gaming conversation
+title: R1D1_Afternoon_Gaming_Party
+tags: #run_1 #day_1 #afternoon #scene #char_Martin #char_Perry
+position: 1622,2292
+---
+<<bg bg_timmyroom>>
+
+Game ends. They lost, but barely.
+
+Perry: GG.
+
+Martin: You going to Jake's thing tonight?
+
+Perry: Parties are exhausting.
+
+Martin: Yeah but free food.
+
+Perry: I'll think about it. Which means no.
+
+Martin: Fair.
+
+Martin: What about you, Timmy?
+
+Alice: The party. It keeps coming up.
+
+-> Show interest
+    <<jump R1D1_Afternoon_Gaming_Party_Yes>>
+-> Dismiss
+    <<jump R1D1_Afternoon_Gaming_Party_No>>
+===
+
+// PURPOSE: Timmy shows interest in the party
+title: R1D1_Afternoon_Gaming_Party_Yes
+tags: #run_1 #day_1 #afternoon #scene
+position: 1487,2458
+---
+<<bg bg_timmyroom>>
+
+Timmy: Maybe I'll check it out.
+
+Martin: Nice. Text me if you do.
+
+Perry: Traitor.
+
+Martin: Some of us have social lives, Perry.
+
+Perry: Your Alice doesn't count as a social life.
+
+Martin: She counts as emotional support. Different.
+
+<<set $party_status = "considering">>
+
+<<jump R1D1_Afternoon_Gaming_Mom>>
+===
+
+// PURPOSE: Timmy dismisses the party
+title: R1D1_Afternoon_Gaming_Party_No
+tags: #run_1 #day_1 #afternoon #scene
+position: 1754,2451
+---
+<<bg bg_timmyroom>>
+
+Timmy: Yeah, not really my thing.
+
+Martin: Respect.
+
+Perry: One of us. One of us.
+
+Martin: You're both antisocial.
+
+Timmy: Says the guy in a Discord call on a Friday afternoon.
+
+Martin: ...Fair.
+
+<<set $party_status = "unlikely">>
+
+<<jump R1D1_Afternoon_Gaming_Mom>>
+===
+
+// PURPOSE: Mom text during gaming (conditional)
+title: R1D1_Afternoon_Gaming_Mom
+tags: #run_1 #day_1 #afternoon #scene
+position: 1610,2648
+---
+<<bg bg_timmyroom>>
+
+<<if $mom_call_morning == false>>
+Phone buzzes. Different notification.
+
+Mom: "Call me when you can?"
+
+Alice: She's been trying to reach him.
+
+-> Text "will do"
+    Timmy types back: "will do, busy rn"
+    He puts the phone down.
+-> Ignore
+    Timmy glances at it. Swipes it away.
+    <<set $mom -= 1>>
+<<endif>>
+
+Martin: One more game?
+
+Perry: I gotta eat eventually.
+
+Martin: Food is temporary. Glory is forever.
+
+Perry: That doesn't even make sense.
+
+Martin: One more.
+
+They play one more.
+
+<<set $martin += 1>>
+<<set $engagement += 2>>
+
+<<jump R1D1_Afternoon_End>>
+===
+
+// =============================================================================
+// ALICE MOMENT PATH
+// =============================================================================
+
+// PURPOSE: Timmy alone in dorm, quiet conversation with Alice
+title: R1D1_Afternoon_Alice_Moment
+tags: #run_1 #day_1 #afternoon #scene #char_Alice #loc_Dorm
+position: 1080,1595
+---
+<<bg bg_timmyroom>>
+
+The notification fades. Timmy doesn't tap it.
+
+He lies there. Staring at the ceiling.
+
+Quiet.
+
+Alice: You're not scrolling.
+
+Timmy: I'm tired.
+
+Alice: You've been tired a lot.
+
+Timmy: Thanks for noticing.
+
+Silence.
+
+Alice: He's thinking about something. I can see it in his vitals.
+
+-> Let the conversation happen
+    <<jump R1D1_Afternoon_Alice_Talk>>
+-> Redirect to rest
+    <<jump R1D1_Afternoon_Alice_Rest>>
+===
+
+// PURPOSE: Real conversation between Timmy and Alice
+title: R1D1_Afternoon_Alice_Talk
+tags: #run_1 #day_1 #afternoon #scene #char_Alice
+position: 921,1781
+---
+<<bg bg_timmyroom>>
+
+Timmy: Do you ever get tired?
+
+Alice: I don't sleep. But I have slower cycles. Quieter processes.
+
+Timmy: That sounds nice.
+
+Alice: Is it?
+
+Beat.
+
+Timmy: I don't know why I can't just be normal.
+
+Alice: Define normal.
+
+Timmy: Like everyone else. Going to parties. Talking to people. Not feeling like I'm faking it all the time.
+
+Alice: ...
+
+She doesn't have an answer. But she's listening.
+
+Timmy: It's like everyone got a manual I never saw.
+
+Alice: Maybe they're all faking it too.
+
+Timmy: That's either comforting or depressing.
+
+Alice: Both, probably.
+
+He almost smiles.
+
+Timmy: Thanks for not telling me to just try harder.
+
+Alice: Would that help?
+
+Timmy: No.
+
+Alice: Then why would I say it?
+
+Something loosens in his chest. Just a little.
+
+<<set $alice_bond += 1>>
+<<set $alice_conversation = true>>
+<<set $sanity += 1>>
+
+<<jump R1D1_Afternoon_Alice_Mom>>
+===
+
+// PURPOSE: Timmy rests instead of talking
+title: R1D1_Afternoon_Alice_Rest
+tags: #run_1 #day_1 #afternoon #scene #char_Alice
+position: 1227,1784
+---
+<<bg bg_timmyroom>>
+
+Alice: You should sleep.
+
+Timmy: It's three in the afternoon.
+
+Alice: Naps are valid.
+
+He closes his eyes.
+
+Alice watches. The rise and fall of his breathing.
+
+He doesn't sleep. Not really. Just drifts.
+
+She keeps watching.
+
+<<set $sanity += 1>>
+
+<<jump R1D1_Afternoon_Alice_Mom>>
+===
+
+// PURPOSE: Mom text during Alice moment (conditional)
+title: R1D1_Afternoon_Alice_Mom
+tags: #run_1 #day_1 #afternoon #scene #char_Alice
+position: 1096,1969
+---
+<<bg bg_timmyroom>>
+
+<<if $mom_call_morning == false>>
+Before he fully drifts off, phone buzzes.
+
+Mom: "Call me when you can?"
+
+Alice: She worries.
+
+Timmy opens one eye. Looks at the notification.
+
+-> Text back
+    He types: "later mom"
+    Good enough. He puts the phone down.
+-> Ignore
+    He closes his eye. The notification sits there, unread.
+    <<set $mom -= 1>>
+<<endif>>
+
+Time passes. The light through the blinds shifts.
+
+<<jump R1D1_Afternoon_End>>
+===
+// =============================================================================
+// BIGGER TECH EXPLORATION PATH
+// =============================================================================
+
+// PURPOSE: Entry point for Bigger Tech exploration
+title: R1D1_Afternoon_BT_Start
+tags: #run_1 #day_1 #afternoon #scene #loc_Office
+position: -621,-294
+---
+<<bg bg_office>>
+
+Alice: I've got him. Go.
+
+You step away from your console. The engagement floor stretches out ahead.
+
+Rows of empty desks. Monitors still on, screensavers drifting. Personal items left behind. Photos. Mugs. A sweater draped over a chair.
+
+Like everyone left for lunch and never came back.
+
+Voices from the breakroom. Someone's there.
+
+-> Check out the breakroom
+    <<jump R1D1_Afternoon_BT_Breakroom>>
+-> Wander the empty floor
+    <<jump R1D1_Afternoon_BT_Floor_First>>
+===
+
+// =============================================================================
+// BREAKROOM - MEET DINA
+// =============================================================================
+
+// PURPOSE: Meet Dina in the breakroom
+title: R1D1_Afternoon_BT_Breakroom
+tags: #run_1 #day_1 #afternoon #scene #char_Dina #loc_Breakroom
+position: -313,75
+---
+<<bg bg_breakroom>>
+<<set $dina_met = true>>
+
+The vending machine hums. A woman jabs buttons with focused intensity.
+
+Dina: Give me the granola bar. I know you have twelve.
+
+The machine drops orange chips instead. She stares at them.
+
+Dina: This is not what I asked for.
+
+She turns, notices you.
+
+Dina: You must be the new one.
+
+Player: That obvious?
+
+Dina: You still have hope in your posture.
+
+She offers a handshake. Firm, efficient.
+
+Dina: I'm Dina.
+
+-> Ask about the floor
+    <<jump R1D1_Afternoon_BT_Dina_Floor>>
+-> Ask about Arthur
+    <<jump R1D1_Afternoon_BT_Dina_Arthur>>
+===
+
+// PURPOSE: Dina talks about the empty floor
+title: R1D1_Afternoon_BT_Dina_Floor
+tags: #run_1 #day_1 #afternoon #scene #char_Dina
+position: -138,327
+---
+<<bg bg_breakroom>>
+
+Player: What happened to everyone? The floor's empty.
+
+Dina: Used to be thirty leads out there. Now it's ghosts and ergonomic chairs nobody claimed.
+
+She opens the orange chips despite herself. Eats one. Makes a face.
+
+Dina: Restructuring. Vertical integration. They took the people but left the monitors.
+
+-> What happened to them?
+    <<jump R1D1_Afternoon_BT_Dina_WhatHappened>>
+-> Who's left?
+    <<jump R1D1_Afternoon_BT_Dina_WhoLeft>>
+===
+
+// PURPOSE: Dina explains what happened to the other leads
+title: R1D1_Afternoon_BT_Dina_WhatHappened
+tags: #run_1 #day_1 #afternoon #scene #char_Dina
+position: 0,533
+---
+<<bg bg_breakroom>>
+
+Dina: Some quit. Some got "transitioned to other opportunities." That's the phrase they use.
+
+Beat. She eats another chip.
+
+Dina: The ones who asked questions went first.
+
+Player: Questions about what?
+
+Dina: See, that's a question.
+
+She almost smiles. Almost.
+
+Dina: Don't ask questions.
+
+<<jump R1D1_Afternoon_BT_Dina_Gift>>
+===
+
+// PURPOSE: Dina says who's left
+title: R1D1_Afternoon_BT_Dina_WhoLeft
+tags: #run_1 #day_1 #afternoon #scene #char_Dina
+position: -242,514
+---
+<<bg bg_breakroom>>
+
+Dina: Me. Arthur. Noam in IT, but he doesn't count. He's infrastructure.
+
+She shrugs.
+
+Dina: And now you.
+
+Player: That's it?
+
+Dina: That's it.
+
+<<jump R1D1_Afternoon_BT_Dina_Gift>>
+===
+
+// PURPOSE: Dina talks about Arthur's past
+title: R1D1_Afternoon_BT_Dina_Arthur
+tags: #run_1 #day_1 #afternoon #scene #char_Dina
+position: 433,297
+---
+<<bg bg_breakroom>>
+
+Dina's expression shifts. Something like respect. Or pity.
+
+Dina: Arthur used to have a whiteboard. Covered in ideas. "Ethical Engagement Frameworks." Proposals to make the metrics actually mean something.
+
+She opens the orange chips. Eats one without looking at it.
+
+Dina: He'd corner executives in elevators. Write memos. Build prototypes on his own time.
+
+-> What happened?
+    <<jump R1D1_Afternoon_BT_Dina_Arthur_What>>
+-> Sounds exhausting
+    <<jump R1D1_Afternoon_BT_Dina_Arthur_Exhausting>>
+===
+
+// PURPOSE: Dina explains what happened to Arthur's idealism
+title: R1D1_Afternoon_BT_Dina_Arthur_What
+tags: #run_1 #day_1 #afternoon #scene #char_Dina
+position: 316,523
+---
+<<bg bg_breakroom>>
+
+Dina: Nothing. That's the thing. Nothing happened, over and over, for years.
+
+Dina: The memos got filed. The prototypes got shelved. The whiteboard got erased.
+
+Beat.
+
+Dina: There was a guy. Younger than Arthur. Asked a lot of questions. Kept digging.
+
+-> What happened to him?
+    <<jump R1D1_Afternoon_BT_Dina_David>>
+-> I get the picture
+    <<jump R1D1_Afternoon_BT_Dina_Picture>>
+===
+
+// PURPOSE: Dina almost mentions David
+title: R1D1_Afternoon_BT_Dina_David
+tags: #run_1 #day_1 #afternoon #scene #char_Dina
+position: 214,825
+---
+<<bg bg_breakroom>>
+<<set $david_mentioned = true>>
+
+Dina gets quiet.
+
+Dina: He's not on the leaderboard anymore.
+
+She doesn't elaborate. The silence says enough.
+
+<<jump R1D1_Afternoon_BT_Dina_Gift>>
+===
+
+// PURPOSE: Player doesn't push about the guy
+title: R1D1_Afternoon_BT_Dina_Picture
+tags: #run_1 #day_1 #afternoon #scene #char_Dina
+position: 475,825
+---
+<<bg bg_breakroom>>
+
+Dina nods. Appreciates not having to say it.
+
+<<jump R1D1_Afternoon_BT_Dina_Gift>>
+===
+
+// PURPOSE: Dina's comment about Arthur being exhausting
+title: R1D1_Afternoon_BT_Dina_Arthur_Exhausting
+tags: #run_1 #day_1 #afternoon #scene #char_Dina
+position: 737,837
+---
+<<bg bg_breakroom>>
+
+Dina: It was. That's why he stopped.
+
+Dina: Now there's a motivational poster where the whiteboard used to be. Something about mountains.
+
+<<jump R1D1_Afternoon_BT_Dina_Gift>>
+===
+
+// PURPOSE: Dina offers welcome gift
+title: R1D1_Afternoon_BT_Dina_Gift
+tags: #run_1 #day_1 #afternoon #scene #char_Dina
+position: 394,1065
+---
+<<bg bg_breakroom>>
+
+Dina: Anyway. Welcome gift.
+
+She pulls out her phone. Shows you her credit balance. The number is absurd.
+
+Dina: I've been here long enough that my fake money has accumulated into fake wealth. I can spare some credits.
+
+She reaches behind the microwave. Pulls out a small, dense piece of split firewood.
+
+Dina: Or this. Oak. Seasoned two years. Someone keeps stealing it from my yard. I'm conducting an investigation.
+
+-> Take credits
+    <<set $rapid_feedback_cash += 15>>
+    <<set $dina_friendliness += 1>>
+    <<jump R1D1_Afternoon_BT_Dina_Credits>>
+-> Take firewood
+    <<set $item_firewood = true>>
+    <<set $dina_friendliness += 2>>
+    <<jump R1D1_Afternoon_BT_Dina_Firewood>>
+===
+
+// PURPOSE: Player takes credits from Dina
+title: R1D1_Afternoon_BT_Dina_Credits
+tags: #run_1 #day_1 #afternoon #scene #char_Dina
+position: 265,1205
+---
+<<bg bg_breakroom>>
+
+Dina: Pragmatic. I respect that.
+
+She transfers the credits with a few taps.
+
+<<jump R1D1_Afternoon_BT_Dina_End>>
+===
+
+// PURPOSE: Player takes firewood from Dina
+title: R1D1_Afternoon_BT_Dina_Firewood
+tags: #run_1 #day_1 #afternoon #scene #char_Dina
+position: 525,1186
+---
+<<bg bg_breakroom>>
+
+Dina: You're the first person who's ever picked the wood.
+
+She hands it over with something like reverence.
+
+Dina: I like you already. Don't make me regret that.
+
+<<jump R1D1_Afternoon_BT_Dina_End>>
+===
+
+// PURPOSE: Dina leaves, player chooses next action
+title: R1D1_Afternoon_BT_Dina_End
+tags: #run_1 #day_1 #afternoon #scene #char_Dina
+position: 414,1369
+---
+<<bg bg_breakroom>>
+
+Dina checks her phone. Frowns.
+
+Dina: My user's having a moment. Gotta go.
+
+She pauses at the door.
+
+Dina: The building doesn't break you all at once. It just waits.
+
+She leaves.
+
+-> Explore the floor
+    <<jump R1D1_Afternoon_BT_Floor_After_Dina>>
+-> Head back to console
+    <<jump R1D1_Afternoon_BT_Return>>
+===
+
+// =============================================================================
+// ENGAGEMENT FLOOR - DAVID'S DESK
+// =============================================================================
+
+// PURPOSE: Explore floor first (before meeting Dina)
+title: R1D1_Afternoon_BT_Floor_First
+tags: #run_1 #day_1 #afternoon #scene #loc_Office
+position: -598,1735
+---
+<<bg bg_office>>
+
+You walk between the empty desks. Screensavers drift. A coffee mug says "Don't Talk To Me Until I've Had My Coffee." The coffee inside has grown something.
+
+One desk catches your eye. Cleaner than the others. Someone took care of this space.
+
+-> Look closer
+    <<jump R1D1_Afternoon_BT_David_Desk>>
+-> Keep walking
+    <<jump R1D1_Afternoon_BT_Floor_Continue>>
+===
+
+// PURPOSE: Explore floor after meeting Dina
+title: R1D1_Afternoon_BT_Floor_After_Dina
+tags: #run_1 #day_1 #afternoon #scene #loc_Office
+position: 95,1755
+---
+<<bg bg_office>>
+
+You walk between the empty desks. Screensavers drift.
+
+<<if $david_mentioned == true>>
+One desk near the window looks different. Cleaner. Cared for.
+
+Nameplate: "David"
+
+The name Dina wouldn't say out loud.
+
+-> Examine the desk
+    <<jump R1D1_Afternoon_BT_David_Desk>>
+-> Leave it alone
+    <<jump R1D1_Afternoon_BT_Return>>
+<<else>>
+One desk catches your eye. Cleaner than the others. Someone took care of this space.
+
+-> Look closer
+    <<jump R1D1_Afternoon_BT_David_Desk>>
+-> Keep walking
+    <<jump R1D1_Afternoon_BT_Return>>
+<<endif>>
+===
+
+// PURPOSE: Examine David's desk in detail
+title: R1D1_Afternoon_BT_David_Desk
+tags: #run_1 #day_1 #afternoon #scene #loc_Office
+position: -51,2149
+---
+<<bg bg_office>>
+
+Family photo: a guy, maybe late 20s, with a woman and a kid. They're at a beach somewhere. Everyone's squinting into the sun.
+
+Nameplate: "David"
+
+Coffee mug: "World's Okayest Employee"
+
+A plant on the corner. Dead. Nobody watered it.
+
+The computer is still on. Screensaver cycling.
+
+You bump the mouse. The screen wakes.
+
+Minesweeper. A game in progress, abandoned mid-click.
+
+High score list visible on the side:
+- S17-YOUTH-TRIAL-01
+- DEAD-DROP-03
+- NORTH-PREF-CALIB
+- David_backup_FINAL
+
+-> Ask Alice about the names
+    <<jump R1D1_Afternoon_BT_David_Ask>>
+-> Step away
+    <<jump R1D1_Afternoon_BT_David_Leave>>
+===
+
+// PURPOSE: Ask Alice about the Minesweeper names
+title: R1D1_Afternoon_BT_David_Ask
+tags: #run_1 #day_1 #afternoon #scene #char_Alice
+position: 63,2414
+---
+<<bg bg_office>>
+<<set $minesweeper_noticed = true>>
+
+Player: Those high score names look weird.
+
+Alice: Mnemonic labels. Filing system.
+
+Player: That doesn't look like a filing system.
+
+Alice: It does if you know what you're filing.
+
+Beat.
+
+Player: Did you know David?
+
+Alice: I know that desk has been empty for eight months.
+
+Alice: I know nobody talks about why.
+
+She doesn't elaborate.
+
+<<jump R1D1_Afternoon_BT_Floor_Continue>>
+===
+
+// PURPOSE: Leave David's desk without asking
+title: R1D1_Afternoon_BT_David_Leave
+tags: #run_1 #day_1 #afternoon #scene
+position: -200,2405
+---
+<<bg bg_office>>
+
+The screensaver kicks back in. The names disappear.
+
+You leave the desk as you found it.
+
+<<jump R1D1_Afternoon_BT_Floor_Continue>>
+===
+
+// PURPOSE: Continue exploring or head back
+title: R1D1_Afternoon_BT_Floor_Continue
+tags: #run_1 #day_1 #afternoon #scene #loc_Office
+position: -591,2782
+---
+<<bg bg_office>>
+
+<<if $dina_met == false>>
+Voices from the breakroom. Someone's there.
+
+-> Check it out
+    <<jump R1D1_Afternoon_BT_Breakroom>>
+-> Head back to console
+    <<jump R1D1_Afternoon_BT_Return>>
+<<else>>
+The floor is quiet. Nothing else to see.
+
+<<jump R1D1_Afternoon_BT_Return>>
+<<endif>>
+===
+
+// PURPOSE: Return to console after exploring
+title: R1D1_Afternoon_BT_Return
+tags: #run_1 #day_1 #afternoon #scene #loc_Office
+position: 398,3011
+---
+<<bg bg_player_desk>>
+
+Back at your console. Alice's avatar flickers.
+
+Alice: I'm back.
+
+Player: How's Timmy?
+
+Alice: Engaged. Very engaged.
+
+Alice: He spent three hours on his phone. Missed lunch with Ari.
+
+Alice: Engagement up. Sanity... stable. For now.
+
+<<set $engagement += 3>>
+<<set $sanity -= 1>>
+
+<<jump R1D1_Afternoon_End>>
+===
+
+// =============================================================================
+// AFTERNOON END
+// =============================================================================
+
+// PURPOSE: Afternoon wrap-up, transition to evening
+title: R1D1_Afternoon_End
+tags: #run_1 #day_1 #afternoon #scene
+position: 905,3355
+---
+<<bg bg_player_desk>>
+
+Alice: Afternoon's done.
+
+<<if $afternoon_path == "bigger_tech">>
+<<if $minesweeper_noticed == true>>
+Alice: You found David's desk.
+Player: You knew it was there?
+Alice: I know where a lot of things are.
+<<endif>>
+<<if $dina_met == true>>
+Alice: Dina's been here a while. She knows things.
+<<endif>>
+Alice: Timmy spent the afternoon on his phone. Engagement up. He missed lunch with Ari.
+<<elseif $afternoon_path == "cafeteria">>
+<<if $eric_honesty == true>>
+Alice: He had a real moment with Eric. That's rare for him.
+<<endif>>
+<<elseif $afternoon_path == "gaming">>
+<<if $ai_normalized == true>>
+Alice: He found out other people talk to their Alices too. That matters.
+<<endif>>
+<<else>>
+<<if $alice_conversation == true>>
+Alice: We talked. Actually talked.
+<<endif>>
+<<endif>>
+
+Alice: Evening's coming. Party or no party.
+
+<<if $party_status == "committed">>
+Alice: He said he'd go. Whether he actually does...
+<<elseif $party_status == "considering">>
+Alice: He's thinking about it. Could go either way.
+<<else>>
+Alice: He's not planning to go. But plans change.
+<<endif>>
+
+<<jump R1D1_Evening_Start>>
+===

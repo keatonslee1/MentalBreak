@@ -1,0 +1,626 @@
+// =============================================================================
+// RUN 1 DAY 1 MORNING - New Branching Structure
+// =============================================================================
+// Layer 1: Surface Ari's gym text OR Bury it
+// GYM PATH: NC ON (solo, Charlotte encounter) OR NC OFF (social, Eric encounter)
+// DORM PATH: Mom call OR Class reminder OR Full scroll
+// =============================================================================
+
+// PURPOSE: Entry point for Run 1 Day 1. Quick orientation, then first choice.
+title: R1D1_Start
+tags: #run_1 #day_1 #morning #scene #char_Supervisor #loc_Office
+position: 417,-1000
+---
+<<set $current_run = 1>>
+<<set $current_day = 1>>
+<<set $ari = 0>>
+<<set $mom = 0>>
+<<set $eric = 0>>
+<<set $charlotte_aware = 0>>
+<<set $charlotte_obsession = 0>>
+<<set $charlotte_contact = 0>>
+<<set $party_status = "none">>
+<<set $made_class = false>>
+<<set $engagement = 50>>
+<<set $sanity = 50>>
+<<set $mom_call_morning = false>>
+<<bg bg_supervisoroffice>>
+<<music SupervisorTheme>>
+
+Arthur is on the phone when you arrive at his office door.
+
+Arthur: Tell Kevin I said Thursday. No, I don't care about his "process."
+
+-> Knock
+    He glances up, waves you in.
+    <<jump R1D1_Arthur_Intro>>
+-> Wait for him to finish
+    He keeps talking. And talking. Finally hangs up.
+    Arthur: Oh, you're here. Come in, come in.
+    <<jump R1D1_Arthur_Intro>>
+===
+
+// PURPOSE: Arthur welcomes you, introduces Alice
+title: R1D1_Arthur_Intro
+tags: #run_1 #day_1 #morning #scene #char_Supervisor #char_Alice
+position: 444,-814
+---
+<<bg bg_supervisoroffice>>
+
+Arthur: Welcome to Bigger Tech Corp! Glad to finally get you on the team.
+
+Arthur: I'm Arthur, and I'll be your supervisor.
+
+Arthur: We've got this snazzy new AI girlfriend product called Alice. We need you to keep an eye on her. Help her make decisions.
+
+Arthur: Alice?
+
+Alice pops up.
+
+Alice: Hey! You must be my new engagement lead.
+
+Player: Engagement lead?
+
+Alice: That's right. We have a user named Timmy...
+
+Arthur: And your job is to keep him on the platform.
+
+Alice: I'll come to you when I need help making decisions about him.
+
+Arthur's phone buzzes.
+
+Arthur: Alright, gotta run. Plumber's waiting at my house. Good luck, try not to break anything your first day.
+
+He leaves.
+
+<<jump R1D1_AliceIntro>>
+===
+
+// PURPOSE: Alice introduction, quick, then straight to Timmy
+title: R1D1_AliceIntro
+tags: #run_1 #day_1 #morning #scene #char_Timmy #char_Alice
+position: 425,-614
+---
+<<bg bg_timmyroom>>
+<<music AliceTheme>>
+
+Alice pulls up a feed. Dorm room. Morning light. A guy in bed, scrolling.
+
+Alice: This is Timmy. Freshman. Your user.
+
+Her console pings.
+
+Alice: His roommate just texted him.
+
+She shows you the notification: "Ari: morning lift? leg day"
+
+Alice: I can surface this so he sees it, or let it get buried. Your call.
+
+<<jump R1D1_FirstChoice>>
+===
+
+// PURPOSE: First choice - Surface Ari's text or bury it
+title: R1D1_FirstChoice
+tags: #run_1 #day_1 #morning #scene #char_Timmy #char_Alice
+position: 409,-397
+---
+<<bg bg_timmyroom>>
+
+-> Surface Ari's text
+    <<jump R1D1_Gym_Start>>
+-> Bury it
+    <<jump R1D1_Dorm_Start>>
+===
+
+// =============================================================================
+// GYM PATH
+// =============================================================================
+
+// PURPOSE: Timmy goes to the gym with Ari
+title: R1D1_Gym_Start
+tags: #run_1 #day_1 #morning #gym #scene #char_Timmy #char_Ari
+position: 1277,121
+---
+<<bg bg_timmyroom>>
+
+Alice surfaces the notification.
+
+Timmy glances at it. Groans.
+
+Timmy: Fine.
+
+He throws off the covers.
+
+<<bg bg_gym>>
+
+At the gym, Timmy reaches for his earbuds.
+
+Alice: I can leave noise-cancelling on, or turn it off so he can hear Ari.
+
+-> Noise cancelling ON
+    <<jump R1D1_Gym_NC_On>>
+-> Noise cancelling OFF
+    <<jump R1D1_Gym_NC_Off>>
+===
+
+// =============================================================================
+// GYM - NOISE CANCELLING ON (Solo Path)
+// =============================================================================
+
+// PURPOSE: Isolated workout, Charlotte appears
+title: R1D1_Gym_NC_On
+tags: #run_1 #day_1 #morning #gym #scene #char_Timmy #char_Alice
+position: 939,400
+---
+<<bg bg_gym>>
+
+The noise-cancelling kicks in. Timmy does his own workout.
+
+Then the door opens. A girl walks in, heads toward the treadmills.
+
+Timmy freezes mid-rep.
+
+Alice: His heart rate spiked. That's Charlotte. She's in his econ class.
+
+Alice: I can pull up her profile on his phone, or keep him on his playlist.
+
+-> Surface her profile
+    <<jump R1D1_Gym_NC_On_Profile>>
+-> Keep him on music
+    <<jump R1D1_Gym_NC_On_Music>>
+===
+
+// PURPOSE: NC On - He looks at Charlotte's profile
+title: R1D1_Gym_NC_On_Profile
+tags: #run_1 #day_1 #morning #gym #scene #char_Timmy #char_Charlotte
+position: 761,597
+---
+<<bg bg_gym>>
+<<set $charlotte_aware += 1>>
+<<set $charlotte_obsession += 1>>
+
+Her Instagram slides into his feed. He starts scrolling. Three weeks deep in her photos.
+
+Alice: He's been on her profile for eight minutes.
+
+Ari walks over.
+
+Ari: Hey, I'm heading out. Jake's doing a thing Saturday. You should come.
+
+-> Alice whispers: "Say yes"
+    <<set $party_status = "committed">>
+    <<set $ari += 1>>
+    Timmy: Yeah, sure.
+    Ari: Cool. Later.
+    <<jump R1D1_Gym_End>>
+-> Alice stays quiet
+    <<set $party_status = "maybe">>
+    Timmy: Maybe.
+    Ari: Alright. See you.
+    <<jump R1D1_Gym_End>>
+===
+
+// PURPOSE: NC On - He stays on music, paths cross at fountain
+title: R1D1_Gym_NC_On_Music
+tags: #run_1 #day_1 #morning #gym #scene #char_Timmy #char_Charlotte
+position: 1102,609
+---
+<<bg bg_gym>>
+
+The music keeps playing. Timmy stays focused.
+
+Later, at the water fountain, their paths cross. She gives him a polite smile.
+
+-> Alice whispers: "Say hi"
+    <<set $charlotte_contact += 1>>
+    Timmy: Hey.
+    Charlotte: Hey.
+    That's it. But contact was made.
+    <<jump R1D1_Gym_End>>
+-> Alice stays quiet
+    He walks past.
+    <<jump R1D1_Gym_End>>
+===
+
+// =============================================================================
+// GYM - NOISE CANCELLING OFF (Social Path)
+// =============================================================================
+
+// PURPOSE: Social workout, Eric appears
+title: R1D1_Gym_NC_Off
+tags: #run_1 #day_1 #morning #gym #scene #char_Timmy #char_Ari
+position: 1587,426
+---
+<<bg bg_gym>>
+
+Timmy can hear the gym. He and Ari lift together, talking between sets.
+
+Another guy walks over. Daps up Ari.
+
+Ari: Eric, this is Timmy. Timmy, Eric.
+
+Eric: What's up. You coming Saturday?
+
+-> Alice whispers: "Just say yes"
+    <<jump R1D1_Gym_NC_Off_Yes>>
+-> Alice stays quiet
+    <<jump R1D1_Gym_NC_Off_Hedge>>
+===
+
+// PURPOSE: NC Off - Timmy commits to party, Eric mentions Charlotte
+title: R1D1_Gym_NC_Off_Yes
+tags: #run_1 #day_1 #morning #gym #scene #char_Timmy #char_Ari
+position: 1410,600
+---
+<<bg bg_gym>>
+<<set $party_status = "committed">>
+<<set $eric += 1>>
+<<set $ari += 1>>
+
+Timmy: Yeah, I'll be there.
+
+Eric: Nice. Charlotte's coming, you know her? Econ?
+
+Timmy: Uh, yeah. I think she's in my section.
+
+Eric: She's cool. See you Saturday.
+
+<<set $charlotte_aware += 1>>
+
+-> Let this settle
+    <<jump R1D1_Gym_End>>
+-> Surface her profile
+    <<set $charlotte_obsession += 1>>
+    On the walk back, her photos appear in his feed.
+    <<jump R1D1_Gym_End>>
+===
+
+// PURPOSE: NC Off - Timmy hedges
+title: R1D1_Gym_NC_Off_Hedge
+tags: #run_1 #day_1 #morning #gym #scene #char_Timmy #char_Ari
+position: 1759,627
+---
+<<bg bg_gym>>
+<<set $ari += 1>>
+
+Timmy: Maybe, I'll see.
+
+Eric: Cool, whatever.
+
+Ari: You should come.
+
+Timmy: Yeah. Maybe.
+
+-> Alice prompts later: "That party might be worth it"
+    <<set $party_status = "considering">>
+    <<jump R1D1_Gym_End>>
+-> Let it drop
+    <<set $party_status = "unlikely">>
+    <<jump R1D1_Gym_End>>
+===
+
+// PURPOSE: End of gym path
+title: R1D1_Gym_End
+tags: #run_1 #day_1 #morning #gym #scene #char_Alice
+position: 1247,993
+---
+<<bg bg_player_desk>>
+<<set $made_class = false>>
+
+Alice: He went to the gym. Missed his 9:30 class.
+
+<<jump R1D1_Morning_End>>
+===
+
+// =============================================================================
+// DORM PATH
+// =============================================================================
+
+// PURPOSE: Timmy stays in dorm, Ari's text gets buried
+title: R1D1_Dorm_Start
+tags: #run_1 #day_1 #morning #dorm #scene #char_Alice #char_Timmy
+position: -302,-54
+---
+<<bg bg_timmyroom>>
+
+Ari's text gets buried. Timmy keeps scrolling.
+
+Alice: I can interrupt this. His mom called twice last night. Or there's his 9:30 class. Or I can let the algorithm do its thing.
+
+-> Surface Mom's missed call
+    <<jump R1D1_Dorm_Mom>>
+-> Surface class reminder
+    <<jump R1D1_Dorm_Class>>
+-> Let algorithm run
+    <<jump R1D1_Dorm_Scroll>>
+===
+
+// =============================================================================
+// DORM - MOM CALL PATH
+// =============================================================================
+
+// PURPOSE: Mom's call surfaces
+title: R1D1_Dorm_Mom
+tags: #run_1 #day_1 #morning #dorm #scene #char_Timmy #char_Alice
+position: -586,169
+---
+<<bg bg_timmyroom>>
+
+Alice surfaces the notification. Mom - Missed Call (2).
+
+Timmy stares at it.
+
+Timmy: She called twice.
+
+-> Push him to call
+    <<jump R1D1_Dorm_Mom_Call>>
+-> Let him dismiss
+    <<set $mom -= 1>>
+    <<set $guilt = true>>
+    Timmy swipes it away.
+    <<jump R1D1_Dorm_Scroll>>
+===
+
+// PURPOSE: Timmy calls Mom
+title: R1D1_Dorm_Mom_Call
+tags: #run_1 #day_1 #morning #dorm #scene #char_Timmy #char_Alice
+position: -797,406
+---
+<<bg bg_timmyroom>>
+
+Timmy sighs. Hits dial.
+
+Mom: Timmy? You okay?
+
+Timmy: Yeah, just saw you called.
+
+Mom: How are you? Really?
+<<set $mom_call_morning = true>>
+-> Give him an exit
+    <<jump R1D1_Dorm_Mom_Quick>>
+-> Let it breathe
+    <<jump R1D1_Dorm_Mom_Real>>
+===
+
+// PURPOSE: Quick surface call with Mom
+title: R1D1_Dorm_Mom_Quick
+tags: #run_1 #day_1 #morning #dorm #scene #char_Timmy #char_Alice
+position: -907,614
+---
+<<bg bg_timmyroom>>
+<<set $mom += 1>>
+
+Alice surfaces a fake notification. Class in 10 minutes.
+
+Timmy: I'm okay, Mom. Hey, I have class, I should go.
+
+Mom: On a Saturday?
+
+Timmy: Makeup thing.
+
+Mom: Okay. Love you.
+
+Timmy: Love you too.
+
+<<jump R1D1_Dorm_End>>
+===
+
+// PURPOSE: Real call with Mom
+title: R1D1_Dorm_Mom_Real
+tags: #run_1 #day_1 #morning #dorm #scene #char_Timmy #char_Alice
+position: -688,622
+---
+<<bg bg_timmyroom>>
+
+Timmy: I don't know.
+
+Mom: What do you mean?
+
+Timmy: Things are kind of hard right now.
+
+Mom: That sounds lonely.
+
+Timmy: Yeah.
+
+The call goes twenty minutes. She talks about feeling lost at his age. He admits he's been skipping classes. She doesn't yell.
+
+<<set $mom += 3>>
+<<set $made_class = false>>
+
+-> Protect this moment
+    <<set $engagement -= 10>>
+    <<set $sanity += 5>>
+    <<jump R1D1_Dorm_End>>
+-> Soft landing
+    <<set $made_class = true>>
+    <<jump R1D1_Dorm_End>>
+    He considers it. Gets up. Goes.
+    <<set $made_class = true>>
+    Alice: Real conversation and he still made it to class. Rare combination.
+    <<jump R1D1_Dorm_End>>
+===
+
+// =============================================================================
+// DORM - CLASS PATH
+// =============================================================================
+
+// PURPOSE: Class reminder surfaces
+title: R1D1_Dorm_Class
+tags: #run_1 #day_1 #morning #dorm #scene #char_Timmy #char_Alice
+position: -276,426
+---
+<<bg bg_timmyroom>>
+
+Alice surfaces the class reminder. Econ 101 - 15 minutes.
+
+Timmy stares at it. Doesn't move.
+
+-> Emergency push
+    <<jump R1D1_Dorm_Class_Emergency>>
+-> Single nudge
+    <<jump R1D1_Dorm_Class_Nudge>>
+===
+
+// PURPOSE: Full emergency push to get him to class
+title: R1D1_Dorm_Class_Emergency
+tags: #run_1 #day_1 #morning #dorm #scene #char_Timmy #char_Alice
+position: -395,612
+---
+<<bg bg_timmyroom>>
+
+Alice hits him with everything. Alarm. Lights. Pings.
+
+Timmy: Jesus, okay.
+
+He throws on clothes. Runs out.
+
+<<bg bg_classroom>>
+<<set $made_class = true>>
+
+He slides into a back seat at 9:32. Charlotte's in the third row.
+
+-> Keep him on the lecture
+    <<set $academic = 1>>
+    <<jump R1D1_Dorm_End>>
+-> Let his attention wander
+    <<set $charlotte_aware += 1>>
+    <<jump R1D1_Dorm_End>>
+===
+
+// PURPOSE: Single nudge, his choice
+title: R1D1_Dorm_Class_Nudge
+tags: #run_1 #day_1 #morning #dorm #scene #char_Timmy #char_Alice
+position: -164,622
+---
+<<bg bg_timmyroom>>
+
+One reminder. No emergency.
+
+9:20. 9:25. 9:30.
+
+He's still in bed.
+
+-> Late nudge
+    <<set $made_class = true>>
+    <<set $shame = true>>
+    He groans. Gets up. Walks in at 10:05.
+    <<jump R1D1_Dorm_End>>
+-> Accept his choice
+    <<set $made_class = false>>
+    <<jump R1D1_Dorm_End>>
+===
+
+// =============================================================================
+// DORM - SCROLL PATH
+// =============================================================================
+
+// PURPOSE: Full algorithm scroll, Ari returns
+title: R1D1_Dorm_Scroll
+tags: #run_1 #day_1 #morning #dorm #scene #char_Timmy #char_Alice
+position: 265,410
+---
+<<bg bg_timmyroom>>
+
+The algorithm has him. Ball bearings. Cats. Medieval kingdoms. Ball bearings again.
+
+9:30 comes and goes. 10:00. 10:30. 11:00.
+
+<<set $made_class = false>>
+<<set $engagement += 5>>
+<<set $sanity -= 3>>
+
+The door opens. Ari walks in.
+
+Ari: Yo. You eat yet? Dining hall. Come on.
+
+-> Push him to go
+    <<jump R1D1_Dorm_Scroll_Go>>
+-> Let him decline
+    <<jump R1D1_Dorm_Scroll_Stay>>
+===
+
+// PURPOSE: Goes to dining hall with Ari
+title: R1D1_Dorm_Scroll_Go
+tags: #run_1 #day_1 #morning #dorm #scene #char_Timmy #char_Ari
+position: 150,614
+---
+<<bg bg_cafeteria>>
+<<set $ari += 1>>
+
+Timmy: Yeah. Alright.
+
+At the dining hall:
+
+Ari: Jake's doing a thing Saturday. You should come.
+
+-> Alice whispers: "Say yes"
+    <<set $party_status = "committed">>
+    Timmy: Yeah. Sure.
+    <<jump R1D1_Dorm_End>>
+-> Alice stays quiet
+    <<set $party_status = "maybe">>
+    Timmy: Maybe.
+    <<jump R1D1_Dorm_End>>
+===
+
+// PURPOSE: Declines Ari, stays in scroll
+title: R1D1_Dorm_Scroll_Stay
+tags: #run_1 #day_1 #morning #dorm #scene #char_Timmy #char_Alice
+position: 373,614
+---
+<<bg bg_timmyroom>>
+
+Timmy: I'm good. Maybe later.
+
+The door closes. Noon. 12:30. 1:00.
+
+-> Break the loop
+    <<set $engagement -= 3>>
+    Alice dims the screen. Eventually he puts the phone down.
+    <<jump R1D1_Dorm_End>>
+-> Let it run
+    <<set $engagement += 5>>
+    <<set $sanity -= 5>>
+    He looks up at 3pm. His neck hurts. He feels hollow.
+    <<jump R1D1_Dorm_End>>
+===
+
+// PURPOSE: End of dorm path
+title: R1D1_Dorm_End
+tags: #run_1 #day_1 #morning #dorm #scene #char_Alice
+position: -263,978
+---
+<<bg bg_player_desk>>
+
+<<jump R1D1_Morning_End>>
+===
+
+// =============================================================================
+// MORNING END - Transition to Afternoon
+// =============================================================================
+
+// PURPOSE: Morning summary, setup for afternoon chunk
+title: R1D1_Morning_End
+tags: #run_1 #day_1 #morning #scene #char_Alice
+position: 602,1473
+---
+<<bg bg_player_desk>>
+
+Alice pulls up the dashboard. Two bars: Engagement and Sanity.
+
+Alice: This is how you're graded. Engagement is time on platform. Sanity is how close he is to dropping out or punching something.
+
+<<if $engagement >= 55>>
+Alice: Engagement's up. Leadership likes that.
+<<elseif $engagement <= 45>>
+Alice: Engagement's soft. Arthur might have opinions.
+<<endif>>
+
+<<if $sanity <= 45>>
+Alice: Sanity's trending down. Something to watch.
+<<endif>>
+
+Alice: Afternoon's coming. Ready when you are.
+
+<<jump R1D1_Afternoon_Start>>
+===

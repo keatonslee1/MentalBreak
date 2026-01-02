@@ -146,7 +146,7 @@ public class WelcomeOverlay : MonoBehaviour, IPointerClickHandler
             return false;
         }
 
-        bool hasSave = saveManager.HasSave(0);
+        bool hasSave = saveManager.HasSaveData(0);
         Debug.Log($"[WelcomeOverlay] Autosave slot 0 exists: {hasSave}");
         return hasSave;
     }

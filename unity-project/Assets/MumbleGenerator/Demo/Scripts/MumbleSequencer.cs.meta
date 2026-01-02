@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: c5d082da3da4ef542a8b7a88abae9efc
+AssetOrigin:
+  serializedVersion: 1
+  productId: 319430
+  packageName: Mumble Generator
+  packageVersion: 1.0.1
+  assetPath: Assets/MumbleGenerator/Demo/Scripts/MumbleSequencer.cs
+  uploadId: 807434

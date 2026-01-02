@@ -6,21 +6,19 @@ public class CharacterTalkAnimation : MonoBehaviour
     [Header("Breathing Motion")]
     [Tooltip("Vertical movement amplitude in UI pixels.")]
     [FormerlySerializedAs("distance")]
-    [SerializeField] private float amplitude = 6f;
+    [SerializeField] private float amplitude = 3f;
 
     [Tooltip("Seconds per full cycle (up + down).")]
     [FormerlySerializedAs("duration")]
-    [SerializeField] private float period = 5f;
+    [SerializeField] private float period = 10f;
 
     [Tooltip("Use unscaled time (ignores Time.timeScale).")]
     [SerializeField] private bool useUnscaledTime = false;
 
     [Header("Targets (set at runtime by CharacterSpriteManager)")]
-    [SerializeField] private RectTransform leftTarget;
-    [SerializeField] private RectTransform rightTarget;
+    [SerializeField] private RectTransform[] targets = new RectTransform[0];
 
-    private Vector2 leftStartAnchoredPos;
-    private Vector2 rightStartAnchoredPos;
+    private Vector2[] startAnchoredPositions = new Vector2[0];
     private float t;
 
     void Awake()
@@ -28,10 +26,20 @@ public class CharacterTalkAnimation : MonoBehaviour
         CaptureStartPositions();
     }
 
+    public void SetTargets(RectTransform[] newTargets, bool resetPhase = true)
+    {
+        targets = newTargets;
+        CaptureStartPositions();
+        if (resetPhase)
+        {
+            t = 0f;
+        }
+    }
+
+    // Backwards compatibility: accept two individual targets
     public void SetTargets(RectTransform left, RectTransform right, bool resetPhase = true)
     {
-        leftTarget = left;
-        rightTarget = right;
+        targets = new RectTransform[] { left, right };
         CaptureStartPositions();
         if (resetPhase)
         {
@@ -47,20 +55,26 @@ public class CharacterTalkAnimation : MonoBehaviour
 
     void CaptureStartPositions()
     {
-        if (leftTarget != null)
+        if (targets == null)
         {
-            leftStartAnchoredPos = leftTarget.anchoredPosition;
+            startAnchoredPositions = new Vector2[0];
+            return;
         }
-        if (rightTarget != null)
+
+        startAnchoredPositions = new Vector2[targets.Length];
+        for (int i = 0; i < targets.Length; i++)
         {
-            rightStartAnchoredPos = rightTarget.anchoredPosition;
+            if (targets[i] != null)
+            {
+                startAnchoredPositions[i] = targets[i].anchoredPosition;
+            }
         }
     }
 
     void Update()
     {
         // If not wired yet, do nothing (CharacterSpriteManager will call SetTargets).
-        if (leftTarget == null || rightTarget == null)
+        if (targets == null || targets.Length == 0)
         {
             return;
         }
@@ -72,7 +86,14 @@ public class CharacterTalkAnimation : MonoBehaviour
         float omega = (2f * Mathf.PI) / Mathf.Max(0.01f, period);
         float offset = Mathf.Sin(t * omega) * amplitude;
 
-        leftTarget.anchoredPosition = new Vector2(leftStartAnchoredPos.x, leftStartAnchoredPos.y + offset);
-        rightTarget.anchoredPosition = new Vector2(rightStartAnchoredPos.x, rightStartAnchoredPos.y + offset);
+        // Apply breathing offset to all targets
+        for (int i = 0; i < targets.Length; i++)
+        {
+            if (targets[i] != null && i < startAnchoredPositions.Length)
+            {
+                Vector2 startPos = startAnchoredPositions[i];
+                targets[i].anchoredPosition = new Vector2(startPos.x, startPos.y + offset);
+            }
+        }
     }
 }

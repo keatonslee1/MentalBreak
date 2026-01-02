@@ -1,0 +1,833 @@
+webgl-build.loader.js:1 [UnityCache] 'https://mental-break-git-portrait-experiment-keaton-lees-projects.vercel.app/Build/webgl-build.data.unityweb' successfully revalidated and served from the browser cache
+webgl-build.loader.js:1 You can reduce startup time if you configure your web server to add "Content-Encoding: gzip" response header when serving "Build/webgl-build.data.unityweb" file.
+webgl-build.loader.js:1 You can reduce startup time if you configure your web server to add "Content-Encoding: gzip" response header when serving "Build/webgl-build.framework.js.unityweb" file.
+webgl-build.loader.js:1 You can reduce startup time if you configure your web server to add "Content-Encoding: gzip" response header when serving "Build/webgl-build.wasm.unityweb" file.
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [UnityMemory] Configuration Parameters - Can be set up in boot.config
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9     "memorysetup-allocator-temp-initial-block-size-main=262144"
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9     "memorysetup-allocator-temp-initial-block-size-worker=262144"
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9     "memorysetup-temp-allocator-size-audio-worker=65536"
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9     "memorysetup-temp-allocator-size-background-worker=32768"
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9     "memorysetup-bucket-allocator-granularity=16"
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9     "memorysetup-bucket-allocator-bucket-count=8"
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9     "memorysetup-bucket-allocator-block-size=4194304"
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9     "memorysetup-bucket-allocator-block-count=1"
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9     "memorysetup-main-allocator-block-size=16777216"
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9     "memorysetup-thread-allocator-block-size=16777216"
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9     "memorysetup-gfx-main-allocator-block-size=16777216"
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9     "memorysetup-gfx-thread-allocator-block-size=16777216"
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9     "memorysetup-cache-allocator-block-size=4194304"
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9     "memorysetup-typetree-allocator-block-size=2097152"
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9     "memorysetup-profiler-bucket-allocator-granularity=16"
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9     "memorysetup-profiler-bucket-allocator-bucket-count=8"
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9     "memorysetup-profiler-bucket-allocator-block-size=4194304"
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9     "memorysetup-profiler-bucket-allocator-block-count=1"
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9     "memorysetup-profiler-allocator-block-size=16777216"
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9     "memorysetup-profiler-editor-allocator-block-size=1048576"
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9     "memorysetup-temp-allocator-size-main=4194304"
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9     "memorysetup-job-temp-allocator-block-size=2097152"
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9     "memorysetup-job-temp-allocator-block-size-background=1048576"
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9     "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 Input System module state changed to: Initialized.
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [Physics::Module] Initialized fallback backend.
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [Physics::Module] Id: 0xdecafbad
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 Loading player data from data.unity3d
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 Initialize engine version: 6000.2.10f1 (d3d30d158480)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [Subsystems] Discovering subsystems at path UnitySubsystems
+
+webgl-build.loader.js:1 Creating WebGL 2.0 context.
+1d502942-c511-4a85-9cad-0d9bf676618d:9 Renderer: WebKit WebGL
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 Vendor:   WebKit
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 Version:  OpenGL ES 3.0 (WebGL 2.0 (OpenGL ES 3.0 Chromium))
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 GLES:     3
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9  EXT_clip_control EXT_color_buffer_float EXT_color_buffer_half_float EXT_conservative_depth EXT_depth_clamp EXT_disjoint_timer_query_webgl2 EXT_float_blend EXT_polygon_offset_clamp EXT_render_snorm EXT_texture_compression_bptc EXT_texture_compression_rgtc EXT_texture_filter_anisotropic EXT_texture_mirror_clamp_to_edge EXT_texture_norm16 KHR_parallel_shader_compile NV_shader_noperspective_interpolation OES_draw_buffers_indexed OES_sample_variables OES_shader_multisample_interpolation OES_texture_float_linear OVR_multiview2 WEBGL_blend_func_extended WEBGL_clip_cull_distance WEBGL_compressed_texture_s3tc WEBGL_compressed_texture_s3tc_srgb WEBGL_debug_renderer_info WEBGL_debug_shaders WEBGL_lose_context WEBGL_multi_draw WEBGL_polygon_mode WEBGL_provoking_vertex WEBGL_stencil_texturing GL_EXT_clip_control GL_EXT_color_buffer_float GL_EXT_color_buffer_half_float GL_EXT_conservative_depth GL_EXT_depth_clamp GL_EXT_disjoint_timer_query_webgl2 GL_EXT_float_blend GL_EXT_polygon_offset_clamp GL_EXT_render_snorm GL_EXT_
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 texture_compression_bptc GL_EXT_texture_compression_rgtc GL_EXT_texture_filter_anisotropic GL_EXT_texture_mirror_clamp_to_edge GL_EXT_texture_norm16 GL_KHR_parallel_shader_compile GL_NV_shader_noperspective_interpolation GL_OES_draw_buffers_indexed GL_OES_sample_variables GL_OES_shader_multisample_interpolation GL_OES_texture_float_linear GL_OVR_multiview2 GL_WEBGL_blend_func_extended GL_WEBGL_clip_cull_distance GL_WEBGL_compressed_texture_s3tc GL_WEBGL_compressed_texture_s3tc_srgb GL_WEBGL_debug_renderer_info GL_WEBGL_debug_shaders GL_WEBGL_lose_context GL_WEBGL_multi_draw GL_WEBGL_polygon_mode GL_WEBGL_provoking_vertex GL_WEBGL_stencil_texturing
+
+WebGL: INVALID_ENUM: getInternalformatParameter: invalid internalformat
+WebGL: INVALID_ENUM: getInternalformatParameter: invalid internalformat
+WebGL: INVALID_ENUM: getInternalformatParameter: invalid internalformat
+WebGL: INVALID_ENUM: getInternalformatParameter: invalid internalformat
+WebGL: INVALID_ENUM: getInternalformatParameter: invalid internalformat
+WebGL: INVALID_ENUM: getInternalformatParameter: invalid internalformat
+1d502942-c511-4a85-9cad-0d9bf676618d:9 OPENGL LOG: Creating OpenGL ES 3.0 graphics device ; Context level  <OpenGL ES 3.0> ; Context handle 1
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [Physics::Module] Selected backend.
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [Physics::Module] Name: PhysX
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [Physics::Module] Id: 0xf2b8ea05
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [Physics::Module] SDK Version: 4.1.2
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [Physics::Module] Integration Version: 1.0.0
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [Physics::Module] Threading Mode: Single-Threaded
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 ERROR: Shader 
+1d502942-c511-4a85-9cad-0d9bf676618d:9 Hidden/CoreSRP/CoreCopy shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 ERROR: Shader 
+1d502942-c511-4a85-9cad-0d9bf676618d:9 Hidden/Universal/HDRDebugView shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 Input System initialize...
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 UnloadTime: 1.300000 ms
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] AutoCreate called (RuntimeInitializeOnLoadMethod)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] WebGL detected - creating bank loader
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] Awake - Instance created
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [Settings] Loaded: Master=1.00, Music=0.70, SFX=1.00, TextSpeed=1.00
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 BackgroundCommandHandler: Auto-loaded background 'bg_breakroom' from Resources (sprite: bg_breakroom_0)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 BackgroundCommandHandler: Auto-loaded background 'bg_bsod' from Resources (sprite: bg_bsod_0)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 BackgroundCommandHandler: Auto-loaded background 'bg_cafeteria' from Resources (sprite: bg_cafeteria_0)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 BackgroundCommandHandler: Auto-loaded background 'bg_classroom' from Resources (sprite: bg_classroom_0)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 BackgroundCommandHandler: Auto-loaded background 'bg_companystore' from Resources (sprite: bg_companystore_0)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 BackgroundCommandHandler: Auto-loaded background 'bg_conferenceroom' from Resources (sprite: bg_conferenceroom_0)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 BackgroundCommandHandler: Auto-loaded background 'bg_day_planner' from Resources (sprite: bg_day_planner_0)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 BackgroundCommandHandler: Auto-loaded background 'bg_gym' from Resources (sprite: bg_gym_0)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 BackgroundCommandHandler: Auto-loaded background 'bg_hall' from Resources (sprite: bg_hall_0)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 BackgroundCommandHandler: Auto-loaded background 'bg_intermission' from Resources (sprite: bg_intermission_0)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 BackgroundCommandHandler: Auto-loaded background 'bg_library' from Resources (sprite: bg_library_0)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 BackgroundCommandHandler: Auto-loaded background 'bg_loading' from Resources (sprite: bg_loading_0)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 BackgroundCommandHandler: Auto-loaded background 'bg_mainmenu' from Resources (sprite: bg_mainmenu_0)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 BackgroundCommandHandler: Auto-loaded background 'bg_majoritymind' from Resources (sprite: bg_majoritymind_0)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 BackgroundCommandHandler: Auto-loaded background 'bg_mind_meld' from Resources (sprite: bg_mind_meld_0)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 BackgroundCommandHandler: Auto-loaded background 'bg_minesweeper' from Resources (sprite: bg_minesweeper_0)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 BackgroundCommandHandler: Auto-loaded background 'bg_outside' from Resources (sprite: bg_outside_0)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 BackgroundCommandHandler: Auto-loaded background 'bg_party' from Resources (sprite: bg_party_0)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 BackgroundCommandHandler: Auto-loaded background 'bg_party_basement' from Resources (sprite: bg_party_basement_0)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 BackgroundCommandHandler: Auto-loaded background 'bg_party_upstairs' from Resources (sprite: bg_party_upstairs_0)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 BackgroundCommandHandler: Auto-loaded background 'bg_player_desk' from Resources (sprite: bg_player_desk_0)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 BackgroundCommandHandler: Auto-loaded background 'bg_supervisoroffice' from Resources (sprite: bg_supervisoroffice_0)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 BackgroundCommandHandler: Auto-loaded background 'bg_timmyroom' from Resources (sprite: bg_timmyroom_0)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 BackgroundCommandHandler: Auto-loaded background 'bg_timmydesk' from Resources (sprite: bg_timmydesk_0)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 BackgroundCommandHandler: Found 'Scene Background' via GameObject.Find
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 BackgroundCommandHandler: Found background Image on 'Scene Background'
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 BackgroundCommandHandler: Running in build mode, videos will be checked on demand
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 SaveSlotSelectionUI: Added CanvasGroup to selectionPanel for visibility control.
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 SaveSlotSelectionUI: Reparenting LoadMenuPanel from Canvas to PauseMenuPanel.
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 SaveSlotSelectionUI: Set LayoutElement.ignoreLayout=true so PauseMenuPanel layout won't reposition LoadMenuPanel.
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 CharacterSpriteManager: Loaded 8 manually assigned sprites
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9  CharacterPortraitData: No base sprite found in Resources/Graphics/Characters/Alice/Base
+
+_JS_Log_Dump @ 1d502942-c511-4a85-9cad-0d9bf676618d:9
+1d502942-c511-4a85-9cad-0d9bf676618d:9  CharacterPortraitData: No talking frames found in Resources/Graphics/Characters/Alice/Talking
+
+_JS_Log_Dump @ 1d502942-c511-4a85-9cad-0d9bf676618d:9
+1d502942-c511-4a85-9cad-0d9bf676618d:9  CharacterPortraitData: No eye frames found in Resources/Graphics/Characters/Alice/Eyes
+
+_JS_Log_Dump @ 1d502942-c511-4a85-9cad-0d9bf676618d:9
+1d502942-c511-4a85-9cad-0d9bf676618d:9  CharacterPortraitData: No base sprite found in Resources/Graphics/Characters/Supervisor/Base
+
+_JS_Log_Dump @ 1d502942-c511-4a85-9cad-0d9bf676618d:9
+1d502942-c511-4a85-9cad-0d9bf676618d:9  CharacterPortraitData: No talking frames found in Resources/Graphics/Characters/Supervisor/Talking
+
+_JS_Log_Dump @ 1d502942-c511-4a85-9cad-0d9bf676618d:9
+1d502942-c511-4a85-9cad-0d9bf676618d:9  CharacterPortraitData: No eye frames found in Resources/Graphics/Characters/Supervisor/Eyes
+
+_JS_Log_Dump @ 1d502942-c511-4a85-9cad-0d9bf676618d:9
+1d502942-c511-4a85-9cad-0d9bf676618d:9  CharacterPortraitData: No base sprite found in Resources/Graphics/Characters/Timmy/Base
+
+_JS_Log_Dump @ 1d502942-c511-4a85-9cad-0d9bf676618d:9
+1d502942-c511-4a85-9cad-0d9bf676618d:9  CharacterPortraitData: No talking frames found in Resources/Graphics/Characters/Timmy/Talking
+
+_JS_Log_Dump @ 1d502942-c511-4a85-9cad-0d9bf676618d:9
+1d502942-c511-4a85-9cad-0d9bf676618d:9  CharacterPortraitData: No eye frames found in Resources/Graphics/Characters/Timmy/Eyes
+
+_JS_Log_Dump @ 1d502942-c511-4a85-9cad-0d9bf676618d:9
+1d502942-c511-4a85-9cad-0d9bf676618d:9  CharacterPortraitData: No base sprite found in Resources/Graphics/Characters/Btc/Base
+
+_JS_Log_Dump @ 1d502942-c511-4a85-9cad-0d9bf676618d:9
+1d502942-c511-4a85-9cad-0d9bf676618d:9  CharacterPortraitData: No talking frames found in Resources/Graphics/Characters/Btc/Talking
+
+_JS_Log_Dump @ 1d502942-c511-4a85-9cad-0d9bf676618d:9
+1d502942-c511-4a85-9cad-0d9bf676618d:9  CharacterPortraitData: No eye frames found in Resources/Graphics/Characters/Btc/Eyes
+
+_JS_Log_Dump @ 1d502942-c511-4a85-9cad-0d9bf676618d:9
+1d502942-c511-4a85-9cad-0d9bf676618d:9  CharacterPortraitData: No base sprite found in Resources/Graphics/Characters/Ari/Base
+
+_JS_Log_Dump @ 1d502942-c511-4a85-9cad-0d9bf676618d:9
+1d502942-c511-4a85-9cad-0d9bf676618d:9  CharacterPortraitData: No talking frames found in Resources/Graphics/Characters/Ari/Talking
+
+_JS_Log_Dump @ 1d502942-c511-4a85-9cad-0d9bf676618d:9
+1d502942-c511-4a85-9cad-0d9bf676618d:9  CharacterPortraitData: No eye frames found in Resources/Graphics/Characters/Ari/Eyes
+
+_JS_Log_Dump @ 1d502942-c511-4a85-9cad-0d9bf676618d:9
+1d502942-c511-4a85-9cad-0d9bf676618d:9  CharacterPortraitData: No base sprite found in Resources/Graphics/Characters/Charlotte/Base
+
+_JS_Log_Dump @ 1d502942-c511-4a85-9cad-0d9bf676618d:9
+1d502942-c511-4a85-9cad-0d9bf676618d:9  CharacterPortraitData: No talking frames found in Resources/Graphics/Characters/Charlotte/Talking
+
+_JS_Log_Dump @ 1d502942-c511-4a85-9cad-0d9bf676618d:9
+1d502942-c511-4a85-9cad-0d9bf676618d:9  CharacterPortraitData: No eye frames found in Resources/Graphics/Characters/Charlotte/Eyes
+
+_JS_Log_Dump @ 1d502942-c511-4a85-9cad-0d9bf676618d:9
+1d502942-c511-4a85-9cad-0d9bf676618d:9  CharacterPortraitData: No base sprite found in Resources/Graphics/Characters/Dina/Base
+
+_JS_Log_Dump @ 1d502942-c511-4a85-9cad-0d9bf676618d:9
+1d502942-c511-4a85-9cad-0d9bf676618d:9  CharacterPortraitData: No talking frames found in Resources/Graphics/Characters/Dina/Talking
+
+_JS_Log_Dump @ 1d502942-c511-4a85-9cad-0d9bf676618d:9
+1d502942-c511-4a85-9cad-0d9bf676618d:9  CharacterPortraitData: No eye frames found in Resources/Graphics/Characters/Dina/Eyes
+
+_JS_Log_Dump @ 1d502942-c511-4a85-9cad-0d9bf676618d:9
+1d502942-c511-4a85-9cad-0d9bf676618d:9  CharacterPortraitData: No base sprite found in Resources/Graphics/Characters/Noam/Base
+
+_JS_Log_Dump @ 1d502942-c511-4a85-9cad-0d9bf676618d:9
+1d502942-c511-4a85-9cad-0d9bf676618d:9  CharacterPortraitData: No talking frames found in Resources/Graphics/Characters/Noam/Talking
+
+_JS_Log_Dump @ 1d502942-c511-4a85-9cad-0d9bf676618d:9
+1d502942-c511-4a85-9cad-0d9bf676618d:9  CharacterPortraitData: No eye frames found in Resources/Graphics/Characters/Noam/Eyes
+
+_JS_Log_Dump @ 1d502942-c511-4a85-9cad-0d9bf676618d:9
+1d502942-c511-4a85-9cad-0d9bf676618d:9  CharacterPortraitData: No base sprite found in Resources/Graphics/Characters/Max/Base
+
+_JS_Log_Dump @ 1d502942-c511-4a85-9cad-0d9bf676618d:9
+1d502942-c511-4a85-9cad-0d9bf676618d:9  CharacterPortraitData: No talking frames found in Resources/Graphics/Characters/Max/Talking
+
+_JS_Log_Dump @ 1d502942-c511-4a85-9cad-0d9bf676618d:9
+1d502942-c511-4a85-9cad-0d9bf676618d:9  CharacterPortraitData: No eye frames found in Resources/Graphics/Characters/Max/Eyes
+
+_JS_Log_Dump @ 1d502942-c511-4a85-9cad-0d9bf676618d:9
+1d502942-c511-4a85-9cad-0d9bf676618d:9 CharacterSpriteManager: Loading from Resources/Characters
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 CharacterSpriteManager: Auto-loaded single-frame character 'char_BTC' from Resources (sprite: btc_0)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 CharacterSpriteManager: Portrait data dictionary contains 9 entries:
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9   - char_Alice: Base=alice_0, Talking=1 frames, Eyes=3 frames
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9   - char_Timmy: Base=timmy_0, Talking=1 frames, Eyes=3 frames
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9   - char_Supervisor: Base=supervisor_0, Talking=1 frames, Eyes=3 frames
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9   - char_Charlotte: Base=charlotte_0, Talking=1 frames, Eyes=3 frames
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9   - char_Ari: Base=ari_0, Talking=1 frames, Eyes=3 frames
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9   - char_Dina: Base=dina_0, Talking=1 frames, Eyes=3 frames
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9   - char_Noam: Base=noam_0, Talking=1 frames, Eyes=3 frames
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9   - char_Max: Base=max_0, Talking=1 frames, Eyes=3 frames
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9   - char_BTC: Base=btc_0, Talking=1 frames, Eyes=3 frames
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9  CharacterSpriteManager: LinePresenter Canvas 'Canvas' is NOT in DontDestroyOnLoad hierarchy, continuing search...
+
+_JS_Log_Dump @ 1d502942-c511-4a85-9cad-0d9bf676618d:9
+1d502942-c511-4a85-9cad-0d9bf676618d:9 CharacterSpriteManager: Found Canvas via OptionsPresenter in dialogue system: 'Canvas' on GameObject 'Canvas' (InstanceID: 10068)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9  CharacterSpriteManager: Canvas mismatch! targetCanvas was 'Canvas' on 'Canvas', but correct Canvas is 'Canvas' on 'Canvas'. Updating...
+
+_JS_Log_Dump @ 1d502942-c511-4a85-9cad-0d9bf676618d:9
+1d502942-c511-4a85-9cad-0d9bf676618d:9 CharacterSpriteManager: Setting up sprites in Canvas 'Canvas' on GameObject 'Canvas' (InstanceID: 10068)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 === Canvas Hierarchy BEFORE sprite creation ===
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 Canvas: 'Canvas' on GameObject 'Canvas'
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 Total children: 7
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9   [0] Scene Background (ACTIVE)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9   [1] Line Presenter (ACTIVE)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9   [2] Options Presenter (ACTIVE)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9   [3] PauseMenuPanel (ACTIVE)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9   [4] OpenFeedbackFormButton (ACTIVE)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9   [5] Feedback Form (INACTIVE)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9   [6] PauseHintText (ACTIVE)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 === End Hierarchy ===
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 CharacterSpriteManager: Background index: 0, Dialogue UI index: 1
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 CharacterSpriteManager: Calculated target sprite index: 1 (background: 0, dialogue: 1)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 CharacterSpriteManager: Creating sprites as children of Canvas 'Canvas' on 'Canvas'
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 CharacterSpriteManager: Left sprite parent confirmed: 'Canvas'
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 CharacterSpriteManager: Left sprite placed at sibling index: 1 in Canvas 'Canvas'
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 CharacterSpriteManager: Dialogue UI index after left sprite placement: 2
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 CharacterSpriteManager: Right sprite parent confirmed: 'Canvas'
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 CharacterSpriteManager: Right sprite placed at sibling index: 2 in Canvas 'Canvas'
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 === Canvas Hierarchy AFTER sprite creation ===
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 Canvas: 'Canvas' on GameObject 'Canvas'
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 Total children: 9
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9   [0] Scene Background (ACTIVE)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9   [1] CharacterPortraitFrame_Left (INACTIVE) <-- LEFT SPRITE
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9   [2] CharacterPortraitFrame_Right (ACTIVE) <-- RIGHT SPRITE
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9   [3] Line Presenter (ACTIVE)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9   [4] Options Presenter (ACTIVE)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9   [5] PauseMenuPanel (ACTIVE)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9   [6] OpenFeedbackFormButton (ACTIVE)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9   [7] Feedback Form (INACTIVE)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9   [8] PauseHintText (ACTIVE)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 === End Hierarchy ===
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 CharacterSpriteManager: FINAL INDICES - Background: 0, Left Sprite: 1, Right Sprite: 2, Dialogue UI: 3
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 BackgroundCommandHandler: Auto-loaded background 'bg_breakroom' from Resources (sprite: bg_breakroom_0)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 BackgroundCommandHandler: Auto-loaded background 'bg_bsod' from Resources (sprite: bg_bsod_0)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 BackgroundCommandHandler: Auto-loaded background 'bg_cafeteria' from Resources (sprite: bg_cafeteria_0)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 BackgroundCommandHandler: Auto-loaded background 'bg_classroom' from Resources (sprite: bg_classroom_0)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 BackgroundCommandHandler: Auto-loaded background 'bg_companystore' from Resources (sprite: bg_companystore_0)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 BackgroundCommandHandler: Auto-loaded background 'bg_conferenceroom' from Resources (sprite: bg_conferenceroom_0)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 BackgroundCommandHandler: Auto-loaded background 'bg_day_planner' from Resources (sprite: bg_day_planner_0)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 BackgroundCommandHandler: Auto-loaded background 'bg_gym' from Resources (sprite: bg_gym_0)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 BackgroundCommandHandler: Auto-loaded background 'bg_hall' from Resources (sprite: bg_hall_0)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 BackgroundCommandHandler: Auto-loaded background 'bg_intermission' from Resources (sprite: bg_intermission_0)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 BackgroundCommandHandler: Auto-loaded background 'bg_library' from Resources (sprite: bg_library_0)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 BackgroundCommandHandler: Auto-loaded background 'bg_loading' from Resources (sprite: bg_loading_0)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 BackgroundCommandHandler: Auto-loaded background 'bg_mainmenu' from Resources (sprite: bg_mainmenu_0)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 BackgroundCommandHandler: Auto-loaded background 'bg_majoritymind' from Resources (sprite: bg_majoritymind_0)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 BackgroundCommandHandler: Auto-loaded background 'bg_mind_meld' from Resources (sprite: bg_mind_meld_0)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 BackgroundCommandHandler: Auto-loaded background 'bg_minesweeper' from Resources (sprite: bg_minesweeper_0)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 BackgroundCommandHandler: Auto-loaded background 'bg_outside' from Resources (sprite: bg_outside_0)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 BackgroundCommandHandler: Auto-loaded background 'bg_party' from Resources (sprite: bg_party_0)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 BackgroundCommandHandler: Auto-loaded background 'bg_party_basement' from Resources (sprite: bg_party_basement_0)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 BackgroundCommandHandler: Auto-loaded background 'bg_party_upstairs' from Resources (sprite: bg_party_upstairs_0)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 BackgroundCommandHandler: Auto-loaded background 'bg_player_desk' from Resources (sprite: bg_player_desk_0)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 BackgroundCommandHandler: Auto-loaded background 'bg_supervisoroffice' from Resources (sprite: bg_supervisoroffice_0)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 BackgroundCommandHandler: Auto-loaded background 'bg_timmyroom' from Resources (sprite: bg_timmyroom_0)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 BackgroundCommandHandler: Auto-loaded background 'bg_timmydesk' from Resources (sprite: bg_timmydesk_0)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 BackgroundCommandHandler: Found background Image on 'Scene Background'
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 BackgroundCommandHandler: Running in build mode, videos will be checked on demand
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 CommandHandlerRegistrar: Awake() starting - finding and registering command handlers
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 CommandHandlerRegistrar: Found DialogueRunner on 'Dialogue System'
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 CommandHandlerRegistrar: Found BackgroundCommandHandler on same GameObject
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 CommandHandlerRegistrar: Found AudioCommandHandler on same GameObject
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 CommandHandlerRegistrar: Found CheckpointCommandHandler on same GameObject
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 CommandHandlerRegistrar: Found FMODAudioManager on same GameObject
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 CommandHandlerRegistrar: Registered 'bg' command
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 CommandHandlerRegistrar: Registered 'bgm' and 'sfx' commands
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 CommandHandlerRegistrar: Registered 'checkpoint' command
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 CommandHandlerRegistrar: Registered 'store' command with CompanyStore on CompanyStorePanel
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 CommandHandlerRegistrar: Registered FMOD commands (music, music_stop, fmod, fmod_stop, fmod_loop, fmod_param)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 CommandHandlerRegistrar: All commands registered successfully!
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 CommandHandlerRegistrar: Awake() complete - commands registered
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 MVPCommandHandlers: Registered 3 command handler(s) (bg->BackgroundCommandHandler) (bgm/sfx->AudioCommandHandler)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 MVPCommandHandlers: Registered 3 command handler(s) (bg->BackgroundCommandHandler) (bgm/sfx->AudioCommandHandler)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] Start - Beginning bank loading process
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] Platform: WebGLPlayer
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] StreamingAssetsPath: https://mental-break-git-portrait-experiment-keaton-lees-projects.vercel.app/StreamingAssets
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] Banks to load: Master.strings, Master, Music_A_Side, Music_B_Side, UI
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] Starting manual bank load coroutine
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] LoadAllBanksWebGL coroutine started
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 PauseMenuManager: Cached PauseMenuPanel Image (enabled=True, raycastTarget=True)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 CharacterSpriteManager: Node started: R1_Start
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 CharacterSpriteManager: Tags header: '#run_1 #scene #loc_Office'
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 CharacterSpriteManager: Extracted character tags (before auto-add): []
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 CharacterSpriteManager: Auto-added Alice (player is present, no supervisor, not darkroom)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 CharacterSpriteManager: Final character tags: [char_Alice]
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 CharacterPortraitAnimator: Initialized for char_Alice (Talking: 1 frames, Eyes: 3 frames)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 CharacterSpriteManager: Displaying 'char_Alice' on left (base sprite: alice_0, 1 talking frames, 3 eye frames)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 Background: Changed to bg_loading (sprite: bg_loading_0)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9  BGM Command: No audio clip found for key 'cyberpunk_background_cyberpunk_background_main'. Available keys: ...
+
+_JS_Log_Dump @ 1d502942-c511-4a85-9cad-0d9bf676618d:9
+1d502942-c511-4a85-9cad-0d9bf676618d:9 CharacterSpriteManager: Node started: R1D1_Start
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 CharacterSpriteManager: Tags header: '#run_1 #day_1 #morning #scene #char_Supervisor #loc_Office'
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 CharacterSpriteManager: Current background updated to: bg_loading_0
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 CharacterSpriteManager: Extracted character tags (before auto-add): [char_Supervisor]
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 CharacterSpriteManager: Did not auto-add Alice - Supervisor present or darkroom or already in list
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 CharacterSpriteManager: Final character tags: [char_Supervisor]
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 CharacterPortraitAnimator: Initialized for char_Supervisor (Talking: 1 frames, Eyes: 3 frames)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 CharacterSpriteManager: Displaying 'char_Supervisor' on left (base sprite: supervisor_0, 1 talking frames, 3 eye frames)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 BackgroundCommandHandler: 'bg_supervisoroffice' is a known video background, trying video first
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 BackgroundCommandHandler: Initializing video system (lazy init)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMOD] Event not found (attempt 1/10), banks may still be loading...
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 DialogueAdvanceHandler: Disabled ESC key in LineAdvancer
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 DialogueAdvanceHandler: enableClickToAdvance was disabled; re-enabling to support tap-to-progress across mouse and touch.
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [Debug Nav] Loaded saved resume position: R1D1_FirstChoice
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 === DialogueDebugNavigator: Navigation Enabled ===
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9   Ctrl+LeftArrow - Go back one node
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9   Ctrl+R - Resume to saved position
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9   Ctrl+Shift+C - Clear history
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9   Ctrl+J - Jump to day menu
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9   Saved resume position: R1D1_FirstChoice
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 ==================================================
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 ChoiceDiagnostics: Monitoring for option events (via Dialogue Runner state polling)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 === Choice Diagnostics Initial State ===
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 DialogueRunner found: Dialogue System
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 DialogueRunner has 3 presenter(s) registered
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9   - Presenter: LinePresenter, Active: True, GameObject: Line Presenter
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9   - Presenter: OptionsPresenter, Active: True, GameObject: Options Presenter
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9     Options Presenter - Has Prefab: True
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9   - Presenter: LineAdvancer, Active: True, GameObject: Line Advancer
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 Options Presenter found: Options Presenter, Registered: True, Active: True
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 Line Presenter found: Line Presenter
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 CommandHandlerRegistrar: Registered 'bg' command
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 CommandHandlerRegistrar: Registered 'bgm' and 'sfx' commands
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 CommandHandlerRegistrar: Registered 'checkpoint' command
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9  Failed to register command store: a command by this name has already been registered.
+
+_JS_Log_Dump @ 1d502942-c511-4a85-9cad-0d9bf676618d:9
+1d502942-c511-4a85-9cad-0d9bf676618d:9 CommandHandlerRegistrar: Registered 'store' command with CompanyStore on CompanyStorePanel
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 CommandHandlerRegistrar: Registered FMOD commands (music, music_stop, fmod, fmod_stop, fmod_loop, fmod_param)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 CommandHandlerRegistrar: All commands registered successfully!
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9  [FMOD] Please add an 'FMOD Studio Listener' component to your camera in the scene for correct 3D positioning of sounds.
+
+_JS_Log_Dump @ 1d502942-c511-4a85-9cad-0d9bf676618d:9
+1d502942-c511-4a85-9cad-0d9bf676618d:9 RenderGraph is now enabled.
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] Waited one frame for FMOD initialization
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] FMOD StudioSystem is valid
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] Loading bank: Master.strings
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] Application.absoluteURL: https://mental-break-git-portrait-experiment-keaton-lees-projects.vercel.app/play
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] Application.streamingAssetsPath: https://mental-break-git-portrait-experiment-keaton-lees-projects.vercel.app/StreamingAssets
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] Relative URL: https://mental-break-git-portrait-experiment-keaton-lees-projects.vercel.app/StreamingAssets/Master.strings.bank
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] Absolute URL: https://mental-break-git-portrait-experiment-keaton-lees-projects.vercel.app/StreamingAssets/Master.strings.bank
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] Attempt 1: Trying relative URL: https://mental-break-git-portrait-experiment-keaton-lees-projects.vercel.app/StreamingAssets/Master.strings.bank
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] Attempt 1 response code: 200
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] Attempt 1 SUCCESS - got 1328 bytes
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] Downloaded 1328 bytes for Master.strings.bank from https://mental-break-git-portrait-experiment-keaton-lees-projects.vercel.app/StreamingAssets/Master.strings.bank
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] Bank already loaded (by FMOD auto-load): Master.strings.bank
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] Loading bank: Master
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] Application.absoluteURL: https://mental-break-git-portrait-experiment-keaton-lees-projects.vercel.app/play
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] Application.streamingAssetsPath: https://mental-break-git-portrait-experiment-keaton-lees-projects.vercel.app/StreamingAssets
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] Relative URL: https://mental-break-git-portrait-experiment-keaton-lees-projects.vercel.app/StreamingAssets/Master.bank
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] Absolute URL: https://mental-break-git-portrait-experiment-keaton-lees-projects.vercel.app/StreamingAssets/Master.bank
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] Attempt 1: Trying relative URL: https://mental-break-git-portrait-experiment-keaton-lees-projects.vercel.app/StreamingAssets/Master.bank
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] Attempt 1 response code: 200
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] Attempt 1 SUCCESS - got 1036 bytes
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] Downloaded 1036 bytes for Master.bank from https://mental-break-git-portrait-experiment-keaton-lees-projects.vercel.app/StreamingAssets/Master.bank
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] Bank already loaded (by FMOD auto-load): Master.bank
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] Loading bank: Music_A_Side
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] Application.absoluteURL: https://mental-break-git-portrait-experiment-keaton-lees-projects.vercel.app/play
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] Application.streamingAssetsPath: https://mental-break-git-portrait-experiment-keaton-lees-projects.vercel.app/StreamingAssets
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] Relative URL: https://mental-break-git-portrait-experiment-keaton-lees-projects.vercel.app/StreamingAssets/Music_A_Side.bank
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] Absolute URL: https://mental-break-git-portrait-experiment-keaton-lees-projects.vercel.app/StreamingAssets/Music_A_Side.bank
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] Attempt 1: Trying relative URL: https://mental-break-git-portrait-experiment-keaton-lees-projects.vercel.app/StreamingAssets/Music_A_Side.bank
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] Attempt 1 response code: 200
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] Attempt 1 SUCCESS - got 1722368 bytes
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] Downloaded 1722368 bytes for Music_A_Side.bank from https://mental-break-git-portrait-experiment-keaton-lees-projects.vercel.app/StreamingAssets/Music_A_Side.bank
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] Bank already loaded (by FMOD auto-load): Music_A_Side.bank
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] Loading bank: Music_B_Side
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] Application.absoluteURL: https://mental-break-git-portrait-experiment-keaton-lees-projects.vercel.app/play
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] Application.streamingAssetsPath: https://mental-break-git-portrait-experiment-keaton-lees-projects.vercel.app/StreamingAssets
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] Relative URL: https://mental-break-git-portrait-experiment-keaton-lees-projects.vercel.app/StreamingAssets/Music_B_Side.bank
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] Absolute URL: https://mental-break-git-portrait-experiment-keaton-lees-projects.vercel.app/StreamingAssets/Music_B_Side.bank
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] Attempt 1: Trying relative URL: https://mental-break-git-portrait-experiment-keaton-lees-projects.vercel.app/StreamingAssets/Music_B_Side.bank
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 PortraitTalkingStateController: No character name in line, skipping talking animation
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 BackgroundCommandHandler: Creating RenderTexture at 2560x1440 for video
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 Background: Playing video for bg_supervisoroffice
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] Attempt 1 response code: 200
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] Attempt 1 SUCCESS - got 4527872 bytes
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] Downloaded 4527872 bytes for Music_B_Side.bank from https://mental-break-git-portrait-experiment-keaton-lees-projects.vercel.app/StreamingAssets/Music_B_Side.bank
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] Bank already loaded (by FMOD auto-load): Music_B_Side.bank
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] Loading bank: UI
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] Application.absoluteURL: https://mental-break-git-portrait-experiment-keaton-lees-projects.vercel.app/play
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] Application.streamingAssetsPath: https://mental-break-git-portrait-experiment-keaton-lees-projects.vercel.app/StreamingAssets
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] Relative URL: https://mental-break-git-portrait-experiment-keaton-lees-projects.vercel.app/StreamingAssets/UI.bank
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] Absolute URL: https://mental-break-git-portrait-experiment-keaton-lees-projects.vercel.app/StreamingAssets/UI.bank
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] Attempt 1: Trying relative URL: https://mental-break-git-portrait-experiment-keaton-lees-projects.vercel.app/StreamingAssets/UI.bank
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] Attempt 1 response code: 200
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] Attempt 1 SUCCESS - got 494 bytes
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] Downloaded 494 bytes for UI.bank from https://mental-break-git-portrait-experiment-keaton-lees-projects.vercel.app/StreamingAssets/UI.bank
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] Bank already loaded (by FMOD auto-load): UI.bank
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] All banks processed. Loaded: 5/5
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] SUCCESS - All banks loaded!
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] === BANK STATUS ===
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] Total banks loaded in FMOD: 5
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] Bank: bank:/Master.strings | State: LOADED | Events: 0
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] Bank: bank:/Master | State: LOADED | Events: 0
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] Bank: bank:/Music_A_Side | State: LOADED | Events: 3
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] Bank: bank:/UI.bank | State: LOADED | Events: 0
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] Bank: bank:/Music_B_Side | State: LOADED | Events: 3
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] Testing event lookup...
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] SUCCESS - event:/ASIDE_Supervisor found!
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMODWebGLBankLoader] === END BANK STATUS ===
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMOD] Event found on attempt 2: ASIDE_Supervisor
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMOD] Started: ASIDE_Supervisor (vol=0.70)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 Resetting audio driver based on user input.
+1d502942-c511-4a85-9cad-0d9bf676618d:9 PortraitTalkingStateController: Started talking animation for 'Arthur' (char_Supervisor)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 PortraitTalkingStateController: Stopped talking animation for 'char_Supervisor'
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 PortraitTalkingStateController: No character name in line, skipping talking animation
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 CharacterSpriteManager: Node started: R1D1_Arthur_Intro
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 CharacterSpriteManager: Tags header: '#run_1 #day_1 #morning #scene #char_Supervisor #char_Alice'
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 CharacterSpriteManager: Current background updated to: bg_loading_0
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 CharacterSpriteManager: Extracted character tags (before auto-add): [char_Supervisor, char_Alice]
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 CharacterSpriteManager: Did not auto-add Alice - Supervisor present or darkroom or already in list
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 CharacterSpriteManager: Final character tags: [char_Supervisor, char_Alice]
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 CharacterPortraitAnimator: Initialized for char_Supervisor (Talking: 1 frames, Eyes: 3 frames)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 CharacterSpriteManager: Displaying 'char_Supervisor' on left (base sprite: supervisor_0, 1 talking frames, 3 eye frames)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 CharacterPortraitAnimator: Initialized for char_Alice (Talking: 1 frames, Eyes: 3 frames)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 CharacterSpriteManager: Displaying 'char_Alice' on right (base sprite: alice_0, 1 talking frames, 3 eye frames)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [Debug Nav] Node visited: R1D1_Arthur_Intro (History: 1 nodes)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9  Manual synchronization of Unity Application.persistentDataPath via JS_FileSystem_Sync() is deprecated and will be later removed in a future Unity version. The persistent data directory will be automatically synchronized instead on file modification. Pass config.autoSyncPersistentDataPath = true; to configuration in createUnityInstance() to opt in to the new behavior.
+_JS_FileSystem_Sync @ 1d502942-c511-4a85-9cad-0d9bf676618d:9
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [Debug Nav] Saved resume position: R1D1_Arthur_Intro
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 ChoiceDiagnostics: Node started: R1D1_Arthur_Intro
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 PortraitTalkingStateController: Started talking animation for 'Arthur' (char_Supervisor)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 PortraitTalkingStateController: Stopped talking animation for 'char_Supervisor'
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 PortraitTalkingStateController: Started talking animation for 'Arthur' (char_Supervisor)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 PortraitTalkingStateController: Stopped talking animation for 'char_Supervisor'
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 PortraitTalkingStateController: Started talking animation for 'Arthur' (char_Supervisor)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 PortraitTalkingStateController: Stopped talking animation for 'char_Supervisor'
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 PortraitTalkingStateController: Started talking animation for 'Arthur' (char_Supervisor)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 PortraitTalkingStateController: Stopped talking animation for 'char_Supervisor'
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 PortraitTalkingStateController: No character name in line, skipping talking animation
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 PortraitTalkingStateController: Started talking animation for 'Alice' (char_Alice)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 PortraitTalkingStateController: Stopped talking animation for 'char_Alice'
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 PortraitTalkingStateController: Character 'Player' has no portrait, skipping animation
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 PortraitTalkingStateController: Started talking animation for 'Alice' (char_Alice)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 PortraitTalkingStateController: Stopped talking animation for 'char_Alice'
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 PortraitTalkingStateController: Started talking animation for 'Arthur' (char_Supervisor)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 PortraitTalkingStateController: Stopped talking animation for 'char_Supervisor'
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 PortraitTalkingStateController: Started talking animation for 'Alice' (char_Alice)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 PortraitTalkingStateController: Stopped talking animation for 'char_Alice'
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 PortraitTalkingStateController: No character name in line, skipping talking animation
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 PortraitTalkingStateController: Started talking animation for 'Arthur' (char_Supervisor)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 PortraitTalkingStateController: Stopped talking animation for 'char_Supervisor'
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 PortraitTalkingStateController: No character name in line, skipping talking animation
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 CharacterSpriteManager: Node started: R1D1_AliceIntro
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 CharacterSpriteManager: Tags header: '#run_1 #day_1 #morning #scene #char_Timmy #char_Alice'
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 CharacterSpriteManager: Current background updated to: bg_loading_0
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 CharacterSpriteManager: Extracted character tags (before auto-add): [char_Timmy, char_Alice]
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 CharacterSpriteManager: Did not auto-add Alice - Supervisor present or darkroom or already in list
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 CharacterSpriteManager: Final character tags: [char_Timmy, char_Alice]
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 CharacterPortraitAnimator: Initialized for char_Timmy (Talking: 1 frames, Eyes: 3 frames)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 CharacterSpriteManager: Displaying 'char_Timmy' on left (base sprite: timmy_0, 1 talking frames, 3 eye frames)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 CharacterPortraitAnimator: Initialized for char_Alice (Talking: 1 frames, Eyes: 3 frames)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 CharacterSpriteManager: Displaying 'char_Alice' on right (base sprite: alice_0, 1 talking frames, 3 eye frames)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [Debug Nav] Node visited: R1D1_AliceIntro (History: 2 nodes)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [Debug Nav] Saved resume position: R1D1_AliceIntro
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 ChoiceDiagnostics: Node started: R1D1_AliceIntro
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 Background: Changed to bg_timmyroom (sprite: bg_timmyroom_0)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMOD] Stopping: event:/ASIDE_Supervisor (immediate=False)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMOD] Event found on attempt 1: ASIDE_AliceTheme
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [FMOD] Started: ASIDE_AliceTheme (vol=0.70)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 PortraitTalkingStateController: No character name in line, skipping talking animation
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 PortraitTalkingStateController: Started talking animation for 'Alice' (char_Alice)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 PortraitTalkingStateController: Stopped talking animation for 'char_Alice'
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 PortraitTalkingStateController: No character name in line, skipping talking animation
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 PortraitTalkingStateController: Started talking animation for 'Alice' (char_Alice)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 PortraitTalkingStateController: Stopped talking animation for 'char_Alice'
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9  PortraitTalkingStateController: Unknown character 'She shows you the notification', trying constructed tag 'char_She shows you the notification'
+
+_JS_Log_Dump @ 1d502942-c511-4a85-9cad-0d9bf676618d:9
+1d502942-c511-4a85-9cad-0d9bf676618d:9 PortraitTalkingStateController: Character 'She shows you the notification' (char_She shows you the notification) is not currently displayed, skipping animation
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 PortraitTalkingStateController: Started talking animation for 'Alice' (char_Alice)
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 PortraitTalkingStateController: Stopped talking animation for 'char_Alice'
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [Settings] Saved to PlayerPrefs
+
+1d502942-c511-4a85-9cad-0d9bf676618d:9 [Settings] Saved to PlayerPrefs
+

@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: 8f5b5d00b2bff0c499f22a0d9a4b120c
+AssetOrigin:
+  serializedVersion: 1
+  productId: 319430
+  packageName: Mumble Generator
+  packageVersion: 1.0.1
+  assetPath: Assets/MumbleGenerator/Demo/Scripts/PlayButtonHandler.cs
+  uploadId: 807434

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 1e80618e5ab79c3438c3b5cd810e43aa
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 319430
+  packageName: Mumble Generator
+  packageVersion: 1.0.1
+  assetPath: Assets/MumbleGenerator/Demo/Simple Demo/New Scene.unity
+  uploadId: 807434

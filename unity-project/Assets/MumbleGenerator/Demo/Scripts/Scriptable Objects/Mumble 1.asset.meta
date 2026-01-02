@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: b983d3d5337bb0940ba888d2513ccd54
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 319430
+  packageName: Mumble Generator
+  packageVersion: 1.0.1
+  assetPath: Assets/MumbleGenerator/Demo/Scripts/Scriptable Objects/Mumble 1.asset
+  uploadId: 807434

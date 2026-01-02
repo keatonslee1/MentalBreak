@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: 8ea9c690abafcb341b91305ecc95e730
+AssetOrigin:
+  serializedVersion: 1
+  productId: 319430
+  packageName: Mumble Generator
+  packageVersion: 1.0.1
+  assetPath: Assets/MumbleGenerator/Editor/MumbleInspector.cs
+  uploadId: 807434

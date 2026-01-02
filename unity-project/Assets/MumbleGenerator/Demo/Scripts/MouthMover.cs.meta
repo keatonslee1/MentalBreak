@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: 190645375308f1f4b9de4470ddb64edd
+AssetOrigin:
+  serializedVersion: 1
+  productId: 319430
+  packageName: Mumble Generator
+  packageVersion: 1.0.1
+  assetPath: Assets/MumbleGenerator/Demo/Scripts/MouthMover.cs
+  uploadId: 807434

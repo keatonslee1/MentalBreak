@@ -8,7 +8,7 @@ using TMPro;
 #endif
 
 /// <summary>
-/// Welcome overlay that appears on game start (WebGL only).
+/// Welcome overlay that appears on game start.
 /// Shows different messages for new vs returning players.
 /// Ensures audio unlock via pointer click before game starts.
 /// </summary>
@@ -31,16 +31,13 @@ public class WelcomeOverlay : MonoBehaviour, IPointerClickHandler
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
     private static void AutoCreate()
     {
-#if UNITY_WEBGL && !UNITY_EDITOR
-        // Only create on WebGL builds, not in editor
         if (instance == null)
         {
             var go = new GameObject("WelcomeOverlay");
             instance = go.AddComponent<WelcomeOverlay>();
             DontDestroyOnLoad(go);
-            Debug.Log("[WelcomeOverlay] Auto-created for WebGL build");
+            Debug.Log("[WelcomeOverlay] Auto-created");
         }
-#endif
     }
 
     private void Awake()

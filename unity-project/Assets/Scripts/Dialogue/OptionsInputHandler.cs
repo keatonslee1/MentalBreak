@@ -82,8 +82,6 @@ public class OptionsInputHandler : MonoBehaviour
 
         if (spacePressed)
         {
-            // Browser autoplay fix: Unlock Web Audio context on keyboard input
-            WebAudioUnlocker.TryResumeAudioContext();
             SelectCurrentlyHighlightedOption();
         }
     }

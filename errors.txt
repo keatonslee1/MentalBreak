@@ -1,713 +1,229 @@
- [UnityCache] 'https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/Build/webgl-build.data.unityweb' successfully revalidated and served from the browser cache
- You can reduce startup time if you configure your web server to add "Content-Encoding: gzip" response header when serving "Build/webgl-build.framework.js.unityweb" file.
- You can reduce startup time if you configure your web server to add "Content-Encoding: gzip" response header when serving "Build/webgl-build.data.unityweb" file.
- You can reduce startup time if you configure your web server to add "Content-Encoding: gzip" response header when serving "Build/webgl-build.wasm.unityweb" file.
- [UnityMemory] Configuration Parameters - Can be set up in boot.config
-
-     "memorysetup-allocator-temp-initial-block-size-main=262144"
-
-     "memorysetup-allocator-temp-initial-block-size-worker=262144"
-
-     "memorysetup-temp-allocator-size-audio-worker=65536"
-
-     "memorysetup-temp-allocator-size-background-worker=32768"
-
-     "memorysetup-bucket-allocator-granularity=16"
-
-     "memorysetup-bucket-allocator-bucket-count=8"
-
-     "memorysetup-bucket-allocator-block-size=4194304"
-
-     "memorysetup-bucket-allocator-block-count=1"
-
-     "memorysetup-main-allocator-block-size=16777216"
-
-     "memorysetup-thread-allocator-block-size=16777216"
-
-     "memorysetup-gfx-main-allocator-block-size=16777216"
-
-     "memorysetup-gfx-thread-allocator-block-size=16777216"
-
-     "memorysetup-cache-allocator-block-size=4194304"
-
-     "memorysetup-typetree-allocator-block-size=2097152"
-
-     "memorysetup-profiler-bucket-allocator-granularity=16"
-
-     "memorysetup-profiler-bucket-allocator-bucket-count=8"
-
-     "memorysetup-profiler-bucket-allocator-block-size=4194304"
-
-     "memorysetup-profiler-bucket-allocator-block-count=1"
-
-     "memorysetup-profiler-allocator-block-size=16777216"
-
-     "memorysetup-profiler-editor-allocator-block-size=1048576"
-
-     "memorysetup-temp-allocator-size-main=4194304"
-
-     "memorysetup-job-temp-allocator-block-size=2097152"
-
-     "memorysetup-job-temp-allocator-block-size-background=1048576"
-
-     "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
-
- Input System module state changed to: Initialized.
-
- [Physics::Module] Initialized fallback backend.
-
- [Physics::Module] Id: 0xdecafbad
-
- Loading player data from data.unity3d
-
- Initialize engine version: 6000.2.10f1 (d3d30d158480)
-
- [Subsystems] Discovering subsystems at path UnitySubsystems
-
- Creating WebGL 2.0 context.
- Renderer: WebKit WebGL
-
- Vendor:   WebKit
-
- Version:  OpenGL ES 3.0 (WebGL 2.0 (OpenGL ES 3.0 Chromium))
-
- GLES:     3
-
-  EXT_clip_control EXT_color_buffer_float EXT_color_buffer_half_float EXT_conservative_depth EXT_depth_clamp EXT_disjoint_timer_query_webgl2 EXT_float_blend EXT_polygon_offset_clamp EXT_render_snorm EXT_texture_compression_bptc EXT_texture_compression_rgtc EXT_texture_filter_anisotropic EXT_texture_mirror_clamp_to_edge EXT_texture_norm16 KHR_parallel_shader_compile NV_shader_noperspective_interpolation OES_draw_buffers_indexed OES_sample_variables OES_shader_multisample_interpolation OES_texture_float_linear OVR_multiview2 WEBGL_blend_func_extended WEBGL_clip_cull_distance WEBGL_compressed_texture_s3tc WEBGL_compressed_texture_s3tc_srgb WEBGL_debug_renderer_info WEBGL_debug_shaders WEBGL_lose_context WEBGL_multi_draw WEBGL_polygon_mode WEBGL_provoking_vertex WEBGL_stencil_texturing GL_EXT_clip_control GL_EXT_color_buffer_float GL_EXT_color_buffer_half_float GL_EXT_conservative_depth GL_EXT_depth_clamp GL_EXT_disjoint_timer_query_webgl2 GL_EXT_float_blend GL_EXT_polygon_offset_clamp GL_EXT_render_snorm GL_EXT_
-
- texture_compression_bptc GL_EXT_texture_compression_rgtc GL_EXT_texture_filter_anisotropic GL_EXT_texture_mirror_clamp_to_edge GL_EXT_texture_norm16 GL_KHR_parallel_shader_compile GL_NV_shader_noperspective_interpolation GL_OES_draw_buffers_indexed GL_OES_sample_variables GL_OES_shader_multisample_interpolation GL_OES_texture_float_linear GL_OVR_multiview2 GL_WEBGL_blend_func_extended GL_WEBGL_clip_cull_distance GL_WEBGL_compressed_texture_s3tc GL_WEBGL_compressed_texture_s3tc_srgb GL_WEBGL_debug_renderer_info GL_WEBGL_debug_shaders GL_WEBGL_lose_context GL_WEBGL_multi_draw GL_WEBGL_polygon_mode GL_WEBGL_provoking_vertex GL_WEBGL_stencil_texturing
-
-WebGL: INVALID_ENUM: getInternalformatParameter: invalid internalformat
-WebGL: INVALID_ENUM: getInternalformatParameter: invalid internalformat
-WebGL: INVALID_ENUM: getInternalformatParameter: invalid internalformat
-WebGL: INVALID_ENUM: getInternalformatParameter: invalid internalformat
-WebGL: INVALID_ENUM: getInternalformatParameter: invalid internalformat
-WebGL: INVALID_ENUM: getInternalformatParameter: invalid internalformat
- OPENGL LOG: Creating OpenGL ES 3.0 graphics device ; Context level  <OpenGL ES 3.0> ; Context handle 1
-
- [Physics::Module] Selected backend.
-
- [Physics::Module] Name: PhysX
-
- [Physics::Module] Id: 0xf2b8ea05
-
- [Physics::Module] SDK Version: 4.1.2
-
- [Physics::Module] Integration Version: 1.0.0
-
- [Physics::Module] Threading Mode: Single-Threaded
-
- ERROR: Shader 
- Hidden/CoreSRP/CoreCopy shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
-
- ERROR: Shader 
- Hidden/Universal/HDRDebugView shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
-
- Input System initialize...
-
- UnloadTime: 1.000000 ms
-
- [FMODWebGLBankLoader] AutoCreate called (RuntimeInitializeOnLoadMethod)
-
- [FMODWebGLBankLoader] WebGL detected - creating bank loader
-
- [FMODWebGLBankLoader] Awake - Instance created
-
- [WebAudioUnlocker] Auto-created for WebGL build
-
- [Settings] Loaded: Master=1.00, Music=0.70, SFX=1.00, TextSpeed=1.00
-
- BackgroundCommandHandler: Auto-loaded background 'bg_breakroom' from Resources (sprite: bg_breakroom_0)
-
- BackgroundCommandHandler: Auto-loaded background 'bg_bsod' from Resources (sprite: bg_bsod_0)
-
- BackgroundCommandHandler: Auto-loaded background 'bg_cafeteria' from Resources (sprite: bg_cafeteria_0)
-
- BackgroundCommandHandler: Auto-loaded background 'bg_classroom' from Resources (sprite: bg_classroom_0)
-
- BackgroundCommandHandler: Auto-loaded background 'bg_companystore' from Resources (sprite: bg_companystore_0)
-
- BackgroundCommandHandler: Auto-loaded background 'bg_conferenceroom' from Resources (sprite: bg_conferenceroom_0)
-
- BackgroundCommandHandler: Auto-loaded background 'bg_day_planner' from Resources (sprite: bg_day_planner_0)
-
- BackgroundCommandHandler: Auto-loaded background 'bg_gym' from Resources (sprite: bg_gym_0)
-
- BackgroundCommandHandler: Auto-loaded background 'bg_hall' from Resources (sprite: bg_hall_0)
-
- BackgroundCommandHandler: Auto-loaded background 'bg_intermission' from Resources (sprite: bg_intermission_0)
-
- BackgroundCommandHandler: Auto-loaded background 'bg_library' from Resources (sprite: bg_library_0)
-
- BackgroundCommandHandler: Auto-loaded background 'bg_loading' from Resources (sprite: bg_loading_0)
-
- BackgroundCommandHandler: Auto-loaded background 'bg_mainmenu' from Resources (sprite: bg_mainmenu_0)
-
- BackgroundCommandHandler: Auto-loaded background 'bg_majoritymind' from Resources (sprite: bg_majoritymind_0)
-
- BackgroundCommandHandler: Auto-loaded background 'bg_mind_meld' from Resources (sprite: bg_mind_meld_0)
-
- BackgroundCommandHandler: Auto-loaded background 'bg_minesweeper' from Resources (sprite: bg_minesweeper_0)
-
- BackgroundCommandHandler: Auto-loaded background 'bg_outside' from Resources (sprite: bg_outside_0)
-
- BackgroundCommandHandler: Auto-loaded background 'bg_party' from Resources (sprite: bg_party_0)
-
- BackgroundCommandHandler: Auto-loaded background 'bg_party_basement' from Resources (sprite: bg_party_basement_0)
-
- BackgroundCommandHandler: Auto-loaded background 'bg_party_upstairs' from Resources (sprite: bg_party_upstairs_0)
-
- BackgroundCommandHandler: Auto-loaded background 'bg_player_desk' from Resources (sprite: bg_player_desk_0)
-
- BackgroundCommandHandler: Auto-loaded background 'bg_supervisoroffice' from Resources (sprite: bg_supervisoroffice_0)
-
- BackgroundCommandHandler: Auto-loaded background 'bg_timmyroom' from Resources (sprite: bg_timmyroom_0)
-
- BackgroundCommandHandler: Auto-loaded background 'bg_timmydesk' from Resources (sprite: bg_timmydesk_0)
-
- BackgroundCommandHandler: Found 'Scene Background' via GameObject.Find
-
- BackgroundCommandHandler: Found background Image on 'Scene Background'
-
- BackgroundCommandHandler: Running in build mode, videos will be checked on demand
-
- SaveSlotSelectionUI: Added CanvasGroup to selectionPanel for visibility control.
-
- SaveSlotSelectionUI: Reparenting LoadMenuPanel from Canvas to PauseMenuPanel.
-
- SaveSlotSelectionUI: Set LayoutElement.ignoreLayout=true so PauseMenuPanel layout won't reposition LoadMenuPanel.
-
- CharacterSpriteManager: Loaded 8 manually assigned sprites
-
- CharacterPortraitData: Loaded base sprite for Alice: Alice base_0
-
- CharacterPortraitData: Loaded 15 talking frames for Alice
-
- CharacterPortraitData: Loaded 3 eye blink frames for Alice
-
- CharacterSpriteManager: Auto-loaded multi-frame character 'char_Alice' from Resources/Graphics/Characters/Alice
-
-  CharacterPortraitData: No base sprite found in Resources/Graphics/Characters/Supervisor/Base
-
-_JS_Log_Dump @ 389797bf-a390-40d2-b4c8-65ff9f332080:9
-  CharacterPortraitData: No talking frames found in Resources/Graphics/Characters/Supervisor/Talking
-
-_JS_Log_Dump @ 389797bf-a390-40d2-b4c8-65ff9f332080:9
-  CharacterPortraitData: No eye frames found in Resources/Graphics/Characters/Supervisor/Eyes
-
-_JS_Log_Dump @ 389797bf-a390-40d2-b4c8-65ff9f332080:9
-  CharacterPortraitData: No base sprite found in Resources/Graphics/Characters/Timmy/Base
-
-_JS_Log_Dump @ 389797bf-a390-40d2-b4c8-65ff9f332080:9
-  CharacterPortraitData: No talking frames found in Resources/Graphics/Characters/Timmy/Talking
-
-_JS_Log_Dump @ 389797bf-a390-40d2-b4c8-65ff9f332080:9
-  CharacterPortraitData: No eye frames found in Resources/Graphics/Characters/Timmy/Eyes
-
-_JS_Log_Dump @ 389797bf-a390-40d2-b4c8-65ff9f332080:9
-  CharacterPortraitData: No base sprite found in Resources/Graphics/Characters/Btc/Base
-
-_JS_Log_Dump @ 389797bf-a390-40d2-b4c8-65ff9f332080:9
-  CharacterPortraitData: No talking frames found in Resources/Graphics/Characters/Btc/Talking
-
-_JS_Log_Dump @ 389797bf-a390-40d2-b4c8-65ff9f332080:9
-  CharacterPortraitData: No eye frames found in Resources/Graphics/Characters/Btc/Eyes
-
-_JS_Log_Dump @ 389797bf-a390-40d2-b4c8-65ff9f332080:9
-  CharacterPortraitData: No base sprite found in Resources/Graphics/Characters/Ari/Base
-
-_JS_Log_Dump @ 389797bf-a390-40d2-b4c8-65ff9f332080:9
-  CharacterPortraitData: No talking frames found in Resources/Graphics/Characters/Ari/Talking
-
-_JS_Log_Dump @ 389797bf-a390-40d2-b4c8-65ff9f332080:9
-  CharacterPortraitData: No eye frames found in Resources/Graphics/Characters/Ari/Eyes
-
-_JS_Log_Dump @ 389797bf-a390-40d2-b4c8-65ff9f332080:9
-  CharacterPortraitData: No base sprite found in Resources/Graphics/Characters/Charlotte/Base
-
-_JS_Log_Dump @ 389797bf-a390-40d2-b4c8-65ff9f332080:9
-  CharacterPortraitData: No talking frames found in Resources/Graphics/Characters/Charlotte/Talking
-
-_JS_Log_Dump @ 389797bf-a390-40d2-b4c8-65ff9f332080:9
-  CharacterPortraitData: No eye frames found in Resources/Graphics/Characters/Charlotte/Eyes
-
-_JS_Log_Dump @ 389797bf-a390-40d2-b4c8-65ff9f332080:9
-  CharacterPortraitData: No base sprite found in Resources/Graphics/Characters/Dina/Base
-
-_JS_Log_Dump @ 389797bf-a390-40d2-b4c8-65ff9f332080:9
-  CharacterPortraitData: No talking frames found in Resources/Graphics/Characters/Dina/Talking
-
-_JS_Log_Dump @ 389797bf-a390-40d2-b4c8-65ff9f332080:9
-  CharacterPortraitData: No eye frames found in Resources/Graphics/Characters/Dina/Eyes
-
-_JS_Log_Dump @ 389797bf-a390-40d2-b4c8-65ff9f332080:9
-  CharacterPortraitData: No base sprite found in Resources/Graphics/Characters/Noam/Base
-
-_JS_Log_Dump @ 389797bf-a390-40d2-b4c8-65ff9f332080:9
-  CharacterPortraitData: No talking frames found in Resources/Graphics/Characters/Noam/Talking
-
-_JS_Log_Dump @ 389797bf-a390-40d2-b4c8-65ff9f332080:9
-  CharacterPortraitData: No eye frames found in Resources/Graphics/Characters/Noam/Eyes
-
-_JS_Log_Dump @ 389797bf-a390-40d2-b4c8-65ff9f332080:9
-  CharacterPortraitData: No base sprite found in Resources/Graphics/Characters/Max/Base
-
-_JS_Log_Dump @ 389797bf-a390-40d2-b4c8-65ff9f332080:9
-  CharacterPortraitData: No talking frames found in Resources/Graphics/Characters/Max/Talking
-
-_JS_Log_Dump @ 389797bf-a390-40d2-b4c8-65ff9f332080:9
-  CharacterPortraitData: No eye frames found in Resources/Graphics/Characters/Max/Eyes
-
-_JS_Log_Dump @ 389797bf-a390-40d2-b4c8-65ff9f332080:9
- CharacterSpriteManager: Portrait data dictionary contains 8 entries:
-
-   - char_Alice: Base=Alice base_0, Talking=15 frames, Eyes=3 frames
-
-   - char_Timmy: Base=timmy_0, Talking=1 frames, Eyes=3 frames
-
-   - char_Supervisor: Base=supervisor_0, Talking=1 frames, Eyes=3 frames
-
-   - char_Charlotte: Base=charlotte_0, Talking=1 frames, Eyes=3 frames
-
-   - char_Ari: Base=ari_0, Talking=1 frames, Eyes=3 frames
-
-   - char_Dina: Base=dina_0, Talking=1 frames, Eyes=3 frames
-
-   - char_Noam: Base=noam_0, Talking=1 frames, Eyes=3 frames
-
-   - char_Max: Base=max_0, Talking=1 frames, Eyes=3 frames
-
- CharacterSpriteManager: Found Canvas via LinePresenter in dialogue system: 'Canvas' on GameObject 'Canvas' (InstanceID: 10146)
-
-  CharacterSpriteManager: Canvas mismatch! targetCanvas was 'Canvas' on 'Canvas', but correct Canvas is 'Canvas' on 'Canvas'. Updating...
-
-_JS_Log_Dump @ 389797bf-a390-40d2-b4c8-65ff9f332080:9
- CharacterSpriteManager: Setting up sprites in Canvas 'Canvas' on GameObject 'Canvas' (InstanceID: 10146)
-
- === Canvas Hierarchy BEFORE sprite creation ===
-
- Canvas: 'Canvas' on GameObject 'Canvas'
-
- Total children: 7
-
-   [0] Scene Background (ACTIVE)
-
-   [1] Line Presenter (ACTIVE)
-
-   [2] Options Presenter (ACTIVE)
-
-   [3] PauseMenuPanel (ACTIVE)
-
-   [4] OpenFeedbackFormButton (ACTIVE)
-
-   [5] Feedback Form (INACTIVE)
-
-   [6] PauseHintText (ACTIVE)
-
- === End Hierarchy ===
-
- CharacterSpriteManager: Background index: 0, Dialogue UI index: 1
-
- CharacterSpriteManager: Calculated target sprite index: 1 (background: 0, dialogue: 1)
-
- CharacterSpriteManager: Creating sprites as children of Canvas 'Canvas' on 'Canvas'
-
- CharacterSpriteManager: Left sprite parent confirmed: 'Canvas'
-
- CharacterSpriteManager: Left sprite placed at sibling index: 1 in Canvas 'Canvas'
-
- CharacterSpriteManager: Dialogue UI index after left sprite placement: 2
-
- CharacterSpriteManager: Right sprite parent confirmed: 'Canvas'
-
- CharacterSpriteManager: Right sprite placed at sibling index: 2 in Canvas 'Canvas'
-
- === Canvas Hierarchy AFTER sprite creation ===
-
- Canvas: 'Canvas' on GameObject 'Canvas'
-
- Total children: 9
-
-   [0] Scene Background (ACTIVE)
-
-   [1] CharacterPortraitFrame_Left (INACTIVE) <-- LEFT SPRITE
-
-   [2] CharacterPortraitFrame_Right (ACTIVE) <-- RIGHT SPRITE
-
-   [3] Line Presenter (ACTIVE)
-
-   [4] Options Presenter (ACTIVE)
-
-   [5] PauseMenuPanel (ACTIVE)
-
-   [6] OpenFeedbackFormButton (ACTIVE)
-
-   [7] Feedback Form (INACTIVE)
-
-   [8] PauseHintText (ACTIVE)
-
- === End Hierarchy ===
-
- CharacterSpriteManager: FINAL INDICES - Background: 0, Left Sprite: 1, Right Sprite: 2, Dialogue UI: 3
-
- BackgroundCommandHandler: Auto-loaded background 'bg_breakroom' from Resources (sprite: bg_breakroom_0)
-
- BackgroundCommandHandler: Auto-loaded background 'bg_bsod' from Resources (sprite: bg_bsod_0)
-
- BackgroundCommandHandler: Auto-loaded background 'bg_cafeteria' from Resources (sprite: bg_cafeteria_0)
-
- BackgroundCommandHandler: Auto-loaded background 'bg_classroom' from Resources (sprite: bg_classroom_0)
-
- BackgroundCommandHandler: Auto-loaded background 'bg_companystore' from Resources (sprite: bg_companystore_0)
-
- BackgroundCommandHandler: Auto-loaded background 'bg_conferenceroom' from Resources (sprite: bg_conferenceroom_0)
-
- BackgroundCommandHandler: Auto-loaded background 'bg_day_planner' from Resources (sprite: bg_day_planner_0)
-
- BackgroundCommandHandler: Auto-loaded background 'bg_gym' from Resources (sprite: bg_gym_0)
-
- BackgroundCommandHandler: Auto-loaded background 'bg_hall' from Resources (sprite: bg_hall_0)
-
- BackgroundCommandHandler: Auto-loaded background 'bg_intermission' from Resources (sprite: bg_intermission_0)
-
- BackgroundCommandHandler: Auto-loaded background 'bg_library' from Resources (sprite: bg_library_0)
-
- BackgroundCommandHandler: Auto-loaded background 'bg_loading' from Resources (sprite: bg_loading_0)
-
- BackgroundCommandHandler: Auto-loaded background 'bg_mainmenu' from Resources (sprite: bg_mainmenu_0)
-
- BackgroundCommandHandler: Auto-loaded background 'bg_majoritymind' from Resources (sprite: bg_majoritymind_0)
-
- BackgroundCommandHandler: Auto-loaded background 'bg_mind_meld' from Resources (sprite: bg_mind_meld_0)
-
- BackgroundCommandHandler: Auto-loaded background 'bg_minesweeper' from Resources (sprite: bg_minesweeper_0)
-
- BackgroundCommandHandler: Auto-loaded background 'bg_outside' from Resources (sprite: bg_outside_0)
-
- BackgroundCommandHandler: Auto-loaded background 'bg_party' from Resources (sprite: bg_party_0)
-
- BackgroundCommandHandler: Auto-loaded background 'bg_party_basement' from Resources (sprite: bg_party_basement_0)
-
- BackgroundCommandHandler: Auto-loaded background 'bg_party_upstairs' from Resources (sprite: bg_party_upstairs_0)
-
- BackgroundCommandHandler: Auto-loaded background 'bg_player_desk' from Resources (sprite: bg_player_desk_0)
-
- BackgroundCommandHandler: Auto-loaded background 'bg_supervisoroffice' from Resources (sprite: bg_supervisoroffice_0)
-
- BackgroundCommandHandler: Auto-loaded background 'bg_timmyroom' from Resources (sprite: bg_timmyroom_0)
-
- BackgroundCommandHandler: Auto-loaded background 'bg_timmydesk' from Resources (sprite: bg_timmydesk_0)
-
- BackgroundCommandHandler: Found background Image on 'Scene Background'
-
- BackgroundCommandHandler: Running in build mode, videos will be checked on demand
-
- CommandHandlerRegistrar: Awake() starting - finding and registering command handlers
-
- CommandHandlerRegistrar: Found DialogueRunner on 'Dialogue System'
-
- CommandHandlerRegistrar: Found BackgroundCommandHandler on same GameObject
-
- CommandHandlerRegistrar: Found AudioCommandHandler on same GameObject
-
- CommandHandlerRegistrar: Found CheckpointCommandHandler on same GameObject
-
- CommandHandlerRegistrar: Found FMODAudioManager on same GameObject
-
- CommandHandlerRegistrar: Registered 'bg' command
-
- CommandHandlerRegistrar: Registered 'bgm' and 'sfx' commands
-
- CommandHandlerRegistrar: Registered 'checkpoint' command
-
- CommandHandlerRegistrar: Registered 'store' command with CompanyStore on CompanyStorePanel
-
- CommandHandlerRegistrar: Registered FMOD commands (music, music_stop, fmod, fmod_stop, fmod_loop, fmod_param)
-
- CommandHandlerRegistrar: All commands registered successfully!
-
- CommandHandlerRegistrar: Awake() complete - commands registered
-
- MVPCommandHandlers: Registered 3 command handler(s) (bg->BackgroundCommandHandler) (bgm/sfx->AudioCommandHandler)
-
- MVPCommandHandlers: Registered 3 command handler(s) (bg->BackgroundCommandHandler) (bgm/sfx->AudioCommandHandler)
-
- [FMODWebGLBankLoader] Start - Beginning bank loading process
-
- [FMODWebGLBankLoader] Platform: WebGLPlayer
-
- [FMODWebGLBankLoader] StreamingAssetsPath: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets
-
- [FMODWebGLBankLoader] Banks to load: Master.strings, Master, Music_A_Side, Music_B_Side, UI
-
- [FMODWebGLBankLoader] Starting manual bank load coroutine
-
- [FMODWebGLBankLoader] LoadAllBanksWebGL coroutine started
-
- PauseMenuManager: Cached PauseMenuPanel Image (enabled=True, raycastTarget=True)
-
- CharacterSpriteManager: Node started: R1_Start
-
- CharacterSpriteManager: Tags header: '#run_1 #scene #loc_Office'
-
- CharacterSpriteManager: Extracted character tags (before auto-add): []
-
- CharacterSpriteManager: Auto-added Alice (player is present, no supervisor, not darkroom)
-
- CharacterSpriteManager: Final character tags: [char_Alice]
-
- CharacterPortraitAnimator: Initialized for Alice (Talking: 15 frames, Eyes: 3 frames)
-
- CharacterSpriteManager: Displaying 'char_Alice' on left (base sprite: Alice base_0, 15 talking frames, 3 eye frames)
-
- Background: Changed to bg_loading (sprite: bg_loading_0)
-
-  BGM Command: No audio clip found for key 'cyberpunk_background_cyberpunk_background_main'. Available keys: ...
-
-_JS_Log_Dump @ 389797bf-a390-40d2-b4c8-65ff9f332080:9
- CharacterSpriteManager: Node started: R1D1_Start
-
- CharacterSpriteManager: Tags header: '#run_1 #day_1 #morning #scene #char_Supervisor #loc_Office'
-
- CharacterSpriteManager: Current background updated to: bg_loading_0
-
- CharacterSpriteManager: Extracted character tags (before auto-add): [char_Supervisor]
-
- CharacterSpriteManager: Did not auto-add Alice - Supervisor present or darkroom or already in list
-
- CharacterSpriteManager: Final character tags: [char_Supervisor]
-
- CharacterPortraitAnimator: Initialized for char_Supervisor (Talking: 1 frames, Eyes: 3 frames)
-
- CharacterSpriteManager: Displaying 'char_Supervisor' on left (base sprite: supervisor_0, 1 talking frames, 3 eye frames)
-
- BackgroundCommandHandler: 'bg_supervisoroffice' is a known video background, trying video first
-
- BackgroundCommandHandler: Initializing video system (lazy init)
-
-  [FMOD] Attempting to play ASIDE_Supervisor but Web Audio may be locked. Waiting for user interaction...
-
-_JS_Log_Dump @ 389797bf-a390-40d2-b4c8-65ff9f332080:9
- [FMOD] Event not found (attempt 1/10), banks may still be loading...
-
- DialogueAdvanceHandler: Disabled ESC key in LineAdvancer
-
- DialogueAdvanceHandler: enableClickToAdvance was disabled; re-enabling to support tap-to-progress across mouse and touch.
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [Debug Nav] Loaded saved resume position: R1D1_Arthur_Intro
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 === DialogueDebugNavigator: Navigation Enabled ===
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9   Ctrl+LeftArrow - Go back one node
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9   Ctrl+R - Resume to saved position
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9   Ctrl+Shift+C - Clear history
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9   Ctrl+J - Jump to day menu
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9   Saved resume position: R1D1_Arthur_Intro
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 ==================================================
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 ChoiceDiagnostics: Monitoring for option events (via Dialogue Runner state polling)
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 === Choice Diagnostics Initial State ===
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 DialogueRunner found: Dialogue System
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 DialogueRunner has 3 presenter(s) registered
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9   - Presenter: LinePresenter, Active: True, GameObject: Line Presenter
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9   - Presenter: OptionsPresenter, Active: True, GameObject: Options Presenter
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9     Options Presenter - Has Prefab: True
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9   - Presenter: LineAdvancer, Active: True, GameObject: Line Advancer
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 Options Presenter found: Options Presenter, Registered: True, Active: True
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 Line Presenter found: Line Presenter
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 CommandHandlerRegistrar: Registered 'bg' command
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 CommandHandlerRegistrar: Registered 'bgm' and 'sfx' commands
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 CommandHandlerRegistrar: Registered 'checkpoint' command
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9  Failed to register command store: a command by this name has already been registered.
-
-_JS_Log_Dump @ 389797bf-a390-40d2-b4c8-65ff9f332080:9
-389797bf-a390-40d2-b4c8-65ff9f332080:9 CommandHandlerRegistrar: Registered 'store' command with CompanyStore on CompanyStorePanel
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 CommandHandlerRegistrar: Registered FMOD commands (music, music_stop, fmod, fmod_stop, fmod_loop, fmod_param)
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 CommandHandlerRegistrar: All commands registered successfully!
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9  [FMOD] Please add an 'FMOD Studio Listener' component to your camera in the scene for correct 3D positioning of sounds.
-
-_JS_Log_Dump @ 389797bf-a390-40d2-b4c8-65ff9f332080:9
-389797bf-a390-40d2-b4c8-65ff9f332080:9 RenderGraph is now enabled.
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Waited one frame for FMOD initialization
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] FMOD StudioSystem is valid
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Loading bank: Master.strings
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Application.absoluteURL: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/play
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Application.streamingAssetsPath: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Relative URL: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets/Master.strings.bank
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Absolute URL: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets/Master.strings.bank
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Attempt 1: Trying relative URL: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets/Master.strings.bank
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Attempt 1 response code: 200
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Attempt 1 SUCCESS - got 1328 bytes
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Downloaded 1328 bytes for Master.strings.bank from https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets/Master.strings.bank
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Bank already loaded (by FMOD auto-load): Master.strings.bank
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Loading bank: Master
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Application.absoluteURL: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/play
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Application.streamingAssetsPath: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Relative URL: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets/Master.bank
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Absolute URL: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets/Master.bank
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Attempt 1: Trying relative URL: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets/Master.bank
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Attempt 1 response code: 200
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Attempt 1 SUCCESS - got 1036 bytes
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Downloaded 1036 bytes for Master.bank from https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets/Master.bank
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Bank already loaded (by FMOD auto-load): Master.bank
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Loading bank: Music_A_Side
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Application.absoluteURL: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/play
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Application.streamingAssetsPath: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Relative URL: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets/Music_A_Side.bank
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Absolute URL: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets/Music_A_Side.bank
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Attempt 1: Trying relative URL: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets/Music_A_Side.bank
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Attempt 1 response code: 200
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Attempt 1 SUCCESS - got 1722368 bytes
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Downloaded 1722368 bytes for Music_A_Side.bank from https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets/Music_A_Side.bank
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Bank already loaded (by FMOD auto-load): Music_A_Side.bank
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Loading bank: Music_B_Side
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Application.absoluteURL: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/play
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Application.streamingAssetsPath: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Relative URL: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets/Music_B_Side.bank
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Absolute URL: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets/Music_B_Side.bank
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Attempt 1: Trying relative URL: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets/Music_B_Side.bank
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 PortraitTalkingStateController: No character name in line, skipping talking animation
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 BackgroundCommandHandler: Creating RenderTexture at 2560x1440 for video
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 Background: Playing video for bg_supervisoroffice
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Attempt 1 response code: 200
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Attempt 1 SUCCESS - got 4527872 bytes
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Downloaded 4527872 bytes for Music_B_Side.bank from https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets/Music_B_Side.bank
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Bank already loaded (by FMOD auto-load): Music_B_Side.bank
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Loading bank: UI
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Application.absoluteURL: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/play
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Application.streamingAssetsPath: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Relative URL: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets/UI.bank
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Absolute URL: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets/UI.bank
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Attempt 1: Trying relative URL: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets/UI.bank
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Attempt 1 response code: 200
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Attempt 1 SUCCESS - got 494 bytes
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Downloaded 494 bytes for UI.bank from https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets/UI.bank
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Bank already loaded (by FMOD auto-load): UI.bank
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] All banks processed. Loaded: 5/5
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] SUCCESS - All banks loaded!
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] === BANK STATUS ===
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Total banks loaded in FMOD: 5
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Bank: bank:/Master.strings | State: LOADED | Events: 0
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Bank: bank:/Master | State: LOADED | Events: 0
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Bank: bank:/Music_A_Side | State: LOADED | Events: 3
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Bank: bank:/UI.bank | State: LOADED | Events: 0
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Bank: bank:/Music_B_Side | State: LOADED | Events: 3
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Testing event lookup...
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] SUCCESS - event:/ASIDE_Supervisor found!
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] === END BANK STATUS ===
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMOD] Event found on attempt 2: ASIDE_Supervisor
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMOD] Started: ASIDE_Supervisor (vol=0.70)
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 PortraitTalkingStateController: Started talking animation for 'Arthur' (char_Supervisor)
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 PortraitTalkingStateController: Stopped talking animation for 'char_Supervisor'
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 Resetting audio driver based on user input.
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [DialogueAdvanceHandler] Pointer click, calling WebAudioUnlocker
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [WebAudioUnlocker-C#] TryResumeAudioContext called from C#
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [WebAudioUnlocker-C#] About to call WebAudio_TryResume() via DllImport
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [WebAudioUnlocker] TryResume called
-389797bf-a390-40d2-b4c8-65ff9f332080:9  [WebAudioUnlocker] No AudioContext found - FMOD may not be initialized yet
-_WebAudio_TryResume @ 389797bf-a390-40d2-b4c8-65ff9f332080:9
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [WebAudioUnlocker-C#] WebAudio_TryResume() returned: 0
-
-389797bf-a390-40d2-b4c8-65ff9f332080:9  [WebAudioUnlocker] Failed to resume audio context
-
-_JS_Log_Dump @ 389797bf-a390-40d2-b4c8-65ff9f332080:9
-389797bf-a390-40d2-b4c8-65ff9f332080:9  Manual synchronization of Unity Application.persistentDataPath via JS_FileSystem_Sync() is deprecated and will be later removed in a future Unity version. The persistent data directory will be automatically synchronized instead on file modification. Pass config.autoSyncPersistentDataPath = true; to configuration in createUnityInstance() to opt in to the new behavior.
-_JS_FileSystem_Sync @ 389797bf-a390-40d2-b4c8-65ff9f332080:9
-389797bf-a390-40d2-b4c8-65ff9f332080:9 [Settings] Saved to PlayerPrefs
+1 URP assets included in build
+- UniversalRP - Assets/Settings/UniversalRP.asset
+	 - Renderer2D - Assets/Settings/Renderer2D.asset - UnityEngine.Rendering.Universal.Renderer2DData
+
+UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+
+[WebGLPostBuild] Backing up website files before build...
+UnityEngine.Debug:Log (object)
+WebGLPostBuild:OnPreprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at Assets/Scripts/Editor/WebGLPostBuild.cs:66)
+UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+
+[WebGLPostBuild] Backed up: index.html
+UnityEngine.Debug:Log (object)
+WebGLPostBuild:OnPreprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at Assets/Scripts/Editor/WebGLPostBuild.cs:87)
+UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+
+[WebGLPostBuild] Backed up: play.html
+UnityEngine.Debug:Log (object)
+WebGLPostBuild:OnPreprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at Assets/Scripts/Editor/WebGLPostBuild.cs:87)
+UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+
+[WebGLPostBuild] Backed up: mobile-play.html
+UnityEngine.Debug:Log (object)
+WebGLPostBuild:OnPreprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at Assets/Scripts/Editor/WebGLPostBuild.cs:87)
+UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+
+[WebGLPostBuild] Backed up: about.html
+UnityEngine.Debug:Log (object)
+WebGLPostBuild:OnPreprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at Assets/Scripts/Editor/WebGLPostBuild.cs:87)
+UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+
+[WebGLPostBuild] Backed up: blog.html
+UnityEngine.Debug:Log (object)
+WebGLPostBuild:OnPreprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at Assets/Scripts/Editor/WebGLPostBuild.cs:87)
+UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+
+[WebGLPostBuild] Backed up folder: assets/
+UnityEngine.Debug:Log (object)
+WebGLPostBuild:OnPreprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at Assets/Scripts/Editor/WebGLPostBuild.cs:101)
+UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+
+[WebGLPostBuild] Backed up 6 items to .website-backup/
+UnityEngine.Debug:Log (object)
+WebGLPostBuild:OnPreprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at Assets/Scripts/Editor/WebGLPostBuild.cs:105)
+UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+
+[WebGLPostBuild] Copying character portraits to Resources...
+UnityEngine.Debug:Log (object)
+WebGLPostBuild:OnPreprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at Assets/Scripts/Editor/WebGLPostBuild.cs:108)
+UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+
+[CharacterPortraitCopy] Detected multi-frame character: Alice
+UnityEngine.Debug:Log (object)
+WebGLPostBuild:DetectMultiFrameCharacters () (at Assets/Scripts/Editor/WebGLPostBuild.cs:238)
+WebGLPostBuild:CopyCharacterPortraitsToResources () (at Assets/Scripts/Editor/WebGLPostBuild.cs:342)
+WebGLPostBuild:OnPreprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at Assets/Scripts/Editor/WebGLPostBuild.cs:109)
+UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+
+[CharacterPortraitCopy] Copying 1 character(s) to Resources...
+UnityEngine.Debug:Log (object)
+WebGLPostBuild:CopyCharacterPortraitsToResources () (at Assets/Scripts/Editor/WebGLPostBuild.cs:350)
+WebGLPostBuild:OnPreprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at Assets/Scripts/Editor/WebGLPostBuild.cs:109)
+UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+
+[CharacterPortraitCopy] Created folder: Assets/Resources/Graphics/Characters
+UnityEngine.Debug:Log (object)
+WebGLPostBuild:EnsureFolderExists (string) (at Assets/Scripts/Editor/WebGLPostBuild.cs:274)
+WebGLPostBuild:CopyCharacterPortraitsToResources () (at Assets/Scripts/Editor/WebGLPostBuild.cs:353)
+WebGLPostBuild:OnPreprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at Assets/Scripts/Editor/WebGLPostBuild.cs:109)
+UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+
+[CharacterPortraitCopy] Created folder: Assets/Resources/Graphics/Characters/Alice
+UnityEngine.Debug:Log (object)
+WebGLPostBuild:EnsureFolderExists (string) (at Assets/Scripts/Editor/WebGLPostBuild.cs:274)
+WebGLPostBuild:CopyCharacterFolder (string) (at Assets/Scripts/Editor/WebGLPostBuild.cs:310)
+WebGLPostBuild:CopyCharacterPortraitsToResources () (at Assets/Scripts/Editor/WebGLPostBuild.cs:357)
+WebGLPostBuild:OnPreprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at Assets/Scripts/Editor/WebGLPostBuild.cs:109)
+UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+
+[CharacterPortraitCopy] Created folder: Assets/Resources/Graphics/Characters/Alice/Base
+UnityEngine.Debug:Log (object)
+WebGLPostBuild:EnsureFolderExists (string) (at Assets/Scripts/Editor/WebGLPostBuild.cs:274)
+WebGLPostBuild:CopyCharacterFolder (string) (at Assets/Scripts/Editor/WebGLPostBuild.cs:323)
+WebGLPostBuild:CopyCharacterPortraitsToResources () (at Assets/Scripts/Editor/WebGLPostBuild.cs:357)
+WebGLPostBuild:OnPreprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at Assets/Scripts/Editor/WebGLPostBuild.cs:109)
+UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+
+[CharacterPortraitCopy] Copied 1 sprites from Assets/Graphics/Characters/Alice/Base
+UnityEngine.Debug:Log (object)
+WebGLPostBuild:CopySpritesInFolder (string,string) (at Assets/Scripts/Editor/WebGLPostBuild.cs:298)
+WebGLPostBuild:CopyCharacterFolder (string) (at Assets/Scripts/Editor/WebGLPostBuild.cs:326)
+WebGLPostBuild:CopyCharacterPortraitsToResources () (at Assets/Scripts/Editor/WebGLPostBuild.cs:357)
+WebGLPostBuild:OnPreprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at Assets/Scripts/Editor/WebGLPostBuild.cs:109)
+UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+
+[CharacterPortraitCopy] Created folder: Assets/Resources/Graphics/Characters/Alice/Talking
+UnityEngine.Debug:Log (object)
+WebGLPostBuild:EnsureFolderExists (string) (at Assets/Scripts/Editor/WebGLPostBuild.cs:274)
+WebGLPostBuild:CopyCharacterFolder (string) (at Assets/Scripts/Editor/WebGLPostBuild.cs:323)
+WebGLPostBuild:CopyCharacterPortraitsToResources () (at Assets/Scripts/Editor/WebGLPostBuild.cs:357)
+WebGLPostBuild:OnPreprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at Assets/Scripts/Editor/WebGLPostBuild.cs:109)
+UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+
+[CharacterPortraitCopy] Copied 15 sprites from Assets/Graphics/Characters/Alice/Talking
+UnityEngine.Debug:Log (object)
+WebGLPostBuild:CopySpritesInFolder (string,string) (at Assets/Scripts/Editor/WebGLPostBuild.cs:298)
+WebGLPostBuild:CopyCharacterFolder (string) (at Assets/Scripts/Editor/WebGLPostBuild.cs:326)
+WebGLPostBuild:CopyCharacterPortraitsToResources () (at Assets/Scripts/Editor/WebGLPostBuild.cs:357)
+WebGLPostBuild:OnPreprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at Assets/Scripts/Editor/WebGLPostBuild.cs:109)
+UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+
+[CharacterPortraitCopy] Created folder: Assets/Resources/Graphics/Characters/Alice/Eyes
+UnityEngine.Debug:Log (object)
+WebGLPostBuild:EnsureFolderExists (string) (at Assets/Scripts/Editor/WebGLPostBuild.cs:274)
+WebGLPostBuild:CopyCharacterFolder (string) (at Assets/Scripts/Editor/WebGLPostBuild.cs:323)
+WebGLPostBuild:CopyCharacterPortraitsToResources () (at Assets/Scripts/Editor/WebGLPostBuild.cs:357)
+WebGLPostBuild:OnPreprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at Assets/Scripts/Editor/WebGLPostBuild.cs:109)
+UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+
+[CharacterPortraitCopy] Copied 3 sprites from Assets/Graphics/Characters/Alice/Eyes
+UnityEngine.Debug:Log (object)
+WebGLPostBuild:CopySpritesInFolder (string,string) (at Assets/Scripts/Editor/WebGLPostBuild.cs:298)
+WebGLPostBuild:CopyCharacterFolder (string) (at Assets/Scripts/Editor/WebGLPostBuild.cs:326)
+WebGLPostBuild:CopyCharacterPortraitsToResources () (at Assets/Scripts/Editor/WebGLPostBuild.cs:357)
+WebGLPostBuild:OnPreprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at Assets/Scripts/Editor/WebGLPostBuild.cs:109)
+UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+
+[CharacterPortraitCopy] Copied character: Alice
+UnityEngine.Debug:Log (object)
+WebGLPostBuild:CopyCharacterFolder (string) (at Assets/Scripts/Editor/WebGLPostBuild.cs:332)
+WebGLPostBuild:CopyCharacterPortraitsToResources () (at Assets/Scripts/Editor/WebGLPostBuild.cs:357)
+WebGLPostBuild:OnPreprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at Assets/Scripts/Editor/WebGLPostBuild.cs:109)
+UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+
+[CharacterPortraitCopy] Copied 1 character(s) to Resources
+UnityEngine.Debug:Log (object)
+WebGLPostBuild:CopyCharacterPortraitsToResources () (at Assets/Scripts/Editor/WebGLPostBuild.cs:363)
+WebGLPostBuild:OnPreprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at Assets/Scripts/Editor/WebGLPostBuild.cs:109)
+UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+
+Assets\Scripts\Commands\BackgroundCommandHandler.cs(58,18): warning CS0414: The field 'BackgroundCommandHandler.currentBackgroundIsVideo' is assigned but its value is never used
+
+Assets\Scripts\Audio\WebAudioUnlocker.cs(16,18): warning CS0414: The field 'WebAudioUnlocker.hasAttemptedUnlock' is assigned but its value is never used
+
+[WebGLPostBuild] Restoring website files after build...
+UnityEngine.Debug:Log (object)
+WebGLPostBuild:OnPostprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at Assets/Scripts/Editor/WebGLPostBuild.cs:123)
+UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+
+[WebGLPostBuild] Restored: index.html
+UnityEngine.Debug:Log (object)
+WebGLPostBuild:OnPostprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at Assets/Scripts/Editor/WebGLPostBuild.cs:144)
+UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+
+[WebGLPostBuild] Restored: play.html
+UnityEngine.Debug:Log (object)
+WebGLPostBuild:OnPostprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at Assets/Scripts/Editor/WebGLPostBuild.cs:144)
+UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+
+[WebGLPostBuild] Restored: mobile-play.html
+UnityEngine.Debug:Log (object)
+WebGLPostBuild:OnPostprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at Assets/Scripts/Editor/WebGLPostBuild.cs:144)
+UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+
+[WebGLPostBuild] Restored: about.html
+UnityEngine.Debug:Log (object)
+WebGLPostBuild:OnPostprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at Assets/Scripts/Editor/WebGLPostBuild.cs:144)
+UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+
+[WebGLPostBuild] Restored: blog.html
+UnityEngine.Debug:Log (object)
+WebGLPostBuild:OnPostprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at Assets/Scripts/Editor/WebGLPostBuild.cs:144)
+UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+
+[WebGLPostBuild] Restored folder: assets/
+UnityEngine.Debug:Log (object)
+WebGLPostBuild:OnPostprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at Assets/Scripts/Editor/WebGLPostBuild.cs:158)
+UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+
+[WebGLPostBuild] Cleaned up backup folder
+UnityEngine.Debug:Log (object)
+WebGLPostBuild:OnPostprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at Assets/Scripts/Editor/WebGLPostBuild.cs:166)
+UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+
+[WebGLPostBuild] Restored 6 items. Build complete!
+UnityEngine.Debug:Log (object)
+WebGLPostBuild:OnPostprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at Assets/Scripts/Editor/WebGLPostBuild.cs:173)
+UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+
+[WebGLPostBuild] Cleaning up character portraits...
+UnityEngine.Debug:Log (object)
+WebGLPostBuild:OnPostprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at Assets/Scripts/Editor/WebGLPostBuild.cs:176)
+UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+
+[CharacterPortraitCopy] Cleaning up 1 copied character(s)...
+UnityEngine.Debug:Log (object)
+WebGLPostBuild:CleanupCharacterPortraits () (at Assets/Scripts/Editor/WebGLPostBuild.cs:377)
+WebGLPostBuild:OnPostprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at Assets/Scripts/Editor/WebGLPostBuild.cs:177)
+UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+
+[CharacterPortraitCopy] Deleted: Assets/Resources/Graphics/Characters/Alice
+UnityEngine.Debug:Log (object)
+WebGLPostBuild:CleanupCharacterPortraits () (at Assets/Scripts/Editor/WebGLPostBuild.cs:386)
+WebGLPostBuild:OnPostprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at Assets/Scripts/Editor/WebGLPostBuild.cs:177)
+UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+
+[CharacterPortraitCopy] Deleted empty folder: Assets/Resources/Graphics/Characters
+UnityEngine.Debug:Log (object)
+WebGLPostBuild:CleanupCharacterPortraits () (at Assets/Scripts/Editor/WebGLPostBuild.cs:398)
+WebGLPostBuild:OnPostprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at Assets/Scripts/Editor/WebGLPostBuild.cs:177)
+UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+
+[CharacterPortraitCopy] Cleanup complete
+UnityEngine.Debug:Log (object)
+WebGLPostBuild:CleanupCharacterPortraits () (at Assets/Scripts/Editor/WebGLPostBuild.cs:417)
+WebGLPostBuild:OnPostprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at Assets/Scripts/Editor/WebGLPostBuild.cs:177)
+UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+
+Build completed with a result of 'Succeeded' in 541 seconds (541195 ms) [1/2/2026 12:22:11 PM -> 1/2/2026 12:31:12 PM, 9m 01s]
+UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+
+Assets\Scripts\UI\WelcomeOverlay.cs(149,36): error CS1061: 'SaveLoadManager' does not contain a definition for 'HasSave' and no accessible extension method 'HasSave' accepting a first argument of type 'SaveLoadManager' could be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\Audio\WebAudioUnlocker.cs(17,18): warning CS0414: The field 'WebAudioUnlocker.isUnlocked' is assigned but its value is never used
+
+Assets\Scripts\Audio\WebAudioUnlocker.cs(16,18): warning CS0414: The field 'WebAudioUnlocker.hasAttemptedUnlock' is assigned but its value is never used
+
+Assets\Scripts\Commands\BackgroundCommandHandler.cs(58,18): warning CS0414: The field 'BackgroundCommandHandler.currentBackgroundIsVideo' is assigned but its value is never used
 

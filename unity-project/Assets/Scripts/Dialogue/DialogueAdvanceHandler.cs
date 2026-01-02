@@ -195,6 +195,9 @@ public class DialogueAdvanceHandler : MonoBehaviour, IPointerClickHandler
 
         if (enterPressed && dialogueRunner != null)
         {
+            // Unlock Web Audio context on keyboard input (browser autoplay fix)
+            WebAudioUnlocker.TryResumeAudioContext();
+
             dialogueRunner.RequestNextLine();
         }
     }
@@ -210,6 +213,9 @@ public class DialogueAdvanceHandler : MonoBehaviour, IPointerClickHandler
         {
             return;
         }
+
+        // Unlock Web Audio context on click/tap (browser autoplay fix)
+        WebAudioUnlocker.TryResumeAudioContext();
 
         if (!enabled || !enableClickToAdvance)
         {

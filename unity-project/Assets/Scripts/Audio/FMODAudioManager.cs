@@ -277,6 +277,14 @@ public class FMODAudioManager : MonoBehaviour
     {
         string fullPath = EVENT_PATH_PREFIX + eventName;
 
+        // Defensive check: Ensure Web Audio context is unlocked (WebGL only)
+#if UNITY_WEBGL && !UNITY_EDITOR
+        if (!WebAudioUnlocker.IsUnlocked())
+        {
+            Debug.LogWarning($"[FMOD] Attempting to play {eventName} but Web Audio may be locked. Waiting for user interaction...");
+        }
+#endif
+
         // If same event is already playing, don't restart
         if (currentEventPath == fullPath && IsPlaying())
         {

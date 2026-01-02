@@ -81,8 +81,30 @@
     setDialogue(text);
     disableChoices();
     window.setTimeout(() => {
-      window.location.href = playDestination();
+      startGame();
     }, 700);
+  };
+
+  const startGame = () => {
+    const hero = document.querySelector('.mb-hero');
+    const wrapper = document.getElementById('unity-wrapper');
+
+    // Mobile: enable fullscreen mode
+    if (isMobileUA()) {
+      document.body.classList.add('mb-mobile-game');
+    }
+
+    // Hide hero, show Unity container
+    if (hero) hero.style.display = 'none';
+    if (wrapper) wrapper.style.display = 'flex';
+
+    // Load Unity (function defined in index.html)
+    if (typeof window.loadUnityGame === 'function') {
+      window.loadUnityGame();
+    } else {
+      // Fallback: redirect to play page if loader not available
+      window.location.href = playDestination();
+    }
   };
 
   if (choiceMeditation) {
@@ -99,7 +121,7 @@
   if (playButton) {
     playButton.addEventListener("click", (e) => {
       e.preventDefault();
-      window.location.href = playDestination();
+      startGame();
     });
   }
 })();

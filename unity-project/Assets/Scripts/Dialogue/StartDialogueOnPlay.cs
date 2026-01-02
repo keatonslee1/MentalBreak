@@ -6,6 +6,8 @@ public class StartDialogueOnPlay : MonoBehaviour {
 	public string startNode = "R1_Start";
 	public DialogueRunner dialogueRunner;
 
+	private SaveSlotData pendingSave = null;
+
 	private void Awake() {
 		if (dialogueRunner == null) {
 			dialogueRunner = FindAnyObjectByType<DialogueRunner>();
@@ -14,20 +16,24 @@ public class StartDialogueOnPlay : MonoBehaviour {
 
 	private void Start() {
 		// Find most recent save across all slots (manual + autosave)
-		var mostRecentSave = FindMostRecentSave();
+		pendingSave = FindMostRecentSave();
 
-		if (mostRecentSave != null) {
-			Debug.Log($"StartDialogueOnPlay: Returning player detected, loading slot {mostRecentSave.slot} ({mostRecentSave.timestamp})");
-			LoadSave(mostRecentSave.slot);
-			return;
-		}
+		// Start game immediately - ModalInputLock blocks interaction until overlay is dismissed
+		StartGame();
+	}
 
-		// New player - start dialogue from beginning
-		Debug.Log($"StartDialogueOnPlay: New player, starting dialogue at {startNode}");
-		if (dialogueRunner != null && dialogueRunner.YarnProject != null) {
-			dialogueRunner.StartDialogue(startNode);
+	private void StartGame() {
+		if (pendingSave != null) {
+			Debug.Log($"StartDialogueOnPlay: Returning player, loading slot {pendingSave.slot} ({pendingSave.timestamp})");
+			LoadSave(pendingSave.slot);
 		} else {
-			Debug.LogError("StartDialogueOnPlay: DialogueRunner or YarnProject is missing.");
+			// New player - start dialogue from beginning
+			Debug.Log($"StartDialogueOnPlay: New player, starting dialogue at {startNode}");
+			if (dialogueRunner != null && dialogueRunner.YarnProject != null) {
+				dialogueRunner.StartDialogue(startNode);
+			} else {
+				Debug.LogError("StartDialogueOnPlay: DialogueRunner or YarnProject is missing.");
+			}
 		}
 	}
 
@@ -66,4 +72,5 @@ public class StartDialogueOnPlay : MonoBehaviour {
 			}
 		}
 	}
+
 }

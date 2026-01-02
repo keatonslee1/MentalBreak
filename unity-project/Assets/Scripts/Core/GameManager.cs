@@ -185,6 +185,13 @@ public class GameManager : MonoBehaviour
 
         if (startDialogueOnLoad && dialogueRunner != null)
         {
+            // Skip if WelcomeOverlay is waiting for user interaction
+            if (WelcomeOverlay.IsWaitingForDismissal)
+            {
+                Debug.Log("GameManager: Waiting for WelcomeOverlay to be dismissed before starting dialogue");
+                return;
+            }
+
             // Ensure CommandHandlerRegistrar has initialized before starting dialogue
             CommandHandlerRegistrar commandRegistrar = FindAnyObjectByType<CommandHandlerRegistrar>();
             if (commandRegistrar != null)

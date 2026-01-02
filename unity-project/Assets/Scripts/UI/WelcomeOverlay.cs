@@ -2,10 +2,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections;
-
-#if USE_TMP
 using TMPro;
-#endif
+using Yarn.Unity;
 
 /// <summary>
 /// Welcome overlay that appears on game start.
@@ -18,6 +16,12 @@ public class WelcomeOverlay : MonoBehaviour, IPointerClickHandler
     private CanvasGroup canvasGroup;
     private bool isReturningPlayer = false;
     private bool isClicked = false;
+
+    /// <summary>
+    /// Static flag indicating the overlay is waiting for user interaction.
+    /// Other systems (like StartDialogueOnPlay) check this to delay starting dialogue.
+    /// </summary>
+    public static bool IsWaitingForDismissal { get; private set; } = false;
 
     // Welcome messages
     private const string NEW_PLAYER_MESSAGE = "Welcome to Bigger Tech Corp.\n\n" +
@@ -33,10 +37,13 @@ public class WelcomeOverlay : MonoBehaviour, IPointerClickHandler
     {
         if (instance == null)
         {
+            // Block dialogue from starting until overlay is dismissed
+            IsWaitingForDismissal = true;
+
             var go = new GameObject("WelcomeOverlay");
             instance = go.AddComponent<WelcomeOverlay>();
             DontDestroyOnLoad(go);
-            Debug.Log("[WelcomeOverlay] Auto-created");
+            Debug.Log("[WelcomeOverlay] Auto-created, dialogue start blocked");
         }
     }
 
@@ -82,7 +89,7 @@ public class WelcomeOverlay : MonoBehaviour, IPointerClickHandler
         panelRect.sizeDelta = Vector2.zero;
 
         Image panelImage = panelObj.AddComponent<Image>();
-        panelImage.color = new Color(0, 0, 0, 0.8f); // 80% opacity black
+        panelImage.color = new Color(0, 0, 0, 1f); // 100% opacity black
         panelImage.raycastTarget = true; // Enable clicking
 
         // Add CanvasGroup for fade animation
@@ -103,29 +110,12 @@ public class WelcomeOverlay : MonoBehaviour, IPointerClickHandler
         textRect.anchoredPosition = Vector2.zero;
         textRect.sizeDelta = new Vector2(1200, 600);
 
-#if USE_TMP
         TextMeshProUGUI textComponent = textObj.AddComponent<TextMeshProUGUI>();
         textComponent.text = isReturningPlayer ? RETURNING_PLAYER_MESSAGE : NEW_PLAYER_MESSAGE;
         textComponent.fontSize = isReturningPlayer ? 40 : 28;
         textComponent.color = Color.white;
         textComponent.alignment = TextAlignmentOptions.Center;
         textComponent.enableWordWrapping = true;
-#else
-        Text textComponent = textObj.AddComponent<Text>();
-        textComponent.text = isReturningPlayer ? RETURNING_PLAYER_MESSAGE : NEW_PLAYER_MESSAGE;
-        textComponent.fontSize = isReturningPlayer ? 40 : 28;
-        textComponent.color = Color.white;
-        textComponent.alignment = TextAnchor.MiddleCenter;
-        textComponent.horizontalOverflow = HorizontalWrapMode.Wrap;
-        textComponent.verticalOverflow = VerticalWrapMode.Truncate;
-
-        // Try to find Arial font
-        Font arial = Resources.GetBuiltinResource<Font>("Arial.ttf");
-        if (arial != null)
-        {
-            textComponent.font = arial;
-        }
-#endif
 
         // Add click handler to panel
         panelObj.AddComponent<WelcomeOverlayClickHandler>().overlay = this;
@@ -179,7 +169,10 @@ public class WelcomeOverlay : MonoBehaviour, IPointerClickHandler
 
         canvasGroup.alpha = 0f;
 
-        // If returning player, load the autosave
+        // Allow dialogue to start now
+        IsWaitingForDismissal = false;
+
+        // If returning player, load the autosave (which will start dialogue at saved node)
         if (isReturningPlayer)
         {
             Debug.Log("[WelcomeOverlay] Loading autosave slot 0...");
@@ -195,11 +188,44 @@ public class WelcomeOverlay : MonoBehaviour, IPointerClickHandler
         }
         else
         {
-            Debug.Log("[WelcomeOverlay] New player - letting game start normally");
+            // New player - start dialogue now
+            Debug.Log("[WelcomeOverlay] New player - starting dialogue");
+            StartDialogueNow();
         }
 
         // Destroy overlay
         Destroy(gameObject);
+    }
+
+    /// <summary>
+    /// Starts dialogue using StartDialogueOnPlay's configured start node
+    /// </summary>
+    private void StartDialogueNow()
+    {
+        StartDialogueOnPlay startDialogue = FindFirstObjectByType<StartDialogueOnPlay>();
+        if (startDialogue != null)
+        {
+            DialogueRunner dialogueRunner = FindFirstObjectByType<DialogueRunner>();
+            if (dialogueRunner != null && dialogueRunner.YarnProject != null)
+            {
+                Debug.Log($"[WelcomeOverlay] Starting dialogue at node: {startDialogue.startNode}");
+                dialogueRunner.StartDialogue(startDialogue.startNode);
+            }
+            else
+            {
+                Debug.LogError("[WelcomeOverlay] DialogueRunner or YarnProject not found!");
+            }
+        }
+        else
+        {
+            Debug.LogWarning("[WelcomeOverlay] StartDialogueOnPlay not found, dialogue may not start");
+        }
+    }
+
+    private void OnDestroy()
+    {
+        // Safety: ensure flag is cleared if overlay is destroyed unexpectedly
+        IsWaitingForDismissal = false;
     }
 }
 

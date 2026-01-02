@@ -12,6 +12,14 @@ public class StartDialogueOnPlay : MonoBehaviour {
 	}
 
 	private void Start() {
+		// Skip if WelcomeOverlay is waiting for user interaction
+		// WelcomeOverlay will start dialogue after it's dismissed
+		if (WelcomeOverlay.IsWaitingForDismissal)
+		{
+			Debug.Log("StartDialogueOnPlay: Waiting for WelcomeOverlay to be dismissed");
+			return;
+		}
+
 		if (dialogueRunner != null && dialogueRunner.YarnProject != null) {
 			dialogueRunner.StartDialogue(startNode);
 		} else {

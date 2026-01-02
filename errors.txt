@@ -1,229 +1,2006 @@
-1 URP assets included in build
-- UniversalRP - Assets/Settings/UniversalRP.asset
-	 - Renderer2D - Assets/Settings/Renderer2D.asset - UnityEngine.Rendering.Universal.Renderer2DData
+The referenced script on this Behaviour (Game Object '') is missing!
 
-UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+The referenced script on this Behaviour (Game Object '') is missing!
 
-[WebGLPostBuild] Backing up website files before build...
+[FMODWebGLBankLoader] AutoCreate called (RuntimeInitializeOnLoadMethod)
 UnityEngine.Debug:Log (object)
-WebGLPostBuild:OnPreprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at Assets/Scripts/Editor/WebGLPostBuild.cs:66)
-UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+FMODWebGLBankLoader:AutoCreate () (at Assets/Scripts/Audio/FMODWebGLBankLoader.cs:33)
 
-[WebGLPostBuild] Backed up: index.html
+[FMODWebGLBankLoader] Not WebGL - skipping custom loader
 UnityEngine.Debug:Log (object)
-WebGLPostBuild:OnPreprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at Assets/Scripts/Editor/WebGLPostBuild.cs:87)
-UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+FMODWebGLBankLoader:AutoCreate () (at Assets/Scripts/Audio/FMODWebGLBankLoader.cs:41)
 
-[WebGLPostBuild] Backed up: play.html
+CharacterSpriteManager: Loaded 8 manually assigned sprites
 UnityEngine.Debug:Log (object)
-WebGLPostBuild:OnPreprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at Assets/Scripts/Editor/WebGLPostBuild.cs:87)
-UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+CharacterSpriteManager:BuildDictionary () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:257)
+CharacterSpriteManager:OnValidate () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:1181)
 
-[WebGLPostBuild] Backed up: mobile-play.html
+CharacterPortraitData: Loaded base sprite for Alice: Alice base_0
 UnityEngine.Debug:Log (object)
-WebGLPostBuild:OnPreprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at Assets/Scripts/Editor/WebGLPostBuild.cs:87)
-UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+CharacterPortraitData:LoadFromAssetDatabase (string,string) (at Assets/Scripts/Characters/CharacterPortraitData.cs:80)
+CharacterPortraitData:LoadFromFolder (string,string) (at Assets/Scripts/Characters/CharacterPortraitData.cs:53)
+CharacterSpriteManager:LoadFromFolder () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:394)
+CharacterSpriteManager:AutoLoadCharacters () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:275)
+CharacterSpriteManager:BuildDictionary () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:260)
+CharacterSpriteManager:OnValidate () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:1181)
 
-[WebGLPostBuild] Backed up: about.html
+CharacterPortraitData: Loaded 15 talking frames for Alice
 UnityEngine.Debug:Log (object)
-WebGLPostBuild:OnPreprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at Assets/Scripts/Editor/WebGLPostBuild.cs:87)
-UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+CharacterPortraitData:LoadFromAssetDatabase (string,string) (at Assets/Scripts/Characters/CharacterPortraitData.cs:93)
+CharacterPortraitData:LoadFromFolder (string,string) (at Assets/Scripts/Characters/CharacterPortraitData.cs:53)
+CharacterSpriteManager:LoadFromFolder () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:394)
+CharacterSpriteManager:AutoLoadCharacters () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:275)
+CharacterSpriteManager:BuildDictionary () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:260)
+CharacterSpriteManager:OnValidate () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:1181)
 
-[WebGLPostBuild] Backed up: blog.html
+CharacterPortraitData: Loaded 3 eye blink frames for Alice
 UnityEngine.Debug:Log (object)
-WebGLPostBuild:OnPreprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at Assets/Scripts/Editor/WebGLPostBuild.cs:87)
-UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+CharacterPortraitData:LoadFromAssetDatabase (string,string) (at Assets/Scripts/Characters/CharacterPortraitData.cs:106)
+CharacterPortraitData:LoadFromFolder (string,string) (at Assets/Scripts/Characters/CharacterPortraitData.cs:53)
+CharacterSpriteManager:LoadFromFolder () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:394)
+CharacterSpriteManager:AutoLoadCharacters () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:275)
+CharacterSpriteManager:BuildDictionary () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:260)
+CharacterSpriteManager:OnValidate () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:1181)
 
-[WebGLPostBuild] Backed up folder: assets/
+CharacterSpriteManager: Auto-loaded multi-frame character 'char_Alice' from Assets/Graphics/Characters/Alice
 UnityEngine.Debug:Log (object)
-WebGLPostBuild:OnPreprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at Assets/Scripts/Editor/WebGLPostBuild.cs:101)
-UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+CharacterSpriteManager:LoadFromFolder () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:400)
+CharacterSpriteManager:AutoLoadCharacters () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:275)
+CharacterSpriteManager:BuildDictionary () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:260)
+CharacterSpriteManager:OnValidate () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:1181)
 
-[WebGLPostBuild] Backed up 6 items to .website-backup/
+CharacterPortraitData: Loaded base sprite for Alice: Alice base_0
 UnityEngine.Debug:Log (object)
-WebGLPostBuild:OnPreprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at Assets/Scripts/Editor/WebGLPostBuild.cs:105)
-UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+CharacterPortraitData:LoadFromAssetDatabase (string,string) (at Assets/Scripts/Characters/CharacterPortraitData.cs:80)
+CharacterPortraitData:LoadFromFolder (string,string) (at Assets/Scripts/Characters/CharacterPortraitData.cs:53)
+CharacterSpriteManager:LoadFromResources () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:304)
+CharacterSpriteManager:AutoLoadCharacters () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:278)
+CharacterSpriteManager:BuildDictionary () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:260)
+CharacterSpriteManager:OnValidate () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:1181)
 
-[WebGLPostBuild] Copying character portraits to Resources...
+CharacterPortraitData: Loaded 15 talking frames for Alice
 UnityEngine.Debug:Log (object)
-WebGLPostBuild:OnPreprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at Assets/Scripts/Editor/WebGLPostBuild.cs:108)
-UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+CharacterPortraitData:LoadFromAssetDatabase (string,string) (at Assets/Scripts/Characters/CharacterPortraitData.cs:93)
+CharacterPortraitData:LoadFromFolder (string,string) (at Assets/Scripts/Characters/CharacterPortraitData.cs:53)
+CharacterSpriteManager:LoadFromResources () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:304)
+CharacterSpriteManager:AutoLoadCharacters () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:278)
+CharacterSpriteManager:BuildDictionary () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:260)
+CharacterSpriteManager:OnValidate () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:1181)
 
-[CharacterPortraitCopy] Detected multi-frame character: Alice
+CharacterPortraitData: Loaded 3 eye blink frames for Alice
 UnityEngine.Debug:Log (object)
-WebGLPostBuild:DetectMultiFrameCharacters () (at Assets/Scripts/Editor/WebGLPostBuild.cs:238)
-WebGLPostBuild:CopyCharacterPortraitsToResources () (at Assets/Scripts/Editor/WebGLPostBuild.cs:342)
-WebGLPostBuild:OnPreprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at Assets/Scripts/Editor/WebGLPostBuild.cs:109)
-UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+CharacterPortraitData:LoadFromAssetDatabase (string,string) (at Assets/Scripts/Characters/CharacterPortraitData.cs:106)
+CharacterPortraitData:LoadFromFolder (string,string) (at Assets/Scripts/Characters/CharacterPortraitData.cs:53)
+CharacterSpriteManager:LoadFromResources () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:304)
+CharacterSpriteManager:AutoLoadCharacters () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:278)
+CharacterSpriteManager:BuildDictionary () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:260)
+CharacterSpriteManager:OnValidate () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:1181)
 
-[CharacterPortraitCopy] Copying 1 character(s) to Resources...
+CharacterSpriteManager: Auto-loaded multi-frame character 'char_Alice' from Resources/Graphics/Characters/Alice
 UnityEngine.Debug:Log (object)
-WebGLPostBuild:CopyCharacterPortraitsToResources () (at Assets/Scripts/Editor/WebGLPostBuild.cs:350)
-WebGLPostBuild:OnPreprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at Assets/Scripts/Editor/WebGLPostBuild.cs:109)
-UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+CharacterSpriteManager:LoadFromResources () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:310)
+CharacterSpriteManager:AutoLoadCharacters () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:278)
+CharacterSpriteManager:BuildDictionary () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:260)
+CharacterSpriteManager:OnValidate () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:1181)
 
-[CharacterPortraitCopy] Created folder: Assets/Resources/Graphics/Characters
+CharacterPortraitData: Character folder not found: Assets/Graphics/Characters/Supervisor
+UnityEngine.Debug:LogWarning (object)
+CharacterPortraitData:LoadFromAssetDatabase (string,string) (at Assets/Scripts/Characters/CharacterPortraitData.cs:69)
+CharacterPortraitData:LoadFromFolder (string,string) (at Assets/Scripts/Characters/CharacterPortraitData.cs:53)
+CharacterSpriteManager:LoadFromResources () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:304)
+CharacterSpriteManager:AutoLoadCharacters () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:278)
+CharacterSpriteManager:BuildDictionary () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:260)
+CharacterSpriteManager:OnValidate () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:1181)
+
+CharacterPortraitData: Character folder not found: Assets/Graphics/Characters/Timmy
+UnityEngine.Debug:LogWarning (object)
+CharacterPortraitData:LoadFromAssetDatabase (string,string) (at Assets/Scripts/Characters/CharacterPortraitData.cs:69)
+CharacterPortraitData:LoadFromFolder (string,string) (at Assets/Scripts/Characters/CharacterPortraitData.cs:53)
+CharacterSpriteManager:LoadFromResources () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:304)
+CharacterSpriteManager:AutoLoadCharacters () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:278)
+CharacterSpriteManager:BuildDictionary () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:260)
+CharacterSpriteManager:OnValidate () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:1181)
+
+CharacterPortraitData: Character folder not found: Assets/Graphics/Characters/Btc
+UnityEngine.Debug:LogWarning (object)
+CharacterPortraitData:LoadFromAssetDatabase (string,string) (at Assets/Scripts/Characters/CharacterPortraitData.cs:69)
+CharacterPortraitData:LoadFromFolder (string,string) (at Assets/Scripts/Characters/CharacterPortraitData.cs:53)
+CharacterSpriteManager:LoadFromResources () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:304)
+CharacterSpriteManager:AutoLoadCharacters () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:278)
+CharacterSpriteManager:BuildDictionary () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:260)
+CharacterSpriteManager:OnValidate () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:1181)
+
+CharacterPortraitData: Character folder not found: Assets/Graphics/Characters/Ari
+UnityEngine.Debug:LogWarning (object)
+CharacterPortraitData:LoadFromAssetDatabase (string,string) (at Assets/Scripts/Characters/CharacterPortraitData.cs:69)
+CharacterPortraitData:LoadFromFolder (string,string) (at Assets/Scripts/Characters/CharacterPortraitData.cs:53)
+CharacterSpriteManager:LoadFromResources () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:304)
+CharacterSpriteManager:AutoLoadCharacters () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:278)
+CharacterSpriteManager:BuildDictionary () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:260)
+CharacterSpriteManager:OnValidate () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:1181)
+
+CharacterPortraitData: Character folder not found: Assets/Graphics/Characters/Charlotte
+UnityEngine.Debug:LogWarning (object)
+CharacterPortraitData:LoadFromAssetDatabase (string,string) (at Assets/Scripts/Characters/CharacterPortraitData.cs:69)
+CharacterPortraitData:LoadFromFolder (string,string) (at Assets/Scripts/Characters/CharacterPortraitData.cs:53)
+CharacterSpriteManager:LoadFromResources () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:304)
+CharacterSpriteManager:AutoLoadCharacters () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:278)
+CharacterSpriteManager:BuildDictionary () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:260)
+CharacterSpriteManager:OnValidate () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:1181)
+
+CharacterPortraitData: Character folder not found: Assets/Graphics/Characters/Dina
+UnityEngine.Debug:LogWarning (object)
+CharacterPortraitData:LoadFromAssetDatabase (string,string) (at Assets/Scripts/Characters/CharacterPortraitData.cs:69)
+CharacterPortraitData:LoadFromFolder (string,string) (at Assets/Scripts/Characters/CharacterPortraitData.cs:53)
+CharacterSpriteManager:LoadFromResources () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:304)
+CharacterSpriteManager:AutoLoadCharacters () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:278)
+CharacterSpriteManager:BuildDictionary () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:260)
+CharacterSpriteManager:OnValidate () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:1181)
+
+CharacterPortraitData: Character folder not found: Assets/Graphics/Characters/Noam
+UnityEngine.Debug:LogWarning (object)
+CharacterPortraitData:LoadFromAssetDatabase (string,string) (at Assets/Scripts/Characters/CharacterPortraitData.cs:69)
+CharacterPortraitData:LoadFromFolder (string,string) (at Assets/Scripts/Characters/CharacterPortraitData.cs:53)
+CharacterSpriteManager:LoadFromResources () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:304)
+CharacterSpriteManager:AutoLoadCharacters () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:278)
+CharacterSpriteManager:BuildDictionary () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:260)
+CharacterSpriteManager:OnValidate () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:1181)
+
+CharacterPortraitData: Character folder not found: Assets/Graphics/Characters/Max
+UnityEngine.Debug:LogWarning (object)
+CharacterPortraitData:LoadFromAssetDatabase (string,string) (at Assets/Scripts/Characters/CharacterPortraitData.cs:69)
+CharacterPortraitData:LoadFromFolder (string,string) (at Assets/Scripts/Characters/CharacterPortraitData.cs:53)
+CharacterSpriteManager:LoadFromResources () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:304)
+CharacterSpriteManager:AutoLoadCharacters () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:278)
+CharacterSpriteManager:BuildDictionary () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:260)
+CharacterSpriteManager:OnValidate () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:1181)
+
+CharacterSpriteManager: Loading from Resources/Characters
 UnityEngine.Debug:Log (object)
-WebGLPostBuild:EnsureFolderExists (string) (at Assets/Scripts/Editor/WebGLPostBuild.cs:274)
-WebGLPostBuild:CopyCharacterPortraitsToResources () (at Assets/Scripts/Editor/WebGLPostBuild.cs:353)
-WebGLPostBuild:OnPreprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at Assets/Scripts/Editor/WebGLPostBuild.cs:109)
-UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+CharacterSpriteManager:LoadFromResources () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:323)
+CharacterSpriteManager:AutoLoadCharacters () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:278)
+CharacterSpriteManager:BuildDictionary () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:260)
+CharacterSpriteManager:OnValidate () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:1181)
 
-[CharacterPortraitCopy] Created folder: Assets/Resources/Graphics/Characters/Alice
+CharacterSpriteManager: Auto-loaded single-frame character 'char_BTC' from Resources (sprite: btc_0)
 UnityEngine.Debug:Log (object)
-WebGLPostBuild:EnsureFolderExists (string) (at Assets/Scripts/Editor/WebGLPostBuild.cs:274)
-WebGLPostBuild:CopyCharacterFolder (string) (at Assets/Scripts/Editor/WebGLPostBuild.cs:310)
-WebGLPostBuild:CopyCharacterPortraitsToResources () (at Assets/Scripts/Editor/WebGLPostBuild.cs:357)
-WebGLPostBuild:OnPreprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at Assets/Scripts/Editor/WebGLPostBuild.cs:109)
-UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+CharacterSpriteManager:LoadFromResources () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:358)
+CharacterSpriteManager:AutoLoadCharacters () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:278)
+CharacterSpriteManager:BuildDictionary () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:260)
+CharacterSpriteManager:OnValidate () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:1181)
 
-[CharacterPortraitCopy] Created folder: Assets/Resources/Graphics/Characters/Alice/Base
+CharacterSpriteManager: Portrait data dictionary contains 9 entries:
 UnityEngine.Debug:Log (object)
-WebGLPostBuild:EnsureFolderExists (string) (at Assets/Scripts/Editor/WebGLPostBuild.cs:274)
-WebGLPostBuild:CopyCharacterFolder (string) (at Assets/Scripts/Editor/WebGLPostBuild.cs:323)
-WebGLPostBuild:CopyCharacterPortraitsToResources () (at Assets/Scripts/Editor/WebGLPostBuild.cs:357)
-WebGLPostBuild:OnPreprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at Assets/Scripts/Editor/WebGLPostBuild.cs:109)
-UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+CharacterSpriteManager:BuildDictionary () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:263)
+CharacterSpriteManager:OnValidate () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:1181)
 
-[CharacterPortraitCopy] Copied 1 sprites from Assets/Graphics/Characters/Alice/Base
+  - char_Alice: Base=Alice base_0, Talking=15 frames, Eyes=3 frames
 UnityEngine.Debug:Log (object)
-WebGLPostBuild:CopySpritesInFolder (string,string) (at Assets/Scripts/Editor/WebGLPostBuild.cs:298)
-WebGLPostBuild:CopyCharacterFolder (string) (at Assets/Scripts/Editor/WebGLPostBuild.cs:326)
-WebGLPostBuild:CopyCharacterPortraitsToResources () (at Assets/Scripts/Editor/WebGLPostBuild.cs:357)
-WebGLPostBuild:OnPreprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at Assets/Scripts/Editor/WebGLPostBuild.cs:109)
-UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+CharacterSpriteManager:BuildDictionary () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:267)
+CharacterSpriteManager:OnValidate () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:1181)
 
-[CharacterPortraitCopy] Created folder: Assets/Resources/Graphics/Characters/Alice/Talking
+  - char_Timmy: Base=timmy_0, Talking=1 frames, Eyes=3 frames
 UnityEngine.Debug:Log (object)
-WebGLPostBuild:EnsureFolderExists (string) (at Assets/Scripts/Editor/WebGLPostBuild.cs:274)
-WebGLPostBuild:CopyCharacterFolder (string) (at Assets/Scripts/Editor/WebGLPostBuild.cs:323)
-WebGLPostBuild:CopyCharacterPortraitsToResources () (at Assets/Scripts/Editor/WebGLPostBuild.cs:357)
-WebGLPostBuild:OnPreprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at Assets/Scripts/Editor/WebGLPostBuild.cs:109)
-UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+CharacterSpriteManager:BuildDictionary () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:267)
+CharacterSpriteManager:OnValidate () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:1181)
 
-[CharacterPortraitCopy] Copied 15 sprites from Assets/Graphics/Characters/Alice/Talking
+  - char_Supervisor: Base=supervisor_0, Talking=1 frames, Eyes=3 frames
 UnityEngine.Debug:Log (object)
-WebGLPostBuild:CopySpritesInFolder (string,string) (at Assets/Scripts/Editor/WebGLPostBuild.cs:298)
-WebGLPostBuild:CopyCharacterFolder (string) (at Assets/Scripts/Editor/WebGLPostBuild.cs:326)
-WebGLPostBuild:CopyCharacterPortraitsToResources () (at Assets/Scripts/Editor/WebGLPostBuild.cs:357)
-WebGLPostBuild:OnPreprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at Assets/Scripts/Editor/WebGLPostBuild.cs:109)
-UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+CharacterSpriteManager:BuildDictionary () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:267)
+CharacterSpriteManager:OnValidate () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:1181)
 
-[CharacterPortraitCopy] Created folder: Assets/Resources/Graphics/Characters/Alice/Eyes
+  - char_Charlotte: Base=charlotte_0, Talking=1 frames, Eyes=3 frames
 UnityEngine.Debug:Log (object)
-WebGLPostBuild:EnsureFolderExists (string) (at Assets/Scripts/Editor/WebGLPostBuild.cs:274)
-WebGLPostBuild:CopyCharacterFolder (string) (at Assets/Scripts/Editor/WebGLPostBuild.cs:323)
-WebGLPostBuild:CopyCharacterPortraitsToResources () (at Assets/Scripts/Editor/WebGLPostBuild.cs:357)
-WebGLPostBuild:OnPreprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at Assets/Scripts/Editor/WebGLPostBuild.cs:109)
-UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+CharacterSpriteManager:BuildDictionary () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:267)
+CharacterSpriteManager:OnValidate () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:1181)
 
-[CharacterPortraitCopy] Copied 3 sprites from Assets/Graphics/Characters/Alice/Eyes
+  - char_Ari: Base=ari_0, Talking=1 frames, Eyes=3 frames
 UnityEngine.Debug:Log (object)
-WebGLPostBuild:CopySpritesInFolder (string,string) (at Assets/Scripts/Editor/WebGLPostBuild.cs:298)
-WebGLPostBuild:CopyCharacterFolder (string) (at Assets/Scripts/Editor/WebGLPostBuild.cs:326)
-WebGLPostBuild:CopyCharacterPortraitsToResources () (at Assets/Scripts/Editor/WebGLPostBuild.cs:357)
-WebGLPostBuild:OnPreprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at Assets/Scripts/Editor/WebGLPostBuild.cs:109)
-UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+CharacterSpriteManager:BuildDictionary () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:267)
+CharacterSpriteManager:OnValidate () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:1181)
 
-[CharacterPortraitCopy] Copied character: Alice
+  - char_Dina: Base=dina_0, Talking=1 frames, Eyes=3 frames
 UnityEngine.Debug:Log (object)
-WebGLPostBuild:CopyCharacterFolder (string) (at Assets/Scripts/Editor/WebGLPostBuild.cs:332)
-WebGLPostBuild:CopyCharacterPortraitsToResources () (at Assets/Scripts/Editor/WebGLPostBuild.cs:357)
-WebGLPostBuild:OnPreprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at Assets/Scripts/Editor/WebGLPostBuild.cs:109)
-UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+CharacterSpriteManager:BuildDictionary () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:267)
+CharacterSpriteManager:OnValidate () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:1181)
 
-[CharacterPortraitCopy] Copied 1 character(s) to Resources
+  - char_Noam: Base=noam_0, Talking=1 frames, Eyes=3 frames
 UnityEngine.Debug:Log (object)
-WebGLPostBuild:CopyCharacterPortraitsToResources () (at Assets/Scripts/Editor/WebGLPostBuild.cs:363)
-WebGLPostBuild:OnPreprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at Assets/Scripts/Editor/WebGLPostBuild.cs:109)
-UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+CharacterSpriteManager:BuildDictionary () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:267)
+CharacterSpriteManager:OnValidate () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:1181)
 
-Assets\Scripts\Commands\BackgroundCommandHandler.cs(58,18): warning CS0414: The field 'BackgroundCommandHandler.currentBackgroundIsVideo' is assigned but its value is never used
-
-Assets\Scripts\Audio\WebAudioUnlocker.cs(16,18): warning CS0414: The field 'WebAudioUnlocker.hasAttemptedUnlock' is assigned but its value is never used
-
-[WebGLPostBuild] Restoring website files after build...
+  - char_Max: Base=max_0, Talking=1 frames, Eyes=3 frames
 UnityEngine.Debug:Log (object)
-WebGLPostBuild:OnPostprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at Assets/Scripts/Editor/WebGLPostBuild.cs:123)
-UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+CharacterSpriteManager:BuildDictionary () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:267)
+CharacterSpriteManager:OnValidate () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:1181)
 
-[WebGLPostBuild] Restored: index.html
+  - char_BTC: Base=btc_0, Talking=1 frames, Eyes=3 frames
 UnityEngine.Debug:Log (object)
-WebGLPostBuild:OnPostprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at Assets/Scripts/Editor/WebGLPostBuild.cs:144)
-UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+CharacterSpriteManager:BuildDictionary () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:267)
+CharacterSpriteManager:OnValidate () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:1181)
 
-[WebGLPostBuild] Restored: play.html
+BackgroundCommandHandler: Auto-loaded background 'bg_breakroom' from Assets/Resources/Graphics/Backgrounds/bg_breakroom.png (sprite: bg_breakroom_0)
 UnityEngine.Debug:Log (object)
-WebGLPostBuild:OnPostprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at Assets/Scripts/Editor/WebGLPostBuild.cs:144)
-UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:OnValidate () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:810)
 
-[WebGLPostBuild] Restored: mobile-play.html
+BackgroundCommandHandler: Auto-loaded background 'bg_bsod' from Assets/Resources/Graphics/Backgrounds/bg_bsod.png (sprite: bg_bsod_0)
 UnityEngine.Debug:Log (object)
-WebGLPostBuild:OnPostprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at Assets/Scripts/Editor/WebGLPostBuild.cs:144)
-UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:OnValidate () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:810)
 
-[WebGLPostBuild] Restored: about.html
+BackgroundCommandHandler: Auto-loaded background 'bg_cafeteria' from Assets/Resources/Graphics/Backgrounds/bg_cafeteria.png (sprite: bg_cafeteria_0)
 UnityEngine.Debug:Log (object)
-WebGLPostBuild:OnPostprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at Assets/Scripts/Editor/WebGLPostBuild.cs:144)
-UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:OnValidate () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:810)
 
-[WebGLPostBuild] Restored: blog.html
+BackgroundCommandHandler: Auto-loaded background 'bg_classroom' from Assets/Resources/Graphics/Backgrounds/bg_classroom.png (sprite: bg_classroom_0)
 UnityEngine.Debug:Log (object)
-WebGLPostBuild:OnPostprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at Assets/Scripts/Editor/WebGLPostBuild.cs:144)
-UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:OnValidate () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:810)
 
-[WebGLPostBuild] Restored folder: assets/
+BackgroundCommandHandler: Auto-loaded background 'bg_companystore' from Assets/Resources/Graphics/Backgrounds/bg_companystore.png (sprite: bg_companystore_0)
 UnityEngine.Debug:Log (object)
-WebGLPostBuild:OnPostprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at Assets/Scripts/Editor/WebGLPostBuild.cs:158)
-UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:OnValidate () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:810)
 
-[WebGLPostBuild] Cleaned up backup folder
+BackgroundCommandHandler: Auto-loaded background 'bg_conferenceroom' from Assets/Resources/Graphics/Backgrounds/bg_conferenceroom.png (sprite: bg_conferenceroom_0)
 UnityEngine.Debug:Log (object)
-WebGLPostBuild:OnPostprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at Assets/Scripts/Editor/WebGLPostBuild.cs:166)
-UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:OnValidate () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:810)
 
-[WebGLPostBuild] Restored 6 items. Build complete!
+BackgroundCommandHandler: Auto-loaded background 'bg_day_planner' from Assets/Resources/Graphics/Backgrounds/bg_day_planner.jpg (sprite: bg_day_planner_0)
 UnityEngine.Debug:Log (object)
-WebGLPostBuild:OnPostprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at Assets/Scripts/Editor/WebGLPostBuild.cs:173)
-UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:OnValidate () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:810)
 
-[WebGLPostBuild] Cleaning up character portraits...
+BackgroundCommandHandler: Auto-loaded background 'bg_gym' from Assets/Resources/Graphics/Backgrounds/bg_gym.png (sprite: bg_gym_0)
 UnityEngine.Debug:Log (object)
-WebGLPostBuild:OnPostprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at Assets/Scripts/Editor/WebGLPostBuild.cs:176)
-UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:OnValidate () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:810)
 
-[CharacterPortraitCopy] Cleaning up 1 copied character(s)...
+BackgroundCommandHandler: Auto-loaded background 'bg_intermission' from Assets/Resources/Graphics/Backgrounds/bg_intermission.jpg (sprite: bg_intermission_0)
 UnityEngine.Debug:Log (object)
-WebGLPostBuild:CleanupCharacterPortraits () (at Assets/Scripts/Editor/WebGLPostBuild.cs:377)
-WebGLPostBuild:OnPostprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at Assets/Scripts/Editor/WebGLPostBuild.cs:177)
-UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:OnValidate () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:810)
 
-[CharacterPortraitCopy] Deleted: Assets/Resources/Graphics/Characters/Alice
+BackgroundCommandHandler: Auto-loaded background 'bg_library' from Assets/Resources/Graphics/Backgrounds/bg_library.jpg (sprite: bg_library_0)
 UnityEngine.Debug:Log (object)
-WebGLPostBuild:CleanupCharacterPortraits () (at Assets/Scripts/Editor/WebGLPostBuild.cs:386)
-WebGLPostBuild:OnPostprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at Assets/Scripts/Editor/WebGLPostBuild.cs:177)
-UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:OnValidate () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:810)
 
-[CharacterPortraitCopy] Deleted empty folder: Assets/Resources/Graphics/Characters
+BackgroundCommandHandler: Auto-loaded background 'bg_loading' from Assets/Resources/Graphics/Backgrounds/bg_loading.png (sprite: bg_loading_0)
 UnityEngine.Debug:Log (object)
-WebGLPostBuild:CleanupCharacterPortraits () (at Assets/Scripts/Editor/WebGLPostBuild.cs:398)
-WebGLPostBuild:OnPostprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at Assets/Scripts/Editor/WebGLPostBuild.cs:177)
-UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:OnValidate () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:810)
 
-[CharacterPortraitCopy] Cleanup complete
+BackgroundCommandHandler: Auto-loaded background 'bg_mainmenu' from Assets/Resources/Graphics/Backgrounds/bg_mainmenu.png (sprite: bg_mainmenu_0)
 UnityEngine.Debug:Log (object)
-WebGLPostBuild:CleanupCharacterPortraits () (at Assets/Scripts/Editor/WebGLPostBuild.cs:417)
-WebGLPostBuild:OnPostprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at Assets/Scripts/Editor/WebGLPostBuild.cs:177)
-UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:OnValidate () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:810)
 
-Build completed with a result of 'Succeeded' in 541 seconds (541195 ms) [1/2/2026 12:22:11 PM -> 1/2/2026 12:31:12 PM, 9m 01s]
-UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+BackgroundCommandHandler: Auto-loaded background 'bg_majoritymind' from Assets/Resources/Graphics/Backgrounds/bg_majoritymind.png (sprite: bg_majoritymind_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:OnValidate () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:810)
 
-Assets\Scripts\UI\WelcomeOverlay.cs(149,36): error CS1061: 'SaveLoadManager' does not contain a definition for 'HasSave' and no accessible extension method 'HasSave' accepting a first argument of type 'SaveLoadManager' could be found (are you missing a using directive or an assembly reference?)
+BackgroundCommandHandler: Auto-loaded background 'bg_mind_meld' from Assets/Resources/Graphics/Backgrounds/bg_mind_meld.jpg (sprite: bg_mind_meld_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:OnValidate () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:810)
 
-Assets\Scripts\Audio\WebAudioUnlocker.cs(17,18): warning CS0414: The field 'WebAudioUnlocker.isUnlocked' is assigned but its value is never used
+BackgroundCommandHandler: Auto-loaded background 'bg_minesweeper' from Assets/Resources/Graphics/Backgrounds/bg_minesweeper.jpg (sprite: bg_minesweeper_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:OnValidate () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:810)
 
-Assets\Scripts\Audio\WebAudioUnlocker.cs(16,18): warning CS0414: The field 'WebAudioUnlocker.hasAttemptedUnlock' is assigned but its value is never used
+BackgroundCommandHandler: Auto-loaded background 'bg_outside' from Assets/Resources/Graphics/Backgrounds/bg_outside.png (sprite: bg_outside_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:OnValidate () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:810)
 
-Assets\Scripts\Commands\BackgroundCommandHandler.cs(58,18): warning CS0414: The field 'BackgroundCommandHandler.currentBackgroundIsVideo' is assigned but its value is never used
+BackgroundCommandHandler: Auto-loaded background 'bg_party' from Assets/Resources/Graphics/Backgrounds/bg_party.png (sprite: bg_party_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:OnValidate () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:810)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_party_basement' from Assets/Resources/Graphics/Backgrounds/bg_party_basement.png (sprite: bg_party_basement_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:OnValidate () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:810)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_party_upstairs' from Assets/Resources/Graphics/Backgrounds/bg_party_upstairs.png (sprite: bg_party_upstairs_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:OnValidate () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:810)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_player_desk' from Assets/Resources/Graphics/Backgrounds/bg_player_desk.png (sprite: bg_player_desk_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:OnValidate () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:810)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_supervisoroffice' from Assets/Resources/Graphics/Backgrounds/bg_supervisoroffice.png (sprite: bg_supervisoroffice_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:OnValidate () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:810)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_timmyroom' from Assets/Resources/Graphics/Backgrounds/bg_timmyroom.png (sprite: bg_timmyroom_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:OnValidate () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:810)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_timmydesk' from Assets/Resources/Graphics/Backgrounds/obsolete/bg_timmydesk.png (sprite: bg_timmydesk_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:OnValidate () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:810)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_hall' from Resources (sprite: bg_hall_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromResources () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:341)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:307)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:OnValidate () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:810)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_breakroom' from Assets/Resources/Graphics/Backgrounds/bg_breakroom.png (sprite: bg_breakroom_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:OnValidate () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:810)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_bsod' from Assets/Resources/Graphics/Backgrounds/bg_bsod.png (sprite: bg_bsod_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:OnValidate () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:810)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_cafeteria' from Assets/Resources/Graphics/Backgrounds/bg_cafeteria.png (sprite: bg_cafeteria_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:OnValidate () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:810)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_classroom' from Assets/Resources/Graphics/Backgrounds/bg_classroom.png (sprite: bg_classroom_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:OnValidate () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:810)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_companystore' from Assets/Resources/Graphics/Backgrounds/bg_companystore.png (sprite: bg_companystore_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:OnValidate () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:810)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_conferenceroom' from Assets/Resources/Graphics/Backgrounds/bg_conferenceroom.png (sprite: bg_conferenceroom_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:OnValidate () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:810)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_day_planner' from Assets/Resources/Graphics/Backgrounds/bg_day_planner.jpg (sprite: bg_day_planner_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:OnValidate () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:810)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_gym' from Assets/Resources/Graphics/Backgrounds/bg_gym.png (sprite: bg_gym_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:OnValidate () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:810)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_intermission' from Assets/Resources/Graphics/Backgrounds/bg_intermission.jpg (sprite: bg_intermission_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:OnValidate () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:810)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_library' from Assets/Resources/Graphics/Backgrounds/bg_library.jpg (sprite: bg_library_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:OnValidate () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:810)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_loading' from Assets/Resources/Graphics/Backgrounds/bg_loading.png (sprite: bg_loading_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:OnValidate () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:810)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_mainmenu' from Assets/Resources/Graphics/Backgrounds/bg_mainmenu.png (sprite: bg_mainmenu_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:OnValidate () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:810)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_majoritymind' from Assets/Resources/Graphics/Backgrounds/bg_majoritymind.png (sprite: bg_majoritymind_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:OnValidate () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:810)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_mind_meld' from Assets/Resources/Graphics/Backgrounds/bg_mind_meld.jpg (sprite: bg_mind_meld_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:OnValidate () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:810)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_minesweeper' from Assets/Resources/Graphics/Backgrounds/bg_minesweeper.jpg (sprite: bg_minesweeper_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:OnValidate () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:810)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_outside' from Assets/Resources/Graphics/Backgrounds/bg_outside.png (sprite: bg_outside_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:OnValidate () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:810)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_party' from Assets/Resources/Graphics/Backgrounds/bg_party.png (sprite: bg_party_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:OnValidate () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:810)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_party_basement' from Assets/Resources/Graphics/Backgrounds/bg_party_basement.png (sprite: bg_party_basement_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:OnValidate () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:810)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_party_upstairs' from Assets/Resources/Graphics/Backgrounds/bg_party_upstairs.png (sprite: bg_party_upstairs_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:OnValidate () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:810)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_player_desk' from Assets/Resources/Graphics/Backgrounds/bg_player_desk.png (sprite: bg_player_desk_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:OnValidate () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:810)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_supervisoroffice' from Assets/Resources/Graphics/Backgrounds/bg_supervisoroffice.png (sprite: bg_supervisoroffice_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:OnValidate () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:810)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_timmyroom' from Assets/Resources/Graphics/Backgrounds/bg_timmyroom.png (sprite: bg_timmyroom_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:OnValidate () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:810)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_timmydesk' from Assets/Resources/Graphics/Backgrounds/obsolete/bg_timmydesk.png (sprite: bg_timmydesk_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:OnValidate () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:810)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_hall' from Resources (sprite: bg_hall_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromResources () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:341)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:307)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:OnValidate () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:810)
+
+CharacterSpriteManager: Loaded 8 manually assigned sprites
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:BuildDictionary () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:257)
+CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:133)
+
+CharacterPortraitData: Loaded base sprite for Alice: Alice base_0
+UnityEngine.Debug:Log (object)
+CharacterPortraitData:LoadFromAssetDatabase (string,string) (at Assets/Scripts/Characters/CharacterPortraitData.cs:80)
+CharacterPortraitData:LoadFromFolder (string,string) (at Assets/Scripts/Characters/CharacterPortraitData.cs:53)
+CharacterSpriteManager:LoadFromFolder () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:394)
+CharacterSpriteManager:AutoLoadCharacters () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:275)
+CharacterSpriteManager:BuildDictionary () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:260)
+CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:133)
+
+CharacterPortraitData: Loaded 15 talking frames for Alice
+UnityEngine.Debug:Log (object)
+CharacterPortraitData:LoadFromAssetDatabase (string,string) (at Assets/Scripts/Characters/CharacterPortraitData.cs:93)
+CharacterPortraitData:LoadFromFolder (string,string) (at Assets/Scripts/Characters/CharacterPortraitData.cs:53)
+CharacterSpriteManager:LoadFromFolder () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:394)
+CharacterSpriteManager:AutoLoadCharacters () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:275)
+CharacterSpriteManager:BuildDictionary () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:260)
+CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:133)
+
+CharacterPortraitData: Loaded 3 eye blink frames for Alice
+UnityEngine.Debug:Log (object)
+CharacterPortraitData:LoadFromAssetDatabase (string,string) (at Assets/Scripts/Characters/CharacterPortraitData.cs:106)
+CharacterPortraitData:LoadFromFolder (string,string) (at Assets/Scripts/Characters/CharacterPortraitData.cs:53)
+CharacterSpriteManager:LoadFromFolder () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:394)
+CharacterSpriteManager:AutoLoadCharacters () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:275)
+CharacterSpriteManager:BuildDictionary () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:260)
+CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:133)
+
+CharacterSpriteManager: Auto-loaded multi-frame character 'char_Alice' from Assets/Graphics/Characters/Alice
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:LoadFromFolder () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:400)
+CharacterSpriteManager:AutoLoadCharacters () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:275)
+CharacterSpriteManager:BuildDictionary () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:260)
+CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:133)
+
+CharacterPortraitData: Loaded base sprite for Alice: Alice base_0
+UnityEngine.Debug:Log (object)
+CharacterPortraitData:LoadFromAssetDatabase (string,string) (at Assets/Scripts/Characters/CharacterPortraitData.cs:80)
+CharacterPortraitData:LoadFromFolder (string,string) (at Assets/Scripts/Characters/CharacterPortraitData.cs:53)
+CharacterSpriteManager:LoadFromResources () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:304)
+CharacterSpriteManager:AutoLoadCharacters () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:278)
+CharacterSpriteManager:BuildDictionary () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:260)
+CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:133)
+
+CharacterPortraitData: Loaded 15 talking frames for Alice
+UnityEngine.Debug:Log (object)
+CharacterPortraitData:LoadFromAssetDatabase (string,string) (at Assets/Scripts/Characters/CharacterPortraitData.cs:93)
+CharacterPortraitData:LoadFromFolder (string,string) (at Assets/Scripts/Characters/CharacterPortraitData.cs:53)
+CharacterSpriteManager:LoadFromResources () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:304)
+CharacterSpriteManager:AutoLoadCharacters () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:278)
+CharacterSpriteManager:BuildDictionary () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:260)
+CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:133)
+
+CharacterPortraitData: Loaded 3 eye blink frames for Alice
+UnityEngine.Debug:Log (object)
+CharacterPortraitData:LoadFromAssetDatabase (string,string) (at Assets/Scripts/Characters/CharacterPortraitData.cs:106)
+CharacterPortraitData:LoadFromFolder (string,string) (at Assets/Scripts/Characters/CharacterPortraitData.cs:53)
+CharacterSpriteManager:LoadFromResources () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:304)
+CharacterSpriteManager:AutoLoadCharacters () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:278)
+CharacterSpriteManager:BuildDictionary () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:260)
+CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:133)
+
+CharacterSpriteManager: Auto-loaded multi-frame character 'char_Alice' from Resources/Graphics/Characters/Alice
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:LoadFromResources () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:310)
+CharacterSpriteManager:AutoLoadCharacters () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:278)
+CharacterSpriteManager:BuildDictionary () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:260)
+CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:133)
+
+CharacterPortraitData: Character folder not found: Assets/Graphics/Characters/Supervisor
+UnityEngine.Debug:LogWarning (object)
+CharacterPortraitData:LoadFromAssetDatabase (string,string) (at Assets/Scripts/Characters/CharacterPortraitData.cs:69)
+CharacterPortraitData:LoadFromFolder (string,string) (at Assets/Scripts/Characters/CharacterPortraitData.cs:53)
+CharacterSpriteManager:LoadFromResources () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:304)
+CharacterSpriteManager:AutoLoadCharacters () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:278)
+CharacterSpriteManager:BuildDictionary () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:260)
+CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:133)
+
+CharacterPortraitData: Character folder not found: Assets/Graphics/Characters/Timmy
+UnityEngine.Debug:LogWarning (object)
+CharacterPortraitData:LoadFromAssetDatabase (string,string) (at Assets/Scripts/Characters/CharacterPortraitData.cs:69)
+CharacterPortraitData:LoadFromFolder (string,string) (at Assets/Scripts/Characters/CharacterPortraitData.cs:53)
+CharacterSpriteManager:LoadFromResources () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:304)
+CharacterSpriteManager:AutoLoadCharacters () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:278)
+CharacterSpriteManager:BuildDictionary () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:260)
+CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:133)
+
+CharacterPortraitData: Character folder not found: Assets/Graphics/Characters/Btc
+UnityEngine.Debug:LogWarning (object)
+CharacterPortraitData:LoadFromAssetDatabase (string,string) (at Assets/Scripts/Characters/CharacterPortraitData.cs:69)
+CharacterPortraitData:LoadFromFolder (string,string) (at Assets/Scripts/Characters/CharacterPortraitData.cs:53)
+CharacterSpriteManager:LoadFromResources () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:304)
+CharacterSpriteManager:AutoLoadCharacters () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:278)
+CharacterSpriteManager:BuildDictionary () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:260)
+CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:133)
+
+CharacterPortraitData: Character folder not found: Assets/Graphics/Characters/Ari
+UnityEngine.Debug:LogWarning (object)
+CharacterPortraitData:LoadFromAssetDatabase (string,string) (at Assets/Scripts/Characters/CharacterPortraitData.cs:69)
+CharacterPortraitData:LoadFromFolder (string,string) (at Assets/Scripts/Characters/CharacterPortraitData.cs:53)
+CharacterSpriteManager:LoadFromResources () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:304)
+CharacterSpriteManager:AutoLoadCharacters () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:278)
+CharacterSpriteManager:BuildDictionary () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:260)
+CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:133)
+
+CharacterPortraitData: Character folder not found: Assets/Graphics/Characters/Charlotte
+UnityEngine.Debug:LogWarning (object)
+CharacterPortraitData:LoadFromAssetDatabase (string,string) (at Assets/Scripts/Characters/CharacterPortraitData.cs:69)
+CharacterPortraitData:LoadFromFolder (string,string) (at Assets/Scripts/Characters/CharacterPortraitData.cs:53)
+CharacterSpriteManager:LoadFromResources () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:304)
+CharacterSpriteManager:AutoLoadCharacters () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:278)
+CharacterSpriteManager:BuildDictionary () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:260)
+CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:133)
+
+CharacterPortraitData: Character folder not found: Assets/Graphics/Characters/Dina
+UnityEngine.Debug:LogWarning (object)
+CharacterPortraitData:LoadFromAssetDatabase (string,string) (at Assets/Scripts/Characters/CharacterPortraitData.cs:69)
+CharacterPortraitData:LoadFromFolder (string,string) (at Assets/Scripts/Characters/CharacterPortraitData.cs:53)
+CharacterSpriteManager:LoadFromResources () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:304)
+CharacterSpriteManager:AutoLoadCharacters () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:278)
+CharacterSpriteManager:BuildDictionary () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:260)
+CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:133)
+
+CharacterPortraitData: Character folder not found: Assets/Graphics/Characters/Noam
+UnityEngine.Debug:LogWarning (object)
+CharacterPortraitData:LoadFromAssetDatabase (string,string) (at Assets/Scripts/Characters/CharacterPortraitData.cs:69)
+CharacterPortraitData:LoadFromFolder (string,string) (at Assets/Scripts/Characters/CharacterPortraitData.cs:53)
+CharacterSpriteManager:LoadFromResources () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:304)
+CharacterSpriteManager:AutoLoadCharacters () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:278)
+CharacterSpriteManager:BuildDictionary () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:260)
+CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:133)
+
+CharacterPortraitData: Character folder not found: Assets/Graphics/Characters/Max
+UnityEngine.Debug:LogWarning (object)
+CharacterPortraitData:LoadFromAssetDatabase (string,string) (at Assets/Scripts/Characters/CharacterPortraitData.cs:69)
+CharacterPortraitData:LoadFromFolder (string,string) (at Assets/Scripts/Characters/CharacterPortraitData.cs:53)
+CharacterSpriteManager:LoadFromResources () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:304)
+CharacterSpriteManager:AutoLoadCharacters () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:278)
+CharacterSpriteManager:BuildDictionary () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:260)
+CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:133)
+
+CharacterSpriteManager: Loading from Resources/Characters
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:LoadFromResources () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:323)
+CharacterSpriteManager:AutoLoadCharacters () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:278)
+CharacterSpriteManager:BuildDictionary () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:260)
+CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:133)
+
+CharacterSpriteManager: Auto-loaded single-frame character 'char_BTC' from Resources (sprite: btc_0)
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:LoadFromResources () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:358)
+CharacterSpriteManager:AutoLoadCharacters () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:278)
+CharacterSpriteManager:BuildDictionary () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:260)
+CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:133)
+
+CharacterSpriteManager: Portrait data dictionary contains 9 entries:
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:BuildDictionary () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:263)
+CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:133)
+
+  - char_Alice: Base=Alice base_0, Talking=15 frames, Eyes=3 frames
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:BuildDictionary () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:267)
+CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:133)
+
+  - char_Timmy: Base=timmy_0, Talking=1 frames, Eyes=3 frames
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:BuildDictionary () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:267)
+CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:133)
+
+  - char_Supervisor: Base=supervisor_0, Talking=1 frames, Eyes=3 frames
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:BuildDictionary () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:267)
+CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:133)
+
+  - char_Charlotte: Base=charlotte_0, Talking=1 frames, Eyes=3 frames
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:BuildDictionary () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:267)
+CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:133)
+
+  - char_Ari: Base=ari_0, Talking=1 frames, Eyes=3 frames
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:BuildDictionary () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:267)
+CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:133)
+
+  - char_Dina: Base=dina_0, Talking=1 frames, Eyes=3 frames
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:BuildDictionary () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:267)
+CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:133)
+
+  - char_Noam: Base=noam_0, Talking=1 frames, Eyes=3 frames
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:BuildDictionary () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:267)
+CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:133)
+
+  - char_Max: Base=max_0, Talking=1 frames, Eyes=3 frames
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:BuildDictionary () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:267)
+CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:133)
+
+  - char_BTC: Base=btc_0, Talking=1 frames, Eyes=3 frames
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:BuildDictionary () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:267)
+CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:133)
+
+CharacterSpriteManager: Found Canvas via LinePresenter in dialogue system: 'Canvas' on GameObject 'Canvas' (InstanceID: 124948)
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:FindDialogueCanvas () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:199)
+CharacterSpriteManager:SetupCharacterSprites () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:637)
+CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:135)
+
+CharacterSpriteManager: Canvas mismatch! targetCanvas was 'Canvas' on 'Canvas', but correct Canvas is 'Canvas' on 'Canvas'. Updating...
+UnityEngine.Debug:LogWarning (object)
+CharacterSpriteManager:SetupCharacterSprites () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:647)
+CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:135)
+
+CharacterSpriteManager: Setting up sprites in Canvas 'Canvas' on GameObject 'Canvas' (InstanceID: 124948)
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:SetupCharacterSprites () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:651)
+CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:135)
+
+=== Canvas Hierarchy BEFORE sprite creation ===
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:LogCanvasHierarchy (string) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:613)
+CharacterSpriteManager:SetupCharacterSprites () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:654)
+CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:135)
+
+Canvas: 'Canvas' on GameObject 'Canvas'
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:LogCanvasHierarchy (string) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:614)
+CharacterSpriteManager:SetupCharacterSprites () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:654)
+CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:135)
+
+Total children: 8
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:LogCanvasHierarchy (string) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:615)
+CharacterSpriteManager:SetupCharacterSprites () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:654)
+CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:135)
+
+  [0] Scene Background (ACTIVE)
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:LogCanvasHierarchy (string) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:628)
+CharacterSpriteManager:SetupCharacterSprites () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:654)
+CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:135)
+
+  [1] Line Presenter (ACTIVE)
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:LogCanvasHierarchy (string) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:628)
+CharacterSpriteManager:SetupCharacterSprites () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:654)
+CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:135)
+
+  [2] Options Presenter (ACTIVE)
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:LogCanvasHierarchy (string) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:628)
+CharacterSpriteManager:SetupCharacterSprites () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:654)
+CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:135)
+
+  [3] PauseMenuPanel (ACTIVE)
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:LogCanvasHierarchy (string) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:628)
+CharacterSpriteManager:SetupCharacterSprites () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:654)
+CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:135)
+
+  [4] LoadMenuPanel (INACTIVE)
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:LogCanvasHierarchy (string) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:628)
+CharacterSpriteManager:SetupCharacterSprites () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:654)
+CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:135)
+
+  [5] OpenFeedbackFormButton (ACTIVE)
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:LogCanvasHierarchy (string) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:628)
+CharacterSpriteManager:SetupCharacterSprites () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:654)
+CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:135)
+
+  [6] Feedback Form (INACTIVE)
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:LogCanvasHierarchy (string) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:628)
+CharacterSpriteManager:SetupCharacterSprites () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:654)
+CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:135)
+
+  [7] PauseHintText (ACTIVE)
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:LogCanvasHierarchy (string) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:628)
+CharacterSpriteManager:SetupCharacterSprites () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:654)
+CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:135)
+
+=== End Hierarchy ===
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:LogCanvasHierarchy (string) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:630)
+CharacterSpriteManager:SetupCharacterSprites () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:654)
+CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:135)
+
+CharacterSpriteManager: Background index: 0, Dialogue UI index: 1
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:SetupCharacterSprites () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:660)
+CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:135)
+
+CharacterSpriteManager: Calculated target sprite index: 1 (background: 0, dialogue: 1)
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:SetupCharacterSprites () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:698)
+CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:135)
+
+CharacterSpriteManager: Creating sprites as children of Canvas 'Canvas' on 'Canvas'
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:SetupCharacterSprites () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:729)
+CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:135)
+
+CharacterSpriteManager: Left sprite parent confirmed: 'Canvas'
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:SetupCharacterSprites () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:756)
+CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:135)
+
+CharacterSpriteManager: Left sprite placed at sibling index: 1 in Canvas 'Canvas'
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:SetupCharacterSprites () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:772)
+CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:135)
+
+CharacterSpriteManager: Dialogue UI index after left sprite placement: 2
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:SetupCharacterSprites () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:776)
+CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:135)
+
+CharacterSpriteManager: Right sprite parent confirmed: 'Canvas'
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:SetupCharacterSprites () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:861)
+CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:135)
+
+CharacterSpriteManager: Right sprite placed at sibling index: 2 in Canvas 'Canvas'
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:SetupCharacterSprites () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:868)
+CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:135)
+
+=== Canvas Hierarchy AFTER sprite creation ===
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:LogCanvasHierarchy (string) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:613)
+CharacterSpriteManager:SetupCharacterSprites () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:871)
+CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:135)
+
+Canvas: 'Canvas' on GameObject 'Canvas'
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:LogCanvasHierarchy (string) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:614)
+CharacterSpriteManager:SetupCharacterSprites () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:871)
+CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:135)
+
+Total children: 10
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:LogCanvasHierarchy (string) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:615)
+CharacterSpriteManager:SetupCharacterSprites () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:871)
+CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:135)
+
+  [0] Scene Background (ACTIVE)
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:LogCanvasHierarchy (string) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:628)
+CharacterSpriteManager:SetupCharacterSprites () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:871)
+CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:135)
+
+  [1] CharacterPortraitFrame_Left (INACTIVE) <-- LEFT SPRITE
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:LogCanvasHierarchy (string) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:628)
+CharacterSpriteManager:SetupCharacterSprites () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:871)
+CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:135)
+
+  [2] CharacterPortraitFrame_Right (ACTIVE) <-- RIGHT SPRITE
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:LogCanvasHierarchy (string) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:628)
+CharacterSpriteManager:SetupCharacterSprites () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:871)
+CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:135)
+
+  [3] Line Presenter (ACTIVE)
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:LogCanvasHierarchy (string) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:628)
+CharacterSpriteManager:SetupCharacterSprites () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:871)
+CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:135)
+
+  [4] Options Presenter (ACTIVE)
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:LogCanvasHierarchy (string) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:628)
+CharacterSpriteManager:SetupCharacterSprites () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:871)
+CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:135)
+
+  [5] PauseMenuPanel (ACTIVE)
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:LogCanvasHierarchy (string) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:628)
+CharacterSpriteManager:SetupCharacterSprites () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:871)
+CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:135)
+
+  [6] LoadMenuPanel (INACTIVE)
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:LogCanvasHierarchy (string) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:628)
+CharacterSpriteManager:SetupCharacterSprites () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:871)
+CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:135)
+
+  [7] OpenFeedbackFormButton (ACTIVE)
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:LogCanvasHierarchy (string) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:628)
+CharacterSpriteManager:SetupCharacterSprites () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:871)
+CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:135)
+
+  [8] Feedback Form (INACTIVE)
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:LogCanvasHierarchy (string) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:628)
+CharacterSpriteManager:SetupCharacterSprites () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:871)
+CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:135)
+
+  [9] PauseHintText (ACTIVE)
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:LogCanvasHierarchy (string) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:628)
+CharacterSpriteManager:SetupCharacterSprites () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:871)
+CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:135)
+
+=== End Hierarchy ===
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:LogCanvasHierarchy (string) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:630)
+CharacterSpriteManager:SetupCharacterSprites () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:871)
+CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:135)
+
+CharacterSpriteManager: FINAL INDICES - Background: 0, Left Sprite: 1, Right Sprite: 2, Dialogue UI: 3
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:SetupCharacterSprites () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:879)
+CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:135)
+
+[Settings] Loaded: Master=0.48, Music=0.12, SFX=0.49, TextSpeed=1.00
+UnityEngine.Debug:Log (object)
+SettingsManager:LoadSettings () (at Assets/Scripts/Core/SettingsManager.cs:59)
+SettingsManager:Awake () (at Assets/Scripts/Core/SettingsManager.cs:41)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_breakroom' from Assets/Resources/Graphics/Backgrounds/bg_breakroom.png (sprite: bg_breakroom_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:Awake () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:84)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_bsod' from Assets/Resources/Graphics/Backgrounds/bg_bsod.png (sprite: bg_bsod_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:Awake () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:84)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_cafeteria' from Assets/Resources/Graphics/Backgrounds/bg_cafeteria.png (sprite: bg_cafeteria_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:Awake () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:84)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_classroom' from Assets/Resources/Graphics/Backgrounds/bg_classroom.png (sprite: bg_classroom_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:Awake () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:84)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_companystore' from Assets/Resources/Graphics/Backgrounds/bg_companystore.png (sprite: bg_companystore_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:Awake () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:84)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_conferenceroom' from Assets/Resources/Graphics/Backgrounds/bg_conferenceroom.png (sprite: bg_conferenceroom_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:Awake () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:84)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_day_planner' from Assets/Resources/Graphics/Backgrounds/bg_day_planner.jpg (sprite: bg_day_planner_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:Awake () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:84)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_gym' from Assets/Resources/Graphics/Backgrounds/bg_gym.png (sprite: bg_gym_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:Awake () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:84)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_intermission' from Assets/Resources/Graphics/Backgrounds/bg_intermission.jpg (sprite: bg_intermission_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:Awake () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:84)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_library' from Assets/Resources/Graphics/Backgrounds/bg_library.jpg (sprite: bg_library_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:Awake () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:84)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_loading' from Assets/Resources/Graphics/Backgrounds/bg_loading.png (sprite: bg_loading_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:Awake () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:84)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_mainmenu' from Assets/Resources/Graphics/Backgrounds/bg_mainmenu.png (sprite: bg_mainmenu_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:Awake () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:84)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_majoritymind' from Assets/Resources/Graphics/Backgrounds/bg_majoritymind.png (sprite: bg_majoritymind_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:Awake () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:84)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_mind_meld' from Assets/Resources/Graphics/Backgrounds/bg_mind_meld.jpg (sprite: bg_mind_meld_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:Awake () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:84)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_minesweeper' from Assets/Resources/Graphics/Backgrounds/bg_minesweeper.jpg (sprite: bg_minesweeper_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:Awake () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:84)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_outside' from Assets/Resources/Graphics/Backgrounds/bg_outside.png (sprite: bg_outside_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:Awake () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:84)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_party' from Assets/Resources/Graphics/Backgrounds/bg_party.png (sprite: bg_party_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:Awake () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:84)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_party_basement' from Assets/Resources/Graphics/Backgrounds/bg_party_basement.png (sprite: bg_party_basement_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:Awake () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:84)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_party_upstairs' from Assets/Resources/Graphics/Backgrounds/bg_party_upstairs.png (sprite: bg_party_upstairs_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:Awake () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:84)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_player_desk' from Assets/Resources/Graphics/Backgrounds/bg_player_desk.png (sprite: bg_player_desk_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:Awake () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:84)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_supervisoroffice' from Assets/Resources/Graphics/Backgrounds/bg_supervisoroffice.png (sprite: bg_supervisoroffice_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:Awake () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:84)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_timmyroom' from Assets/Resources/Graphics/Backgrounds/bg_timmyroom.png (sprite: bg_timmyroom_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:Awake () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:84)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_timmydesk' from Assets/Resources/Graphics/Backgrounds/obsolete/bg_timmydesk.png (sprite: bg_timmydesk_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:Awake () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:84)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_hall' from Resources (sprite: bg_hall_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromResources () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:341)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:307)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:Awake () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:84)
+
+BackgroundCommandHandler: Found 'Scene Background' via GameObject.Find
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:FindSceneBackgroundImage () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:127)
+BackgroundCommandHandler:Awake () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:95)
+
+BackgroundCommandHandler: Found background Image on 'Scene Background'
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:Awake () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:104)
+
+BackgroundCommandHandler: Found video for 'bg_supervisoroffice' at C:/Users/epick/OneDrive/Documents/mentalbreak/unity-project/Assets/StreamingAssets\Videos\bg_supervisoroffice.mp4
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler/<ScanForVideos>d__21:MoveNext () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:271)
+UnityEngine.MonoBehaviour:StartCoroutine (System.Collections.IEnumerator)
+BackgroundCommandHandler:Awake () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:108)
+
+CommandHandlerRegistrar: Awake() starting - finding and registering command handlers
+UnityEngine.Debug:Log (object)
+CommandHandlerRegistrar:Awake () (at Assets/Scripts/Commands/CommandHandlerRegistrar.cs:34)
+
+CommandHandlerRegistrar: Found DialogueRunner on 'Dialogue System'
+UnityEngine.Debug:Log (object)
+CommandHandlerRegistrar:Awake () (at Assets/Scripts/Commands/CommandHandlerRegistrar.cs:47)
+
+CommandHandlerRegistrar: Found BackgroundCommandHandler on same GameObject
+UnityEngine.Debug:Log (object)
+CommandHandlerRegistrar:FindOrCreateHandler<BackgroundCommandHandler> (BackgroundCommandHandler&,string) (at Assets/Scripts/Commands/CommandHandlerRegistrar.cs:89)
+CommandHandlerRegistrar:Awake () (at Assets/Scripts/Commands/CommandHandlerRegistrar.cs:55)
+
+CommandHandlerRegistrar: Found AudioCommandHandler on same GameObject
+UnityEngine.Debug:Log (object)
+CommandHandlerRegistrar:FindOrCreateHandler<AudioCommandHandler> (AudioCommandHandler&,string) (at Assets/Scripts/Commands/CommandHandlerRegistrar.cs:89)
+CommandHandlerRegistrar:Awake () (at Assets/Scripts/Commands/CommandHandlerRegistrar.cs:56)
+
+CommandHandlerRegistrar: Found CheckpointCommandHandler on same GameObject
+UnityEngine.Debug:Log (object)
+CommandHandlerRegistrar:FindOrCreateHandler<CheckpointCommandHandler> (CheckpointCommandHandler&,string) (at Assets/Scripts/Commands/CommandHandlerRegistrar.cs:89)
+CommandHandlerRegistrar:Awake () (at Assets/Scripts/Commands/CommandHandlerRegistrar.cs:57)
+
+CommandHandlerRegistrar: Found FMODAudioManager on same GameObject
+UnityEngine.Debug:Log (object)
+CommandHandlerRegistrar:FindOrCreateHandler<FMODAudioManager> (FMODAudioManager&,string) (at Assets/Scripts/Commands/CommandHandlerRegistrar.cs:89)
+CommandHandlerRegistrar:Awake () (at Assets/Scripts/Commands/CommandHandlerRegistrar.cs:58)
+
+CommandHandlerRegistrar: Registered 'bg' command
+UnityEngine.Debug:Log (object)
+CommandHandlerRegistrar:RegisterCommands () (at Assets/Scripts/Commands/CommandHandlerRegistrar.cs:157)
+CommandHandlerRegistrar:Awake () (at Assets/Scripts/Commands/CommandHandlerRegistrar.cs:68)
+
+CommandHandlerRegistrar: Registered 'bgm' and 'sfx' commands
+UnityEngine.Debug:Log (object)
+CommandHandlerRegistrar:RegisterCommands () (at Assets/Scripts/Commands/CommandHandlerRegistrar.cs:181)
+CommandHandlerRegistrar:Awake () (at Assets/Scripts/Commands/CommandHandlerRegistrar.cs:68)
+
+CommandHandlerRegistrar: Registered 'checkpoint' command
+UnityEngine.Debug:Log (object)
+CommandHandlerRegistrar:RegisterCommands () (at Assets/Scripts/Commands/CommandHandlerRegistrar.cs:204)
+CommandHandlerRegistrar:Awake () (at Assets/Scripts/Commands/CommandHandlerRegistrar.cs:68)
+
+CommandHandlerRegistrar: Registered 'store' command with CompanyStore on CompanyStorePanel
+UnityEngine.Debug:Log (object)
+CommandHandlerRegistrar:RegisterCommands () (at Assets/Scripts/Commands/CommandHandlerRegistrar.cs:228)
+CommandHandlerRegistrar:Awake () (at Assets/Scripts/Commands/CommandHandlerRegistrar.cs:68)
+
+CommandHandlerRegistrar: Registered FMOD commands (music, music_stop, fmod, fmod_stop, fmod_loop, fmod_param)
+UnityEngine.Debug:Log (object)
+CommandHandlerRegistrar:RegisterCommands () (at Assets/Scripts/Commands/CommandHandlerRegistrar.cs:259)
+CommandHandlerRegistrar:Awake () (at Assets/Scripts/Commands/CommandHandlerRegistrar.cs:68)
+
+CommandHandlerRegistrar: All commands registered successfully!
+UnityEngine.Debug:Log (object)
+CommandHandlerRegistrar:RegisterCommands () (at Assets/Scripts/Commands/CommandHandlerRegistrar.cs:274)
+CommandHandlerRegistrar:Awake () (at Assets/Scripts/Commands/CommandHandlerRegistrar.cs:68)
+
+CommandHandlerRegistrar: Awake() complete - commands registered
+UnityEngine.Debug:Log (object)
+CommandHandlerRegistrar:Awake () (at Assets/Scripts/Commands/CommandHandlerRegistrar.cs:70)
+
+MVPCommandHandlers: Registered 3 command handler(s) (bg->BackgroundCommandHandler) (bgm/sfx->AudioCommandHandler)
+UnityEngine.Debug:Log (object)
+MVPCommandHandlers:RegisterCommands () (at Assets/Scripts/Commands/MVPCommandHandlers.cs:113)
+MVPCommandHandlers:Awake () (at Assets/Scripts/Commands/MVPCommandHandlers.cs:28)
+
+MVPCommandHandlers: Registered 3 command handler(s) (bg->BackgroundCommandHandler) (bgm/sfx->AudioCommandHandler)
+UnityEngine.Debug:Log (object)
+MVPCommandHandlers:RegisterCommands () (at Assets/Scripts/Commands/MVPCommandHandlers.cs:113)
+MVPCommandHandlers:OnEnable () (at Assets/Scripts/Commands/MVPCommandHandlers.cs:47)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_breakroom' from Assets/Resources/Graphics/Backgrounds/bg_breakroom.png (sprite: bg_breakroom_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:Awake () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:84)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_bsod' from Assets/Resources/Graphics/Backgrounds/bg_bsod.png (sprite: bg_bsod_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:Awake () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:84)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_cafeteria' from Assets/Resources/Graphics/Backgrounds/bg_cafeteria.png (sprite: bg_cafeteria_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:Awake () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:84)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_classroom' from Assets/Resources/Graphics/Backgrounds/bg_classroom.png (sprite: bg_classroom_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:Awake () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:84)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_companystore' from Assets/Resources/Graphics/Backgrounds/bg_companystore.png (sprite: bg_companystore_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:Awake () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:84)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_conferenceroom' from Assets/Resources/Graphics/Backgrounds/bg_conferenceroom.png (sprite: bg_conferenceroom_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:Awake () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:84)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_day_planner' from Assets/Resources/Graphics/Backgrounds/bg_day_planner.jpg (sprite: bg_day_planner_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:Awake () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:84)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_gym' from Assets/Resources/Graphics/Backgrounds/bg_gym.png (sprite: bg_gym_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:Awake () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:84)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_intermission' from Assets/Resources/Graphics/Backgrounds/bg_intermission.jpg (sprite: bg_intermission_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:Awake () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:84)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_library' from Assets/Resources/Graphics/Backgrounds/bg_library.jpg (sprite: bg_library_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:Awake () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:84)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_loading' from Assets/Resources/Graphics/Backgrounds/bg_loading.png (sprite: bg_loading_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:Awake () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:84)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_mainmenu' from Assets/Resources/Graphics/Backgrounds/bg_mainmenu.png (sprite: bg_mainmenu_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:Awake () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:84)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_majoritymind' from Assets/Resources/Graphics/Backgrounds/bg_majoritymind.png (sprite: bg_majoritymind_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:Awake () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:84)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_mind_meld' from Assets/Resources/Graphics/Backgrounds/bg_mind_meld.jpg (sprite: bg_mind_meld_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:Awake () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:84)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_minesweeper' from Assets/Resources/Graphics/Backgrounds/bg_minesweeper.jpg (sprite: bg_minesweeper_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:Awake () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:84)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_outside' from Assets/Resources/Graphics/Backgrounds/bg_outside.png (sprite: bg_outside_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:Awake () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:84)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_party' from Assets/Resources/Graphics/Backgrounds/bg_party.png (sprite: bg_party_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:Awake () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:84)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_party_basement' from Assets/Resources/Graphics/Backgrounds/bg_party_basement.png (sprite: bg_party_basement_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:Awake () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:84)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_party_upstairs' from Assets/Resources/Graphics/Backgrounds/bg_party_upstairs.png (sprite: bg_party_upstairs_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:Awake () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:84)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_player_desk' from Assets/Resources/Graphics/Backgrounds/bg_player_desk.png (sprite: bg_player_desk_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:Awake () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:84)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_supervisoroffice' from Assets/Resources/Graphics/Backgrounds/bg_supervisoroffice.png (sprite: bg_supervisoroffice_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:Awake () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:84)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_timmyroom' from Assets/Resources/Graphics/Backgrounds/bg_timmyroom.png (sprite: bg_timmyroom_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:Awake () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:84)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_timmydesk' from Assets/Resources/Graphics/Backgrounds/obsolete/bg_timmydesk.png (sprite: bg_timmydesk_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromFolder () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:393)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:304)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:Awake () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:84)
+
+BackgroundCommandHandler: Auto-loaded background 'bg_hall' from Resources (sprite: bg_hall_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:LoadFromResources () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:341)
+BackgroundCommandHandler:AutoLoadBackgrounds () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:307)
+BackgroundCommandHandler:BuildDictionary () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:297)
+BackgroundCommandHandler:Awake () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:84)
+
+BackgroundCommandHandler: Found background Image on 'Scene Background'
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:Awake () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:104)
+
+BackgroundCommandHandler: Found video for 'bg_supervisoroffice' at C:/Users/epick/OneDrive/Documents/mentalbreak/unity-project/Assets/StreamingAssets\Videos\bg_supervisoroffice.mp4
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler/<ScanForVideos>d__21:MoveNext () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:271)
+UnityEngine.MonoBehaviour:StartCoroutine (System.Collections.IEnumerator)
+BackgroundCommandHandler:Awake () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:108)
+
+[WelcomeOverlay] Auto-created
+UnityEngine.Debug:Log (object)
+WelcomeOverlay:AutoCreate () (at Assets/Scripts/UI/WelcomeOverlay.cs:39)
+
+CommandHandlerRegistrar: Registered 'bg' command
+UnityEngine.Debug:Log (object)
+CommandHandlerRegistrar:RegisterCommands () (at Assets/Scripts/Commands/CommandHandlerRegistrar.cs:157)
+CommandHandlerRegistrar:Start () (at Assets/Scripts/Commands/CommandHandlerRegistrar.cs:127)
+
+CommandHandlerRegistrar: Registered 'bgm' and 'sfx' commands
+UnityEngine.Debug:Log (object)
+CommandHandlerRegistrar:RegisterCommands () (at Assets/Scripts/Commands/CommandHandlerRegistrar.cs:181)
+CommandHandlerRegistrar:Start () (at Assets/Scripts/Commands/CommandHandlerRegistrar.cs:127)
+
+CommandHandlerRegistrar: Registered 'checkpoint' command
+UnityEngine.Debug:Log (object)
+CommandHandlerRegistrar:RegisterCommands () (at Assets/Scripts/Commands/CommandHandlerRegistrar.cs:204)
+CommandHandlerRegistrar:Start () (at Assets/Scripts/Commands/CommandHandlerRegistrar.cs:127)
+
+Failed to register command store: a command by this name has already been registered.
+UnityEngine.Debug:LogError (object)
+Yarn.Unity.Actions:AddCommandHandler (string,System.Delegate) (at ./Packages/dev.yarnspinner.unity/Runtime/Commands/Actions.cs:562)
+Yarn.Unity.DialogueRunner:AddCommandHandler (string,System.Delegate) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.ActionRegistration.cs:16)
+CommandHandlerRegistrar:RegisterCommands () (at Assets/Scripts/Commands/CommandHandlerRegistrar.cs:226)
+CommandHandlerRegistrar:Start () (at Assets/Scripts/Commands/CommandHandlerRegistrar.cs:127)
+
+CommandHandlerRegistrar: Registered 'store' command with CompanyStore on CompanyStorePanel
+UnityEngine.Debug:Log (object)
+CommandHandlerRegistrar:RegisterCommands () (at Assets/Scripts/Commands/CommandHandlerRegistrar.cs:228)
+CommandHandlerRegistrar:Start () (at Assets/Scripts/Commands/CommandHandlerRegistrar.cs:127)
+
+CommandHandlerRegistrar: Registered FMOD commands (music, music_stop, fmod, fmod_stop, fmod_loop, fmod_param)
+UnityEngine.Debug:Log (object)
+CommandHandlerRegistrar:RegisterCommands () (at Assets/Scripts/Commands/CommandHandlerRegistrar.cs:259)
+CommandHandlerRegistrar:Start () (at Assets/Scripts/Commands/CommandHandlerRegistrar.cs:127)
+
+CommandHandlerRegistrar: All commands registered successfully!
+UnityEngine.Debug:Log (object)
+CommandHandlerRegistrar:RegisterCommands () (at Assets/Scripts/Commands/CommandHandlerRegistrar.cs:274)
+CommandHandlerRegistrar:Start () (at Assets/Scripts/Commands/CommandHandlerRegistrar.cs:127)
+
+DialogueAdvanceHandler: Disabled ESC key in LineAdvancer
+UnityEngine.Debug:Log (object)
+DialogueAdvanceHandler:Start () (at Assets/Scripts/Dialogue/DialogueAdvanceHandler.cs:107)
+
+DialogueAdvanceHandler: enableClickToAdvance was disabled; re-enabling to support tap-to-progress across mouse and touch.
+UnityEngine.Debug:Log (object)
+DialogueAdvanceHandler:EnsureClickAdvanceConfiguration () (at Assets/Scripts/Dialogue/DialogueAdvanceHandler.cs:324)
+DialogueAdvanceHandler:Start () (at Assets/Scripts/Dialogue/DialogueAdvanceHandler.cs:118)
+
+[Debug Nav] Loaded saved resume position: R1D1_Arthur_Intro
+UnityEngine.Debug:Log (object)
+DialogueDebugNavigator:LoadResumePosition () (at Assets/Scripts/Dialogue/DialogueDebugNavigator.cs:590)
+DialogueDebugNavigator:Start () (at Assets/Scripts/Dialogue/DialogueDebugNavigator.cs:122)
+
+=== DialogueDebugNavigator: Navigation Enabled ===
+UnityEngine.Debug:Log (object)
+DialogueDebugNavigator:Start () (at Assets/Scripts/Dialogue/DialogueDebugNavigator.cs:124)
+
+  Ctrl+LeftArrow - Go back one node
+UnityEngine.Debug:Log (object)
+DialogueDebugNavigator:Start () (at Assets/Scripts/Dialogue/DialogueDebugNavigator.cs:125)
+
+  Ctrl+R - Resume to saved position
+UnityEngine.Debug:Log (object)
+DialogueDebugNavigator:Start () (at Assets/Scripts/Dialogue/DialogueDebugNavigator.cs:126)
+
+  Ctrl+Shift+C - Clear history
+UnityEngine.Debug:Log (object)
+DialogueDebugNavigator:Start () (at Assets/Scripts/Dialogue/DialogueDebugNavigator.cs:127)
+
+  Ctrl+J - Jump to day menu
+UnityEngine.Debug:Log (object)
+DialogueDebugNavigator:Start () (at Assets/Scripts/Dialogue/DialogueDebugNavigator.cs:128)
+
+  Saved resume position: R1D1_Arthur_Intro
+UnityEngine.Debug:Log (object)
+DialogueDebugNavigator:Start () (at Assets/Scripts/Dialogue/DialogueDebugNavigator.cs:131)
+
+==================================================
+UnityEngine.Debug:Log (object)
+DialogueDebugNavigator:Start () (at Assets/Scripts/Dialogue/DialogueDebugNavigator.cs:133)
+
+ChoiceDiagnostics: Monitoring for option events (via Dialogue Runner state polling)
+UnityEngine.Debug:Log (object)
+ChoiceDiagnostics:HookIntoOptionsReceived () (at Assets/Scripts/Dialogue/ChoiceDiagnostics.cs:155)
+ChoiceDiagnostics:Start () (at Assets/Scripts/Dialogue/ChoiceDiagnostics.cs:46)
+
+=== Choice Diagnostics Initial State ===
+UnityEngine.Debug:Log (object)
+ChoiceDiagnostics:LogInitialState () (at Assets/Scripts/Dialogue/ChoiceDiagnostics.cs:56)
+ChoiceDiagnostics:Start () (at Assets/Scripts/Dialogue/ChoiceDiagnostics.cs:49)
+
+DialogueRunner found: Dialogue System
+UnityEngine.Debug:Log (object)
+ChoiceDiagnostics:LogInitialState () (at Assets/Scripts/Dialogue/ChoiceDiagnostics.cs:64)
+ChoiceDiagnostics:Start () (at Assets/Scripts/Dialogue/ChoiceDiagnostics.cs:49)
+
+DialogueRunner has 3 presenter(s) registered
+UnityEngine.Debug:Log (object)
+ChoiceDiagnostics:LogInitialState () (at Assets/Scripts/Dialogue/ChoiceDiagnostics.cs:68)
+ChoiceDiagnostics:Start () (at Assets/Scripts/Dialogue/ChoiceDiagnostics.cs:49)
+
+  - Presenter: LinePresenter, Active: True, GameObject: Line Presenter
+UnityEngine.Debug:Log (object)
+ChoiceDiagnostics:LogInitialState () (at Assets/Scripts/Dialogue/ChoiceDiagnostics.cs:80)
+ChoiceDiagnostics:Start () (at Assets/Scripts/Dialogue/ChoiceDiagnostics.cs:49)
+
+  - Presenter: OptionsPresenter, Active: True, GameObject: Options Presenter
+UnityEngine.Debug:Log (object)
+ChoiceDiagnostics:LogInitialState () (at Assets/Scripts/Dialogue/ChoiceDiagnostics.cs:80)
+ChoiceDiagnostics:Start () (at Assets/Scripts/Dialogue/ChoiceDiagnostics.cs:49)
+
+    Options Presenter - Has Prefab: True
+UnityEngine.Debug:Log (object)
+ChoiceDiagnostics:LogInitialState () (at Assets/Scripts/Dialogue/ChoiceDiagnostics.cs:93)
+ChoiceDiagnostics:Start () (at Assets/Scripts/Dialogue/ChoiceDiagnostics.cs:49)
+
+  - Presenter: LineAdvancer, Active: True, GameObject: Line Advancer
+UnityEngine.Debug:Log (object)
+ChoiceDiagnostics:LogInitialState () (at Assets/Scripts/Dialogue/ChoiceDiagnostics.cs:80)
+ChoiceDiagnostics:Start () (at Assets/Scripts/Dialogue/ChoiceDiagnostics.cs:49)
+
+Options Presenter found: Options Presenter, Registered: True, Active: True
+UnityEngine.Debug:Log (object)
+ChoiceDiagnostics:LogInitialState () (at Assets/Scripts/Dialogue/ChoiceDiagnostics.cs:113)
+ChoiceDiagnostics:Start () (at Assets/Scripts/Dialogue/ChoiceDiagnostics.cs:49)
+
+Line Presenter found: Line Presenter
+UnityEngine.Debug:Log (object)
+ChoiceDiagnostics:LogInitialState () (at Assets/Scripts/Dialogue/ChoiceDiagnostics.cs:122)
+ChoiceDiagnostics:Start () (at Assets/Scripts/Dialogue/ChoiceDiagnostics.cs:49)
+
+CharacterSpriteManager: Node started: R1_Start
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:OnNodeStarted (string) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:965)
+UnityEngine.Events.UnityEvent`1<string>:Invoke (string)
+Yarn.Unity.DialogueRunner:OnNodeStarted (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:575)
+Yarn.VirtualMachine:SetNode (string,bool)
+Yarn.Dialogue:SetNode (string)
+Yarn.Unity.DialogueRunner:StartDialogue (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:932)
+StartDialogueOnPlay:Start () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:16)
+
+CharacterSpriteManager: Tags header: '#run_1 #scene #loc_Office'
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:OnNodeStarted (string) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:975)
+UnityEngine.Events.UnityEvent`1<string>:Invoke (string)
+Yarn.Unity.DialogueRunner:OnNodeStarted (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:575)
+Yarn.VirtualMachine:SetNode (string,bool)
+Yarn.Dialogue:SetNode (string)
+Yarn.Unity.DialogueRunner:StartDialogue (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:932)
+StartDialogueOnPlay:Start () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:16)
+
+CharacterSpriteManager: Extracted character tags (before auto-add): []
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:OnNodeStarted (string) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:1003)
+UnityEngine.Events.UnityEvent`1<string>:Invoke (string)
+Yarn.Unity.DialogueRunner:OnNodeStarted (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:575)
+Yarn.VirtualMachine:SetNode (string,bool)
+Yarn.Dialogue:SetNode (string)
+Yarn.Unity.DialogueRunner:StartDialogue (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:932)
+StartDialogueOnPlay:Start () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:16)
+
+CharacterSpriteManager: Auto-added Alice (player is present, no supervisor, not darkroom)
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:OnNodeStarted (string) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:1014)
+UnityEngine.Events.UnityEvent`1<string>:Invoke (string)
+Yarn.Unity.DialogueRunner:OnNodeStarted (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:575)
+Yarn.VirtualMachine:SetNode (string,bool)
+Yarn.Dialogue:SetNode (string)
+Yarn.Unity.DialogueRunner:StartDialogue (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:932)
+StartDialogueOnPlay:Start () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:16)
+
+CharacterSpriteManager: Final character tags: [char_Alice]
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:OnNodeStarted (string) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:1021)
+UnityEngine.Events.UnityEvent`1<string>:Invoke (string)
+Yarn.Unity.DialogueRunner:OnNodeStarted (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:575)
+Yarn.VirtualMachine:SetNode (string,bool)
+Yarn.Dialogue:SetNode (string)
+Yarn.Unity.DialogueRunner:StartDialogue (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:932)
+StartDialogueOnPlay:Start () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:16)
+
+CharacterPortraitAnimator: Initialized for Alice (Talking: 15 frames, Eyes: 3 frames)
+UnityEngine.Debug:Log (object)
+CharacterPortraitAnimator:Initialize (CharacterPortraitData,UnityEngine.UI.Image,UnityEngine.UI.Image,UnityEngine.UI.Image) (at Assets/Scripts/Characters/CharacterPortraitAnimator.cs:69)
+CharacterSpriteManager:DisplayCharacters (System.Collections.Generic.List`1<string>) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:1104)
+CharacterSpriteManager:OnNodeStarted (string) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:1031)
+UnityEngine.Events.UnityEvent`1<string>:Invoke (string)
+Yarn.Unity.DialogueRunner:OnNodeStarted (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:575)
+Yarn.VirtualMachine:SetNode (string,bool)
+Yarn.Dialogue:SetNode (string)
+Yarn.Unity.DialogueRunner:StartDialogue (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:932)
+StartDialogueOnPlay:Start () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:16)
+
+CharacterSpriteManager: Displaying 'char_Alice' on left (base sprite: Alice base_0, 15 talking frames, 3 eye frames)
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:DisplayCharacters (System.Collections.Generic.List`1<string>) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:1107)
+CharacterSpriteManager:OnNodeStarted (string) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:1031)
+UnityEngine.Events.UnityEvent`1<string>:Invoke (string)
+Yarn.Unity.DialogueRunner:OnNodeStarted (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:575)
+Yarn.VirtualMachine:SetNode (string,bool)
+Yarn.Dialogue:SetNode (string)
+Yarn.Unity.DialogueRunner:StartDialogue (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:932)
+StartDialogueOnPlay:Start () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:16)
+
+[Debug Nav] Node visited: R1_Start (History: 1 nodes)
+UnityEngine.Debug:Log (object)
+DialogueDebugNavigator:OnNodeStart (string) (at Assets/Scripts/Dialogue/DialogueDebugNavigator.cs:530)
+UnityEngine.Events.UnityEvent`1<string>:Invoke (string)
+Yarn.Unity.DialogueRunner:OnNodeStarted (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:575)
+Yarn.VirtualMachine:SetNode (string,bool)
+Yarn.Dialogue:SetNode (string)
+Yarn.Unity.DialogueRunner:StartDialogue (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:932)
+StartDialogueOnPlay:Start () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:16)
+
+ChoiceDiagnostics: Node started: R1_Start
+UnityEngine.Debug:Log (object)
+ChoiceDiagnostics:OnNodeStart (string) (at Assets/Scripts/Dialogue/ChoiceDiagnostics.cs:141)
+UnityEngine.Events.UnityEvent`1<string>:Invoke (string)
+Yarn.Unity.DialogueRunner:OnNodeStarted (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:575)
+Yarn.VirtualMachine:SetNode (string,bool)
+Yarn.Dialogue:SetNode (string)
+Yarn.Unity.DialogueRunner:StartDialogue (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:932)
+StartDialogueOnPlay:Start () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:16)
+
+ChoiceDiagnostics: Dialogue started
+UnityEngine.Debug:Log (object)
+ChoiceDiagnostics:OnDialogueStart () (at Assets/Scripts/Dialogue/ChoiceDiagnostics.cs:129)
+UnityEngine.Events.UnityEvent:Invoke ()
+Yarn.Unity.DialogueRunner:StartDialogue (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:936)
+StartDialogueOnPlay:Start () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:16)
+
+Background: Changed to bg_loading (sprite: bg_loading_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:ShowStaticBackground (UnityEngine.Sprite,string) (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:784)
+BackgroundCommandHandler:ChangeBackground (string) (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:543)
+System.Reflection.MethodBase:Invoke (object,object[])
+Yarn.Unity.Actions/CommandRegistration:Invoke (UnityEngine.MonoBehaviour,System.Collections.Generic.List`1<string>) (at ./Packages/dev.yarnspinner.unity/Runtime/Commands/Actions.cs:413)
+Yarn.Unity.Actions:Yarn.Unity.ICommandDispatcher.DispatchCommand (string,UnityEngine.MonoBehaviour) (at ./Packages/dev.yarnspinner.unity/Runtime/Commands/Actions.cs:654)
+Yarn.Unity.DialogueRunner/<OnCommandReceivedAsync>d__62:MoveNext () (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:585)
+UnityEngine.Awaitable/AwaitableAsyncMethodBuilder/StateMachineBox`1<Yarn.Unity.DialogueRunner/<OnCommandReceivedAsync>d__62>:DoMoveNext ()
+Yarn.Unity.DialogueRunner:OnCommandReceivedAsync (Yarn.Command)
+Yarn.Unity.DialogueRunner:OnCommandReceived (Yarn.Command) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:580)
+Yarn.VirtualMachine:RunInstruction (Yarn.Instruction)
+Yarn.VirtualMachine:Continue ()
+Yarn.Dialogue:Continue ()
+Yarn.Unity.DialogueRunner/<<StartDialogue>g__StartDialogueAsync|69_0>d:MoveNext () (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:952)
+UnityEngine.Awaitable/AwaitableAsyncMethodBuilder/StateMachineBox`1<Yarn.Unity.DialogueRunner/<<StartDialogue>g__StartDialogueAsync|69_0>d>:DoMoveNext ()
+Yarn.Unity.DialogueRunner:<StartDialogue>g__StartDialogueAsync|69_0 ()
+Yarn.Unity.DialogueRunner:StartDialogue (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:938)
+StartDialogueOnPlay:Start () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:16)
+
+BGM Command: No audio clip found for key 'cyberpunk_background_cyberpunk_background_main'. Available keys: ...
+UnityEngine.Debug:LogWarning (object)
+AudioCommandHandler:PlayBGM (string) (at Assets/Scripts/Audio/AudioCommandHandler.cs:226)
+System.Reflection.MethodBase:Invoke (object,object[])
+Yarn.Unity.Actions/CommandRegistration:Invoke (UnityEngine.MonoBehaviour,System.Collections.Generic.List`1<string>) (at ./Packages/dev.yarnspinner.unity/Runtime/Commands/Actions.cs:413)
+Yarn.Unity.Actions:Yarn.Unity.ICommandDispatcher.DispatchCommand (string,UnityEngine.MonoBehaviour) (at ./Packages/dev.yarnspinner.unity/Runtime/Commands/Actions.cs:654)
+Yarn.Unity.DialogueRunner/<OnCommandReceivedAsync>d__62:MoveNext () (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:585)
+UnityEngine.Awaitable/AwaitableAsyncMethodBuilder/StateMachineBox`1<Yarn.Unity.DialogueRunner/<OnCommandReceivedAsync>d__62>:DoMoveNext ()
+Yarn.Unity.DialogueRunner:OnCommandReceivedAsync (Yarn.Command)
+Yarn.Unity.DialogueRunner:OnCommandReceived (Yarn.Command) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:580)
+Yarn.VirtualMachine:RunInstruction (Yarn.Instruction)
+Yarn.VirtualMachine:Continue ()
+Yarn.Dialogue:Continue ()
+Yarn.Unity.DialogueRunner/<<StartDialogue>g__StartDialogueAsync|69_0>d:MoveNext () (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:952)
+UnityEngine.Awaitable/AwaitableAsyncMethodBuilder/StateMachineBox`1<Yarn.Unity.DialogueRunner/<<StartDialogue>g__StartDialogueAsync|69_0>d>:DoMoveNext ()
+Yarn.Unity.DialogueRunner:<StartDialogue>g__StartDialogueAsync|69_0 ()
+Yarn.Unity.DialogueRunner:StartDialogue (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:938)
+StartDialogueOnPlay:Start () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:16)
+
+CharacterSpriteManager: Node started: R1D1_Start
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:OnNodeStarted (string) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:965)
+UnityEngine.Events.UnityEvent`1<string>:Invoke (string)
+Yarn.Unity.DialogueRunner:OnNodeStarted (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:575)
+Yarn.VirtualMachine:SetNode (string,bool)
+Yarn.VirtualMachine:ExecuteJumpToNode (string,bool)
+Yarn.VirtualMachine:RunInstruction (Yarn.Instruction)
+Yarn.VirtualMachine:Continue ()
+Yarn.Dialogue:Continue ()
+Yarn.Unity.DialogueRunner/<<StartDialogue>g__StartDialogueAsync|69_0>d:MoveNext () (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:952)
+UnityEngine.Awaitable/AwaitableAsyncMethodBuilder/StateMachineBox`1<Yarn.Unity.DialogueRunner/<<StartDialogue>g__StartDialogueAsync|69_0>d>:DoMoveNext ()
+Yarn.Unity.DialogueRunner:<StartDialogue>g__StartDialogueAsync|69_0 ()
+Yarn.Unity.DialogueRunner:StartDialogue (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:938)
+StartDialogueOnPlay:Start () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:16)
+
+CharacterSpriteManager: Tags header: '#run_1 #day_1 #morning #scene #char_Supervisor #loc_Office'
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:OnNodeStarted (string) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:975)
+UnityEngine.Events.UnityEvent`1<string>:Invoke (string)
+Yarn.Unity.DialogueRunner:OnNodeStarted (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:575)
+Yarn.VirtualMachine:SetNode (string,bool)
+Yarn.VirtualMachine:ExecuteJumpToNode (string,bool)
+Yarn.VirtualMachine:RunInstruction (Yarn.Instruction)
+Yarn.VirtualMachine:Continue ()
+Yarn.Dialogue:Continue ()
+Yarn.Unity.DialogueRunner/<<StartDialogue>g__StartDialogueAsync|69_0>d:MoveNext () (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:952)
+UnityEngine.Awaitable/AwaitableAsyncMethodBuilder/StateMachineBox`1<Yarn.Unity.DialogueRunner/<<StartDialogue>g__StartDialogueAsync|69_0>d>:DoMoveNext ()
+Yarn.Unity.DialogueRunner:<StartDialogue>g__StartDialogueAsync|69_0 ()
+Yarn.Unity.DialogueRunner:StartDialogue (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:938)
+StartDialogueOnPlay:Start () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:16)
+
+CharacterSpriteManager: Current background updated to: bg_loading_0
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:UpdateCurrentBackground () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:1042)
+CharacterSpriteManager:OnNodeStarted (string) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:986)
+UnityEngine.Events.UnityEvent`1<string>:Invoke (string)
+Yarn.Unity.DialogueRunner:OnNodeStarted (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:575)
+Yarn.VirtualMachine:SetNode (string,bool)
+Yarn.VirtualMachine:ExecuteJumpToNode (string,bool)
+Yarn.VirtualMachine:RunInstruction (Yarn.Instruction)
+Yarn.VirtualMachine:Continue ()
+Yarn.Dialogue:Continue ()
+Yarn.Unity.DialogueRunner/<<StartDialogue>g__StartDialogueAsync|69_0>d:MoveNext () (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:952)
+UnityEngine.Awaitable/AwaitableAsyncMethodBuilder/StateMachineBox`1<Yarn.Unity.DialogueRunner/<<StartDialogue>g__StartDialogueAsync|69_0>d>:DoMoveNext ()
+Yarn.Unity.DialogueRunner:<StartDialogue>g__StartDialogueAsync|69_0 ()
+Yarn.Unity.DialogueRunner:StartDialogue (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:938)
+StartDialogueOnPlay:Start () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:16)
+
+CharacterSpriteManager: Extracted character tags (before auto-add): [char_Supervisor]
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:OnNodeStarted (string) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:1003)
+UnityEngine.Events.UnityEvent`1<string>:Invoke (string)
+Yarn.Unity.DialogueRunner:OnNodeStarted (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:575)
+Yarn.VirtualMachine:SetNode (string,bool)
+Yarn.VirtualMachine:ExecuteJumpToNode (string,bool)
+Yarn.VirtualMachine:RunInstruction (Yarn.Instruction)
+Yarn.VirtualMachine:Continue ()
+Yarn.Dialogue:Continue ()
+Yarn.Unity.DialogueRunner/<<StartDialogue>g__StartDialogueAsync|69_0>d:MoveNext () (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:952)
+UnityEngine.Awaitable/AwaitableAsyncMethodBuilder/StateMachineBox`1<Yarn.Unity.DialogueRunner/<<StartDialogue>g__StartDialogueAsync|69_0>d>:DoMoveNext ()
+Yarn.Unity.DialogueRunner:<StartDialogue>g__StartDialogueAsync|69_0 ()
+Yarn.Unity.DialogueRunner:StartDialogue (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:938)
+StartDialogueOnPlay:Start () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:16)
+
+CharacterSpriteManager: Did not auto-add Alice - Supervisor present or darkroom or already in list
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:OnNodeStarted (string) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:1018)
+UnityEngine.Events.UnityEvent`1<string>:Invoke (string)
+Yarn.Unity.DialogueRunner:OnNodeStarted (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:575)
+Yarn.VirtualMachine:SetNode (string,bool)
+Yarn.VirtualMachine:ExecuteJumpToNode (string,bool)
+Yarn.VirtualMachine:RunInstruction (Yarn.Instruction)
+Yarn.VirtualMachine:Continue ()
+Yarn.Dialogue:Continue ()
+Yarn.Unity.DialogueRunner/<<StartDialogue>g__StartDialogueAsync|69_0>d:MoveNext () (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:952)
+UnityEngine.Awaitable/AwaitableAsyncMethodBuilder/StateMachineBox`1<Yarn.Unity.DialogueRunner/<<StartDialogue>g__StartDialogueAsync|69_0>d>:DoMoveNext ()
+Yarn.Unity.DialogueRunner:<StartDialogue>g__StartDialogueAsync|69_0 ()
+Yarn.Unity.DialogueRunner:StartDialogue (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:938)
+StartDialogueOnPlay:Start () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:16)
+
+CharacterSpriteManager: Final character tags: [char_Supervisor]
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:OnNodeStarted (string) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:1021)
+UnityEngine.Events.UnityEvent`1<string>:Invoke (string)
+Yarn.Unity.DialogueRunner:OnNodeStarted (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:575)
+Yarn.VirtualMachine:SetNode (string,bool)
+Yarn.VirtualMachine:ExecuteJumpToNode (string,bool)
+Yarn.VirtualMachine:RunInstruction (Yarn.Instruction)
+Yarn.VirtualMachine:Continue ()
+Yarn.Dialogue:Continue ()
+Yarn.Unity.DialogueRunner/<<StartDialogue>g__StartDialogueAsync|69_0>d:MoveNext () (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:952)
+UnityEngine.Awaitable/AwaitableAsyncMethodBuilder/StateMachineBox`1<Yarn.Unity.DialogueRunner/<<StartDialogue>g__StartDialogueAsync|69_0>d>:DoMoveNext ()
+Yarn.Unity.DialogueRunner:<StartDialogue>g__StartDialogueAsync|69_0 ()
+Yarn.Unity.DialogueRunner:StartDialogue (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:938)
+StartDialogueOnPlay:Start () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:16)
+
+CharacterPortraitAnimator: Initialized for char_Supervisor (Talking: 1 frames, Eyes: 3 frames)
+UnityEngine.Debug:Log (object)
+CharacterPortraitAnimator:Initialize (CharacterPortraitData,UnityEngine.UI.Image,UnityEngine.UI.Image,UnityEngine.UI.Image) (at Assets/Scripts/Characters/CharacterPortraitAnimator.cs:69)
+CharacterSpriteManager:DisplayCharacters (System.Collections.Generic.List`1<string>) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:1104)
+CharacterSpriteManager:OnNodeStarted (string) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:1031)
+UnityEngine.Events.UnityEvent`1<string>:Invoke (string)
+Yarn.Unity.DialogueRunner:OnNodeStarted (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:575)
+Yarn.VirtualMachine:SetNode (string,bool)
+Yarn.VirtualMachine:ExecuteJumpToNode (string,bool)
+Yarn.VirtualMachine:RunInstruction (Yarn.Instruction)
+Yarn.VirtualMachine:Continue ()
+Yarn.Dialogue:Continue ()
+Yarn.Unity.DialogueRunner/<<StartDialogue>g__StartDialogueAsync|69_0>d:MoveNext () (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:952)
+UnityEngine.Awaitable/AwaitableAsyncMethodBuilder/StateMachineBox`1<Yarn.Unity.DialogueRunner/<<StartDialogue>g__StartDialogueAsync|69_0>d>:DoMoveNext ()
+Yarn.Unity.DialogueRunner:<StartDialogue>g__StartDialogueAsync|69_0 ()
+Yarn.Unity.DialogueRunner:StartDialogue (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:938)
+StartDialogueOnPlay:Start () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:16)
+
+CharacterSpriteManager: Displaying 'char_Supervisor' on left (base sprite: supervisor_0, 1 talking frames, 3 eye frames)
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:DisplayCharacters (System.Collections.Generic.List`1<string>) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:1107)
+CharacterSpriteManager:OnNodeStarted (string) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:1031)
+UnityEngine.Events.UnityEvent`1<string>:Invoke (string)
+Yarn.Unity.DialogueRunner:OnNodeStarted (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:575)
+Yarn.VirtualMachine:SetNode (string,bool)
+Yarn.VirtualMachine:ExecuteJumpToNode (string,bool)
+Yarn.VirtualMachine:RunInstruction (Yarn.Instruction)
+Yarn.VirtualMachine:Continue ()
+Yarn.Dialogue:Continue ()
+Yarn.Unity.DialogueRunner/<<StartDialogue>g__StartDialogueAsync|69_0>d:MoveNext () (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:952)
+UnityEngine.Awaitable/AwaitableAsyncMethodBuilder/StateMachineBox`1<Yarn.Unity.DialogueRunner/<<StartDialogue>g__StartDialogueAsync|69_0>d>:DoMoveNext ()
+Yarn.Unity.DialogueRunner:<StartDialogue>g__StartDialogueAsync|69_0 ()
+Yarn.Unity.DialogueRunner:StartDialogue (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:938)
+StartDialogueOnPlay:Start () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:16)
+
+[Debug Nav] Node visited: R1D1_Start (History: 2 nodes)
+UnityEngine.Debug:Log (object)
+DialogueDebugNavigator:OnNodeStart (string) (at Assets/Scripts/Dialogue/DialogueDebugNavigator.cs:530)
+UnityEngine.Events.UnityEvent`1<string>:Invoke (string)
+Yarn.Unity.DialogueRunner:OnNodeStarted (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:575)
+Yarn.VirtualMachine:SetNode (string,bool)
+Yarn.VirtualMachine:ExecuteJumpToNode (string,bool)
+Yarn.VirtualMachine:RunInstruction (Yarn.Instruction)
+Yarn.VirtualMachine:Continue ()
+Yarn.Dialogue:Continue ()
+Yarn.Unity.DialogueRunner/<<StartDialogue>g__StartDialogueAsync|69_0>d:MoveNext () (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:952)
+UnityEngine.Awaitable/AwaitableAsyncMethodBuilder/StateMachineBox`1<Yarn.Unity.DialogueRunner/<<StartDialogue>g__StartDialogueAsync|69_0>d>:DoMoveNext ()
+Yarn.Unity.DialogueRunner:<StartDialogue>g__StartDialogueAsync|69_0 ()
+Yarn.Unity.DialogueRunner:StartDialogue (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:938)
+StartDialogueOnPlay:Start () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:16)
+
+ChoiceDiagnostics: Node started: R1D1_Start
+UnityEngine.Debug:Log (object)
+ChoiceDiagnostics:OnNodeStart (string) (at Assets/Scripts/Dialogue/ChoiceDiagnostics.cs:141)
+UnityEngine.Events.UnityEvent`1<string>:Invoke (string)
+Yarn.Unity.DialogueRunner:OnNodeStarted (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:575)
+Yarn.VirtualMachine:SetNode (string,bool)
+Yarn.VirtualMachine:ExecuteJumpToNode (string,bool)
+Yarn.VirtualMachine:RunInstruction (Yarn.Instruction)
+Yarn.VirtualMachine:Continue ()
+Yarn.Dialogue:Continue ()
+Yarn.Unity.DialogueRunner/<<StartDialogue>g__StartDialogueAsync|69_0>d:MoveNext () (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:952)
+UnityEngine.Awaitable/AwaitableAsyncMethodBuilder/StateMachineBox`1<Yarn.Unity.DialogueRunner/<<StartDialogue>g__StartDialogueAsync|69_0>d>:DoMoveNext ()
+Yarn.Unity.DialogueRunner:<StartDialogue>g__StartDialogueAsync|69_0 ()
+Yarn.Unity.DialogueRunner:StartDialogue (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:938)
+StartDialogueOnPlay:Start () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:16)
+
+BackgroundCommandHandler: Initializing video system (lazy init)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:EnsureVideoSystemInitialized () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:188)
+BackgroundCommandHandler:PlayVideoBackground (string) (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:739)
+BackgroundCommandHandler:ChangeBackground (string) (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:526)
+System.Reflection.MethodBase:Invoke (object,object[])
+Yarn.Unity.Actions/CommandRegistration:Invoke (UnityEngine.MonoBehaviour,System.Collections.Generic.List`1<string>) (at ./Packages/dev.yarnspinner.unity/Runtime/Commands/Actions.cs:413)
+Yarn.Unity.Actions:Yarn.Unity.ICommandDispatcher.DispatchCommand (string,UnityEngine.MonoBehaviour) (at ./Packages/dev.yarnspinner.unity/Runtime/Commands/Actions.cs:654)
+Yarn.Unity.DialogueRunner/<OnCommandReceivedAsync>d__62:MoveNext () (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:585)
+UnityEngine.Awaitable/AwaitableAsyncMethodBuilder/StateMachineBox`1<Yarn.Unity.DialogueRunner/<OnCommandReceivedAsync>d__62>:DoMoveNext ()
+Yarn.Unity.DialogueRunner:OnCommandReceivedAsync (Yarn.Command)
+Yarn.Unity.DialogueRunner:OnCommandReceived (Yarn.Command) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:580)
+Yarn.VirtualMachine:RunInstruction (Yarn.Instruction)
+Yarn.VirtualMachine:Continue ()
+Yarn.Dialogue:Continue ()
+Yarn.Unity.DialogueRunner/<<StartDialogue>g__StartDialogueAsync|69_0>d:MoveNext () (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:952)
+UnityEngine.Awaitable/AwaitableAsyncMethodBuilder/StateMachineBox`1<Yarn.Unity.DialogueRunner/<<StartDialogue>g__StartDialogueAsync|69_0>d>:DoMoveNext ()
+Yarn.Unity.DialogueRunner:<StartDialogue>g__StartDialogueAsync|69_0 ()
+Yarn.Unity.DialogueRunner:StartDialogue (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:938)
+StartDialogueOnPlay:Start () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:16)
+
+BackgroundCommandHandler: Loading video from URL: file://C:/Users/epick/OneDrive/Documents/mentalbreak/unity-project/Assets/StreamingAssets\Videos\bg_supervisoroffice.mp4
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:PlayVideoBackground (string) (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:751)
+BackgroundCommandHandler:ChangeBackground (string) (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:526)
+System.Reflection.MethodBase:Invoke (object,object[])
+Yarn.Unity.Actions/CommandRegistration:Invoke (UnityEngine.MonoBehaviour,System.Collections.Generic.List`1<string>) (at ./Packages/dev.yarnspinner.unity/Runtime/Commands/Actions.cs:413)
+Yarn.Unity.Actions:Yarn.Unity.ICommandDispatcher.DispatchCommand (string,UnityEngine.MonoBehaviour) (at ./Packages/dev.yarnspinner.unity/Runtime/Commands/Actions.cs:654)
+Yarn.Unity.DialogueRunner/<OnCommandReceivedAsync>d__62:MoveNext () (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:585)
+UnityEngine.Awaitable/AwaitableAsyncMethodBuilder/StateMachineBox`1<Yarn.Unity.DialogueRunner/<OnCommandReceivedAsync>d__62>:DoMoveNext ()
+Yarn.Unity.DialogueRunner:OnCommandReceivedAsync (Yarn.Command)
+Yarn.Unity.DialogueRunner:OnCommandReceived (Yarn.Command) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:580)
+Yarn.VirtualMachine:RunInstruction (Yarn.Instruction)
+Yarn.VirtualMachine:Continue ()
+Yarn.Dialogue:Continue ()
+Yarn.Unity.DialogueRunner/<<StartDialogue>g__StartDialogueAsync|69_0>d:MoveNext () (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:952)
+UnityEngine.Awaitable/AwaitableAsyncMethodBuilder/StateMachineBox`1<Yarn.Unity.DialogueRunner/<<StartDialogue>g__StartDialogueAsync|69_0>d>:DoMoveNext ()
+Yarn.Unity.DialogueRunner:<StartDialogue>g__StartDialogueAsync|69_0 ()
+Yarn.Unity.DialogueRunner:StartDialogue (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:938)
+StartDialogueOnPlay:Start () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:16)
+
+Unexpected timestamp values detected. This can occur in H.264 videos not encoded with the baseline profile. Timestamps will be skewed to correct the playback for C:\Users\epick\OneDrive\Documents\mentalbreak\unity-project\Assets\StreamingAssets\Videos\bg_supervisoroffice.mp4
+
+Color primaries 0 is unknown or unsupported by WindowsMediaFoundation. Falling back to default may result in color shift. C:\Users\epick\OneDrive\Documents\mentalbreak\unity-project\Assets\StreamingAssets\Videos\bg_supervisoroffice.mp4
+
+[FMOD] Event found on attempt 1: ASIDE_Supervisor
+UnityEngine.Debug:Log (object)
+FMODAudioManager/<PlayMusicWithRetry>d__33:MoveNext () (at Assets/Scripts/Audio/FMODAudioManager.cs:326)
+UnityEngine.MonoBehaviour:StartCoroutine (System.Collections.IEnumerator)
+FMODAudioManager:PlayMusic (string,int) (at Assets/Scripts/Audio/FMODAudioManager.cs:270)
+FMODAudioManager:PlayTheme (string,int) (at Assets/Scripts/Audio/FMODAudioManager.cs:235)
+FMODAudioManager:YarnPlayTheme (string,int) (at Assets/Scripts/Audio/FMODAudioManager.cs:511)
+System.Reflection.MethodBase:Invoke (object,object[])
+Yarn.Unity.Actions/CommandRegistration:Invoke (UnityEngine.MonoBehaviour,System.Collections.Generic.List`1<string>) (at ./Packages/dev.yarnspinner.unity/Runtime/Commands/Actions.cs:413)
+Yarn.Unity.Actions:Yarn.Unity.ICommandDispatcher.DispatchCommand (string,UnityEngine.MonoBehaviour) (at ./Packages/dev.yarnspinner.unity/Runtime/Commands/Actions.cs:654)
+Yarn.Unity.DialogueRunner/<OnCommandReceivedAsync>d__62:MoveNext () (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:585)
+UnityEngine.Awaitable/AwaitableAsyncMethodBuilder/StateMachineBox`1<Yarn.Unity.DialogueRunner/<OnCommandReceivedAsync>d__62>:DoMoveNext ()
+Yarn.Unity.DialogueRunner:OnCommandReceivedAsync (Yarn.Command)
+Yarn.Unity.DialogueRunner:OnCommandReceived (Yarn.Command) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:580)
+Yarn.VirtualMachine:RunInstruction (Yarn.Instruction)
+Yarn.VirtualMachine:Continue ()
+Yarn.Dialogue:Continue ()
+Yarn.Unity.DialogueRunner/<<StartDialogue>g__StartDialogueAsync|69_0>d:MoveNext () (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:952)
+UnityEngine.Awaitable/AwaitableAsyncMethodBuilder/StateMachineBox`1<Yarn.Unity.DialogueRunner/<<StartDialogue>g__StartDialogueAsync|69_0>d>:DoMoveNext ()
+Yarn.Unity.DialogueRunner:<StartDialogue>g__StartDialogueAsync|69_0 ()
+Yarn.Unity.DialogueRunner:StartDialogue (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:938)
+StartDialogueOnPlay:Start () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:16)
+
+[FMOD] Started: ASIDE_Supervisor (vol=0.12)
+UnityEngine.Debug:Log (object)
+FMODAudioManager/<PlayMusicWithRetry>d__33:MoveNext () (at Assets/Scripts/Audio/FMODAudioManager.cs:379)
+UnityEngine.MonoBehaviour:StartCoroutine (System.Collections.IEnumerator)
+FMODAudioManager:PlayMusic (string,int) (at Assets/Scripts/Audio/FMODAudioManager.cs:270)
+FMODAudioManager:PlayTheme (string,int) (at Assets/Scripts/Audio/FMODAudioManager.cs:235)
+FMODAudioManager:YarnPlayTheme (string,int) (at Assets/Scripts/Audio/FMODAudioManager.cs:511)
+System.Reflection.MethodBase:Invoke (object,object[])
+Yarn.Unity.Actions/CommandRegistration:Invoke (UnityEngine.MonoBehaviour,System.Collections.Generic.List`1<string>) (at ./Packages/dev.yarnspinner.unity/Runtime/Commands/Actions.cs:413)
+Yarn.Unity.Actions:Yarn.Unity.ICommandDispatcher.DispatchCommand (string,UnityEngine.MonoBehaviour) (at ./Packages/dev.yarnspinner.unity/Runtime/Commands/Actions.cs:654)
+Yarn.Unity.DialogueRunner/<OnCommandReceivedAsync>d__62:MoveNext () (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:585)
+UnityEngine.Awaitable/AwaitableAsyncMethodBuilder/StateMachineBox`1<Yarn.Unity.DialogueRunner/<OnCommandReceivedAsync>d__62>:DoMoveNext ()
+Yarn.Unity.DialogueRunner:OnCommandReceivedAsync (Yarn.Command)
+Yarn.Unity.DialogueRunner:OnCommandReceived (Yarn.Command) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:580)
+Yarn.VirtualMachine:RunInstruction (Yarn.Instruction)
+Yarn.VirtualMachine:Continue ()
+Yarn.Dialogue:Continue ()
+Yarn.Unity.DialogueRunner/<<StartDialogue>g__StartDialogueAsync|69_0>d:MoveNext () (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:952)
+UnityEngine.Awaitable/AwaitableAsyncMethodBuilder/StateMachineBox`1<Yarn.Unity.DialogueRunner/<<StartDialogue>g__StartDialogueAsync|69_0>d>:DoMoveNext ()
+Yarn.Unity.DialogueRunner:<StartDialogue>g__StartDialogueAsync|69_0 ()
+Yarn.Unity.DialogueRunner:StartDialogue (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:938)
+StartDialogueOnPlay:Start () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:16)
+
+PauseMenuManager: Cached PauseMenuPanel Image (enabled=True, raycastTarget=True)
+UnityEngine.Debug:Log (object)
+PauseMenuManager:Start () (at Assets/Scripts/UI/PauseMenuManager.cs:192)
+
+[WelcomeOverlay] Autosave slot 0 exists: False
+UnityEngine.Debug:Log (object)
+WelcomeOverlay:CheckIfReturningPlayer () (at Assets/Scripts/UI/WelcomeOverlay.cs:147)
+WelcomeOverlay:CreateOverlayUI () (at Assets/Scripts/UI/WelcomeOverlay.cs:93)
+WelcomeOverlay:Start () (at Assets/Scripts/UI/WelcomeOverlay.cs:55)
+
+ArgumentException: Arial.ttf is no longer a valid built in font. Please use LegacyRuntime.ttf
+UnityEngine.Resources.GetBuiltinResource (System.Type type, System.String path) (at <3209c419f8514dc7af6f7bbce69cabc6>:0)
+UnityEngine.Resources.GetBuiltinResource[T] (System.String path) (at <3209c419f8514dc7af6f7bbce69cabc6>:0)
+WelcomeOverlay.CreateOverlayUI () (at Assets/Scripts/UI/WelcomeOverlay.cs:123)
+WelcomeOverlay.Start () (at Assets/Scripts/UI/WelcomeOverlay.cs:55)
+
+[FMOD] Please add an 'FMOD Studio Listener' component to your camera in the scene for correct 3D positioning of sounds.
+UnityEngine.Debug:LogWarning (object)
+FMODUnity.RuntimeUtils:DebugLogWarning (string) (at Assets/Plugins/FMOD/src/RuntimeUtils.cs:580)
+FMODUnity.RuntimeManager:Update () (at Assets/Plugins/FMOD/src/RuntimeManager.cs:466)
+
+Camera __LetterboxCamera does not contain an additional camera data component. Open the Game Object in the inspector to add additional camera data.
+UnityEngine.GUIUtility:ProcessEvent (int,intptr,bool&)
+
+BackgroundCommandHandler: Creating RenderTexture at 2560x1440 for video
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:OnVideoPrepared (UnityEngine.Video.VideoPlayer) (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:627)
+UnityEngine.Video.VideoPlayer:InvokePrepareCompletedCallback_Internal (UnityEngine.Video.VideoPlayer)
+
+Background: Playing video for bg_supervisoroffice
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:OnVideoPrepared (UnityEngine.Video.VideoPlayer) (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:662)
+UnityEngine.Video.VideoPlayer:InvokePrepareCompletedCallback_Internal (UnityEngine.Video.VideoPlayer)
+
+PortraitTalkingStateController: No character name in line, skipping talking animation
+UnityEngine.Debug:Log (object)
+PortraitTalkingStateController:OnLineDisplayBegin (Yarn.Markup.MarkupParseResult,TMPro.TMP_Text) (at Assets/Scripts/Characters/PortraitTalkingStateController.cs:75)
+Yarn.Unity.BasicTypewriter/<RunTypewriter>d__12:MoveNext () (at ./Packages/dev.yarnspinner.unity/Runtime/Views/Typewriter/BasicTypewriter.cs:53)
+UnityEngine.Awaitable/AwaitableAsyncMethodBuilder/StateMachineBox`1<Yarn.Unity.BasicTypewriter/<RunTypewriter>d__12>:DoMoveNext ()
+Yarn.Unity.BasicTypewriter:RunTypewriter (Yarn.Markup.MarkupParseResult,System.Threading.CancellationToken)
+Yarn.Unity.LinePresenter/<RunLineAsync>d__17:MoveNext () (at ./Packages/dev.yarnspinner.unity/Runtime/Views/LinePresenter.cs:342)
+UnityEngine.Awaitable:RaiseManagedCompletion ()
+Yarn.Unity.Effects/<FadeAlphaAsync>d__3:MoveNext () (at ./Packages/dev.yarnspinner.unity/Runtime/Views/Effects.cs:171)
+UnityEngine.Awaitable:RaiseManagedCompletion ()
+Yarn.Unity.YarnTask/<Yield>d__17:MoveNext () (at ./Packages/dev.yarnspinner.unity/Runtime/YarnTask/YarnTask.Awaitable.cs:107)
+UnityEngine.Awaitable:OnUpdate ()
+
+[WelcomeOverlay] Clicked! Starting fade out...
+UnityEngine.Debug:Log (object)
+WelcomeOverlay:HandleClick () (at Assets/Scripts/UI/WelcomeOverlay.cs:162)
+WelcomeOverlay:OnPointerClick (UnityEngine.EventSystems.PointerEventData) (at Assets/Scripts/UI/WelcomeOverlay.cs:154)
+UnityEngine.EventSystems.EventSystem:Update () (at ./Library/PackageCache/com.unity.ugui@7056cb05de4c/Runtime/UGUI/EventSystem/EventSystem.cs:514)
+
+[WelcomeOverlay] New player - letting game start normally
+UnityEngine.Debug:Log (object)
+WelcomeOverlay/<FadeOutAndProceed>d__13:MoveNext () (at Assets/Scripts/UI/WelcomeOverlay.cs:198)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
 

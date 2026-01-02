@@ -1,5 +1,5 @@
- You can reduce startup time if you configure your web server to add "Content-Encoding: gzip" response header when serving "Build/webgl-build.framework.js.unityweb" file.
  [UnityCache] 'https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/Build/webgl-build.data.unityweb' successfully revalidated and served from the browser cache
+ You can reduce startup time if you configure your web server to add "Content-Encoding: gzip" response header when serving "Build/webgl-build.framework.js.unityweb" file.
  You can reduce startup time if you configure your web server to add "Content-Encoding: gzip" response header when serving "Build/webgl-build.data.unityweb" file.
  You can reduce startup time if you configure your web server to add "Content-Encoding: gzip" response header when serving "Build/webgl-build.wasm.unityweb" file.
  [UnityMemory] Configuration Parameters - Can be set up in boot.config
@@ -105,7 +105,7 @@ WebGL: INVALID_ENUM: getInternalformatParameter: invalid internalformat
 
  Input System initialize...
 
- UnloadTime: 1.300000 ms
+ UnloadTime: 1.000000 ms
 
  [FMODWebGLBankLoader] AutoCreate called (RuntimeInitializeOnLoadMethod)
 
@@ -187,1492 +187,246 @@ WebGL: INVALID_ENUM: getInternalformatParameter: invalid internalformat
 
  CharacterSpriteManager: Auto-loaded multi-frame character 'char_Alice' from Resources/Graphics/Characters/Alice
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9  CharacterPortraitData: No base sprite found in Resources/Graphics/Characters/Supervisor/Base
-
-_JS_Log_Dump @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func37261 @ 0ee3a766:0xcfbb28
-$func12435 @ 0ee3a766:0x3cd742
-$func128151 @ 0ee3a766:0x27bfa9d
-$func58948 @ 0ee3a766:0x15798ca
-$func638 @ 0ee3a766:0x105766
-$func129821 @ 0ee3a766:0x28338a9
-$jl @ 0ee3a766:0x27bc043
-invoke_viiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func26256 @ 0ee3a766:0x8446af
-$func163240 @ 0ee3a766:0x2fb9041
-$func88853 @ 0ee3a766:0x1fe20c3
-$func885 @ 0ee3a766:0x10e026
-$func67779 @ 0ee3a766:0x1a40f93
-$jl @ 0ee3a766:0x27bc043
-invoke_viiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func38043 @ 0ee3a766:0xd1a335
-$func38044 @ 0ee3a766:0xd1af15
-$func154027 @ 0ee3a766:0x2e3a1cd
-$func147802 @ 0ee3a766:0x2ccaab7
-$func15554 @ 0ee3a766:0x4c847b
-$Vk @ 0ee3a766:0x27bc0e8
-invoke_iiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func3409 @ 0ee3a766:0x17e444
-$func70614 @ 0ee3a766:0x1b39908
-$func2190 @ 0ee3a766:0x144dae
-$func6634 @ 0ee3a766:0x22871e
-$func64375 @ 0ee3a766:0x1932406
-$func142624 @ 0ee3a766:0x2bde8b4
-$func5357 @ 0ee3a766:0x1e2fbf
-$func142625 @ 0ee3a766:0x2bdec28
-$func65513 @ 0ee3a766:0x19c5e33
-$func65514 @ 0ee3a766:0x19c5edb
-$func64730 @ 0ee3a766:0x1958d19
-$func64731 @ 0ee3a766:0x195933e
-$func142942 @ 0ee3a766:0x2c065c4
-$func64727 @ 0ee3a766:0x19589dc
-$func36819 @ 0ee3a766:0xccefe2
-$func25001 @ 0ee3a766:0x7eb37e
-$func58978 @ 0ee3a766:0x157fef5
-$yk @ 0ee3a766:0x27d0da7
-Module._main @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-callMain @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-doRun @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-run @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-runCaller @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-removeRunDependency @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-(anonymous) @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-doCallback @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-done @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-transaction.oncomplete @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-f637aad8-2540-4f62-9d0e-e6807321862f:9  CharacterPortraitData: No talking frames found in Resources/Graphics/Characters/Supervisor/Talking
-
-_JS_Log_Dump @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func37261 @ 0ee3a766:0xcfbb28
-$func12435 @ 0ee3a766:0x3cd742
-$func128151 @ 0ee3a766:0x27bfa9d
-$func58948 @ 0ee3a766:0x15798ca
-$func638 @ 0ee3a766:0x105766
-$func129821 @ 0ee3a766:0x28338a9
-$jl @ 0ee3a766:0x27bc043
-invoke_viiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func26256 @ 0ee3a766:0x8446af
-$func163240 @ 0ee3a766:0x2fb9041
-$func88853 @ 0ee3a766:0x1fe20c3
-$func885 @ 0ee3a766:0x10e026
-$func67779 @ 0ee3a766:0x1a41055
-$jl @ 0ee3a766:0x27bc043
-invoke_viiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func38043 @ 0ee3a766:0xd1a335
-$func38044 @ 0ee3a766:0xd1af15
-$func154027 @ 0ee3a766:0x2e3a1cd
-$func147802 @ 0ee3a766:0x2ccaab7
-$func15554 @ 0ee3a766:0x4c847b
-$Vk @ 0ee3a766:0x27bc0e8
-invoke_iiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func3409 @ 0ee3a766:0x17e444
-$func70614 @ 0ee3a766:0x1b39908
-$func2190 @ 0ee3a766:0x144dae
-$func6634 @ 0ee3a766:0x22871e
-$func64375 @ 0ee3a766:0x1932406
-$func142624 @ 0ee3a766:0x2bde8b4
-$func5357 @ 0ee3a766:0x1e2fbf
-$func142625 @ 0ee3a766:0x2bdec28
-$func65513 @ 0ee3a766:0x19c5e33
-$func65514 @ 0ee3a766:0x19c5edb
-$func64730 @ 0ee3a766:0x1958d19
-$func64731 @ 0ee3a766:0x195933e
-$func142942 @ 0ee3a766:0x2c065c4
-$func64727 @ 0ee3a766:0x19589dc
-$func36819 @ 0ee3a766:0xccefe2
-$func25001 @ 0ee3a766:0x7eb37e
-$func58978 @ 0ee3a766:0x157fef5
-$yk @ 0ee3a766:0x27d0da7
-Module._main @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-callMain @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-doRun @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-run @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-runCaller @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-removeRunDependency @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-(anonymous) @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-doCallback @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-done @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-transaction.oncomplete @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-f637aad8-2540-4f62-9d0e-e6807321862f:9  CharacterPortraitData: No eye frames found in Resources/Graphics/Characters/Supervisor/Eyes
-
-_JS_Log_Dump @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func37261 @ 0ee3a766:0xcfbb28
-$func12435 @ 0ee3a766:0x3cd742
-$func128151 @ 0ee3a766:0x27bfa9d
-$func58948 @ 0ee3a766:0x15798ca
-$func638 @ 0ee3a766:0x105766
-$func129821 @ 0ee3a766:0x28338a9
-$jl @ 0ee3a766:0x27bc043
-invoke_viiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func26256 @ 0ee3a766:0x8446af
-$func163240 @ 0ee3a766:0x2fb9041
-$func88853 @ 0ee3a766:0x1fe20c3
-$func885 @ 0ee3a766:0x10e026
-$func67779 @ 0ee3a766:0x1a41129
-$jl @ 0ee3a766:0x27bc043
-invoke_viiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func38043 @ 0ee3a766:0xd1a335
-$func38044 @ 0ee3a766:0xd1af15
-$func154027 @ 0ee3a766:0x2e3a1cd
-$func147802 @ 0ee3a766:0x2ccaab7
-$func15554 @ 0ee3a766:0x4c847b
-$Vk @ 0ee3a766:0x27bc0e8
-invoke_iiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func3409 @ 0ee3a766:0x17e444
-$func70614 @ 0ee3a766:0x1b39908
-$func2190 @ 0ee3a766:0x144dae
-$func6634 @ 0ee3a766:0x22871e
-$func64375 @ 0ee3a766:0x1932406
-$func142624 @ 0ee3a766:0x2bde8b4
-$func5357 @ 0ee3a766:0x1e2fbf
-$func142625 @ 0ee3a766:0x2bdec28
-$func65513 @ 0ee3a766:0x19c5e33
-$func65514 @ 0ee3a766:0x19c5edb
-$func64730 @ 0ee3a766:0x1958d19
-$func64731 @ 0ee3a766:0x195933e
-$func142942 @ 0ee3a766:0x2c065c4
-$func64727 @ 0ee3a766:0x19589dc
-$func36819 @ 0ee3a766:0xccefe2
-$func25001 @ 0ee3a766:0x7eb37e
-$func58978 @ 0ee3a766:0x157fef5
-$yk @ 0ee3a766:0x27d0da7
-Module._main @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-callMain @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-doRun @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-run @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-runCaller @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-removeRunDependency @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-(anonymous) @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-doCallback @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-done @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-transaction.oncomplete @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-f637aad8-2540-4f62-9d0e-e6807321862f:9  CharacterPortraitData: No base sprite found in Resources/Graphics/Characters/Timmy/Base
-
-_JS_Log_Dump @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func37261 @ 0ee3a766:0xcfbb28
-$func12435 @ 0ee3a766:0x3cd742
-$func128151 @ 0ee3a766:0x27bfa9d
-$func58948 @ 0ee3a766:0x15798ca
-$func638 @ 0ee3a766:0x105766
-$func129821 @ 0ee3a766:0x28338a9
-$jl @ 0ee3a766:0x27bc043
-invoke_viiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func26256 @ 0ee3a766:0x8446af
-$func163240 @ 0ee3a766:0x2fb9041
-$func88853 @ 0ee3a766:0x1fe20c3
-$func885 @ 0ee3a766:0x10e026
-$func67779 @ 0ee3a766:0x1a40f93
-$jl @ 0ee3a766:0x27bc043
-invoke_viiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func38043 @ 0ee3a766:0xd1a335
-$func38044 @ 0ee3a766:0xd1af15
-$func154027 @ 0ee3a766:0x2e3a1cd
-$func147802 @ 0ee3a766:0x2ccaab7
-$func15554 @ 0ee3a766:0x4c847b
-$Vk @ 0ee3a766:0x27bc0e8
-invoke_iiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func3409 @ 0ee3a766:0x17e444
-$func70614 @ 0ee3a766:0x1b39908
-$func2190 @ 0ee3a766:0x144dae
-$func6634 @ 0ee3a766:0x22871e
-$func64375 @ 0ee3a766:0x1932406
-$func142624 @ 0ee3a766:0x2bde8b4
-$func5357 @ 0ee3a766:0x1e2fbf
-$func142625 @ 0ee3a766:0x2bdec28
-$func65513 @ 0ee3a766:0x19c5e33
-$func65514 @ 0ee3a766:0x19c5edb
-$func64730 @ 0ee3a766:0x1958d19
-$func64731 @ 0ee3a766:0x195933e
-$func142942 @ 0ee3a766:0x2c065c4
-$func64727 @ 0ee3a766:0x19589dc
-$func36819 @ 0ee3a766:0xccefe2
-$func25001 @ 0ee3a766:0x7eb37e
-$func58978 @ 0ee3a766:0x157fef5
-$yk @ 0ee3a766:0x27d0da7
-Module._main @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-callMain @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-doRun @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-run @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-runCaller @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-removeRunDependency @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-(anonymous) @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-doCallback @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-done @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-transaction.oncomplete @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-f637aad8-2540-4f62-9d0e-e6807321862f:9  CharacterPortraitData: No talking frames found in Resources/Graphics/Characters/Timmy/Talking
-
-_JS_Log_Dump @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func37261 @ 0ee3a766:0xcfbb28
-$func12435 @ 0ee3a766:0x3cd742
-$func128151 @ 0ee3a766:0x27bfa9d
-$func58948 @ 0ee3a766:0x15798ca
-$func638 @ 0ee3a766:0x105766
-$func129821 @ 0ee3a766:0x28338a9
-$jl @ 0ee3a766:0x27bc043
-invoke_viiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func26256 @ 0ee3a766:0x8446af
-$func163240 @ 0ee3a766:0x2fb9041
-$func88853 @ 0ee3a766:0x1fe20c3
-$func885 @ 0ee3a766:0x10e026
-$func67779 @ 0ee3a766:0x1a41055
-$jl @ 0ee3a766:0x27bc043
-invoke_viiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func38043 @ 0ee3a766:0xd1a335
-$func38044 @ 0ee3a766:0xd1af15
-$func154027 @ 0ee3a766:0x2e3a1cd
-$func147802 @ 0ee3a766:0x2ccaab7
-$func15554 @ 0ee3a766:0x4c847b
-$Vk @ 0ee3a766:0x27bc0e8
-invoke_iiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func3409 @ 0ee3a766:0x17e444
-$func70614 @ 0ee3a766:0x1b39908
-$func2190 @ 0ee3a766:0x144dae
-$func6634 @ 0ee3a766:0x22871e
-$func64375 @ 0ee3a766:0x1932406
-$func142624 @ 0ee3a766:0x2bde8b4
-$func5357 @ 0ee3a766:0x1e2fbf
-$func142625 @ 0ee3a766:0x2bdec28
-$func65513 @ 0ee3a766:0x19c5e33
-$func65514 @ 0ee3a766:0x19c5edb
-$func64730 @ 0ee3a766:0x1958d19
-$func64731 @ 0ee3a766:0x195933e
-$func142942 @ 0ee3a766:0x2c065c4
-$func64727 @ 0ee3a766:0x19589dc
-$func36819 @ 0ee3a766:0xccefe2
-$func25001 @ 0ee3a766:0x7eb37e
-$func58978 @ 0ee3a766:0x157fef5
-$yk @ 0ee3a766:0x27d0da7
-Module._main @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-callMain @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-doRun @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-run @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-runCaller @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-removeRunDependency @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-(anonymous) @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-doCallback @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-done @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-transaction.oncomplete @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-f637aad8-2540-4f62-9d0e-e6807321862f:9  CharacterPortraitData: No eye frames found in Resources/Graphics/Characters/Timmy/Eyes
-
-_JS_Log_Dump @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func37261 @ 0ee3a766:0xcfbb28
-$func12435 @ 0ee3a766:0x3cd742
-$func128151 @ 0ee3a766:0x27bfa9d
-$func58948 @ 0ee3a766:0x15798ca
-$func638 @ 0ee3a766:0x105766
-$func129821 @ 0ee3a766:0x28338a9
-$jl @ 0ee3a766:0x27bc043
-invoke_viiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func26256 @ 0ee3a766:0x8446af
-$func163240 @ 0ee3a766:0x2fb9041
-$func88853 @ 0ee3a766:0x1fe20c3
-$func885 @ 0ee3a766:0x10e026
-$func67779 @ 0ee3a766:0x1a41129
-$jl @ 0ee3a766:0x27bc043
-invoke_viiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func38043 @ 0ee3a766:0xd1a335
-$func38044 @ 0ee3a766:0xd1af15
-$func154027 @ 0ee3a766:0x2e3a1cd
-$func147802 @ 0ee3a766:0x2ccaab7
-$func15554 @ 0ee3a766:0x4c847b
-$Vk @ 0ee3a766:0x27bc0e8
-invoke_iiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func3409 @ 0ee3a766:0x17e444
-$func70614 @ 0ee3a766:0x1b39908
-$func2190 @ 0ee3a766:0x144dae
-$func6634 @ 0ee3a766:0x22871e
-$func64375 @ 0ee3a766:0x1932406
-$func142624 @ 0ee3a766:0x2bde8b4
-$func5357 @ 0ee3a766:0x1e2fbf
-$func142625 @ 0ee3a766:0x2bdec28
-$func65513 @ 0ee3a766:0x19c5e33
-$func65514 @ 0ee3a766:0x19c5edb
-$func64730 @ 0ee3a766:0x1958d19
-$func64731 @ 0ee3a766:0x195933e
-$func142942 @ 0ee3a766:0x2c065c4
-$func64727 @ 0ee3a766:0x19589dc
-$func36819 @ 0ee3a766:0xccefe2
-$func25001 @ 0ee3a766:0x7eb37e
-$func58978 @ 0ee3a766:0x157fef5
-$yk @ 0ee3a766:0x27d0da7
-Module._main @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-callMain @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-doRun @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-run @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-runCaller @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-removeRunDependency @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-(anonymous) @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-doCallback @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-done @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-transaction.oncomplete @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-f637aad8-2540-4f62-9d0e-e6807321862f:9  CharacterPortraitData: No base sprite found in Resources/Graphics/Characters/Btc/Base
-
-_JS_Log_Dump @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func37261 @ 0ee3a766:0xcfbb28
-$func12435 @ 0ee3a766:0x3cd742
-$func128151 @ 0ee3a766:0x27bfa9d
-$func58948 @ 0ee3a766:0x15798ca
-$func638 @ 0ee3a766:0x105766
-$func129821 @ 0ee3a766:0x28338a9
-$jl @ 0ee3a766:0x27bc043
-invoke_viiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func26256 @ 0ee3a766:0x8446af
-$func163240 @ 0ee3a766:0x2fb9041
-$func88853 @ 0ee3a766:0x1fe20c3
-$func885 @ 0ee3a766:0x10e026
-$func67779 @ 0ee3a766:0x1a40f93
-$jl @ 0ee3a766:0x27bc043
-invoke_viiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func38043 @ 0ee3a766:0xd1a335
-$func38044 @ 0ee3a766:0xd1af15
-$func154027 @ 0ee3a766:0x2e3a1cd
-$func147802 @ 0ee3a766:0x2ccaab7
-$func15554 @ 0ee3a766:0x4c847b
-$Vk @ 0ee3a766:0x27bc0e8
-invoke_iiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func3409 @ 0ee3a766:0x17e444
-$func70614 @ 0ee3a766:0x1b39908
-$func2190 @ 0ee3a766:0x144dae
-$func6634 @ 0ee3a766:0x22871e
-$func64375 @ 0ee3a766:0x1932406
-$func142624 @ 0ee3a766:0x2bde8b4
-$func5357 @ 0ee3a766:0x1e2fbf
-$func142625 @ 0ee3a766:0x2bdec28
-$func65513 @ 0ee3a766:0x19c5e33
-$func65514 @ 0ee3a766:0x19c5edb
-$func64730 @ 0ee3a766:0x1958d19
-$func64731 @ 0ee3a766:0x195933e
-$func142942 @ 0ee3a766:0x2c065c4
-$func64727 @ 0ee3a766:0x19589dc
-$func36819 @ 0ee3a766:0xccefe2
-$func25001 @ 0ee3a766:0x7eb37e
-$func58978 @ 0ee3a766:0x157fef5
-$yk @ 0ee3a766:0x27d0da7
-Module._main @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-callMain @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-doRun @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-run @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-runCaller @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-removeRunDependency @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-(anonymous) @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-doCallback @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-done @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-transaction.oncomplete @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-f637aad8-2540-4f62-9d0e-e6807321862f:9  CharacterPortraitData: No talking frames found in Resources/Graphics/Characters/Btc/Talking
-
-_JS_Log_Dump @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func37261 @ 0ee3a766:0xcfbb28
-$func12435 @ 0ee3a766:0x3cd742
-$func128151 @ 0ee3a766:0x27bfa9d
-$func58948 @ 0ee3a766:0x15798ca
-$func638 @ 0ee3a766:0x105766
-$func129821 @ 0ee3a766:0x28338a9
-$jl @ 0ee3a766:0x27bc043
-invoke_viiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func26256 @ 0ee3a766:0x8446af
-$func163240 @ 0ee3a766:0x2fb9041
-$func88853 @ 0ee3a766:0x1fe20c3
-$func885 @ 0ee3a766:0x10e026
-$func67779 @ 0ee3a766:0x1a41055
-$jl @ 0ee3a766:0x27bc043
-invoke_viiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func38043 @ 0ee3a766:0xd1a335
-$func38044 @ 0ee3a766:0xd1af15
-$func154027 @ 0ee3a766:0x2e3a1cd
-$func147802 @ 0ee3a766:0x2ccaab7
-$func15554 @ 0ee3a766:0x4c847b
-$Vk @ 0ee3a766:0x27bc0e8
-invoke_iiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func3409 @ 0ee3a766:0x17e444
-$func70614 @ 0ee3a766:0x1b39908
-$func2190 @ 0ee3a766:0x144dae
-$func6634 @ 0ee3a766:0x22871e
-$func64375 @ 0ee3a766:0x1932406
-$func142624 @ 0ee3a766:0x2bde8b4
-$func5357 @ 0ee3a766:0x1e2fbf
-$func142625 @ 0ee3a766:0x2bdec28
-$func65513 @ 0ee3a766:0x19c5e33
-$func65514 @ 0ee3a766:0x19c5edb
-$func64730 @ 0ee3a766:0x1958d19
-$func64731 @ 0ee3a766:0x195933e
-$func142942 @ 0ee3a766:0x2c065c4
-$func64727 @ 0ee3a766:0x19589dc
-$func36819 @ 0ee3a766:0xccefe2
-$func25001 @ 0ee3a766:0x7eb37e
-$func58978 @ 0ee3a766:0x157fef5
-$yk @ 0ee3a766:0x27d0da7
-Module._main @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-callMain @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-doRun @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-run @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-runCaller @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-removeRunDependency @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-(anonymous) @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-doCallback @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-done @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-transaction.oncomplete @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-f637aad8-2540-4f62-9d0e-e6807321862f:9  CharacterPortraitData: No eye frames found in Resources/Graphics/Characters/Btc/Eyes
-
-_JS_Log_Dump @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func37261 @ 0ee3a766:0xcfbb28
-$func12435 @ 0ee3a766:0x3cd742
-$func128151 @ 0ee3a766:0x27bfa9d
-$func58948 @ 0ee3a766:0x15798ca
-$func638 @ 0ee3a766:0x105766
-$func129821 @ 0ee3a766:0x28338a9
-$jl @ 0ee3a766:0x27bc043
-invoke_viiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func26256 @ 0ee3a766:0x8446af
-$func163240 @ 0ee3a766:0x2fb9041
-$func88853 @ 0ee3a766:0x1fe20c3
-$func885 @ 0ee3a766:0x10e026
-$func67779 @ 0ee3a766:0x1a41129
-$jl @ 0ee3a766:0x27bc043
-invoke_viiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func38043 @ 0ee3a766:0xd1a335
-$func38044 @ 0ee3a766:0xd1af15
-$func154027 @ 0ee3a766:0x2e3a1cd
-$func147802 @ 0ee3a766:0x2ccaab7
-$func15554 @ 0ee3a766:0x4c847b
-$Vk @ 0ee3a766:0x27bc0e8
-invoke_iiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func3409 @ 0ee3a766:0x17e444
-$func70614 @ 0ee3a766:0x1b39908
-$func2190 @ 0ee3a766:0x144dae
-$func6634 @ 0ee3a766:0x22871e
-$func64375 @ 0ee3a766:0x1932406
-$func142624 @ 0ee3a766:0x2bde8b4
-$func5357 @ 0ee3a766:0x1e2fbf
-$func142625 @ 0ee3a766:0x2bdec28
-$func65513 @ 0ee3a766:0x19c5e33
-$func65514 @ 0ee3a766:0x19c5edb
-$func64730 @ 0ee3a766:0x1958d19
-$func64731 @ 0ee3a766:0x195933e
-$func142942 @ 0ee3a766:0x2c065c4
-$func64727 @ 0ee3a766:0x19589dc
-$func36819 @ 0ee3a766:0xccefe2
-$func25001 @ 0ee3a766:0x7eb37e
-$func58978 @ 0ee3a766:0x157fef5
-$yk @ 0ee3a766:0x27d0da7
-Module._main @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-callMain @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-doRun @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-run @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-runCaller @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-removeRunDependency @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-(anonymous) @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-doCallback @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-done @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-transaction.oncomplete @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-f637aad8-2540-4f62-9d0e-e6807321862f:9  CharacterPortraitData: No base sprite found in Resources/Graphics/Characters/Ari/Base
-
-_JS_Log_Dump @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func37261 @ 0ee3a766:0xcfbb28
-$func12435 @ 0ee3a766:0x3cd742
-$func128151 @ 0ee3a766:0x27bfa9d
-$func58948 @ 0ee3a766:0x15798ca
-$func638 @ 0ee3a766:0x105766
-$func129821 @ 0ee3a766:0x28338a9
-$jl @ 0ee3a766:0x27bc043
-invoke_viiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func26256 @ 0ee3a766:0x8446af
-$func163240 @ 0ee3a766:0x2fb9041
-$func88853 @ 0ee3a766:0x1fe20c3
-$func885 @ 0ee3a766:0x10e026
-$func67779 @ 0ee3a766:0x1a40f93
-$jl @ 0ee3a766:0x27bc043
-invoke_viiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func38043 @ 0ee3a766:0xd1a335
-$func38044 @ 0ee3a766:0xd1af15
-$func154027 @ 0ee3a766:0x2e3a1cd
-$func147802 @ 0ee3a766:0x2ccaab7
-$func15554 @ 0ee3a766:0x4c847b
-$Vk @ 0ee3a766:0x27bc0e8
-invoke_iiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func3409 @ 0ee3a766:0x17e444
-$func70614 @ 0ee3a766:0x1b39908
-$func2190 @ 0ee3a766:0x144dae
-$func6634 @ 0ee3a766:0x22871e
-$func64375 @ 0ee3a766:0x1932406
-$func142624 @ 0ee3a766:0x2bde8b4
-$func5357 @ 0ee3a766:0x1e2fbf
-$func142625 @ 0ee3a766:0x2bdec28
-$func65513 @ 0ee3a766:0x19c5e33
-$func65514 @ 0ee3a766:0x19c5edb
-$func64730 @ 0ee3a766:0x1958d19
-$func64731 @ 0ee3a766:0x195933e
-$func142942 @ 0ee3a766:0x2c065c4
-$func64727 @ 0ee3a766:0x19589dc
-$func36819 @ 0ee3a766:0xccefe2
-$func25001 @ 0ee3a766:0x7eb37e
-$func58978 @ 0ee3a766:0x157fef5
-$yk @ 0ee3a766:0x27d0da7
-Module._main @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-callMain @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-doRun @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-run @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-runCaller @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-removeRunDependency @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-(anonymous) @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-doCallback @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-done @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-transaction.oncomplete @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-f637aad8-2540-4f62-9d0e-e6807321862f:9  CharacterPortraitData: No talking frames found in Resources/Graphics/Characters/Ari/Talking
-
-_JS_Log_Dump @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func37261 @ 0ee3a766:0xcfbb28
-$func12435 @ 0ee3a766:0x3cd742
-$func128151 @ 0ee3a766:0x27bfa9d
-$func58948 @ 0ee3a766:0x15798ca
-$func638 @ 0ee3a766:0x105766
-$func129821 @ 0ee3a766:0x28338a9
-$jl @ 0ee3a766:0x27bc043
-invoke_viiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func26256 @ 0ee3a766:0x8446af
-$func163240 @ 0ee3a766:0x2fb9041
-$func88853 @ 0ee3a766:0x1fe20c3
-$func885 @ 0ee3a766:0x10e026
-$func67779 @ 0ee3a766:0x1a41055
-$jl @ 0ee3a766:0x27bc043
-invoke_viiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func38043 @ 0ee3a766:0xd1a335
-$func38044 @ 0ee3a766:0xd1af15
-$func154027 @ 0ee3a766:0x2e3a1cd
-$func147802 @ 0ee3a766:0x2ccaab7
-$func15554 @ 0ee3a766:0x4c847b
-$Vk @ 0ee3a766:0x27bc0e8
-invoke_iiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func3409 @ 0ee3a766:0x17e444
-$func70614 @ 0ee3a766:0x1b39908
-$func2190 @ 0ee3a766:0x144dae
-$func6634 @ 0ee3a766:0x22871e
-$func64375 @ 0ee3a766:0x1932406
-$func142624 @ 0ee3a766:0x2bde8b4
-$func5357 @ 0ee3a766:0x1e2fbf
-$func142625 @ 0ee3a766:0x2bdec28
-$func65513 @ 0ee3a766:0x19c5e33
-$func65514 @ 0ee3a766:0x19c5edb
-$func64730 @ 0ee3a766:0x1958d19
-$func64731 @ 0ee3a766:0x195933e
-$func142942 @ 0ee3a766:0x2c065c4
-$func64727 @ 0ee3a766:0x19589dc
-$func36819 @ 0ee3a766:0xccefe2
-$func25001 @ 0ee3a766:0x7eb37e
-$func58978 @ 0ee3a766:0x157fef5
-$yk @ 0ee3a766:0x27d0da7
-Module._main @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-callMain @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-doRun @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-run @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-runCaller @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-removeRunDependency @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-(anonymous) @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-doCallback @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-done @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-transaction.oncomplete @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-f637aad8-2540-4f62-9d0e-e6807321862f:9  CharacterPortraitData: No eye frames found in Resources/Graphics/Characters/Ari/Eyes
-
-_JS_Log_Dump @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func37261 @ 0ee3a766:0xcfbb28
-$func12435 @ 0ee3a766:0x3cd742
-$func128151 @ 0ee3a766:0x27bfa9d
-$func58948 @ 0ee3a766:0x15798ca
-$func638 @ 0ee3a766:0x105766
-$func129821 @ 0ee3a766:0x28338a9
-$jl @ 0ee3a766:0x27bc043
-invoke_viiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func26256 @ 0ee3a766:0x8446af
-$func163240 @ 0ee3a766:0x2fb9041
-$func88853 @ 0ee3a766:0x1fe20c3
-$func885 @ 0ee3a766:0x10e026
-$func67779 @ 0ee3a766:0x1a41129
-$jl @ 0ee3a766:0x27bc043
-invoke_viiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func38043 @ 0ee3a766:0xd1a335
-$func38044 @ 0ee3a766:0xd1af15
-$func154027 @ 0ee3a766:0x2e3a1cd
-$func147802 @ 0ee3a766:0x2ccaab7
-$func15554 @ 0ee3a766:0x4c847b
-$Vk @ 0ee3a766:0x27bc0e8
-invoke_iiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func3409 @ 0ee3a766:0x17e444
-$func70614 @ 0ee3a766:0x1b39908
-$func2190 @ 0ee3a766:0x144dae
-$func6634 @ 0ee3a766:0x22871e
-$func64375 @ 0ee3a766:0x1932406
-$func142624 @ 0ee3a766:0x2bde8b4
-$func5357 @ 0ee3a766:0x1e2fbf
-$func142625 @ 0ee3a766:0x2bdec28
-$func65513 @ 0ee3a766:0x19c5e33
-$func65514 @ 0ee3a766:0x19c5edb
-$func64730 @ 0ee3a766:0x1958d19
-$func64731 @ 0ee3a766:0x195933e
-$func142942 @ 0ee3a766:0x2c065c4
-$func64727 @ 0ee3a766:0x19589dc
-$func36819 @ 0ee3a766:0xccefe2
-$func25001 @ 0ee3a766:0x7eb37e
-$func58978 @ 0ee3a766:0x157fef5
-$yk @ 0ee3a766:0x27d0da7
-Module._main @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-callMain @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-doRun @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-run @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-runCaller @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-removeRunDependency @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-(anonymous) @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-doCallback @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-done @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-transaction.oncomplete @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-f637aad8-2540-4f62-9d0e-e6807321862f:9  CharacterPortraitData: No base sprite found in Resources/Graphics/Characters/Charlotte/Base
-
-_JS_Log_Dump @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func37261 @ 0ee3a766:0xcfbb28
-$func12435 @ 0ee3a766:0x3cd742
-$func128151 @ 0ee3a766:0x27bfa9d
-$func58948 @ 0ee3a766:0x15798ca
-$func638 @ 0ee3a766:0x105766
-$func129821 @ 0ee3a766:0x28338a9
-$jl @ 0ee3a766:0x27bc043
-invoke_viiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func26256 @ 0ee3a766:0x8446af
-$func163240 @ 0ee3a766:0x2fb9041
-$func88853 @ 0ee3a766:0x1fe20c3
-$func885 @ 0ee3a766:0x10e026
-$func67779 @ 0ee3a766:0x1a40f93
-$jl @ 0ee3a766:0x27bc043
-invoke_viiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func38043 @ 0ee3a766:0xd1a335
-$func38044 @ 0ee3a766:0xd1af15
-$func154027 @ 0ee3a766:0x2e3a1cd
-$func147802 @ 0ee3a766:0x2ccaab7
-$func15554 @ 0ee3a766:0x4c847b
-$Vk @ 0ee3a766:0x27bc0e8
-invoke_iiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func3409 @ 0ee3a766:0x17e444
-$func70614 @ 0ee3a766:0x1b39908
-$func2190 @ 0ee3a766:0x144dae
-$func6634 @ 0ee3a766:0x22871e
-$func64375 @ 0ee3a766:0x1932406
-$func142624 @ 0ee3a766:0x2bde8b4
-$func5357 @ 0ee3a766:0x1e2fbf
-$func142625 @ 0ee3a766:0x2bdec28
-$func65513 @ 0ee3a766:0x19c5e33
-$func65514 @ 0ee3a766:0x19c5edb
-$func64730 @ 0ee3a766:0x1958d19
-$func64731 @ 0ee3a766:0x195933e
-$func142942 @ 0ee3a766:0x2c065c4
-$func64727 @ 0ee3a766:0x19589dc
-$func36819 @ 0ee3a766:0xccefe2
-$func25001 @ 0ee3a766:0x7eb37e
-$func58978 @ 0ee3a766:0x157fef5
-$yk @ 0ee3a766:0x27d0da7
-Module._main @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-callMain @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-doRun @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-run @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-runCaller @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-removeRunDependency @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-(anonymous) @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-doCallback @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-done @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-transaction.oncomplete @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-f637aad8-2540-4f62-9d0e-e6807321862f:9  CharacterPortraitData: No talking frames found in Resources/Graphics/Characters/Charlotte/Talking
-
-_JS_Log_Dump @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func37261 @ 0ee3a766:0xcfbb28
-$func12435 @ 0ee3a766:0x3cd742
-$func128151 @ 0ee3a766:0x27bfa9d
-$func58948 @ 0ee3a766:0x15798ca
-$func638 @ 0ee3a766:0x105766
-$func129821 @ 0ee3a766:0x28338a9
-$jl @ 0ee3a766:0x27bc043
-invoke_viiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func26256 @ 0ee3a766:0x8446af
-$func163240 @ 0ee3a766:0x2fb9041
-$func88853 @ 0ee3a766:0x1fe20c3
-$func885 @ 0ee3a766:0x10e026
-$func67779 @ 0ee3a766:0x1a41055
-$jl @ 0ee3a766:0x27bc043
-invoke_viiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func38043 @ 0ee3a766:0xd1a335
-$func38044 @ 0ee3a766:0xd1af15
-$func154027 @ 0ee3a766:0x2e3a1cd
-$func147802 @ 0ee3a766:0x2ccaab7
-$func15554 @ 0ee3a766:0x4c847b
-$Vk @ 0ee3a766:0x27bc0e8
-invoke_iiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func3409 @ 0ee3a766:0x17e444
-$func70614 @ 0ee3a766:0x1b39908
-$func2190 @ 0ee3a766:0x144dae
-$func6634 @ 0ee3a766:0x22871e
-$func64375 @ 0ee3a766:0x1932406
-$func142624 @ 0ee3a766:0x2bde8b4
-$func5357 @ 0ee3a766:0x1e2fbf
-$func142625 @ 0ee3a766:0x2bdec28
-$func65513 @ 0ee3a766:0x19c5e33
-$func65514 @ 0ee3a766:0x19c5edb
-$func64730 @ 0ee3a766:0x1958d19
-$func64731 @ 0ee3a766:0x195933e
-$func142942 @ 0ee3a766:0x2c065c4
-$func64727 @ 0ee3a766:0x19589dc
-$func36819 @ 0ee3a766:0xccefe2
-$func25001 @ 0ee3a766:0x7eb37e
-$func58978 @ 0ee3a766:0x157fef5
-$yk @ 0ee3a766:0x27d0da7
-Module._main @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-callMain @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-doRun @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-run @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-runCaller @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-removeRunDependency @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-(anonymous) @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-doCallback @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-done @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-transaction.oncomplete @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-f637aad8-2540-4f62-9d0e-e6807321862f:9  CharacterPortraitData: No eye frames found in Resources/Graphics/Characters/Charlotte/Eyes
-
-_JS_Log_Dump @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func37261 @ 0ee3a766:0xcfbb28
-$func12435 @ 0ee3a766:0x3cd742
-$func128151 @ 0ee3a766:0x27bfa9d
-$func58948 @ 0ee3a766:0x15798ca
-$func638 @ 0ee3a766:0x105766
-$func129821 @ 0ee3a766:0x28338a9
-$jl @ 0ee3a766:0x27bc043
-invoke_viiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func26256 @ 0ee3a766:0x8446af
-$func163240 @ 0ee3a766:0x2fb9041
-$func88853 @ 0ee3a766:0x1fe20c3
-$func885 @ 0ee3a766:0x10e026
-$func67779 @ 0ee3a766:0x1a41129
-$jl @ 0ee3a766:0x27bc043
-invoke_viiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func38043 @ 0ee3a766:0xd1a335
-$func38044 @ 0ee3a766:0xd1af15
-$func154027 @ 0ee3a766:0x2e3a1cd
-$func147802 @ 0ee3a766:0x2ccaab7
-$func15554 @ 0ee3a766:0x4c847b
-$Vk @ 0ee3a766:0x27bc0e8
-invoke_iiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func3409 @ 0ee3a766:0x17e444
-$func70614 @ 0ee3a766:0x1b39908
-$func2190 @ 0ee3a766:0x144dae
-$func6634 @ 0ee3a766:0x22871e
-$func64375 @ 0ee3a766:0x1932406
-$func142624 @ 0ee3a766:0x2bde8b4
-$func5357 @ 0ee3a766:0x1e2fbf
-$func142625 @ 0ee3a766:0x2bdec28
-$func65513 @ 0ee3a766:0x19c5e33
-$func65514 @ 0ee3a766:0x19c5edb
-$func64730 @ 0ee3a766:0x1958d19
-$func64731 @ 0ee3a766:0x195933e
-$func142942 @ 0ee3a766:0x2c065c4
-$func64727 @ 0ee3a766:0x19589dc
-$func36819 @ 0ee3a766:0xccefe2
-$func25001 @ 0ee3a766:0x7eb37e
-$func58978 @ 0ee3a766:0x157fef5
-$yk @ 0ee3a766:0x27d0da7
-Module._main @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-callMain @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-doRun @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-run @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-runCaller @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-removeRunDependency @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-(anonymous) @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-doCallback @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-done @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-transaction.oncomplete @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-f637aad8-2540-4f62-9d0e-e6807321862f:9  CharacterPortraitData: No base sprite found in Resources/Graphics/Characters/Dina/Base
-
-_JS_Log_Dump @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func37261 @ 0ee3a766:0xcfbb28
-$func12435 @ 0ee3a766:0x3cd742
-$func128151 @ 0ee3a766:0x27bfa9d
-$func58948 @ 0ee3a766:0x15798ca
-$func638 @ 0ee3a766:0x105766
-$func129821 @ 0ee3a766:0x28338a9
-$jl @ 0ee3a766:0x27bc043
-invoke_viiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func26256 @ 0ee3a766:0x8446af
-$func163240 @ 0ee3a766:0x2fb9041
-$func88853 @ 0ee3a766:0x1fe20c3
-$func885 @ 0ee3a766:0x10e026
-$func67779 @ 0ee3a766:0x1a40f93
-$jl @ 0ee3a766:0x27bc043
-invoke_viiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func38043 @ 0ee3a766:0xd1a335
-$func38044 @ 0ee3a766:0xd1af15
-$func154027 @ 0ee3a766:0x2e3a1cd
-$func147802 @ 0ee3a766:0x2ccaab7
-$func15554 @ 0ee3a766:0x4c847b
-$Vk @ 0ee3a766:0x27bc0e8
-invoke_iiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func3409 @ 0ee3a766:0x17e444
-$func70614 @ 0ee3a766:0x1b39908
-$func2190 @ 0ee3a766:0x144dae
-$func6634 @ 0ee3a766:0x22871e
-$func64375 @ 0ee3a766:0x1932406
-$func142624 @ 0ee3a766:0x2bde8b4
-$func5357 @ 0ee3a766:0x1e2fbf
-$func142625 @ 0ee3a766:0x2bdec28
-$func65513 @ 0ee3a766:0x19c5e33
-$func65514 @ 0ee3a766:0x19c5edb
-$func64730 @ 0ee3a766:0x1958d19
-$func64731 @ 0ee3a766:0x195933e
-$func142942 @ 0ee3a766:0x2c065c4
-$func64727 @ 0ee3a766:0x19589dc
-$func36819 @ 0ee3a766:0xccefe2
-$func25001 @ 0ee3a766:0x7eb37e
-$func58978 @ 0ee3a766:0x157fef5
-$yk @ 0ee3a766:0x27d0da7
-Module._main @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-callMain @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-doRun @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-run @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-runCaller @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-removeRunDependency @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-(anonymous) @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-doCallback @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-done @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-transaction.oncomplete @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-f637aad8-2540-4f62-9d0e-e6807321862f:9  CharacterPortraitData: No talking frames found in Resources/Graphics/Characters/Dina/Talking
-
-_JS_Log_Dump @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func37261 @ 0ee3a766:0xcfbb28
-$func12435 @ 0ee3a766:0x3cd742
-$func128151 @ 0ee3a766:0x27bfa9d
-$func58948 @ 0ee3a766:0x15798ca
-$func638 @ 0ee3a766:0x105766
-$func129821 @ 0ee3a766:0x28338a9
-$jl @ 0ee3a766:0x27bc043
-invoke_viiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func26256 @ 0ee3a766:0x8446af
-$func163240 @ 0ee3a766:0x2fb9041
-$func88853 @ 0ee3a766:0x1fe20c3
-$func885 @ 0ee3a766:0x10e026
-$func67779 @ 0ee3a766:0x1a41055
-$jl @ 0ee3a766:0x27bc043
-invoke_viiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func38043 @ 0ee3a766:0xd1a335
-$func38044 @ 0ee3a766:0xd1af15
-$func154027 @ 0ee3a766:0x2e3a1cd
-$func147802 @ 0ee3a766:0x2ccaab7
-$func15554 @ 0ee3a766:0x4c847b
-$Vk @ 0ee3a766:0x27bc0e8
-invoke_iiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func3409 @ 0ee3a766:0x17e444
-$func70614 @ 0ee3a766:0x1b39908
-$func2190 @ 0ee3a766:0x144dae
-$func6634 @ 0ee3a766:0x22871e
-$func64375 @ 0ee3a766:0x1932406
-$func142624 @ 0ee3a766:0x2bde8b4
-$func5357 @ 0ee3a766:0x1e2fbf
-$func142625 @ 0ee3a766:0x2bdec28
-$func65513 @ 0ee3a766:0x19c5e33
-$func65514 @ 0ee3a766:0x19c5edb
-$func64730 @ 0ee3a766:0x1958d19
-$func64731 @ 0ee3a766:0x195933e
-$func142942 @ 0ee3a766:0x2c065c4
-$func64727 @ 0ee3a766:0x19589dc
-$func36819 @ 0ee3a766:0xccefe2
-$func25001 @ 0ee3a766:0x7eb37e
-$func58978 @ 0ee3a766:0x157fef5
-$yk @ 0ee3a766:0x27d0da7
-Module._main @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-callMain @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-doRun @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-run @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-runCaller @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-removeRunDependency @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-(anonymous) @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-doCallback @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-done @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-transaction.oncomplete @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-f637aad8-2540-4f62-9d0e-e6807321862f:9  CharacterPortraitData: No eye frames found in Resources/Graphics/Characters/Dina/Eyes
-
-_JS_Log_Dump @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func37261 @ 0ee3a766:0xcfbb28
-$func12435 @ 0ee3a766:0x3cd742
-$func128151 @ 0ee3a766:0x27bfa9d
-$func58948 @ 0ee3a766:0x15798ca
-$func638 @ 0ee3a766:0x105766
-$func129821 @ 0ee3a766:0x28338a9
-$jl @ 0ee3a766:0x27bc043
-invoke_viiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func26256 @ 0ee3a766:0x8446af
-$func163240 @ 0ee3a766:0x2fb9041
-$func88853 @ 0ee3a766:0x1fe20c3
-$func885 @ 0ee3a766:0x10e026
-$func67779 @ 0ee3a766:0x1a41129
-$jl @ 0ee3a766:0x27bc043
-invoke_viiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func38043 @ 0ee3a766:0xd1a335
-$func38044 @ 0ee3a766:0xd1af15
-$func154027 @ 0ee3a766:0x2e3a1cd
-$func147802 @ 0ee3a766:0x2ccaab7
-$func15554 @ 0ee3a766:0x4c847b
-$Vk @ 0ee3a766:0x27bc0e8
-invoke_iiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func3409 @ 0ee3a766:0x17e444
-$func70614 @ 0ee3a766:0x1b39908
-$func2190 @ 0ee3a766:0x144dae
-$func6634 @ 0ee3a766:0x22871e
-$func64375 @ 0ee3a766:0x1932406
-$func142624 @ 0ee3a766:0x2bde8b4
-$func5357 @ 0ee3a766:0x1e2fbf
-$func142625 @ 0ee3a766:0x2bdec28
-$func65513 @ 0ee3a766:0x19c5e33
-$func65514 @ 0ee3a766:0x19c5edb
-$func64730 @ 0ee3a766:0x1958d19
-$func64731 @ 0ee3a766:0x195933e
-$func142942 @ 0ee3a766:0x2c065c4
-$func64727 @ 0ee3a766:0x19589dc
-$func36819 @ 0ee3a766:0xccefe2
-$func25001 @ 0ee3a766:0x7eb37e
-$func58978 @ 0ee3a766:0x157fef5
-$yk @ 0ee3a766:0x27d0da7
-Module._main @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-callMain @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-doRun @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-run @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-runCaller @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-removeRunDependency @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-(anonymous) @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-doCallback @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-done @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-transaction.oncomplete @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-f637aad8-2540-4f62-9d0e-e6807321862f:9  CharacterPortraitData: No base sprite found in Resources/Graphics/Characters/Noam/Base
-
-_JS_Log_Dump @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func37261 @ 0ee3a766:0xcfbb28
-$func12435 @ 0ee3a766:0x3cd742
-$func128151 @ 0ee3a766:0x27bfa9d
-$func58948 @ 0ee3a766:0x15798ca
-$func638 @ 0ee3a766:0x105766
-$func129821 @ 0ee3a766:0x28338a9
-$jl @ 0ee3a766:0x27bc043
-invoke_viiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func26256 @ 0ee3a766:0x8446af
-$func163240 @ 0ee3a766:0x2fb9041
-$func88853 @ 0ee3a766:0x1fe20c3
-$func885 @ 0ee3a766:0x10e026
-$func67779 @ 0ee3a766:0x1a40f93
-$jl @ 0ee3a766:0x27bc043
-invoke_viiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func38043 @ 0ee3a766:0xd1a335
-$func38044 @ 0ee3a766:0xd1af15
-$func154027 @ 0ee3a766:0x2e3a1cd
-$func147802 @ 0ee3a766:0x2ccaab7
-$func15554 @ 0ee3a766:0x4c847b
-$Vk @ 0ee3a766:0x27bc0e8
-invoke_iiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func3409 @ 0ee3a766:0x17e444
-$func70614 @ 0ee3a766:0x1b39908
-$func2190 @ 0ee3a766:0x144dae
-$func6634 @ 0ee3a766:0x22871e
-$func64375 @ 0ee3a766:0x1932406
-$func142624 @ 0ee3a766:0x2bde8b4
-$func5357 @ 0ee3a766:0x1e2fbf
-$func142625 @ 0ee3a766:0x2bdec28
-$func65513 @ 0ee3a766:0x19c5e33
-$func65514 @ 0ee3a766:0x19c5edb
-$func64730 @ 0ee3a766:0x1958d19
-$func64731 @ 0ee3a766:0x195933e
-$func142942 @ 0ee3a766:0x2c065c4
-$func64727 @ 0ee3a766:0x19589dc
-$func36819 @ 0ee3a766:0xccefe2
-$func25001 @ 0ee3a766:0x7eb37e
-$func58978 @ 0ee3a766:0x157fef5
-$yk @ 0ee3a766:0x27d0da7
-Module._main @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-callMain @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-doRun @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-run @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-runCaller @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-removeRunDependency @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-(anonymous) @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-doCallback @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-done @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-transaction.oncomplete @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-f637aad8-2540-4f62-9d0e-e6807321862f:9  CharacterPortraitData: No talking frames found in Resources/Graphics/Characters/Noam/Talking
-
-_JS_Log_Dump @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func37261 @ 0ee3a766:0xcfbb28
-$func12435 @ 0ee3a766:0x3cd742
-$func128151 @ 0ee3a766:0x27bfa9d
-$func58948 @ 0ee3a766:0x15798ca
-$func638 @ 0ee3a766:0x105766
-$func129821 @ 0ee3a766:0x28338a9
-$jl @ 0ee3a766:0x27bc043
-invoke_viiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func26256 @ 0ee3a766:0x8446af
-$func163240 @ 0ee3a766:0x2fb9041
-$func88853 @ 0ee3a766:0x1fe20c3
-$func885 @ 0ee3a766:0x10e026
-$func67779 @ 0ee3a766:0x1a41055
-$jl @ 0ee3a766:0x27bc043
-invoke_viiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func38043 @ 0ee3a766:0xd1a335
-$func38044 @ 0ee3a766:0xd1af15
-$func154027 @ 0ee3a766:0x2e3a1cd
-$func147802 @ 0ee3a766:0x2ccaab7
-$func15554 @ 0ee3a766:0x4c847b
-$Vk @ 0ee3a766:0x27bc0e8
-invoke_iiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func3409 @ 0ee3a766:0x17e444
-$func70614 @ 0ee3a766:0x1b39908
-$func2190 @ 0ee3a766:0x144dae
-$func6634 @ 0ee3a766:0x22871e
-$func64375 @ 0ee3a766:0x1932406
-$func142624 @ 0ee3a766:0x2bde8b4
-$func5357 @ 0ee3a766:0x1e2fbf
-$func142625 @ 0ee3a766:0x2bdec28
-$func65513 @ 0ee3a766:0x19c5e33
-$func65514 @ 0ee3a766:0x19c5edb
-$func64730 @ 0ee3a766:0x1958d19
-$func64731 @ 0ee3a766:0x195933e
-$func142942 @ 0ee3a766:0x2c065c4
-$func64727 @ 0ee3a766:0x19589dc
-$func36819 @ 0ee3a766:0xccefe2
-$func25001 @ 0ee3a766:0x7eb37e
-$func58978 @ 0ee3a766:0x157fef5
-$yk @ 0ee3a766:0x27d0da7
-Module._main @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-callMain @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-doRun @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-run @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-runCaller @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-removeRunDependency @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-(anonymous) @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-doCallback @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-done @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-transaction.oncomplete @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-f637aad8-2540-4f62-9d0e-e6807321862f:9  CharacterPortraitData: No eye frames found in Resources/Graphics/Characters/Noam/Eyes
-
-_JS_Log_Dump @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func37261 @ 0ee3a766:0xcfbb28
-$func12435 @ 0ee3a766:0x3cd742
-$func128151 @ 0ee3a766:0x27bfa9d
-$func58948 @ 0ee3a766:0x15798ca
-$func638 @ 0ee3a766:0x105766
-$func129821 @ 0ee3a766:0x28338a9
-$jl @ 0ee3a766:0x27bc043
-invoke_viiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func26256 @ 0ee3a766:0x8446af
-$func163240 @ 0ee3a766:0x2fb9041
-$func88853 @ 0ee3a766:0x1fe20c3
-$func885 @ 0ee3a766:0x10e026
-$func67779 @ 0ee3a766:0x1a41129
-$jl @ 0ee3a766:0x27bc043
-invoke_viiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func38043 @ 0ee3a766:0xd1a335
-$func38044 @ 0ee3a766:0xd1af15
-$func154027 @ 0ee3a766:0x2e3a1cd
-$func147802 @ 0ee3a766:0x2ccaab7
-$func15554 @ 0ee3a766:0x4c847b
-$Vk @ 0ee3a766:0x27bc0e8
-invoke_iiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func3409 @ 0ee3a766:0x17e444
-$func70614 @ 0ee3a766:0x1b39908
-$func2190 @ 0ee3a766:0x144dae
-$func6634 @ 0ee3a766:0x22871e
-$func64375 @ 0ee3a766:0x1932406
-$func142624 @ 0ee3a766:0x2bde8b4
-$func5357 @ 0ee3a766:0x1e2fbf
-$func142625 @ 0ee3a766:0x2bdec28
-$func65513 @ 0ee3a766:0x19c5e33
-$func65514 @ 0ee3a766:0x19c5edb
-$func64730 @ 0ee3a766:0x1958d19
-$func64731 @ 0ee3a766:0x195933e
-$func142942 @ 0ee3a766:0x2c065c4
-$func64727 @ 0ee3a766:0x19589dc
-$func36819 @ 0ee3a766:0xccefe2
-$func25001 @ 0ee3a766:0x7eb37e
-$func58978 @ 0ee3a766:0x157fef5
-$yk @ 0ee3a766:0x27d0da7
-Module._main @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-callMain @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-doRun @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-run @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-runCaller @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-removeRunDependency @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-(anonymous) @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-doCallback @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-done @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-transaction.oncomplete @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-f637aad8-2540-4f62-9d0e-e6807321862f:9  CharacterPortraitData: No base sprite found in Resources/Graphics/Characters/Max/Base
-
-_JS_Log_Dump @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func37261 @ 0ee3a766:0xcfbb28
-$func12435 @ 0ee3a766:0x3cd742
-$func128151 @ 0ee3a766:0x27bfa9d
-$func58948 @ 0ee3a766:0x15798ca
-$func638 @ 0ee3a766:0x105766
-$func129821 @ 0ee3a766:0x28338a9
-$jl @ 0ee3a766:0x27bc043
-invoke_viiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func26256 @ 0ee3a766:0x8446af
-$func163240 @ 0ee3a766:0x2fb9041
-$func88853 @ 0ee3a766:0x1fe20c3
-$func885 @ 0ee3a766:0x10e026
-$func67779 @ 0ee3a766:0x1a40f93
-$jl @ 0ee3a766:0x27bc043
-invoke_viiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func38043 @ 0ee3a766:0xd1a335
-$func38044 @ 0ee3a766:0xd1af15
-$func154027 @ 0ee3a766:0x2e3a1cd
-$func147802 @ 0ee3a766:0x2ccaab7
-$func15554 @ 0ee3a766:0x4c847b
-$Vk @ 0ee3a766:0x27bc0e8
-invoke_iiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func3409 @ 0ee3a766:0x17e444
-$func70614 @ 0ee3a766:0x1b39908
-$func2190 @ 0ee3a766:0x144dae
-$func6634 @ 0ee3a766:0x22871e
-$func64375 @ 0ee3a766:0x1932406
-$func142624 @ 0ee3a766:0x2bde8b4
-$func5357 @ 0ee3a766:0x1e2fbf
-$func142625 @ 0ee3a766:0x2bdec28
-$func65513 @ 0ee3a766:0x19c5e33
-$func65514 @ 0ee3a766:0x19c5edb
-$func64730 @ 0ee3a766:0x1958d19
-$func64731 @ 0ee3a766:0x195933e
-$func142942 @ 0ee3a766:0x2c065c4
-$func64727 @ 0ee3a766:0x19589dc
-$func36819 @ 0ee3a766:0xccefe2
-$func25001 @ 0ee3a766:0x7eb37e
-$func58978 @ 0ee3a766:0x157fef5
-$yk @ 0ee3a766:0x27d0da7
-Module._main @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-callMain @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-doRun @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-run @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-runCaller @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-removeRunDependency @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-(anonymous) @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-doCallback @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-done @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-transaction.oncomplete @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-f637aad8-2540-4f62-9d0e-e6807321862f:9  CharacterPortraitData: No talking frames found in Resources/Graphics/Characters/Max/Talking
-
-_JS_Log_Dump @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func37261 @ 0ee3a766:0xcfbb28
-$func12435 @ 0ee3a766:0x3cd742
-$func128151 @ 0ee3a766:0x27bfa9d
-$func58948 @ 0ee3a766:0x15798ca
-$func638 @ 0ee3a766:0x105766
-$func129821 @ 0ee3a766:0x28338a9
-$jl @ 0ee3a766:0x27bc043
-invoke_viiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func26256 @ 0ee3a766:0x8446af
-$func163240 @ 0ee3a766:0x2fb9041
-$func88853 @ 0ee3a766:0x1fe20c3
-$func885 @ 0ee3a766:0x10e026
-$func67779 @ 0ee3a766:0x1a41055
-$jl @ 0ee3a766:0x27bc043
-invoke_viiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func38043 @ 0ee3a766:0xd1a335
-$func38044 @ 0ee3a766:0xd1af15
-$func154027 @ 0ee3a766:0x2e3a1cd
-$func147802 @ 0ee3a766:0x2ccaab7
-$func15554 @ 0ee3a766:0x4c847b
-$Vk @ 0ee3a766:0x27bc0e8
-invoke_iiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func3409 @ 0ee3a766:0x17e444
-$func70614 @ 0ee3a766:0x1b39908
-$func2190 @ 0ee3a766:0x144dae
-$func6634 @ 0ee3a766:0x22871e
-$func64375 @ 0ee3a766:0x1932406
-$func142624 @ 0ee3a766:0x2bde8b4
-$func5357 @ 0ee3a766:0x1e2fbf
-$func142625 @ 0ee3a766:0x2bdec28
-$func65513 @ 0ee3a766:0x19c5e33
-$func65514 @ 0ee3a766:0x19c5edb
-$func64730 @ 0ee3a766:0x1958d19
-$func64731 @ 0ee3a766:0x195933e
-$func142942 @ 0ee3a766:0x2c065c4
-$func64727 @ 0ee3a766:0x19589dc
-$func36819 @ 0ee3a766:0xccefe2
-$func25001 @ 0ee3a766:0x7eb37e
-$func58978 @ 0ee3a766:0x157fef5
-$yk @ 0ee3a766:0x27d0da7
-Module._main @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-callMain @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-doRun @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-run @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-runCaller @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-removeRunDependency @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-(anonymous) @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-doCallback @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-done @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-transaction.oncomplete @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-f637aad8-2540-4f62-9d0e-e6807321862f:9  CharacterPortraitData: No eye frames found in Resources/Graphics/Characters/Max/Eyes
-
-_JS_Log_Dump @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func37261 @ 0ee3a766:0xcfbb28
-$func12435 @ 0ee3a766:0x3cd742
-$func128151 @ 0ee3a766:0x27bfa9d
-$func58948 @ 0ee3a766:0x15798ca
-$func638 @ 0ee3a766:0x105766
-$func129821 @ 0ee3a766:0x28338a9
-$jl @ 0ee3a766:0x27bc043
-invoke_viiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func26256 @ 0ee3a766:0x8446af
-$func163240 @ 0ee3a766:0x2fb9041
-$func88853 @ 0ee3a766:0x1fe20c3
-$func885 @ 0ee3a766:0x10e026
-$func67779 @ 0ee3a766:0x1a41129
-$jl @ 0ee3a766:0x27bc043
-invoke_viiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func38043 @ 0ee3a766:0xd1a335
-$func38044 @ 0ee3a766:0xd1af15
-$func154027 @ 0ee3a766:0x2e3a1cd
-$func147802 @ 0ee3a766:0x2ccaab7
-$func15554 @ 0ee3a766:0x4c847b
-$Vk @ 0ee3a766:0x27bc0e8
-invoke_iiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func3409 @ 0ee3a766:0x17e444
-$func70614 @ 0ee3a766:0x1b39908
-$func2190 @ 0ee3a766:0x144dae
-$func6634 @ 0ee3a766:0x22871e
-$func64375 @ 0ee3a766:0x1932406
-$func142624 @ 0ee3a766:0x2bde8b4
-$func5357 @ 0ee3a766:0x1e2fbf
-$func142625 @ 0ee3a766:0x2bdec28
-$func65513 @ 0ee3a766:0x19c5e33
-$func65514 @ 0ee3a766:0x19c5edb
-$func64730 @ 0ee3a766:0x1958d19
-$func64731 @ 0ee3a766:0x195933e
-$func142942 @ 0ee3a766:0x2c065c4
-$func64727 @ 0ee3a766:0x19589dc
-$func36819 @ 0ee3a766:0xccefe2
-$func25001 @ 0ee3a766:0x7eb37e
-$func58978 @ 0ee3a766:0x157fef5
-$yk @ 0ee3a766:0x27d0da7
-Module._main @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-callMain @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-doRun @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-run @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-runCaller @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-removeRunDependency @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-(anonymous) @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-doCallback @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-done @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-transaction.oncomplete @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-f637aad8-2540-4f62-9d0e-e6807321862f:9 CharacterSpriteManager: Portrait data dictionary contains 8 entries:
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9   - char_Alice: Base=Alice base_0, Talking=15 frames, Eyes=3 frames
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9   - char_Timmy: Base=timmy_0, Talking=1 frames, Eyes=3 frames
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9   - char_Supervisor: Base=supervisor_0, Talking=1 frames, Eyes=3 frames
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9   - char_Charlotte: Base=charlotte_0, Talking=1 frames, Eyes=3 frames
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9   - char_Ari: Base=ari_0, Talking=1 frames, Eyes=3 frames
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9   - char_Dina: Base=dina_0, Talking=1 frames, Eyes=3 frames
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9   - char_Noam: Base=noam_0, Talking=1 frames, Eyes=3 frames
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9   - char_Max: Base=max_0, Talking=1 frames, Eyes=3 frames
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9 CharacterSpriteManager: Found Canvas via LinePresenter in dialogue system: 'Canvas' on GameObject 'Canvas' (InstanceID: 10146)
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9  CharacterSpriteManager: Canvas mismatch! targetCanvas was 'Canvas' on 'Canvas', but correct Canvas is 'Canvas' on 'Canvas'. Updating...
-
-_JS_Log_Dump @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func37261 @ 0ee3a766:0xcfbb28
-$func12435 @ 0ee3a766:0x3cd742
-$func128151 @ 0ee3a766:0x27bfa9d
-$func58948 @ 0ee3a766:0x15798ca
-$func638 @ 0ee3a766:0x105766
-$func129821 @ 0ee3a766:0x28338a9
-$jl @ 0ee3a766:0x27bc043
-invoke_viiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func26256 @ 0ee3a766:0x8446af
-$func163240 @ 0ee3a766:0x2fb9041
-$func88853 @ 0ee3a766:0x1fe20c3
-$func885 @ 0ee3a766:0x10e026
-$func67776 @ 0ee3a766:0x1a3f172
-$func154027 @ 0ee3a766:0x2e3a1dd
-$func147802 @ 0ee3a766:0x2ccaab7
-$func15554 @ 0ee3a766:0x4c847b
-$Vk @ 0ee3a766:0x27bc0e8
-invoke_iiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func3409 @ 0ee3a766:0x17e444
-$func70614 @ 0ee3a766:0x1b39908
-$func2190 @ 0ee3a766:0x144dae
-$func6634 @ 0ee3a766:0x22871e
-$func64375 @ 0ee3a766:0x1932406
-$func142624 @ 0ee3a766:0x2bde8b4
-$func5357 @ 0ee3a766:0x1e2fbf
-$func142625 @ 0ee3a766:0x2bdec28
-$func65513 @ 0ee3a766:0x19c5e33
-$func65514 @ 0ee3a766:0x19c5edb
-$func64730 @ 0ee3a766:0x1958d19
-$func64731 @ 0ee3a766:0x195933e
-$func142942 @ 0ee3a766:0x2c065c4
-$func64727 @ 0ee3a766:0x19589dc
-$func36819 @ 0ee3a766:0xccefe2
-$func25001 @ 0ee3a766:0x7eb37e
-$func58978 @ 0ee3a766:0x157fef5
-$yk @ 0ee3a766:0x27d0da7
-Module._main @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-callMain @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-doRun @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-run @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-runCaller @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-removeRunDependency @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-(anonymous) @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-doCallback @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-done @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-transaction.oncomplete @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-f637aad8-2540-4f62-9d0e-e6807321862f:9 CharacterSpriteManager: Setting up sprites in Canvas 'Canvas' on GameObject 'Canvas' (InstanceID: 10146)
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9 === Canvas Hierarchy BEFORE sprite creation ===
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9 Canvas: 'Canvas' on GameObject 'Canvas'
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9 Total children: 7
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9   [0] Scene Background (ACTIVE)
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9   [1] Line Presenter (ACTIVE)
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9   [2] Options Presenter (ACTIVE)
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9   [3] PauseMenuPanel (ACTIVE)
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9   [4] OpenFeedbackFormButton (ACTIVE)
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9   [5] Feedback Form (INACTIVE)
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9   [6] PauseHintText (ACTIVE)
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9 === End Hierarchy ===
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9 CharacterSpriteManager: Background index: 0, Dialogue UI index: 1
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9 CharacterSpriteManager: Calculated target sprite index: 1 (background: 0, dialogue: 1)
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9 CharacterSpriteManager: Creating sprites as children of Canvas 'Canvas' on 'Canvas'
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9 CharacterSpriteManager: Left sprite parent confirmed: 'Canvas'
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9 CharacterSpriteManager: Left sprite placed at sibling index: 1 in Canvas 'Canvas'
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9 CharacterSpriteManager: Dialogue UI index after left sprite placement: 2
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9 CharacterSpriteManager: Right sprite parent confirmed: 'Canvas'
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9 CharacterSpriteManager: Right sprite placed at sibling index: 2 in Canvas 'Canvas'
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9 === Canvas Hierarchy AFTER sprite creation ===
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9 Canvas: 'Canvas' on GameObject 'Canvas'
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9 Total children: 9
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9   [0] Scene Background (ACTIVE)
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9   [1] CharacterPortraitFrame_Left (INACTIVE) <-- LEFT SPRITE
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9   [2] CharacterPortraitFrame_Right (ACTIVE) <-- RIGHT SPRITE
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9   [3] Line Presenter (ACTIVE)
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9   [4] Options Presenter (ACTIVE)
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9   [5] PauseMenuPanel (ACTIVE)
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9   [6] OpenFeedbackFormButton (ACTIVE)
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9   [7] Feedback Form (INACTIVE)
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9   [8] PauseHintText (ACTIVE)
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9 === End Hierarchy ===
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9 CharacterSpriteManager: FINAL INDICES - Background: 0, Left Sprite: 1, Right Sprite: 2, Dialogue UI: 3
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9 BackgroundCommandHandler: Auto-loaded background 'bg_breakroom' from Resources (sprite: bg_breakroom_0)
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9 BackgroundCommandHandler: Auto-loaded background 'bg_bsod' from Resources (sprite: bg_bsod_0)
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9 BackgroundCommandHandler: Auto-loaded background 'bg_cafeteria' from Resources (sprite: bg_cafeteria_0)
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9 BackgroundCommandHandler: Auto-loaded background 'bg_classroom' from Resources (sprite: bg_classroom_0)
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9 BackgroundCommandHandler: Auto-loaded background 'bg_companystore' from Resources (sprite: bg_companystore_0)
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9 BackgroundCommandHandler: Auto-loaded background 'bg_conferenceroom' from Resources (sprite: bg_conferenceroom_0)
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9 BackgroundCommandHandler: Auto-loaded background 'bg_day_planner' from Resources (sprite: bg_day_planner_0)
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9 BackgroundCommandHandler: Auto-loaded background 'bg_gym' from Resources (sprite: bg_gym_0)
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9 BackgroundCommandHandler: Auto-loaded background 'bg_hall' from Resources (sprite: bg_hall_0)
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9 BackgroundCommandHandler: Auto-loaded background 'bg_intermission' from Resources (sprite: bg_intermission_0)
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9 BackgroundCommandHandler: Auto-loaded background 'bg_library' from Resources (sprite: bg_library_0)
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9 BackgroundCommandHandler: Auto-loaded background 'bg_loading' from Resources (sprite: bg_loading_0)
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9 BackgroundCommandHandler: Auto-loaded background 'bg_mainmenu' from Resources (sprite: bg_mainmenu_0)
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9 BackgroundCommandHandler: Auto-loaded background 'bg_majoritymind' from Resources (sprite: bg_majoritymind_0)
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9 BackgroundCommandHandler: Auto-loaded background 'bg_mind_meld' from Resources (sprite: bg_mind_meld_0)
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9 BackgroundCommandHandler: Auto-loaded background 'bg_minesweeper' from Resources (sprite: bg_minesweeper_0)
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9 BackgroundCommandHandler: Auto-loaded background 'bg_outside' from Resources (sprite: bg_outside_0)
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9 BackgroundCommandHandler: Auto-loaded background 'bg_party' from Resources (sprite: bg_party_0)
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9 BackgroundCommandHandler: Auto-loaded background 'bg_party_basement' from Resources (sprite: bg_party_basement_0)
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9 BackgroundCommandHandler: Auto-loaded background 'bg_party_upstairs' from Resources (sprite: bg_party_upstairs_0)
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9 BackgroundCommandHandler: Auto-loaded background 'bg_player_desk' from Resources (sprite: bg_player_desk_0)
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9 BackgroundCommandHandler: Auto-loaded background 'bg_supervisoroffice' from Resources (sprite: bg_supervisoroffice_0)
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9 BackgroundCommandHandler: Auto-loaded background 'bg_timmyroom' from Resources (sprite: bg_timmyroom_0)
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9 BackgroundCommandHandler: Auto-loaded background 'bg_timmydesk' from Resources (sprite: bg_timmydesk_0)
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9 BackgroundCommandHandler: Found background Image on 'Scene Background'
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9 BackgroundCommandHandler: Running in build mode, videos will be checked on demand
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9 CommandHandlerRegistrar: Awake() starting - finding and registering command handlers
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9 CommandHandlerRegistrar: Found DialogueRunner on 'Dialogue System'
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9 CommandHandlerRegistrar: Found BackgroundCommandHandler on same GameObject
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9 CommandHandlerRegistrar: Found AudioCommandHandler on same GameObject
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9 CommandHandlerRegistrar: Found CheckpointCommandHandler on same GameObject
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9 CommandHandlerRegistrar: Found FMODAudioManager on same GameObject
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9 CommandHandlerRegistrar: Registered 'bg' command
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9 CommandHandlerRegistrar: Registered 'bgm' and 'sfx' commands
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9 CommandHandlerRegistrar: Registered 'checkpoint' command
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9 CommandHandlerRegistrar: Registered 'store' command with CompanyStore on CompanyStorePanel
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9 CommandHandlerRegistrar: Registered FMOD commands (music, music_stop, fmod, fmod_stop, fmod_loop, fmod_param)
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9 CommandHandlerRegistrar: All commands registered successfully!
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9 CommandHandlerRegistrar: Awake() complete - commands registered
+  CharacterPortraitData: No base sprite found in Resources/Graphics/Characters/Supervisor/Base
+
+_JS_Log_Dump @ 389797bf-a390-40d2-b4c8-65ff9f332080:9
+  CharacterPortraitData: No talking frames found in Resources/Graphics/Characters/Supervisor/Talking
+
+_JS_Log_Dump @ 389797bf-a390-40d2-b4c8-65ff9f332080:9
+  CharacterPortraitData: No eye frames found in Resources/Graphics/Characters/Supervisor/Eyes
+
+_JS_Log_Dump @ 389797bf-a390-40d2-b4c8-65ff9f332080:9
+  CharacterPortraitData: No base sprite found in Resources/Graphics/Characters/Timmy/Base
+
+_JS_Log_Dump @ 389797bf-a390-40d2-b4c8-65ff9f332080:9
+  CharacterPortraitData: No talking frames found in Resources/Graphics/Characters/Timmy/Talking
+
+_JS_Log_Dump @ 389797bf-a390-40d2-b4c8-65ff9f332080:9
+  CharacterPortraitData: No eye frames found in Resources/Graphics/Characters/Timmy/Eyes
+
+_JS_Log_Dump @ 389797bf-a390-40d2-b4c8-65ff9f332080:9
+  CharacterPortraitData: No base sprite found in Resources/Graphics/Characters/Btc/Base
+
+_JS_Log_Dump @ 389797bf-a390-40d2-b4c8-65ff9f332080:9
+  CharacterPortraitData: No talking frames found in Resources/Graphics/Characters/Btc/Talking
+
+_JS_Log_Dump @ 389797bf-a390-40d2-b4c8-65ff9f332080:9
+  CharacterPortraitData: No eye frames found in Resources/Graphics/Characters/Btc/Eyes
+
+_JS_Log_Dump @ 389797bf-a390-40d2-b4c8-65ff9f332080:9
+  CharacterPortraitData: No base sprite found in Resources/Graphics/Characters/Ari/Base
+
+_JS_Log_Dump @ 389797bf-a390-40d2-b4c8-65ff9f332080:9
+  CharacterPortraitData: No talking frames found in Resources/Graphics/Characters/Ari/Talking
+
+_JS_Log_Dump @ 389797bf-a390-40d2-b4c8-65ff9f332080:9
+  CharacterPortraitData: No eye frames found in Resources/Graphics/Characters/Ari/Eyes
+
+_JS_Log_Dump @ 389797bf-a390-40d2-b4c8-65ff9f332080:9
+  CharacterPortraitData: No base sprite found in Resources/Graphics/Characters/Charlotte/Base
+
+_JS_Log_Dump @ 389797bf-a390-40d2-b4c8-65ff9f332080:9
+  CharacterPortraitData: No talking frames found in Resources/Graphics/Characters/Charlotte/Talking
+
+_JS_Log_Dump @ 389797bf-a390-40d2-b4c8-65ff9f332080:9
+  CharacterPortraitData: No eye frames found in Resources/Graphics/Characters/Charlotte/Eyes
+
+_JS_Log_Dump @ 389797bf-a390-40d2-b4c8-65ff9f332080:9
+  CharacterPortraitData: No base sprite found in Resources/Graphics/Characters/Dina/Base
+
+_JS_Log_Dump @ 389797bf-a390-40d2-b4c8-65ff9f332080:9
+  CharacterPortraitData: No talking frames found in Resources/Graphics/Characters/Dina/Talking
+
+_JS_Log_Dump @ 389797bf-a390-40d2-b4c8-65ff9f332080:9
+  CharacterPortraitData: No eye frames found in Resources/Graphics/Characters/Dina/Eyes
+
+_JS_Log_Dump @ 389797bf-a390-40d2-b4c8-65ff9f332080:9
+  CharacterPortraitData: No base sprite found in Resources/Graphics/Characters/Noam/Base
+
+_JS_Log_Dump @ 389797bf-a390-40d2-b4c8-65ff9f332080:9
+  CharacterPortraitData: No talking frames found in Resources/Graphics/Characters/Noam/Talking
+
+_JS_Log_Dump @ 389797bf-a390-40d2-b4c8-65ff9f332080:9
+  CharacterPortraitData: No eye frames found in Resources/Graphics/Characters/Noam/Eyes
+
+_JS_Log_Dump @ 389797bf-a390-40d2-b4c8-65ff9f332080:9
+  CharacterPortraitData: No base sprite found in Resources/Graphics/Characters/Max/Base
+
+_JS_Log_Dump @ 389797bf-a390-40d2-b4c8-65ff9f332080:9
+  CharacterPortraitData: No talking frames found in Resources/Graphics/Characters/Max/Talking
+
+_JS_Log_Dump @ 389797bf-a390-40d2-b4c8-65ff9f332080:9
+  CharacterPortraitData: No eye frames found in Resources/Graphics/Characters/Max/Eyes
+
+_JS_Log_Dump @ 389797bf-a390-40d2-b4c8-65ff9f332080:9
+ CharacterSpriteManager: Portrait data dictionary contains 8 entries:
+
+   - char_Alice: Base=Alice base_0, Talking=15 frames, Eyes=3 frames
+
+   - char_Timmy: Base=timmy_0, Talking=1 frames, Eyes=3 frames
+
+   - char_Supervisor: Base=supervisor_0, Talking=1 frames, Eyes=3 frames
+
+   - char_Charlotte: Base=charlotte_0, Talking=1 frames, Eyes=3 frames
+
+   - char_Ari: Base=ari_0, Talking=1 frames, Eyes=3 frames
+
+   - char_Dina: Base=dina_0, Talking=1 frames, Eyes=3 frames
+
+   - char_Noam: Base=noam_0, Talking=1 frames, Eyes=3 frames
+
+   - char_Max: Base=max_0, Talking=1 frames, Eyes=3 frames
+
+ CharacterSpriteManager: Found Canvas via LinePresenter in dialogue system: 'Canvas' on GameObject 'Canvas' (InstanceID: 10146)
+
+  CharacterSpriteManager: Canvas mismatch! targetCanvas was 'Canvas' on 'Canvas', but correct Canvas is 'Canvas' on 'Canvas'. Updating...
+
+_JS_Log_Dump @ 389797bf-a390-40d2-b4c8-65ff9f332080:9
+ CharacterSpriteManager: Setting up sprites in Canvas 'Canvas' on GameObject 'Canvas' (InstanceID: 10146)
+
+ === Canvas Hierarchy BEFORE sprite creation ===
+
+ Canvas: 'Canvas' on GameObject 'Canvas'
+
+ Total children: 7
+
+   [0] Scene Background (ACTIVE)
+
+   [1] Line Presenter (ACTIVE)
+
+   [2] Options Presenter (ACTIVE)
+
+   [3] PauseMenuPanel (ACTIVE)
+
+   [4] OpenFeedbackFormButton (ACTIVE)
+
+   [5] Feedback Form (INACTIVE)
+
+   [6] PauseHintText (ACTIVE)
+
+ === End Hierarchy ===
+
+ CharacterSpriteManager: Background index: 0, Dialogue UI index: 1
+
+ CharacterSpriteManager: Calculated target sprite index: 1 (background: 0, dialogue: 1)
+
+ CharacterSpriteManager: Creating sprites as children of Canvas 'Canvas' on 'Canvas'
+
+ CharacterSpriteManager: Left sprite parent confirmed: 'Canvas'
+
+ CharacterSpriteManager: Left sprite placed at sibling index: 1 in Canvas 'Canvas'
+
+ CharacterSpriteManager: Dialogue UI index after left sprite placement: 2
+
+ CharacterSpriteManager: Right sprite parent confirmed: 'Canvas'
+
+ CharacterSpriteManager: Right sprite placed at sibling index: 2 in Canvas 'Canvas'
+
+ === Canvas Hierarchy AFTER sprite creation ===
+
+ Canvas: 'Canvas' on GameObject 'Canvas'
+
+ Total children: 9
+
+   [0] Scene Background (ACTIVE)
+
+   [1] CharacterPortraitFrame_Left (INACTIVE) <-- LEFT SPRITE
+
+   [2] CharacterPortraitFrame_Right (ACTIVE) <-- RIGHT SPRITE
+
+   [3] Line Presenter (ACTIVE)
+
+   [4] Options Presenter (ACTIVE)
+
+   [5] PauseMenuPanel (ACTIVE)
+
+   [6] OpenFeedbackFormButton (ACTIVE)
+
+   [7] Feedback Form (INACTIVE)
+
+   [8] PauseHintText (ACTIVE)
+
+ === End Hierarchy ===
+
+ CharacterSpriteManager: FINAL INDICES - Background: 0, Left Sprite: 1, Right Sprite: 2, Dialogue UI: 3
+
+ BackgroundCommandHandler: Auto-loaded background 'bg_breakroom' from Resources (sprite: bg_breakroom_0)
+
+ BackgroundCommandHandler: Auto-loaded background 'bg_bsod' from Resources (sprite: bg_bsod_0)
+
+ BackgroundCommandHandler: Auto-loaded background 'bg_cafeteria' from Resources (sprite: bg_cafeteria_0)
+
+ BackgroundCommandHandler: Auto-loaded background 'bg_classroom' from Resources (sprite: bg_classroom_0)
+
+ BackgroundCommandHandler: Auto-loaded background 'bg_companystore' from Resources (sprite: bg_companystore_0)
+
+ BackgroundCommandHandler: Auto-loaded background 'bg_conferenceroom' from Resources (sprite: bg_conferenceroom_0)
+
+ BackgroundCommandHandler: Auto-loaded background 'bg_day_planner' from Resources (sprite: bg_day_planner_0)
+
+ BackgroundCommandHandler: Auto-loaded background 'bg_gym' from Resources (sprite: bg_gym_0)
+
+ BackgroundCommandHandler: Auto-loaded background 'bg_hall' from Resources (sprite: bg_hall_0)
+
+ BackgroundCommandHandler: Auto-loaded background 'bg_intermission' from Resources (sprite: bg_intermission_0)
+
+ BackgroundCommandHandler: Auto-loaded background 'bg_library' from Resources (sprite: bg_library_0)
+
+ BackgroundCommandHandler: Auto-loaded background 'bg_loading' from Resources (sprite: bg_loading_0)
+
+ BackgroundCommandHandler: Auto-loaded background 'bg_mainmenu' from Resources (sprite: bg_mainmenu_0)
+
+ BackgroundCommandHandler: Auto-loaded background 'bg_majoritymind' from Resources (sprite: bg_majoritymind_0)
+
+ BackgroundCommandHandler: Auto-loaded background 'bg_mind_meld' from Resources (sprite: bg_mind_meld_0)
+
+ BackgroundCommandHandler: Auto-loaded background 'bg_minesweeper' from Resources (sprite: bg_minesweeper_0)
+
+ BackgroundCommandHandler: Auto-loaded background 'bg_outside' from Resources (sprite: bg_outside_0)
+
+ BackgroundCommandHandler: Auto-loaded background 'bg_party' from Resources (sprite: bg_party_0)
+
+ BackgroundCommandHandler: Auto-loaded background 'bg_party_basement' from Resources (sprite: bg_party_basement_0)
+
+ BackgroundCommandHandler: Auto-loaded background 'bg_party_upstairs' from Resources (sprite: bg_party_upstairs_0)
+
+ BackgroundCommandHandler: Auto-loaded background 'bg_player_desk' from Resources (sprite: bg_player_desk_0)
+
+ BackgroundCommandHandler: Auto-loaded background 'bg_supervisoroffice' from Resources (sprite: bg_supervisoroffice_0)
+
+ BackgroundCommandHandler: Auto-loaded background 'bg_timmyroom' from Resources (sprite: bg_timmyroom_0)
+
+ BackgroundCommandHandler: Auto-loaded background 'bg_timmydesk' from Resources (sprite: bg_timmydesk_0)
+
+ BackgroundCommandHandler: Found background Image on 'Scene Background'
+
+ BackgroundCommandHandler: Running in build mode, videos will be checked on demand
+
+ CommandHandlerRegistrar: Awake() starting - finding and registering command handlers
+
+ CommandHandlerRegistrar: Found DialogueRunner on 'Dialogue System'
+
+ CommandHandlerRegistrar: Found BackgroundCommandHandler on same GameObject
+
+ CommandHandlerRegistrar: Found AudioCommandHandler on same GameObject
+
+ CommandHandlerRegistrar: Found CheckpointCommandHandler on same GameObject
+
+ CommandHandlerRegistrar: Found FMODAudioManager on same GameObject
+
+ CommandHandlerRegistrar: Registered 'bg' command
+
+ CommandHandlerRegistrar: Registered 'bgm' and 'sfx' commands
+
+ CommandHandlerRegistrar: Registered 'checkpoint' command
+
+ CommandHandlerRegistrar: Registered 'store' command with CompanyStore on CompanyStorePanel
+
+ CommandHandlerRegistrar: Registered FMOD commands (music, music_stop, fmod, fmod_stop, fmod_loop, fmod_param)
+
+ CommandHandlerRegistrar: All commands registered successfully!
+
+ CommandHandlerRegistrar: Awake() complete - commands registered
 
  MVPCommandHandlers: Registered 3 command handler(s) (bg->BackgroundCommandHandler) (bgm/sfx->AudioCommandHandler)
 
@@ -1710,75 +464,7 @@ f637aad8-2540-4f62-9d0e-e6807321862f:9 CommandHandlerRegistrar: Awake() complete
 
   BGM Command: No audio clip found for key 'cyberpunk_background_cyberpunk_background_main'. Available keys: ...
 
-_JS_Log_Dump @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func37261 @ 0ee3a766:1
-$func12435 @ 0ee3a766:1
-$func128151 @ 0ee3a766:1
-$func58948 @ 0ee3a766:1
-$func638 @ 0ee3a766:1
-$func129821 @ 0ee3a766:1
-$jl @ 0ee3a766:1
-invoke_viiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func26256 @ 0ee3a766:1
-$func163240 @ 0ee3a766:1
-$func88853 @ 0ee3a766:1
-$func885 @ 0ee3a766:1
-$func67792 @ 0ee3a766:1
-$func153972 @ 0ee3a766:1
-$func66465 @ 0ee3a766:1
-$func15554 @ 0ee3a766:1
-$Vk @ 0ee3a766:1
-invoke_iiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func3409 @ 0ee3a766:1
-$func25275 @ 0ee3a766:1
-$func26040 @ 0ee3a766:1
-$$k @ 0ee3a766:1
-invoke_iiiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func155619 @ 0ee3a766:1
-$func2265 @ 0ee3a766:1
-$func50426 @ 0ee3a766:1
-$func102776 @ 0ee3a766:1
-$Al @ 0ee3a766:1
-invoke_viiiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func31068 @ 0ee3a766:1
-$func102115 @ 0ee3a766:1
-$func4250 @ 0ee3a766:1
-$func50409 @ 0ee3a766:1
-$func102735 @ 0ee3a766:1
-$func58530 @ 0ee3a766:1
-$func58532 @ 0ee3a766:1
-$func127812 @ 0ee3a766:1
-$Yk @ 0ee3a766:1
-invoke_vii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func31072 @ 0ee3a766:1
-$func102116 @ 0ee3a766:1
-$func3563 @ 0ee3a766:1
-$func50412 @ 0ee3a766:1
-$func10030 @ 0ee3a766:1
-$func154157 @ 0ee3a766:1
-$func147802 @ 0ee3a766:1
-$func15554 @ 0ee3a766:1
-$Vk @ 0ee3a766:1
-invoke_iiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func3409 @ 0ee3a766:1
-$func70614 @ 0ee3a766:1
-$func2190 @ 0ee3a766:1
-$func12742 @ 0ee3a766:1
-$func142626 @ 0ee3a766:1
-$func133011 @ 0ee3a766:1
-$func142847 @ 0ee3a766:1
-$func59336 @ 0ee3a766:1
-$func59336 @ 0ee3a766:1
-$func128210 @ 0ee3a766:1
-$Zk @ 0ee3a766:1
-(anonymous) @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-_JS_CallAsLongAsNoExceptionsSeen @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func128209 @ 0ee3a766:1
-$Zk @ 0ee3a766:1
-browserIterationFunc @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-callUserCallback @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-runIter @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-Browser_mainLoop_runner @ f637aad8-2540-4f62-9d0e-e6807321862f:9
+_JS_Log_Dump @ 389797bf-a390-40d2-b4c8-65ff9f332080:9
  CharacterSpriteManager: Node started: R1D1_Start
 
  CharacterSpriteManager: Tags header: '#run_1 #day_1 #morning #scene #char_Supervisor #loc_Office'
@@ -1801,419 +487,227 @@ Browser_mainLoop_runner @ f637aad8-2540-4f62-9d0e-e6807321862f:9
 
   [FMOD] Attempting to play ASIDE_Supervisor but Web Audio may be locked. Waiting for user interaction...
 
-_JS_Log_Dump @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func37261 @ 0ee3a766:1
-$func12435 @ 0ee3a766:1
-$func128151 @ 0ee3a766:1
-$func58948 @ 0ee3a766:1
-$func638 @ 0ee3a766:1
-$func129821 @ 0ee3a766:1
-$jl @ 0ee3a766:1
-invoke_viiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func26256 @ 0ee3a766:1
-$func163240 @ 0ee3a766:1
-$func88853 @ 0ee3a766:1
-$func885 @ 0ee3a766:1
-$func154078 @ 0ee3a766:1
-$func174890 @ 0ee3a766:1
-$func5726 @ 0ee3a766:1
-$func15554 @ 0ee3a766:1
-$Vk @ 0ee3a766:1
-invoke_iiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func3409 @ 0ee3a766:1
-$func70614 @ 0ee3a766:1
-$func2190 @ 0ee3a766:1
-$func37193 @ 0ee3a766:1
-$func36664 @ 0ee3a766:1
-$func129368 @ 0ee3a766:1
-$func1666 @ 0ee3a766:1
-$func38052 @ 0ee3a766:1
-$func154084 @ 0ee3a766:1
-$func4888 @ 0ee3a766:1
-$func15554 @ 0ee3a766:1
-$Vk @ 0ee3a766:1
-invoke_iiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func3409 @ 0ee3a766:1
-$func25275 @ 0ee3a766:1
-$func26040 @ 0ee3a766:1
-$$k @ 0ee3a766:1
-invoke_iiiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func155619 @ 0ee3a766:1
-$func2265 @ 0ee3a766:1
-$func50426 @ 0ee3a766:1
-$func102776 @ 0ee3a766:1
-$Al @ 0ee3a766:1
-invoke_viiiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func31068 @ 0ee3a766:1
-$func102115 @ 0ee3a766:1
-$func4250 @ 0ee3a766:1
-$func50409 @ 0ee3a766:1
-$func102735 @ 0ee3a766:1
-$func58530 @ 0ee3a766:1
-$func58532 @ 0ee3a766:1
-$func127812 @ 0ee3a766:1
-$Yk @ 0ee3a766:1
-invoke_vii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func31072 @ 0ee3a766:1
-$func102116 @ 0ee3a766:1
-$func3563 @ 0ee3a766:1
-$func50412 @ 0ee3a766:1
-$func10030 @ 0ee3a766:1
-$func154157 @ 0ee3a766:1
-$func147802 @ 0ee3a766:1
-$func15554 @ 0ee3a766:1
-$Vk @ 0ee3a766:1
-invoke_iiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func3409 @ 0ee3a766:1
-$func70614 @ 0ee3a766:1
-$func2190 @ 0ee3a766:1
-$func12742 @ 0ee3a766:1
-$func142626 @ 0ee3a766:1
-$func133011 @ 0ee3a766:1
-$func142847 @ 0ee3a766:1
-$func59336 @ 0ee3a766:1
-$func59336 @ 0ee3a766:1
-$func128210 @ 0ee3a766:1
-$Zk @ 0ee3a766:1
-(anonymous) @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-_JS_CallAsLongAsNoExceptionsSeen @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func128209 @ 0ee3a766:1
-$Zk @ 0ee3a766:1
-browserIterationFunc @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-callUserCallback @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-runIter @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-Browser_mainLoop_runner @ f637aad8-2540-4f62-9d0e-e6807321862f:9
+_JS_Log_Dump @ 389797bf-a390-40d2-b4c8-65ff9f332080:9
  [FMOD] Event not found (attempt 1/10), banks may still be loading...
 
  DialogueAdvanceHandler: Disabled ESC key in LineAdvancer
 
  DialogueAdvanceHandler: enableClickToAdvance was disabled; re-enabling to support tap-to-progress across mouse and touch.
 
- === DialogueDebugNavigator: Navigation Enabled ===
-
-   Ctrl+LeftArrow - Go back one node
-
-   Ctrl+R - Resume to saved position
-
-   Ctrl+Shift+C - Clear history
-
-   Ctrl+J - Jump to day menu
-
- ==================================================
-
- ChoiceDiagnostics: Monitoring for option events (via Dialogue Runner state polling)
-
- === Choice Diagnostics Initial State ===
-
- DialogueRunner found: Dialogue System
-
- DialogueRunner has 3 presenter(s) registered
-
-   - Presenter: LinePresenter, Active: True, GameObject: Line Presenter
-
-   - Presenter: OptionsPresenter, Active: True, GameObject: Options Presenter
-
-     Options Presenter - Has Prefab: True
-
-   - Presenter: LineAdvancer, Active: True, GameObject: Line Advancer
-
- Options Presenter found: Options Presenter, Registered: True, Active: True
-
- Line Presenter found: Line Presenter
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9 CommandHandlerRegistrar: Registered 'bg' command
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9 CommandHandlerRegistrar: Registered 'bgm' and 'sfx' commands
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9 CommandHandlerRegistrar: Registered 'checkpoint' command
-
-f637aad8-2540-4f62-9d0e-e6807321862f:9  Failed to register command store: a command by this name has already been registered.
-
-_JS_Log_Dump @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func37261 @ 0ee3a766:0xcfbb28
-$func12435 @ 0ee3a766:0x3cd742
-$func128149 @ 0ee3a766:0x27bfa4f
-$func58948 @ 0ee3a766:0x15798ca
-$func638 @ 0ee3a766:0x105766
-$func129821 @ 0ee3a766:0x28338a9
-$jl @ 0ee3a766:0x27bc043
-invoke_viiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func26256 @ 0ee3a766:0x8446af
-$func163240 @ 0ee3a766:0x2fb9041
-$func88853 @ 0ee3a766:0x1fe20c3
-$func843 @ 0ee3a766:0x10b6d8
-$func50430 @ 0ee3a766:0x126d0a4
-$func102749 @ 0ee3a766:0x22e42bb
-$jl @ 0ee3a766:0x27bc043
-invoke_viiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func38035 @ 0ee3a766:0xd17f50
-$func153977 @ 0ee3a766:0x2e37063
-$func147802 @ 0ee3a766:0x2ccaab7
-$func15554 @ 0ee3a766:0x4c847b
-$Vk @ 0ee3a766:0x27bc0e8
-invoke_iiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func3409 @ 0ee3a766:0x17e444
-$func70614 @ 0ee3a766:0x1b39908
-$func2190 @ 0ee3a766:0x144dae
-$func12742 @ 0ee3a766:0x3ea692
-$func142626 @ 0ee3a766:0x2bdec6d
-$func133011 @ 0ee3a766:0x28944c7
-$func142847 @ 0ee3a766:0x2bfd992
-$func59336 @ 0ee3a766:0x15b7b21
-$func59336 @ 0ee3a766:0x15b7b8d
-$func128210 @ 0ee3a766:0x27d43b9
-$Zk @ 0ee3a766:0x27bc0b9
-(anonymous) @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-_JS_CallAsLongAsNoExceptionsSeen @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func128209 @ 0ee3a766:0x27d114a
-$Zk @ 0ee3a766:0x27bc0b9
-browserIterationFunc @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-callUserCallback @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-runIter @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-Browser_mainLoop_runner @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-f637aad8-2540-4f62-9d0e-e6807321862f:9 CommandHandlerRegistrar: Registered 'store' command with CompanyStore on CompanyStorePanel
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [Debug Nav] Loaded saved resume position: R1D1_Arthur_Intro
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 CommandHandlerRegistrar: Registered FMOD commands (music, music_stop, fmod, fmod_stop, fmod_loop, fmod_param)
+389797bf-a390-40d2-b4c8-65ff9f332080:9 === DialogueDebugNavigator: Navigation Enabled ===
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 CommandHandlerRegistrar: All commands registered successfully!
+389797bf-a390-40d2-b4c8-65ff9f332080:9   Ctrl+LeftArrow - Go back one node
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9  [FMOD] Please add an 'FMOD Studio Listener' component to your camera in the scene for correct 3D positioning of sounds.
+389797bf-a390-40d2-b4c8-65ff9f332080:9   Ctrl+R - Resume to saved position
 
-_JS_Log_Dump @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func37261 @ 0ee3a766:0xcfbb28
-$func12435 @ 0ee3a766:0x3cd742
-$func128151 @ 0ee3a766:0x27bfa9d
-$func58948 @ 0ee3a766:0x15798ca
-$func638 @ 0ee3a766:0x105766
-$func129821 @ 0ee3a766:0x28338a9
-$jl @ 0ee3a766:0x27bc043
-invoke_viiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func26256 @ 0ee3a766:0x8446af
-$func163240 @ 0ee3a766:0x2fb9041
-$func88853 @ 0ee3a766:0x1fe20c3
-$func885 @ 0ee3a766:0x10e026
-$func9043 @ 0ee3a766:0x2c8530
-$func114665 @ 0ee3a766:0x2552b20
-$func147802 @ 0ee3a766:0x2ccaab7
-$func15554 @ 0ee3a766:0x4c847b
-$Vk @ 0ee3a766:0x27bc0e8
-invoke_iiii @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func3409 @ 0ee3a766:0x17e444
-$func70614 @ 0ee3a766:0x1b39908
-$func2190 @ 0ee3a766:0x144dae
-$func36665 @ 0ee3a766:0xcbd4c1
-$func142633 @ 0ee3a766:0x2bdf014
-$func59688 @ 0ee3a766:0x15ef9cb
-$func142850 @ 0ee3a766:0x2bfd9f5
-$func59336 @ 0ee3a766:0x15b7b21
-$func59336 @ 0ee3a766:0x15b7b8d
-$func128210 @ 0ee3a766:0x27d43b9
-$Zk @ 0ee3a766:0x27bc0b9
-(anonymous) @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-_JS_CallAsLongAsNoExceptionsSeen @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-$func128209 @ 0ee3a766:0x27d114a
-$Zk @ 0ee3a766:0x27bc0b9
-browserIterationFunc @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-callUserCallback @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-runIter @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-Browser_mainLoop_runner @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-f637aad8-2540-4f62-9d0e-e6807321862f:9 RenderGraph is now enabled.
+389797bf-a390-40d2-b4c8-65ff9f332080:9   Ctrl+Shift+C - Clear history
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 [FMODWebGLBankLoader] Waited one frame for FMOD initialization
+389797bf-a390-40d2-b4c8-65ff9f332080:9   Ctrl+J - Jump to day menu
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 [FMODWebGLBankLoader] FMOD StudioSystem is valid
+389797bf-a390-40d2-b4c8-65ff9f332080:9   Saved resume position: R1D1_Arthur_Intro
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 [FMODWebGLBankLoader] Loading bank: Master.strings
+389797bf-a390-40d2-b4c8-65ff9f332080:9 ==================================================
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 [FMODWebGLBankLoader] Application.absoluteURL: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/play
+389797bf-a390-40d2-b4c8-65ff9f332080:9 ChoiceDiagnostics: Monitoring for option events (via Dialogue Runner state polling)
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 [FMODWebGLBankLoader] Application.streamingAssetsPath: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets
+389797bf-a390-40d2-b4c8-65ff9f332080:9 === Choice Diagnostics Initial State ===
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 [FMODWebGLBankLoader] Relative URL: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets/Master.strings.bank
+389797bf-a390-40d2-b4c8-65ff9f332080:9 DialogueRunner found: Dialogue System
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 [FMODWebGLBankLoader] Absolute URL: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets/Master.strings.bank
+389797bf-a390-40d2-b4c8-65ff9f332080:9 DialogueRunner has 3 presenter(s) registered
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 [FMODWebGLBankLoader] Attempt 1: Trying relative URL: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets/Master.strings.bank
+389797bf-a390-40d2-b4c8-65ff9f332080:9   - Presenter: LinePresenter, Active: True, GameObject: Line Presenter
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 [FMODWebGLBankLoader] Attempt 1 response code: 200
+389797bf-a390-40d2-b4c8-65ff9f332080:9   - Presenter: OptionsPresenter, Active: True, GameObject: Options Presenter
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 [FMODWebGLBankLoader] Attempt 1 SUCCESS - got 1328 bytes
+389797bf-a390-40d2-b4c8-65ff9f332080:9     Options Presenter - Has Prefab: True
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 [FMODWebGLBankLoader] Downloaded 1328 bytes for Master.strings.bank from https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets/Master.strings.bank
+389797bf-a390-40d2-b4c8-65ff9f332080:9   - Presenter: LineAdvancer, Active: True, GameObject: Line Advancer
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 [FMODWebGLBankLoader] Bank already loaded (by FMOD auto-load): Master.strings.bank
+389797bf-a390-40d2-b4c8-65ff9f332080:9 Options Presenter found: Options Presenter, Registered: True, Active: True
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 [FMODWebGLBankLoader] Loading bank: Master
+389797bf-a390-40d2-b4c8-65ff9f332080:9 Line Presenter found: Line Presenter
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 [FMODWebGLBankLoader] Application.absoluteURL: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/play
+389797bf-a390-40d2-b4c8-65ff9f332080:9 CommandHandlerRegistrar: Registered 'bg' command
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 [FMODWebGLBankLoader] Application.streamingAssetsPath: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets
+389797bf-a390-40d2-b4c8-65ff9f332080:9 CommandHandlerRegistrar: Registered 'bgm' and 'sfx' commands
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 [FMODWebGLBankLoader] Relative URL: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets/Master.bank
+389797bf-a390-40d2-b4c8-65ff9f332080:9 CommandHandlerRegistrar: Registered 'checkpoint' command
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 [FMODWebGLBankLoader] Absolute URL: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets/Master.bank
+389797bf-a390-40d2-b4c8-65ff9f332080:9  Failed to register command store: a command by this name has already been registered.
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 [FMODWebGLBankLoader] Attempt 1: Trying relative URL: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets/Master.bank
+_JS_Log_Dump @ 389797bf-a390-40d2-b4c8-65ff9f332080:9
+389797bf-a390-40d2-b4c8-65ff9f332080:9 CommandHandlerRegistrar: Registered 'store' command with CompanyStore on CompanyStorePanel
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 PortraitTalkingStateController: No character name in line, skipping talking animation
+389797bf-a390-40d2-b4c8-65ff9f332080:9 CommandHandlerRegistrar: Registered FMOD commands (music, music_stop, fmod, fmod_stop, fmod_loop, fmod_param)
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 [FMODWebGLBankLoader] Attempt 1 response code: 200
+389797bf-a390-40d2-b4c8-65ff9f332080:9 CommandHandlerRegistrar: All commands registered successfully!
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 [FMODWebGLBankLoader] Attempt 1 SUCCESS - got 1036 bytes
+389797bf-a390-40d2-b4c8-65ff9f332080:9  [FMOD] Please add an 'FMOD Studio Listener' component to your camera in the scene for correct 3D positioning of sounds.
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 [FMODWebGLBankLoader] Downloaded 1036 bytes for Master.bank from https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets/Master.bank
+_JS_Log_Dump @ 389797bf-a390-40d2-b4c8-65ff9f332080:9
+389797bf-a390-40d2-b4c8-65ff9f332080:9 RenderGraph is now enabled.
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 [FMODWebGLBankLoader] Bank already loaded (by FMOD auto-load): Master.bank
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Waited one frame for FMOD initialization
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 [FMODWebGLBankLoader] Loading bank: Music_A_Side
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] FMOD StudioSystem is valid
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 [FMODWebGLBankLoader] Application.absoluteURL: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/play
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Loading bank: Master.strings
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 [FMODWebGLBankLoader] Application.streamingAssetsPath: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Application.absoluteURL: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/play
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 [FMODWebGLBankLoader] Relative URL: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets/Music_A_Side.bank
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Application.streamingAssetsPath: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 [FMODWebGLBankLoader] Absolute URL: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets/Music_A_Side.bank
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Relative URL: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets/Master.strings.bank
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 [FMODWebGLBankLoader] Attempt 1: Trying relative URL: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets/Music_A_Side.bank
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Absolute URL: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets/Master.strings.bank
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 BackgroundCommandHandler: Creating RenderTexture at 2560x1440 for video
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Attempt 1: Trying relative URL: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets/Master.strings.bank
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 Background: Playing video for bg_supervisoroffice
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Attempt 1 response code: 200
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 [FMODWebGLBankLoader] Attempt 1 response code: 200
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Attempt 1 SUCCESS - got 1328 bytes
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 [FMODWebGLBankLoader] Attempt 1 SUCCESS - got 1722368 bytes
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Downloaded 1328 bytes for Master.strings.bank from https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets/Master.strings.bank
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 [FMODWebGLBankLoader] Downloaded 1722368 bytes for Music_A_Side.bank from https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets/Music_A_Side.bank
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Bank already loaded (by FMOD auto-load): Master.strings.bank
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 [FMODWebGLBankLoader] Bank already loaded (by FMOD auto-load): Music_A_Side.bank
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Loading bank: Master
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 [FMODWebGLBankLoader] Loading bank: Music_B_Side
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Application.absoluteURL: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/play
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 [FMODWebGLBankLoader] Application.absoluteURL: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/play
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Application.streamingAssetsPath: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 [FMODWebGLBankLoader] Application.streamingAssetsPath: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Relative URL: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets/Master.bank
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 [FMODWebGLBankLoader] Relative URL: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets/Music_B_Side.bank
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Absolute URL: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets/Master.bank
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 [FMODWebGLBankLoader] Absolute URL: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets/Music_B_Side.bank
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Attempt 1: Trying relative URL: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets/Master.bank
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 [FMODWebGLBankLoader] Attempt 1: Trying relative URL: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets/Music_B_Side.bank
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Attempt 1 response code: 200
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 [FMODWebGLBankLoader] Attempt 1 response code: 200
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Attempt 1 SUCCESS - got 1036 bytes
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 [FMODWebGLBankLoader] Attempt 1 SUCCESS - got 4527872 bytes
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Downloaded 1036 bytes for Master.bank from https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets/Master.bank
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 [FMODWebGLBankLoader] Downloaded 4527872 bytes for Music_B_Side.bank from https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets/Music_B_Side.bank
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Bank already loaded (by FMOD auto-load): Master.bank
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 [FMODWebGLBankLoader] Bank already loaded (by FMOD auto-load): Music_B_Side.bank
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Loading bank: Music_A_Side
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 [FMODWebGLBankLoader] Loading bank: UI
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Application.absoluteURL: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/play
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 [FMODWebGLBankLoader] Application.absoluteURL: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/play
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Application.streamingAssetsPath: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 [FMODWebGLBankLoader] Application.streamingAssetsPath: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Relative URL: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets/Music_A_Side.bank
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 [FMODWebGLBankLoader] Relative URL: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets/UI.bank
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Absolute URL: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets/Music_A_Side.bank
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 [FMODWebGLBankLoader] Absolute URL: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets/UI.bank
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Attempt 1: Trying relative URL: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets/Music_A_Side.bank
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 [FMODWebGLBankLoader] Attempt 1: Trying relative URL: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets/UI.bank
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Attempt 1 response code: 200
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 [FMODWebGLBankLoader] Attempt 1 response code: 200
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Attempt 1 SUCCESS - got 1722368 bytes
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 [FMODWebGLBankLoader] Attempt 1 SUCCESS - got 494 bytes
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Downloaded 1722368 bytes for Music_A_Side.bank from https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets/Music_A_Side.bank
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 [FMODWebGLBankLoader] Downloaded 494 bytes for UI.bank from https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets/UI.bank
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Bank already loaded (by FMOD auto-load): Music_A_Side.bank
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 [FMODWebGLBankLoader] Bank already loaded (by FMOD auto-load): UI.bank
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Loading bank: Music_B_Side
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 [FMODWebGLBankLoader] All banks processed. Loaded: 5/5
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Application.absoluteURL: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/play
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 [FMODWebGLBankLoader] SUCCESS - All banks loaded!
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Application.streamingAssetsPath: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 [FMODWebGLBankLoader] === BANK STATUS ===
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Relative URL: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets/Music_B_Side.bank
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 [FMODWebGLBankLoader] Total banks loaded in FMOD: 5
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Absolute URL: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets/Music_B_Side.bank
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 [FMODWebGLBankLoader] Bank: bank:/Master.strings | State: LOADED | Events: 0
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Attempt 1: Trying relative URL: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets/Music_B_Side.bank
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 [FMODWebGLBankLoader] Bank: bank:/Master | State: LOADED | Events: 0
+389797bf-a390-40d2-b4c8-65ff9f332080:9 PortraitTalkingStateController: No character name in line, skipping talking animation
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 [FMODWebGLBankLoader] Bank: bank:/Music_A_Side | State: LOADED | Events: 3
+389797bf-a390-40d2-b4c8-65ff9f332080:9 BackgroundCommandHandler: Creating RenderTexture at 2560x1440 for video
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 [FMODWebGLBankLoader] Bank: bank:/UI.bank | State: LOADED | Events: 0
+389797bf-a390-40d2-b4c8-65ff9f332080:9 Background: Playing video for bg_supervisoroffice
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 [FMODWebGLBankLoader] Bank: bank:/Music_B_Side | State: LOADED | Events: 3
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Attempt 1 response code: 200
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 [FMODWebGLBankLoader] Testing event lookup...
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Attempt 1 SUCCESS - got 4527872 bytes
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 [FMODWebGLBankLoader] SUCCESS - event:/ASIDE_Supervisor found!
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Downloaded 4527872 bytes for Music_B_Side.bank from https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets/Music_B_Side.bank
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 [FMODWebGLBankLoader] === END BANK STATUS ===
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Bank already loaded (by FMOD auto-load): Music_B_Side.bank
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 [FMOD] Event found on attempt 2: ASIDE_Supervisor
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Loading bank: UI
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 [FMOD] Started: ASIDE_Supervisor (vol=0.70)
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Application.absoluteURL: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/play
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 PortraitTalkingStateController: Started talking animation for 'Arthur' (char_Supervisor)
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Application.streamingAssetsPath: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 PortraitTalkingStateController: Stopped talking animation for 'char_Supervisor'
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Relative URL: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets/UI.bank
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 PortraitTalkingStateController: No character name in line, skipping talking animation
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Absolute URL: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets/UI.bank
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 CharacterSpriteManager: Node started: R1D1_Arthur_Intro
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Attempt 1: Trying relative URL: https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets/UI.bank
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 CharacterSpriteManager: Tags header: '#run_1 #day_1 #morning #scene #char_Supervisor #char_Alice'
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Attempt 1 response code: 200
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 CharacterSpriteManager: Current background updated to: bg_loading_0
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Attempt 1 SUCCESS - got 494 bytes
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 CharacterSpriteManager: Extracted character tags (before auto-add): [char_Supervisor, char_Alice]
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Downloaded 494 bytes for UI.bank from https://mental-break-git-fix-music-start-ad-a22355-keaton-lees-projects.vercel.app/StreamingAssets/UI.bank
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 CharacterSpriteManager: Did not auto-add Alice - Supervisor present or darkroom or already in list
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Bank already loaded (by FMOD auto-load): UI.bank
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 CharacterSpriteManager: Final character tags: [char_Supervisor, char_Alice]
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] All banks processed. Loaded: 5/5
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 CharacterPortraitAnimator: Initialized for char_Supervisor (Talking: 1 frames, Eyes: 3 frames)
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] SUCCESS - All banks loaded!
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 CharacterSpriteManager: Displaying 'char_Supervisor' on left (base sprite: supervisor_0, 1 talking frames, 3 eye frames)
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] === BANK STATUS ===
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 CharacterPortraitAnimator: Initialized for Alice (Talking: 15 frames, Eyes: 3 frames)
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Total banks loaded in FMOD: 5
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 CharacterSpriteManager: Displaying 'char_Alice' on right (base sprite: Alice base_0, 15 talking frames, 3 eye frames)
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Bank: bank:/Master.strings | State: LOADED | Events: 0
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 [Debug Nav] Node visited: R1D1_Arthur_Intro (History: 1 nodes)
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Bank: bank:/Master | State: LOADED | Events: 0
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9  Manual synchronization of Unity Application.persistentDataPath via JS_FileSystem_Sync() is deprecated and will be later removed in a future Unity version. The persistent data directory will be automatically synchronized instead on file modification. Pass config.autoSyncPersistentDataPath = true; to configuration in createUnityInstance() to opt in to the new behavior.
-_JS_FileSystem_Sync @ f637aad8-2540-4f62-9d0e-e6807321862f:9
-f637aad8-2540-4f62-9d0e-e6807321862f:9 [Debug Nav] Saved resume position: R1D1_Arthur_Intro
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Bank: bank:/Music_A_Side | State: LOADED | Events: 3
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 ChoiceDiagnostics: Node started: R1D1_Arthur_Intro
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Bank: bank:/UI.bank | State: LOADED | Events: 0
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 PortraitTalkingStateController: Started talking animation for 'Arthur' (char_Supervisor)
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Bank: bank:/Music_B_Side | State: LOADED | Events: 3
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 PortraitTalkingStateController: Stopped talking animation for 'char_Supervisor'
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] Testing event lookup...
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 PortraitTalkingStateController: Started talking animation for 'Arthur' (char_Supervisor)
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] SUCCESS - event:/ASIDE_Supervisor found!
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 PortraitTalkingStateController: Stopped talking animation for 'char_Supervisor'
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMODWebGLBankLoader] === END BANK STATUS ===
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 PortraitTalkingStateController: Started talking animation for 'Arthur' (char_Supervisor)
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMOD] Event found on attempt 2: ASIDE_Supervisor
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 PortraitTalkingStateController: Stopped talking animation for 'char_Supervisor'
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [FMOD] Started: ASIDE_Supervisor (vol=0.70)
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 PortraitTalkingStateController: Started talking animation for 'Arthur' (char_Supervisor)
+389797bf-a390-40d2-b4c8-65ff9f332080:9 PortraitTalkingStateController: Started talking animation for 'Arthur' (char_Supervisor)
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 PortraitTalkingStateController: Stopped talking animation for 'char_Supervisor'
+389797bf-a390-40d2-b4c8-65ff9f332080:9 PortraitTalkingStateController: Stopped talking animation for 'char_Supervisor'
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 PortraitTalkingStateController: No character name in line, skipping talking animation
+389797bf-a390-40d2-b4c8-65ff9f332080:9 Resetting audio driver based on user input.
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [DialogueAdvanceHandler] Pointer click, calling WebAudioUnlocker
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 PortraitTalkingStateController: Started talking animation for 'Alice' (char_Alice)
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [WebAudioUnlocker-C#] TryResumeAudioContext called from C#
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 PortraitTalkingStateController: Stopped talking animation for 'char_Alice'
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [WebAudioUnlocker-C#] About to call WebAudio_TryResume() via DllImport
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 PortraitTalkingStateController: Character 'Player' has no portrait, skipping animation
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [WebAudioUnlocker] TryResume called
+389797bf-a390-40d2-b4c8-65ff9f332080:9  [WebAudioUnlocker] No AudioContext found - FMOD may not be initialized yet
+_WebAudio_TryResume @ 389797bf-a390-40d2-b4c8-65ff9f332080:9
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [WebAudioUnlocker-C#] WebAudio_TryResume() returned: 0
 
-f637aad8-2540-4f62-9d0e-e6807321862f:9 [Settings] Saved to PlayerPrefs
+389797bf-a390-40d2-b4c8-65ff9f332080:9  [WebAudioUnlocker] Failed to resume audio context
+
+_JS_Log_Dump @ 389797bf-a390-40d2-b4c8-65ff9f332080:9
+389797bf-a390-40d2-b4c8-65ff9f332080:9  Manual synchronization of Unity Application.persistentDataPath via JS_FileSystem_Sync() is deprecated and will be later removed in a future Unity version. The persistent data directory will be automatically synchronized instead on file modification. Pass config.autoSyncPersistentDataPath = true; to configuration in createUnityInstance() to opt in to the new behavior.
+_JS_FileSystem_Sync @ 389797bf-a390-40d2-b4c8-65ff9f332080:9
+389797bf-a390-40d2-b4c8-65ff9f332080:9 [Settings] Saved to PlayerPrefs
 

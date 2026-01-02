@@ -566,12 +566,34 @@ namespace Yarn.Unity
             switch (UsedInputMode)
             {
                 case InputMode.KeyCodes:
-                    if (InputSystemAvailability.GetKeyDown(hurryUpLineKeyCode)) { this.RequestLineHurryUp(); }
+                    if (InputSystemAvailability.GetKeyDown(hurryUpLineKeyCode))
+                    {
+                        // Browser autoplay fix: Unlock Web Audio context on keyboard input
+                        // Use reflection to avoid hard dependency on custom WebAudioUnlocker class
+                        var webAudioType = System.Type.GetType("WebAudioUnlocker");
+                        if (webAudioType != null)
+                        {
+                            var method = webAudioType.GetMethod("TryResumeAudioContext", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static);
+                            method?.Invoke(null, null);
+                        }
+                        this.RequestLineHurryUp();
+                    }
                     if (InputSystemAvailability.GetKeyDown(nextLineKeyCode)) { this.RequestNextLine(); }
                     if (InputSystemAvailability.GetKeyDown(cancelDialogueKeyCode)) { this.RequestDialogueCancellation(); }
                     break;
                 case InputMode.LegacyInputAxes:
-                    if (string.IsNullOrEmpty(hurryUpLineAxis) == false && Input.GetButtonDown(hurryUpLineAxis)) { this.RequestLineHurryUp(); }
+                    if (string.IsNullOrEmpty(hurryUpLineAxis) == false && Input.GetButtonDown(hurryUpLineAxis))
+                    {
+                        // Browser autoplay fix: Unlock Web Audio context on keyboard input
+                        // Use reflection to avoid hard dependency on custom WebAudioUnlocker class
+                        var webAudioType = System.Type.GetType("WebAudioUnlocker");
+                        if (webAudioType != null)
+                        {
+                            var method = webAudioType.GetMethod("TryResumeAudioContext", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static);
+                            method?.Invoke(null, null);
+                        }
+                        this.RequestLineHurryUp();
+                    }
                     if (string.IsNullOrEmpty(nextLineAxis) == false && Input.GetButtonDown(nextLineAxis)) { this.RequestNextLine(); }
                     if (string.IsNullOrEmpty(cancelDialogueAxis) == false && Input.GetButtonDown(cancelDialogueAxis)) { this.RequestDialogueCancellation(); }
                     break;

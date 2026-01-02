@@ -289,16 +289,8 @@ public class WebGLPostBuild : IPreprocessBuildWithReport, IPostprocessBuildWithR
             string fileName = Path.GetFileName(sourcePath);
             string destPath = Path.Combine(destFolder, fileName).Replace("\\", "/");
 
-            // Copy sprite file
+            // Copy sprite file (AssetDatabase.CopyAsset handles .meta file automatically)
             AssetDatabase.CopyAsset(sourcePath, destPath);
-
-            // CRITICAL: Copy .meta file to preserve Unity settings
-            string sourceMetaPath = sourcePath + ".meta";
-            string destMetaPath = destPath + ".meta";
-            if (File.Exists(sourceMetaPath))
-            {
-                File.Copy(sourceMetaPath, destMetaPath, true);
-            }
 
             copiedCount++;
         }

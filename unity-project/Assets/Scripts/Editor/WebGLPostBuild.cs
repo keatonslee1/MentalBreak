@@ -4,6 +4,7 @@ using UnityEditor.Build.Reporting;
 using UnityEngine;
 using System.IO;
 using System.Collections.Generic;
+using System.Linq;
 
 /// <summary>
 /// Pre and Post-build processor for WebGL builds.

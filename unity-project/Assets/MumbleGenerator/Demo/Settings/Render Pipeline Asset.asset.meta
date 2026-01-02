@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 57dd87ae9a82b1f4896b11e7b1570d8b
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 319430
+  packageName: Mumble Generator
+  packageVersion: 1.0.1
+  assetPath: Assets/MumbleGenerator/Demo/Settings/Render Pipeline Asset.asset
+  uploadId: 807434

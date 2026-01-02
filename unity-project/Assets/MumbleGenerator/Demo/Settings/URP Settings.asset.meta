@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: e32f171f0f8a50c40bf7ffe11a11226d
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 319430
+  packageName: Mumble Generator
+  packageVersion: 1.0.1
+  assetPath: Assets/MumbleGenerator/Demo/Settings/URP Settings.asset
+  uploadId: 807434

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: c7319af36d4ff5f4bb5d9e26a7e44a5f
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 319430
+  packageName: Mumble Generator
+  packageVersion: 1.0.1
+  assetPath: Assets/MumbleGenerator/Demo/Settings/Post Processing Profile.asset
+  uploadId: 807434

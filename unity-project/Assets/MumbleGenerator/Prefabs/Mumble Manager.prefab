@@ -1,0 +1,105 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2726183522863128786
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2126478261501302831}
+  - component: {fileID: 6373038922004787150}
+  m_Layer: 0
+  m_Name: Mumble Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2126478261501302831
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2726183522863128786}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6373038922004787150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2726183522863128786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e1e8ad8d7a6417fb7ce3adc2bec5014, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Animalese:
+  - Letter: a
+    Sound: {fileID: 8300000, guid: 11492357110ed964482577e7b19669ed, type: 3}
+  - Letter: b
+    Sound: {fileID: 8300000, guid: adb02e28531662b4eae1ec2b8485f8f1, type: 3}
+  - Letter: c
+    Sound: {fileID: 8300000, guid: 07c6d8de96f6cec498c9bac3bf70a3c2, type: 3}
+  - Letter: d
+    Sound: {fileID: 8300000, guid: 14c7f7ce9676860478d97394af53f5b9, type: 3}
+  - Letter: e
+    Sound: {fileID: 8300000, guid: 861c4c22eb0ba424a90cd7e488216c6f, type: 3}
+  - Letter: f
+    Sound: {fileID: 8300000, guid: 557b819815553fd48925b3dd6bbeb806, type: 3}
+  - Letter: g
+    Sound: {fileID: 8300000, guid: aaa25554c3417d142bb386eb4cb6d7c5, type: 3}
+  - Letter: h
+    Sound: {fileID: 8300000, guid: d056a693f8060dd4aab0138ef06e7779, type: 3}
+  - Letter: i
+    Sound: {fileID: 8300000, guid: d2e5708634a21664c87ab22927ebbe24, type: 3}
+  - Letter: j
+    Sound: {fileID: 8300000, guid: d11e2c6ab59b2ad41bf88069b114c95f, type: 3}
+  - Letter: k
+    Sound: {fileID: 8300000, guid: 364d976109749fb46af16ad3d4c12fbf, type: 3}
+  - Letter: l
+    Sound: {fileID: 8300000, guid: 6cbb8d288cd73ae4c9bafb5a10bb01b3, type: 3}
+  - Letter: m
+    Sound: {fileID: 8300000, guid: 2f9c75b2d0c1f564088c59ec68e1b832, type: 3}
+  - Letter: n
+    Sound: {fileID: 8300000, guid: bbe793fc64253a442a89fa393c3dd6dd, type: 3}
+  - Letter: o
+    Sound: {fileID: 8300000, guid: ea5090032eae0f943aa9cc727df22827, type: 3}
+  - Letter: p
+    Sound: {fileID: 8300000, guid: 5db352dd487d3d9408001079efac8c34, type: 3}
+  - Letter: q
+    Sound: {fileID: 8300000, guid: 9d36e45bbeb9e3046bdbaa38059dcec9, type: 3}
+  - Letter: r
+    Sound: {fileID: 8300000, guid: 5ff62b7f7043e2241bc895e3f92fdb3e, type: 3}
+  - Letter: s
+    Sound: {fileID: 8300000, guid: 9c7f05a162610dc4f8c44674ad26576d, type: 3}
+  - Letter: t
+    Sound: {fileID: 8300000, guid: 5cf58299a20ec9243bde60f475c13719, type: 3}
+  - Letter: u
+    Sound: {fileID: 8300000, guid: b33c2e5c043fd7149a423c5ae3220d74, type: 3}
+  - Letter: v
+    Sound: {fileID: 8300000, guid: 9c154ed8a0cc9bb458b4a6a7ffaa6618, type: 3}
+  - Letter: w
+    Sound: {fileID: 8300000, guid: 844f827794d13af439f774f6825e23fd, type: 3}
+  - Letter: x
+    Sound: {fileID: 8300000, guid: 882c74cdf54669c42a643ff3ee124bed, type: 3}
+  - Letter: y
+    Sound: {fileID: 8300000, guid: 740d4903d83b1d444bab0982f5fb6844, type: 3}
+  - Letter: z
+    Sound: {fileID: 8300000, guid: cae1d888e7f7738438d2e86806998cfa, type: 3}
+  - Letter: th
+    Sound: {fileID: 8300000, guid: 143d58ed773184d4f8e7742e5f5850aa, type: 3}
+  - Letter: sh
+    Sound: {fileID: 8300000, guid: 12ed88be178483a44ab472d735cb386f, type: 3}
+  - Letter: _
+    Sound: {fileID: 8300000, guid: 0b088a916aac3c24ca88c863ffee63b4, type: 3}

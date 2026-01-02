@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 6cf3c5697f071c344b31d7efb24ceee1
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 319430
+  packageName: Mumble Generator
+  packageVersion: 1.0.1
+  assetPath: Assets/MumbleGenerator/Prefabs/Mumble Manager.prefab
+  uploadId: 807434

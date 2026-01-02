@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: 2de120475ee44a24885be47063629d55
+AssetOrigin:
+  serializedVersion: 1
+  productId: 319430
+  packageName: Mumble Generator
+  packageVersion: 1.0.1
+  assetPath: Assets/MumbleGenerator/Scripts/Helpers/StaticInstances.cs
+  uploadId: 807434

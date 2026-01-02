@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: dafa3db183d0c0741b68af6ad077b115
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 319430
+  packageName: Mumble Generator
+  packageVersion: 1.0.1
+  assetPath: Assets/MumbleGenerator/Documentation/Documentation.pdf
+  uploadId: 807434

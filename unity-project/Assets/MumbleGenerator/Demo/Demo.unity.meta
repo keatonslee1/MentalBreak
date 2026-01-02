@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: a895491d2ec90ce4da656d00cfb7c6ba
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 319430
+  packageName: Mumble Generator
+  packageVersion: 1.0.1
+  assetPath: Assets/MumbleGenerator/Demo/Demo.unity
+  uploadId: 807434

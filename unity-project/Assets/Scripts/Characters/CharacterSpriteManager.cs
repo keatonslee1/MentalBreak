@@ -56,22 +56,49 @@ public class CharacterSpriteManager : MonoBehaviour
     [Tooltip("Vertical breathing amplitude in UI pixels.")]
     public float breathAmplitudePixels = 6f;
     
-    // Cache dictionary for fast lookup
-    private Dictionary<string, Sprite> spriteDictionary;
+    // Cache dictionary for fast lookup (now supports multi-frame portraits)
+    private Dictionary<string, CharacterPortraitData> portraitDataDictionary;
     
     // Character portrait frame GameObjects (containers with mask + background)
     private GameObject leftSpriteObject;
     private GameObject rightSpriteObject;
 
-    // Child images (actual portraits) inside the frames
-    private Image leftPortraitImage;
-    private Image rightPortraitImage;
-    private RectTransform leftPortraitRect;
-    private RectTransform rightPortraitRect;
+    // Child images (actual portraits) inside the frames - LAYERED STRUCTURE
+    // Base layer: shows static portrait or talking frames
+    private Image leftBaseImage;
+    private Image rightBaseImage;
+    private RectTransform leftBaseRect;
+    private RectTransform rightBaseRect;
+
+    // Talking overlay layer: shows talking frames
+    private Image leftTalkingImage;
+    private Image rightTalkingImage;
+    private RectTransform leftTalkingRect;
+    private RectTransform rightTalkingRect;
+
+    // Eyes overlay layer: shows eye blink frames
+    private Image leftEyesImage;
+    private Image rightEyesImage;
+    private RectTransform leftEyesRect;
+    private RectTransform rightEyesRect;
+
+    // Legacy references (for backwards compatibility, point to base layer)
+    private Image leftPortraitImage => leftBaseImage;
+    private Image rightPortraitImage => rightBaseImage;
+    private RectTransform leftPortraitRect => leftBaseRect;
+    private RectTransform rightPortraitRect => rightBaseRect;
+
+    // Portrait animators (talking + blinking)
+    private CharacterPortraitAnimator leftAnimator;
+    private CharacterPortraitAnimator rightAnimator;
+
+    // Track currently displayed characters
+    private string currentLeftCharacterTag = null;
+    private string currentRightCharacterTag = null;
 
     // Breathing animation driver
     private CharacterTalkAnimation talkAnimation;
-    
+
     // Track current background for Alice auto-add logic
     private string currentBackground = "";
     
@@ -208,28 +235,36 @@ public class CharacterSpriteManager : MonoBehaviour
     
     void BuildDictionary()
     {
-        spriteDictionary = new Dictionary<string, Sprite>();
-        
-        // First, add manually assigned sprites
+        portraitDataDictionary = new Dictionary<string, CharacterPortraitData>();
+
+        // First, add manually assigned sprites (convert to CharacterPortraitData)
         int manualCount = 0;
         foreach (var entry in characterSprites)
         {
             if (entry.sprite != null && !string.IsNullOrEmpty(entry.characterTag))
             {
-                spriteDictionary[entry.characterTag] = entry.sprite;
+                // Wrap single sprite in CharacterPortraitData for backwards compatibility
+                CharacterPortraitData data = new CharacterPortraitData();
+                data.characterName = entry.characterTag;
+                data.baseIdleSprite = entry.sprite;
+                data.talkingFrames = new Sprite[] { entry.sprite }; // Use same sprite for talking
+                data.eyeBlinkFrames = new Sprite[] { entry.sprite, entry.sprite, entry.sprite }; // Dummy blink (no animation)
+
+                portraitDataDictionary[entry.characterTag] = data;
                 manualCount++;
             }
         }
         Debug.Log($"CharacterSpriteManager: Loaded {manualCount} manually assigned sprites");
-        
+
         // Then, try to auto-load from Resources or folder
         AutoLoadCharacters();
-        
+
         // Log dictionary contents
-        Debug.Log($"CharacterSpriteManager: Sprite dictionary contains {spriteDictionary.Count} entries:");
-        foreach (var kvp in spriteDictionary)
+        Debug.Log($"CharacterSpriteManager: Portrait data dictionary contains {portraitDataDictionary.Count} entries:");
+        foreach (var kvp in portraitDataDictionary)
         {
-            Debug.Log($"  - {kvp.Key}: {(kvp.Value != null ? kvp.Value.name : "NULL")}");
+            CharacterPortraitData data = kvp.Value;
+            Debug.Log($"  - {kvp.Key}: Base={data.baseIdleSprite?.name ?? "NULL"}, Talking={data.talkingFrames?.Length ?? 0} frames, Eyes={data.eyeBlinkFrames?.Length ?? 0} frames");
         }
     }
     
@@ -251,15 +286,34 @@ public class CharacterSpriteManager : MonoBehaviour
     {
         // Try Resources.Load with the folder path
         string resourcesPath = characterFolderPath.Replace("Assets/", "").Replace("\\", "/");
-        
+
         // Remove "Resources/" prefix if present
         if (resourcesPath.StartsWith("Resources/", System.StringComparison.OrdinalIgnoreCase))
         {
             resourcesPath = resourcesPath.Substring("Resources/".Length);
         }
-        
+
+        // First, try to load multi-frame characters (Alice/, Supervisor/, etc.)
+        foreach (var kvp in characterTagToSpriteName)
+        {
+            if (kvp.Value == null) continue; // Skip characters with no sprite
+
+            string characterName = CapitalizeFirst(kvp.Value);
+
+            // Try loading multi-frame character data
+            CharacterPortraitData data = CharacterPortraitData.LoadFromFolder(characterName, resourcesPath);
+
+            // Multi-frame data ALWAYS takes precedence (overwrites manual single sprites)
+            if (data.IsValid)
+            {
+                portraitDataDictionary[kvp.Key] = data;
+                Debug.Log($"CharacterSpriteManager: Auto-loaded multi-frame character '{kvp.Key}' from Resources/{resourcesPath}/{characterName}");
+            }
+        }
+
+        // Then, load single sprite files (legacy format)
         Sprite[] sprites = Resources.LoadAll<Sprite>(resourcesPath);
-        
+
         // Also try loading from Resources/Characters (standard location for builds)
         if (sprites == null || sprites.Length == 0)
         {
@@ -269,17 +323,17 @@ public class CharacterSpriteManager : MonoBehaviour
                 Debug.Log($"CharacterSpriteManager: Loading from Resources/Characters");
             }
         }
-        
+
         if (sprites != null && sprites.Length > 0)
         {
             foreach (var sprite in sprites)
             {
                 if (sprite != null)
                 {
-                    // Extract character name from sprite name (e.g., "alice.jpg" -> "alice")
+                    // Extract character name from sprite name (e.g., "alice" -> "char_Alice")
                     string spriteName = sprite.name.ToLower();
                     string charTag = "char_" + CapitalizeFirst(spriteName);
-                    
+
                     // Try to match with known character tags
                     foreach (var kvp in characterTagToSpriteName)
                     {
@@ -289,12 +343,19 @@ public class CharacterSpriteManager : MonoBehaviour
                             break;
                         }
                     }
-                    
-                    // Only add if not already in dictionary (manual assignments take precedence)
-                    if (!spriteDictionary.ContainsKey(charTag))
+
+                    // Only add if not already in dictionary (manual assignments and multi-frame take precedence)
+                    if (!portraitDataDictionary.ContainsKey(charTag))
                     {
-                        spriteDictionary[charTag] = sprite;
-                        Debug.Log($"CharacterSpriteManager: Auto-loaded character '{charTag}' from Resources (sprite: {sprite.name})");
+                        // Wrap single sprite in CharacterPortraitData
+                        CharacterPortraitData data = new CharacterPortraitData();
+                        data.characterName = charTag;
+                        data.baseIdleSprite = sprite;
+                        data.talkingFrames = new Sprite[] { sprite };
+                        data.eyeBlinkFrames = new Sprite[] { sprite, sprite, sprite };
+
+                        portraitDataDictionary[charTag] = data;
+                        Debug.Log($"CharacterSpriteManager: Auto-loaded single-frame character '{charTag}' from Resources (sprite: {sprite.name})");
                     }
                 }
             }
@@ -305,23 +366,60 @@ public class CharacterSpriteManager : MonoBehaviour
     void LoadFromFolder()
     {
         string fullPath = "Assets/" + characterFolderPath;
-        
+
         if (!AssetDatabase.IsValidFolder(fullPath))
         {
             return;
         }
-        
-        // Find all texture files in the folder
+
+        // First, check for character subfolders with multi-frame structure (Alice/, Supervisor/, etc.)
+        foreach (var kvp in characterTagToSpriteName)
+        {
+            if (kvp.Value == null) continue; // Skip characters with no sprite
+
+            string characterName = CapitalizeFirst(kvp.Value);
+            string characterFolderPath = $"{fullPath}/{characterName}";
+
+            // Check if character has subfolder structure
+            if (AssetDatabase.IsValidFolder(characterFolderPath))
+            {
+                // Check if it has Base/, Talking/, or Eyes/ subfolders (multi-frame structure)
+                bool hasMultiFrameStructure = AssetDatabase.IsValidFolder($"{characterFolderPath}/Base") ||
+                                               AssetDatabase.IsValidFolder($"{characterFolderPath}/Talking") ||
+                                               AssetDatabase.IsValidFolder($"{characterFolderPath}/Eyes");
+
+                if (hasMultiFrameStructure)
+                {
+                    // Load multi-frame character data
+                    CharacterPortraitData data = CharacterPortraitData.LoadFromFolder(characterName, this.characterFolderPath);
+
+                    // Multi-frame data ALWAYS takes precedence (overwrites manual single sprites)
+                    if (data.IsValid)
+                    {
+                        portraitDataDictionary[kvp.Key] = data;
+                        Debug.Log($"CharacterSpriteManager: Auto-loaded multi-frame character '{kvp.Key}' from {characterFolderPath}");
+                    }
+                    continue; // Skip single-file loading for this character
+                }
+            }
+        }
+
+        // Then, load single sprite files (legacy format for characters without animations)
         string[] textureGuids = AssetDatabase.FindAssets("t:Texture2D", new[] { fullPath });
-        
+
         foreach (string guid in textureGuids)
         {
             string assetPath = AssetDatabase.GUIDToAssetPath(guid);
-            
-            // Extract character name from file name (e.g., "alice.jpg" -> "alice")
+
+            // Skip files inside subfolders (already handled above)
+            string relativePath = assetPath.Replace(fullPath + "/", "");
+            if (relativePath.Contains("/"))
+                continue;
+
+            // Extract character name from file name (e.g., "alice.png" -> "alice")
             string fileName = System.IO.Path.GetFileNameWithoutExtension(assetPath).ToLower();
             string charTag = "char_" + CapitalizeFirst(fileName);
-            
+
             // Try to match with known character tags
             foreach (var kvp in characterTagToSpriteName)
             {
@@ -331,16 +429,16 @@ public class CharacterSpriteManager : MonoBehaviour
                     break;
                 }
             }
-            
+
             // Skip if already in dictionary
-            if (spriteDictionary.ContainsKey(charTag))
+            if (portraitDataDictionary.ContainsKey(charTag))
             {
                 continue;
             }
-            
+
             // Load the sprite (Unity can load sprites from textures)
             Sprite sprite = AssetDatabase.LoadAssetAtPath<Sprite>(assetPath);
-            
+
             // If not a sprite, try loading as texture and getting sprites from it
             if (sprite == null)
             {
@@ -357,7 +455,7 @@ public class CharacterSpriteManager : MonoBehaviour
                             break; // Use the first sprite found
                         }
                     }
-                    
+
                     // If still no sprite, create one from the texture
                     if (sprite == null)
                     {
@@ -365,11 +463,18 @@ public class CharacterSpriteManager : MonoBehaviour
                     }
                 }
             }
-            
+
             if (sprite != null)
             {
-                spriteDictionary[charTag] = sprite;
-                Debug.Log($"CharacterSpriteManager: Auto-loaded character '{charTag}' from {assetPath}");
+                // Wrap single sprite in CharacterPortraitData for backwards compatibility
+                CharacterPortraitData data = new CharacterPortraitData();
+                data.characterName = charTag;
+                data.baseIdleSprite = sprite;
+                data.talkingFrames = new Sprite[] { sprite }; // Use same sprite for talking
+                data.eyeBlinkFrames = new Sprite[] { sprite, sprite, sprite }; // Dummy blink (no animation)
+
+                portraitDataDictionary[charTag] = data;
+                Debug.Log($"CharacterSpriteManager: Auto-loaded single-frame character '{charTag}' from {assetPath}");
             }
         }
     }
@@ -598,16 +703,20 @@ public class CharacterSpriteManager : MonoBehaviour
             Debug.LogWarning($"CharacterSpriteManager: Destroying existing left sprite object (was in wrong Canvas)");
             DestroyImmediate(leftSpriteObject);
             leftSpriteObject = null;
-            leftPortraitImage = null;
-            leftPortraitRect = null;
+            leftBaseImage = null;
+            leftBaseRect = null;
+            leftEyesImage = null;
+            leftEyesRect = null;
         }
         if (rightSpriteObject != null)
         {
             Debug.LogWarning($"CharacterSpriteManager: Destroying existing right sprite object (was in wrong Canvas)");
             DestroyImmediate(rightSpriteObject);
             rightSpriteObject = null;
-            rightPortraitImage = null;
-            rightPortraitRect = null;
+            rightBaseImage = null;
+            rightBaseRect = null;
+            rightEyesImage = null;
+            rightEyesRect = null;
         }
         
         // Verify we have the correct Canvas before creating sprites
@@ -688,20 +797,53 @@ public class CharacterSpriteManager : MonoBehaviour
         leftFrameImage.raycastTarget = false;
         leftSpriteObject.AddComponent<RectMask2D>();
 
-        // Child portrait image inside the frame (this is what will "breathe")
-        GameObject leftPortraitObject = new GameObject("CharacterPortraitSprite_Left");
-        leftPortraitObject.transform.SetParent(leftSpriteObject.transform, false);
-        leftPortraitRect = leftPortraitObject.AddComponent<RectTransform>();
-        // Stretch to frame width, anchor to bottom so downward motion clips at bottom edge
-        leftPortraitRect.anchorMin = new Vector2(0f, 0f);
-        leftPortraitRect.anchorMax = new Vector2(1f, 0f);
-        leftPortraitRect.pivot = new Vector2(0.5f, 0f);
-        leftPortraitRect.anchoredPosition = Vector2.zero;
-        leftPortraitRect.sizeDelta = new Vector2(0f, spriteSize.y);
+        // LAYERED PORTRAIT STRUCTURE: Base layer + Eyes overlay
+        // Base Layer: Shows static portrait or talking frames
+        GameObject leftBaseObject = new GameObject("PortraitBase_Left");
+        leftBaseObject.transform.SetParent(leftSpriteObject.transform, false);
+        leftBaseRect = leftBaseObject.AddComponent<RectTransform>();
+        leftBaseRect.anchorMin = new Vector2(0f, 0f);
+        leftBaseRect.anchorMax = new Vector2(1f, 0f);
+        leftBaseRect.pivot = new Vector2(0.5f, 0f);
+        leftBaseRect.anchoredPosition = Vector2.zero;
+        leftBaseRect.sizeDelta = new Vector2(0f, spriteSize.y);
 
-        leftPortraitImage = leftPortraitObject.AddComponent<Image>();
-        leftPortraitImage.preserveAspect = true;
-        leftPortraitImage.raycastTarget = false;
+        leftBaseImage = leftBaseObject.AddComponent<Image>();
+        leftBaseImage.preserveAspect = true;
+        leftBaseImage.raycastTarget = false;
+
+        // Talking Overlay Layer: Shows talking frames on top of base
+        GameObject leftTalkingObject = new GameObject("PortraitTalking_Left");
+        leftTalkingObject.transform.SetParent(leftSpriteObject.transform, false);
+        leftTalkingRect = leftTalkingObject.AddComponent<RectTransform>();
+        leftTalkingRect.anchorMin = new Vector2(0f, 0f);
+        leftTalkingRect.anchorMax = new Vector2(1f, 0f);
+        leftTalkingRect.pivot = new Vector2(0.5f, 0f);
+        leftTalkingRect.anchoredPosition = Vector2.zero;
+        leftTalkingRect.sizeDelta = new Vector2(0f, spriteSize.y);
+
+        leftTalkingImage = leftTalkingObject.AddComponent<Image>();
+        leftTalkingImage.preserveAspect = true;
+        leftTalkingImage.raycastTarget = false;
+        leftTalkingImage.color = new Color(1f, 1f, 1f, 0f); // Start transparent (will be set by animator)
+
+        // Eyes Overlay Layer: Shows eye blink frames on top of talking
+        GameObject leftEyesObject = new GameObject("PortraitEyes_Left");
+        leftEyesObject.transform.SetParent(leftSpriteObject.transform, false);
+        leftEyesRect = leftEyesObject.AddComponent<RectTransform>();
+        leftEyesRect.anchorMin = new Vector2(0f, 0f);
+        leftEyesRect.anchorMax = new Vector2(1f, 0f);
+        leftEyesRect.pivot = new Vector2(0.5f, 0f);
+        leftEyesRect.anchoredPosition = Vector2.zero;
+        leftEyesRect.sizeDelta = new Vector2(0f, spriteSize.y);
+
+        leftEyesImage = leftEyesObject.AddComponent<Image>();
+        leftEyesImage.preserveAspect = true;
+        leftEyesImage.raycastTarget = false;
+        leftEyesImage.color = new Color(1f, 1f, 1f, 0f); // Start transparent (will be set by animator)
+
+        // Add animator component to manage talking and blinking
+        leftAnimator = leftSpriteObject.AddComponent<CharacterPortraitAnimator>();
 
         leftSpriteObject.SetActive(false);
         
@@ -758,28 +900,63 @@ public class CharacterSpriteManager : MonoBehaviour
         rightFrameImage.raycastTarget = false;
         rightSpriteObject.AddComponent<RectMask2D>();
 
-        // Child portrait image inside the frame (this is what will "breathe")
-        GameObject rightPortraitObject = new GameObject("CharacterPortraitSprite_Right");
-        rightPortraitObject.transform.SetParent(rightSpriteObject.transform, false);
-        rightPortraitRect = rightPortraitObject.AddComponent<RectTransform>();
-        // Stretch to frame width, anchor to bottom so downward motion clips at bottom edge
-        rightPortraitRect.anchorMin = new Vector2(0f, 0f);
-        rightPortraitRect.anchorMax = new Vector2(1f, 0f);
-        rightPortraitRect.pivot = new Vector2(0.5f, 0f);
-        rightPortraitRect.anchoredPosition = Vector2.zero;
-        rightPortraitRect.sizeDelta = new Vector2(0f, spriteSize.y);
+        // LAYERED PORTRAIT STRUCTURE: Base layer + Eyes overlay
+        // Base Layer: Shows static portrait or talking frames
+        GameObject rightBaseObject = new GameObject("PortraitBase_Right");
+        rightBaseObject.transform.SetParent(rightSpriteObject.transform, false);
+        rightBaseRect = rightBaseObject.AddComponent<RectTransform>();
+        rightBaseRect.anchorMin = new Vector2(0f, 0f);
+        rightBaseRect.anchorMax = new Vector2(1f, 0f);
+        rightBaseRect.pivot = new Vector2(0.5f, 0f);
+        rightBaseRect.anchoredPosition = Vector2.zero;
+        rightBaseRect.sizeDelta = new Vector2(0f, spriteSize.y);
 
-        rightPortraitImage = rightPortraitObject.AddComponent<Image>();
-        rightPortraitImage.preserveAspect = true;
-        rightPortraitImage.raycastTarget = false;
+        rightBaseImage = rightBaseObject.AddComponent<Image>();
+        rightBaseImage.preserveAspect = true;
+        rightBaseImage.raycastTarget = false;
+
+        // Talking Overlay Layer: Shows talking frames on top of base
+        GameObject rightTalkingObject = new GameObject("PortraitTalking_Right");
+        rightTalkingObject.transform.SetParent(rightSpriteObject.transform, false);
+        rightTalkingRect = rightTalkingObject.AddComponent<RectTransform>();
+        rightTalkingRect.anchorMin = new Vector2(0f, 0f);
+        rightTalkingRect.anchorMax = new Vector2(1f, 0f);
+        rightTalkingRect.pivot = new Vector2(0.5f, 0f);
+        rightTalkingRect.anchoredPosition = Vector2.zero;
+        rightTalkingRect.sizeDelta = new Vector2(0f, spriteSize.y);
+
+        rightTalkingImage = rightTalkingObject.AddComponent<Image>();
+        rightTalkingImage.preserveAspect = true;
+        rightTalkingImage.raycastTarget = false;
+        rightTalkingImage.color = new Color(1f, 1f, 1f, 0f); // Start transparent (will be set by animator)
+
+        // Eyes Overlay Layer: Shows eye blink frames on top of talking
+        GameObject rightEyesObject = new GameObject("PortraitEyes_Right");
+        rightEyesObject.transform.SetParent(rightSpriteObject.transform, false);
+        rightEyesRect = rightEyesObject.AddComponent<RectTransform>();
+        rightEyesRect.anchorMin = new Vector2(0f, 0f);
+        rightEyesRect.anchorMax = new Vector2(1f, 0f);
+        rightEyesRect.pivot = new Vector2(0.5f, 0f);
+        rightEyesRect.anchoredPosition = Vector2.zero;
+        rightEyesRect.sizeDelta = new Vector2(0f, spriteSize.y);
+
+        rightEyesImage = rightEyesObject.AddComponent<Image>();
+        rightEyesImage.preserveAspect = true;
+        rightEyesImage.raycastTarget = false;
+        rightEyesImage.color = new Color(1f, 1f, 1f, 0f); // Start transparent (will be set by animator)
+
+        // Add animator component to manage talking and blinking
+        rightAnimator = rightSpriteObject.AddComponent<CharacterPortraitAnimator>();
 
         rightSpriteObject.SetActive(false);
 
-        // Wire breathing animation to the portrait child rects (not the frame)
+        // Wire breathing animation to ALL layers (base + talking + eyes for both portraits = 6 total)
         if (talkAnimation != null)
         {
-            talkAnimation.Configure(breathAmplitudePixels, breathPeriodSeconds);
-            talkAnimation.SetTargets(leftPortraitRect, rightPortraitRect, resetPhase: true);
+            // Use new breathing parameters: 3px amplitude, 10s period (half speed/distance)
+            talkAnimation.Configure(3f, 10f);
+            RectTransform[] allLayers = { leftBaseRect, leftTalkingRect, leftEyesRect, rightBaseRect, rightTalkingRect, rightEyesRect };
+            talkAnimation.SetTargets(allLayers, resetPhase: true);
         }
     }
     
@@ -901,56 +1078,82 @@ public class CharacterSpriteManager : MonoBehaviour
     {
         // Hide all first
         HideAllCharacters();
-        
+
         if (characterTags == null || characterTags.Count == 0)
         {
             Debug.Log("CharacterSpriteManager: No characters to display");
             return;
         }
-        
+
         // Display first character on left
         if (characterTags.Count >= 1)
         {
             string leftTag = characterTags[0];
-            if (spriteDictionary.TryGetValue(leftTag, out Sprite leftSprite))
+            if (portraitDataDictionary.TryGetValue(leftTag, out CharacterPortraitData leftData))
             {
-                if (leftSpriteObject != null)
+                if (leftSpriteObject != null && leftBaseImage != null)
                 {
-                    if (leftPortraitImage != null)
+                    currentLeftCharacterTag = leftTag;
+
+                    // IMPORTANT: Activate GameObject BEFORE initializing animator (coroutines need active GameObject)
+                    leftSpriteObject.SetActive(true);
+
+                    // Initialize animator with portrait data
+                    if (leftAnimator != null)
                     {
-                        leftPortraitImage.sprite = leftSprite;
-                        leftSpriteObject.SetActive(true);
-                        Debug.Log($"CharacterSpriteManager: Displaying '{leftTag}' on left (sprite: {leftSprite.name})");
+                        leftAnimator.Initialize(leftData, leftBaseImage, leftTalkingImage, leftEyesImage);
                     }
+
+                    Debug.Log($"CharacterSpriteManager: Displaying '{leftTag}' on left (base sprite: {leftData.baseIdleSprite?.name}, {leftData.talkingFrames.Length} talking frames, {leftData.eyeBlinkFrames.Length} eye frames)");
                 }
             }
             else
             {
-                Debug.LogWarning($"CharacterSpriteManager: No sprite found for character tag '{leftTag}' in dictionary. Available keys: [{string.Join(", ", spriteDictionary.Keys)}]");
+                Debug.LogWarning($"CharacterSpriteManager: No portrait data found for character tag '{leftTag}' in dictionary. Available keys: [{string.Join(", ", portraitDataDictionary.Keys)}]");
             }
         }
-        
+
         // Display second character on right
         if (characterTags.Count >= 2)
         {
             string rightTag = characterTags[1];
-            if (spriteDictionary.TryGetValue(rightTag, out Sprite rightSprite))
+            if (portraitDataDictionary.TryGetValue(rightTag, out CharacterPortraitData rightData))
             {
-                if (rightSpriteObject != null)
+                if (rightSpriteObject != null && rightBaseImage != null)
                 {
-                    if (rightPortraitImage != null)
+                    currentRightCharacterTag = rightTag;
+
+                    // IMPORTANT: Activate GameObject BEFORE initializing animator (coroutines need active GameObject)
+                    rightSpriteObject.SetActive(true);
+
+                    // Initialize animator with portrait data
+                    if (rightAnimator != null)
                     {
-                        rightPortraitImage.sprite = rightSprite;
-                        rightSpriteObject.SetActive(true);
-                        Debug.Log($"CharacterSpriteManager: Displaying '{rightTag}' on right (sprite: {rightSprite.name})");
+                        rightAnimator.Initialize(rightData, rightBaseImage, rightTalkingImage, rightEyesImage);
                     }
+
+                    Debug.Log($"CharacterSpriteManager: Displaying '{rightTag}' on right (base sprite: {rightData.baseIdleSprite?.name}, {rightData.talkingFrames.Length} talking frames, {rightData.eyeBlinkFrames.Length} eye frames)");
                 }
             }
             else
             {
-                Debug.LogWarning($"CharacterSpriteManager: No sprite found for character tag '{rightTag}' in dictionary. Available keys: [{string.Join(", ", spriteDictionary.Keys)}]");
+                Debug.LogWarning($"CharacterSpriteManager: No portrait data found for character tag '{rightTag}' in dictionary. Available keys: [{string.Join(", ", portraitDataDictionary.Keys)}]");
             }
         }
+    }
+
+    /// <summary>
+    /// Public API for PortraitTalkingStateController to get animator by character tag.
+    /// Returns the animator for the character if currently displayed, null otherwise.
+    /// </summary>
+    public CharacterPortraitAnimator GetAnimatorForCharacter(string characterTag)
+    {
+        if (characterTag == currentLeftCharacterTag)
+            return leftAnimator;
+        if (characterTag == currentRightCharacterTag)
+            return rightAnimator;
+
+        return null; // Character not currently displayed
     }
     
     void HideAllCharacters()
@@ -963,6 +1166,10 @@ public class CharacterSpriteManager : MonoBehaviour
         {
             rightSpriteObject.SetActive(false);
         }
+
+        // Clear current character tracking
+        currentLeftCharacterTag = null;
+        currentRightCharacterTag = null;
     }
     
     // Editor helper method

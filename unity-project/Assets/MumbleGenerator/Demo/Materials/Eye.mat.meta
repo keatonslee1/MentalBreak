@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: e9419e30c59e9b749b88e90538a5fa5d
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 319430
+  packageName: Mumble Generator
+  packageVersion: 1.0.1
+  assetPath: Assets/MumbleGenerator/Demo/Materials/Eye.mat
+  uploadId: 807434

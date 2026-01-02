@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: dd4f0031f87599d4b954f583e65cc216
+AssetOrigin:
+  serializedVersion: 1
+  productId: 319430
+  packageName: Mumble Generator
+  packageVersion: 1.0.1
+  assetPath: Assets/MumbleGenerator/Demo/Scripts/TextPrinter.cs
+  uploadId: 807434

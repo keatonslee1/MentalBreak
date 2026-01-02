@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: 457861c37a05407fbdea90106aeb2b35
+timeCreated: 1745573622
+AssetOrigin:
+  serializedVersion: 1
+  productId: 319430
+  packageName: Mumble Generator
+  packageVersion: 1.0.1
+  assetPath: Assets/MumbleGenerator/Scripts/MumblePlayer.cs
+  uploadId: 807434

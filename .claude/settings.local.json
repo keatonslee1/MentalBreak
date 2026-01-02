@@ -3,7 +3,10 @@
     "allow": [
       "Bash(copy:*)",
       "Bash(powershell:*)",
-      "Bash(findstr:*)"
+      "Bash(findstr:*)",
+      "Bash(git log:*)",
+      "Bash(dir \"C:\\\\Users\\\\epick\\\\OneDrive\\\\Documents\\\\mentalbreak\\\\unity-project\\\\Assets\\\\Graphics\\\\Characters\\\\frames to be implemented\" /s /b)",
+      "Bash(dir:*)"
     ]
   }
 }

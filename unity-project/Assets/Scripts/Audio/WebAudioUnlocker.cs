@@ -51,16 +51,25 @@ public class WebAudioUnlocker : MonoBehaviour
     /// </summary>
     public static void TryResumeAudioContext()
     {
+        Debug.Log("[WebAudioUnlocker-C#] TryResumeAudioContext called from C#");
+
 #if UNITY_WEBGL && !UNITY_EDITOR
-        if (Instance == null) return;
+        if (Instance == null)
+        {
+            Debug.LogWarning("[WebAudioUnlocker-C#] Instance is null!");
+            return;
+        }
 
         if (Instance.isUnlocked)
         {
+            Debug.Log("[WebAudioUnlocker-C#] Already unlocked, early return");
             return; // Already unlocked, no need to retry
         }
 
+        Debug.Log("[WebAudioUnlocker-C#] About to call WebAudio_TryResume() via DllImport");
         int result = WebAudio_TryResume();
         Instance.hasAttemptedUnlock = true;
+        Debug.Log($"[WebAudioUnlocker-C#] WebAudio_TryResume() returned: {result}");
 
         if (result == 2) // Already running
         {

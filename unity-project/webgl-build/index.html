@@ -253,6 +253,20 @@
     <script>
       // Unity loader - called when CTA is clicked
       window.loadUnityGame = function() {
+        // Pre-warm audio context while user gesture is still valid
+        try {
+          const AudioCtx = window.AudioContext || window.webkitAudioContext;
+          if (AudioCtx) {
+            const ctx = new AudioCtx();
+            ctx.resume().then(() => {
+              console.log('[Audio] Pre-warmed AudioContext');
+            });
+            window._prewarmedAudioCtx = ctx;
+          }
+        } catch (e) {
+          console.log('[Audio] Pre-warm failed:', e);
+        }
+
         const canvas = document.querySelector("#unity-canvas");
         const loadingBar = document.querySelector("#unity-loading-bar");
         const progressBarFull = document.querySelector("#unity-progress-bar-full");
@@ -315,6 +329,36 @@
             .then((unityInstance) => {
               hideLoading();
               window.unityInstance = unityInstance;
+
+              // Try to unlock audio after Unity loads
+              const unlockAudio = () => {
+                // Resume pre-warmed context
+                if (window._prewarmedAudioCtx && window._prewarmedAudioCtx.state === 'suspended') {
+                  window._prewarmedAudioCtx.resume();
+                }
+                // Resume any other audio contexts (FMOD creates its own)
+                if (typeof AudioContext !== 'undefined') {
+                  const contexts = AudioContext._instances || [];
+                  contexts.forEach(ctx => {
+                    if (ctx.state === 'suspended') ctx.resume();
+                  });
+                }
+              };
+
+              // Try immediately
+              unlockAudio();
+
+              // Also add one-time interaction listeners as fallback
+              const canvasEl = document.querySelector("#unity-canvas");
+              const handleInteraction = () => {
+                unlockAudio();
+                canvasEl.removeEventListener('click', handleInteraction);
+                canvasEl.removeEventListener('touchstart', handleInteraction);
+                canvasEl.removeEventListener('keydown', handleInteraction);
+              };
+              canvasEl.addEventListener('click', handleInteraction, { once: true });
+              canvasEl.addEventListener('touchstart', handleInteraction, { once: true });
+              canvasEl.addEventListener('keydown', handleInteraction, { once: true });
             })
             .catch((message) => {
               hideLoading();

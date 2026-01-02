@@ -25,7 +25,7 @@ tags: #run_1 #scene #loc_Office
 <<set $current_run = 1>>
 <<set $current_day = 1>>
 <<bg bg_loading>>
-<<music MainTheme>>
+<<bgm cyberpunk_background_cyberpunk_background_main>>
 <<jump R1D1_Start>>
 ===
 

@@ -1,12 +1,10 @@
 using UnityEngine;
 using Yarn.Unity;
+using System.Linq;
 
 public class StartDialogueOnPlay : MonoBehaviour {
 	public string startNode = "R1_Start";
 	public DialogueRunner dialogueRunner;
-
-	// PlayerPrefs key for autosave slot 0 (matches SaveLoadManager)
-	private const string AutosaveKey = "MB_Save_v2_Auto_0_Json";
 
 	private void Awake() {
 		if (dialogueRunner == null) {
@@ -15,10 +13,12 @@ public class StartDialogueOnPlay : MonoBehaviour {
 	}
 
 	private void Start() {
-		// Check if returning player with autosave data
-		if (HasAutosave()) {
-			Debug.Log("StartDialogueOnPlay: Returning player detected, loading autosave...");
-			LoadAutosave();
+		// Find most recent save across all slots (manual + autosave)
+		var mostRecentSave = FindMostRecentSave();
+
+		if (mostRecentSave != null) {
+			Debug.Log($"StartDialogueOnPlay: Returning player detected, loading slot {mostRecentSave.slot} ({mostRecentSave.timestamp})");
+			LoadSave(mostRecentSave.slot);
 			return;
 		}
 
@@ -32,23 +32,34 @@ public class StartDialogueOnPlay : MonoBehaviour {
 	}
 
 	/// <summary>
-	/// Check if player has autosave data
+	/// Find the most recent save across all slots (manual 1-5 and autosave 0, -1, -2)
 	/// </summary>
-	private bool HasAutosave() {
-		return PlayerPrefs.HasKey(AutosaveKey) && !string.IsNullOrEmpty(PlayerPrefs.GetString(AutosaveKey, ""));
+	private SaveSlotData FindMostRecentSave() {
+		SaveLoadManager saveManager = FindAnyObjectByType<SaveLoadManager>();
+		if (saveManager == null) saveManager = SaveLoadManager.Instance;
+		if (saveManager == null) return null;
+
+		var allSaves = saveManager.GetAllSaveSlots();
+		if (allSaves == null || allSaves.Count == 0) return null;
+
+		// Find most recent by timestamp (ISO 8601 format is string-sortable)
+		return allSaves
+			.Where(s => !string.IsNullOrEmpty(s.timestamp))
+			.OrderByDescending(s => s.timestamp)
+			.FirstOrDefault();
 	}
 
 	/// <summary>
-	/// Load autosave slot 0
+	/// Load a save from the specified slot
 	/// </summary>
-	private void LoadAutosave() {
+	private void LoadSave(int slot) {
 		SaveLoadManager saveManager = FindAnyObjectByType<SaveLoadManager>();
 		if (saveManager != null) {
-			saveManager.LoadGame(0);
+			saveManager.LoadGame(slot);
 		} else if (SaveLoadManager.Instance != null) {
-			SaveLoadManager.Instance.LoadGame(0);
+			SaveLoadManager.Instance.LoadGame(slot);
 		} else {
-			Debug.LogError("StartDialogueOnPlay: SaveLoadManager not found, cannot load autosave!");
+			Debug.LogError("StartDialogueOnPlay: SaveLoadManager not found!");
 			// Fallback: start fresh
 			if (dialogueRunner != null && dialogueRunner.YarnProject != null) {
 				dialogueRunner.StartDialogue(startNode);

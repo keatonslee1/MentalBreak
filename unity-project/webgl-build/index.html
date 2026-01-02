@@ -44,8 +44,9 @@
       /* Unity container styles */
       #unity-wrapper {
         display: none;
-        flex: 1;
+        flex: 1 1 0;      /* Grow, shrink, basis 0 for proper flex fill */
         min-height: 0;
+        height: 0;        /* Force flex-basis to take over */
         background: #000;
       }
 
@@ -117,6 +118,16 @@
 
       body.mb-mobile-game .mb-page {
         height: 100vh;
+      }
+
+      /* Desktop game mode - keep nav/footer visible but fill space */
+      body.mb-desktop-game .mb-page {
+        height: 100vh;
+        min-height: 100vh;
+      }
+
+      body.mb-desktop-game #unity-wrapper {
+        display: flex !important;
       }
     </style>
   </head>
@@ -253,20 +264,6 @@
     <script>
       // Unity loader - called when CTA is clicked
       window.loadUnityGame = function() {
-        // Pre-warm audio context while user gesture is still valid
-        try {
-          const AudioCtx = window.AudioContext || window.webkitAudioContext;
-          if (AudioCtx) {
-            const ctx = new AudioCtx();
-            ctx.resume().then(() => {
-              console.log('[Audio] Pre-warmed AudioContext');
-            });
-            window._prewarmedAudioCtx = ctx;
-          }
-        } catch (e) {
-          console.log('[Audio] Pre-warm failed:', e);
-        }
-
         const canvas = document.querySelector("#unity-canvas");
         const loadingBar = document.querySelector("#unity-loading-bar");
         const progressBarFull = document.querySelector("#unity-progress-bar-full");
@@ -330,35 +327,10 @@
               hideLoading();
               window.unityInstance = unityInstance;
 
-              // Try to unlock audio after Unity loads
-              const unlockAudio = () => {
-                // Resume pre-warmed context
-                if (window._prewarmedAudioCtx && window._prewarmedAudioCtx.state === 'suspended') {
-                  window._prewarmedAudioCtx.resume();
-                }
-                // Resume any other audio contexts (FMOD creates its own)
-                if (typeof AudioContext !== 'undefined') {
-                  const contexts = AudioContext._instances || [];
-                  contexts.forEach(ctx => {
-                    if (ctx.state === 'suspended') ctx.resume();
-                  });
-                }
-              };
-
-              // Try immediately
-              unlockAudio();
-
-              // Also add one-time interaction listeners as fallback
-              const canvasEl = document.querySelector("#unity-canvas");
-              const handleInteraction = () => {
-                unlockAudio();
-                canvasEl.removeEventListener('click', handleInteraction);
-                canvasEl.removeEventListener('touchstart', handleInteraction);
-                canvasEl.removeEventListener('keydown', handleInteraction);
-              };
-              canvasEl.addEventListener('click', handleInteraction, { once: true });
-              canvasEl.addEventListener('touchstart', handleInteraction, { once: true });
-              canvasEl.addEventListener('keydown', handleInteraction, { once: true });
+              // Focus canvas for keyboard input (FMOD audio unlock happens in Unity)
+              if (canvas) {
+                canvas.focus();
+              }
             })
             .catch((message) => {
               hideLoading();

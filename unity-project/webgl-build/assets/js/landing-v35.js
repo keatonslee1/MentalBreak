@@ -87,16 +87,16 @@
 
   const startGame = () => {
     const hero = document.querySelector('.mb-hero');
-    const wrapper = document.getElementById('unity-wrapper');
 
-    // Mobile: enable fullscreen mode
+    // Mobile: fullscreen mode; Desktop: keep nav/footer visible
     if (isMobileUA()) {
       document.body.classList.add('mb-mobile-game');
+    } else {
+      document.body.classList.add('mb-desktop-game');
     }
 
-    // Hide hero, show Unity container
+    // Hide hero (Unity wrapper shown via CSS class)
     if (hero) hero.style.display = 'none';
-    if (wrapper) wrapper.style.display = 'flex';
 
     // Load Unity (function defined in index.html)
     if (typeof window.loadUnityGame === 'function') {

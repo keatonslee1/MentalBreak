@@ -4,10 +4,7 @@ TextureImporter:
   internalIDToNameTable:
   - first:
       213: -7994819599632722549
-    second: alice blinking3_0
-  - first:
-      213: -3109403523903267013
-    second: alice blinking3_1
+    second: alice blinking3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -49,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 0
   alignment: 7
@@ -116,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: alice blinking3_0
+      name: alice blinking3
       rect:
         serializedVersion: 2
         x: 0
@@ -126,7 +123,7 @@ TextureImporter:
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
+      customData:
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -134,29 +131,7 @@ TextureImporter:
       spriteID: b859f88bee1bc0190800000000000000
       internalID: -7994819599632722549
       vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: alice blinking3_1
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 640
-        height: 720
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b3fd56628fd29d4d0800000000000000
-      internalID: -3109403523903267013
-      vertices: []
-      indices: 
+      indices:
       edges: []
       weights: []
     outline: []
@@ -173,8 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      alice blinking3_0: -7994819599632722549
-      alice blinking3_1: -3109403523903267013
+      alice blinking3: -7994819599632722549
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

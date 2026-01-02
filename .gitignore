@@ -61,6 +61,9 @@ unity-project/fmod_editor.log
 # Unity packages cache
 unity-project/Packages/packages-lock.json
 
+# Auto-copied character portraits for WebGL builds (cleaned up automatically)
+unity-project/Assets/Resources/Graphics/Characters/
+
 # Crash reports
 sysinfo.txt
 crashlytics-build.properties

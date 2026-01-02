@@ -6,7 +6,12 @@
       "Bash(findstr:*)",
       "Bash(git log:*)",
       "Bash(dir \"C:\\\\Users\\\\epick\\\\OneDrive\\\\Documents\\\\mentalbreak\\\\unity-project\\\\Assets\\\\Graphics\\\\Characters\\\\frames to be implemented\" /s /b)",
-      "Bash(dir:*)"
+      "Bash(dir:*)",
+      "Bash(test:*)",
+      "Bash(cat:*)",
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nAdd automated character portrait copying for WebGL builds\n\nExtends WebGLPostBuild.cs to automatically copy multi-frame character\nportraits from Assets/Graphics/Characters/ to Assets/Resources/Graphics/Characters/\nduring WebGL builds, fixing the issue where only 1 talking frame loads instead of 15.\n\nChanges:\n- Add character detection logic \\(detects Base/, Talking/, Eyes/ subfolders\\)\n- Copy character frames to Resources in OnPreprocessBuild\\(\\)\n- Clean up copied frames in OnPostprocessBuild\\(\\)\n- Add 3 menu items for manual testing:\n  * Tools > WebGL > List Multi-Frame Characters\n  * Tools > WebGL > Copy Character Portraits to Resources\n  * Tools > WebGL > Clean Up Character Portraits\n- Update .gitignore to exclude auto-copied Resources/Graphics/Characters/\n\nFixes: Alice portrait animations not working in WebGL deployment \\(only 1 frame\ninstead of 15 talking frames\\). WebGL builds can only load assets via Resources.Load\\(\\),\nwhich requires assets in Assets/Resources/ folder.\n\nFuture-proof: Auto-detects new animated characters \\(no code changes needed\\).\n\n🤖 Generated with Claude Code \\(https://claude.com/claude-code\\)\n\nCo-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git commit:*)"
     ]
   }
 }

@@ -259,7 +259,7 @@ public class SaveSlotSelectionUI : MonoBehaviour
             new Vector2(0, 0), new Vector2(1, 1), Vector2.zero, new Vector2(-60, 0));
         titleText = titleObj.AddComponent<TextMeshProUGUI>();
         titleText.text = "LOAD GAME";
-        titleText.fontSize = 26;
+        titleText.fontSize = 60;
         titleText.fontStyle = FontStyles.Bold;
         titleText.alignment = TextAlignmentOptions.Center;
         titleText.color = Color.white;
@@ -280,7 +280,7 @@ public class SaveSlotSelectionUI : MonoBehaviour
             Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero);
         TextMeshProUGUI closeTMP = closeText.AddComponent<TextMeshProUGUI>();
         closeTMP.text = "X";
-        closeTMP.fontSize = 24;
+        closeTMP.fontSize = 60;
         closeTMP.fontStyle = FontStyles.Bold;
         closeTMP.alignment = TextAlignmentOptions.Center;
         closeTMP.color = Color.white;
@@ -373,7 +373,7 @@ public class SaveSlotSelectionUI : MonoBehaviour
         {
             slotLabel.text = $"#{slotNumber}";
         }
-        slotLabel.fontSize = 16;
+        slotLabel.fontSize = 48;
         slotLabel.fontStyle = FontStyles.Bold;
         slotLabel.alignment = TextAlignmentOptions.Center;
         slotLabel.color = TextAccentColor;
@@ -385,7 +385,7 @@ public class SaveSlotSelectionUI : MonoBehaviour
         nameRect.pivot = new Vector2(0, 1);
         TextMeshProUGUI nameText = nameObj.AddComponent<TextMeshProUGUI>();
         nameText.text = isAutosave ? GetAutosaveLabel(slotNumber) : $"SLOT {slotNumber}";
-        nameText.fontSize = 18;
+        nameText.fontSize = 60;
         nameText.fontStyle = FontStyles.Bold;
         nameText.alignment = TextAlignmentOptions.Left;
         nameText.color = Color.white;
@@ -397,7 +397,7 @@ public class SaveSlotSelectionUI : MonoBehaviour
         infoRect.pivot = new Vector2(0, 0);
         TextMeshProUGUI infoText = infoObj.AddComponent<TextMeshProUGUI>();
         infoText.text = "(Empty)";
-        infoText.fontSize = 14;
+        infoText.fontSize = 48;
         infoText.alignment = TextAlignmentOptions.Left;
         infoText.color = TextSecondaryColor;
         infoText.enableWordWrapping = true;
@@ -418,7 +418,7 @@ public class SaveSlotSelectionUI : MonoBehaviour
             Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero);
         TextMeshProUGUI actionTMP = actionText.AddComponent<TextMeshProUGUI>();
         actionTMP.text = "LOAD";
-        actionTMP.fontSize = 14;
+        actionTMP.fontSize = 48;
         actionTMP.fontStyle = FontStyles.Bold;
         actionTMP.alignment = TextAlignmentOptions.Center;
         actionTMP.color = Color.white;
@@ -437,7 +437,7 @@ public class SaveSlotSelectionUI : MonoBehaviour
             Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero);
         TextMeshProUGUI exportTMP = exportText.AddComponent<TextMeshProUGUI>();
         exportTMP.text = "\u2197"; // Arrow symbol
-        exportTMP.fontSize = 18;
+        exportTMP.fontSize = 48;
         exportTMP.alignment = TextAlignmentOptions.Center;
         exportTMP.color = Color.white;
 
@@ -455,7 +455,7 @@ public class SaveSlotSelectionUI : MonoBehaviour
             Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero);
         TextMeshProUGUI deleteTMP = deleteText.AddComponent<TextMeshProUGUI>();
         deleteTMP.text = "X";
-        deleteTMP.fontSize = 16;
+        deleteTMP.fontSize = 48;
         deleteTMP.fontStyle = FontStyles.Bold;
         deleteTMP.alignment = TextAlignmentOptions.Center;
         deleteTMP.color = Color.white;
@@ -483,7 +483,7 @@ public class SaveSlotSelectionUI : MonoBehaviour
             new Vector2(0, 0), new Vector2(1, 0), new Vector2(0, 65), new Vector2(-20, 25));
         feedbackText = feedbackObj.AddComponent<TextMeshProUGUI>();
         feedbackText.text = "";
-        feedbackText.fontSize = 16;
+        feedbackText.fontSize = 48;
         feedbackText.alignment = TextAlignmentOptions.Center;
         feedbackText.color = TextAccentColor;
 
@@ -513,7 +513,7 @@ public class SaveSlotSelectionUI : MonoBehaviour
             Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero);
         TextMeshProUGUI importTMP = importText.AddComponent<TextMeshProUGUI>();
         importTMP.text = "IMPORT";
-        importTMP.fontSize = 16;
+        importTMP.fontSize = 48;
         importTMP.fontStyle = FontStyles.Bold;
         importTMP.alignment = TextAlignmentOptions.Center;
         importTMP.color = Color.white;
@@ -534,7 +534,7 @@ public class SaveSlotSelectionUI : MonoBehaviour
             Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero);
         TextMeshProUGUI backTMP = backText.AddComponent<TextMeshProUGUI>();
         backTMP.text = "BACK";
-        backTMP.fontSize = 16;
+        backTMP.fontSize = 48;
         backTMP.fontStyle = FontStyles.Bold;
         backTMP.alignment = TextAlignmentOptions.Center;
         backTMP.color = Color.white;
@@ -560,7 +560,7 @@ public class SaveSlotSelectionUI : MonoBehaviour
             new Vector2(0, 1), new Vector2(1, 1), new Vector2(0, -20), new Vector2(-20, 35));
         TextMeshProUGUI titleTMP = titleObj.AddComponent<TextMeshProUGUI>();
         titleTMP.text = "DELETE SAVE?";
-        titleTMP.fontSize = 22;
+        titleTMP.fontSize = 60;
         titleTMP.fontStyle = FontStyles.Bold;
         titleTMP.alignment = TextAlignmentOptions.Center;
         titleTMP.color = Color.white;
@@ -570,7 +570,7 @@ public class SaveSlotSelectionUI : MonoBehaviour
             new Vector2(0, 0.4f), new Vector2(1, 0.8f), Vector2.zero, new Vector2(-20, 0));
         confirmText = textObj.AddComponent<TextMeshProUGUI>();
         confirmText.text = "Delete save from Slot 1?";
-        confirmText.fontSize = 16;
+        confirmText.fontSize = 48;
         confirmText.alignment = TextAlignmentOptions.Center;
         confirmText.color = TextSecondaryColor;
 
@@ -600,7 +600,7 @@ public class SaveSlotSelectionUI : MonoBehaviour
             Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero);
         TextMeshProUGUI cancelTMP = cancelText.AddComponent<TextMeshProUGUI>();
         cancelTMP.text = "CANCEL";
-        cancelTMP.fontSize = 14;
+        cancelTMP.fontSize = 48;
         cancelTMP.fontStyle = FontStyles.Bold;
         cancelTMP.alignment = TextAlignmentOptions.Center;
         cancelTMP.color = Color.white;
@@ -621,7 +621,7 @@ public class SaveSlotSelectionUI : MonoBehaviour
             Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero);
         TextMeshProUGUI deleteTMP = deleteText.AddComponent<TextMeshProUGUI>();
         deleteTMP.text = "DELETE";
-        deleteTMP.fontSize = 14;
+        deleteTMP.fontSize = 48;
         deleteTMP.fontStyle = FontStyles.Bold;
         deleteTMP.alignment = TextAlignmentOptions.Center;
         deleteTMP.color = Color.white;

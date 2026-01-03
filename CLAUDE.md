@@ -254,6 +254,35 @@ The game uses **two separate ScreenSpaceOverlay canvases** with different sortin
 
 ---
 
+## UI Font Standardization
+
+All UI uses **TextMeshPro** with the **monogram-extended** pixel font. The `GlobalFontOverride` system automatically applies this font to all TMP_Text components.
+
+### Standardized Font Sizes
+| Size | Usage |
+|------|-------|
+| **60px** | Titles, main labels, menu buttons (pause menu, save/load, settings) |
+| **48px** | Secondary text, info labels, smaller buttons, HUD elements (metrics, scoreboard) |
+
+### Runtime UI Creation Pattern
+Some UI components create their elements dynamically at runtime (not via Editor setup scripts):
+- `SaveSlotSelectionUI.cs` - Creates save/load slot UI on first show
+- `MetricsPanelUI.cs` - Creates engagement/sanity bars
+- `LeaderboardUI.cs` - Creates scoreboard entries
+- `ToastManager.cs` - Creates toast notifications
+
+For these components, font sizes are set in code when elements are created. Changes take effect immediately without needing to run Editor setup tools.
+
+### Editor Setup Scripts
+Other UI is created via Editor menu tools that must be re-run to apply changes:
+- `Tools > Setup Pause Menu` - PauseMenuSetup.cs
+- `Tools > Setup Settings Panel in Pause Menu` - SettingsPanelSetup.cs
+- `Tools > Setup Company Store` - CompanyStoreSetup.cs
+
+These scripts have "recreate" logic that prompts to delete existing UI before rebuilding.
+
+---
+
 ## WebGL Notes
 
 - Use **Gzip compression** (not Brotli) for iOS compatibility

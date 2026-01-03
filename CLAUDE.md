@@ -314,7 +314,49 @@ private void ApplyRuntimeDefaults()
 - PlayerPrefs = IndexedDB (browser-local, cleared with browser data)
 - vercel.json handles .unityweb MIME types and encoding headers
 - **FMOD banks**: Loaded async via custom `FMODWebGLBankLoader` (see FMOD WebGL Setup section)
-- **Browser caching**: After deploying changes, users may need to fully clear browser cache (Ctrl+Shift+Delete) - incognito mode alone may not bypass CDN cache
+- **Browser caching**: Handled automatically by the cache-busting system (see below)
+
+---
+
+## Version & Cache Management
+
+The game uses an automatic cache-busting system to force browser cache invalidation on new deploys.
+
+### How It Works
+1. `version.json` contains the current version, build number, and build hash
+2. `cache-buster.js` runs on page load, comparing server version to localStorage
+3. On version mismatch: clears Unity IndexedDB + PlayerPrefs, then hard reloads
+4. `vercel.json` uses aggressive no-cache headers for HTML and version.json
+
+### Files
+| File | Purpose |
+|------|---------|
+| `version.json` | Version manifest (never cached) |
+| `assets/js/cache-buster.js` | Client-side version check & cache clear |
+| `update-version.ps1` | Build script to update versions |
+
+### Deploy Workflow
+After completing a Unity WebGL build:
+
+```powershell
+# Auto-increment build number
+.\update-version.ps1
+
+# Or bump version
+.\update-version.ps1 -Bump minor   # 4.0.0 -> 4.1.0
+.\update-version.ps1 -Bump major   # 4.0.0 -> 5.0.0
+.\update-version.ps1 -Bump patch   # 4.0.0 -> 4.0.1
+
+# Then commit and push
+git add .
+git commit -m "Deploy v4.1.0"
+# Push via GitHub Desktop
+```
+
+### What Gets Updated
+The script updates:
+- `webgl-build/version.json` - build number, hash, timestamp
+- `index.html`, `play.html`, `mobile-play.html` - productVersion, titles, meta tags
 
 ## Key Variables
 

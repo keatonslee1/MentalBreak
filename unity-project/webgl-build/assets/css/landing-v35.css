@@ -340,8 +340,7 @@ h1.mb-brand__title {
   left: 50%;
   bottom: 3%;
   transform: translateX(-50%);
-  width: calc(100% - 60px);
-  max-width: 980px;
+  width: 100%;
   z-index: 4;
   background: var(--mb-panel);
   border: 1px solid var(--mb-border);
@@ -412,8 +411,8 @@ h1.mb-brand__title {
     left: auto;
     bottom: auto;
     transform: none;
-    width: calc(100% - 60px);
-    max-width: calc(100% - 60px);
+    width: 100%;
+    max-width: 100%;
     margin-top: 12px;
     margin-left: auto;
     margin-right: auto;

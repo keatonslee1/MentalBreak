@@ -400,7 +400,7 @@ public class SaveSlotSelectionUI : MonoBehaviour
         infoText.fontSize = 48;
         infoText.alignment = TextAlignmentOptions.Left;
         infoText.color = TextSecondaryColor;
-        infoText.enableWordWrapping = true;
+        infoText.textWrappingMode = TextWrappingModes.Normal;
 
         // Action button (Load/Save)
         GameObject actionObj = CreateUIElement(row.transform, "ActionButton",

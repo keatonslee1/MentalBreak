@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 /// <summary>
 /// Toast notification types for different feedback scenarios.
@@ -38,7 +39,7 @@ public class ToastManager : MonoBehaviour
     public float bottomOffset = 100f;
 
     [Tooltip("Spacing between stacked toasts")]
-    public float toastSpacing = 60f;
+    public float toastSpacing = 80f;
 
     [Header("Styling")]
     public Color infoColor = new Color(0.2f, 0.2f, 0.25f, 0.95f);
@@ -185,7 +186,7 @@ public class ToastManager : MonoBehaviour
         rect.anchorMin = new Vector2(0.5f, 0f);
         rect.anchorMax = new Vector2(0.5f, 0f);
         rect.pivot = new Vector2(0.5f, 0f);
-        rect.sizeDelta = new Vector2(400f, 50f);
+        rect.sizeDelta = new Vector2(600f, 70f);
 
         // Position based on number of active toasts
         float yPos = bottomOffset + (activeToasts.Count * toastSpacing);
@@ -209,14 +210,17 @@ public class ToastManager : MonoBehaviour
         RectTransform textRect = textObj.AddComponent<RectTransform>();
         textRect.anchorMin = Vector2.zero;
         textRect.anchorMax = Vector2.one;
-        textRect.offsetMin = new Vector2(15f, 5f);
-        textRect.offsetMax = new Vector2(-15f, -5f);
+        textRect.offsetMin = new Vector2(20f, 8f);
+        textRect.offsetMax = new Vector2(-20f, -8f);
 
-        Text text = textObj.AddComponent<Text>();
+        TextMeshProUGUI text = textObj.AddComponent<TextMeshProUGUI>();
         text.text = message;
-        text.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
-        text.fontSize = 18;
-        text.alignment = TextAnchor.MiddleCenter;
+        if (TMP_Settings.defaultFontAsset != null)
+        {
+            text.font = TMP_Settings.defaultFontAsset;
+        }
+        text.fontSize = 48;
+        text.alignment = TextAlignmentOptions.Center;
         text.color = GetTextColor(type);
         text.raycastTarget = false;
 

@@ -322,8 +322,8 @@ h1.mb-brand__title {
 
 .mb-hero-stage__alice {
   position: absolute;
-  left: 6%;
-  bottom: 14%;
+  left: calc(6% + 100px);
+  bottom: calc(14% + 100px);
   width: auto;
   height: auto;
   max-width: clamp(180px, 24vw, 420px);
@@ -341,7 +341,7 @@ h1.mb-brand__title {
   bottom: 3%;
   transform: translateX(-50%);
   width: fit-content;
-  max-width: min(980px, calc(100% - 24px));
+  max-width: min(980px, calc(100% - 60px));
   z-index: 4;
   background: var(--mb-panel);
   border: 1px solid var(--mb-border);
@@ -378,7 +378,7 @@ h1.mb-brand__title {
   background: rgba(122, 230, 255, 0.10);
   color: var(--mb-text);
   font-family: 'monogram-extended', monospace;
-  font-weight: 700;
+  font-weight: normal;
   font-size: 32px;
   letter-spacing: 0.02em;
   padding: 12px 16px;
@@ -571,8 +571,8 @@ h1.mb-brand__title {
     justify-content: center;
   }
   .mb-hero-stage__alice {
-    left: 4%;
-    bottom: 14%;
+    left: calc(4% + 100px);
+    bottom: calc(14% + 100px);
     width: auto;
     height: auto;
     max-width: min(40%, clamp(160px, 42vw, 320px));

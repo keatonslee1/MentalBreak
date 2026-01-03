@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 /// <summary>
 /// Applies global font settings on startup and on each scene load.
-/// - TMP uses Montserrat-Regular SDF (per project choice)
-/// - Legacy UI.Text uses Montserrat-Medium.ttf
+/// - TMP uses the primary SDF font from GlobalFontConfig
+/// - Legacy UI.Text uses the primary TTF font from GlobalFontConfig
 /// </summary>
 public sealed class GlobalFontOverride : MonoBehaviour
 {
@@ -73,10 +73,10 @@ public sealed class GlobalFontOverride : MonoBehaviour
             return;
         }
 
-        if (config.montserratRegularSdf != null)
+        if (config.primarySdfFont != null)
         {
             // Set TMP global default.
-            TMP_Settings.defaultFontAsset = config.montserratRegularSdf;
+            TMP_Settings.defaultFontAsset = config.primarySdfFont;
         }
 
         ApplyToAllTmpText();
@@ -99,7 +99,7 @@ public sealed class GlobalFontOverride : MonoBehaviour
 
     private void ApplyToAllTmpText()
     {
-        if (config == null || config.montserratRegularSdf == null)
+        if (config == null || config.primarySdfFont == null)
         {
             return;
         }
@@ -109,14 +109,14 @@ public sealed class GlobalFontOverride : MonoBehaviour
         {
             TMP_Text t = allTmp[i];
             if (t == null) continue;
-            if (t.font == config.montserratRegularSdf) continue;
-            t.font = config.montserratRegularSdf;
+            if (t.font == config.primarySdfFont) continue;
+            t.font = config.primarySdfFont;
         }
     }
 
     private void ApplyToAllLegacyText()
     {
-        if (config == null || config.montserratMediumTtf == null)
+        if (config == null || config.primaryTtfFont == null)
         {
             return;
         }
@@ -126,8 +126,8 @@ public sealed class GlobalFontOverride : MonoBehaviour
         {
             Text t = allText[i];
             if (t == null) continue;
-            if (t.font == config.montserratMediumTtf) continue;
-            t.font = config.montserratMediumTtf;
+            if (t.font == config.primaryTtfFont) continue;
+            t.font = config.primaryTtfFont;
         }
     }
 }

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c164ca0693b4e2488ce167882979e94, type: 3}
   m_Name: GlobalFontConfig
   m_EditorClassIdentifier: Assembly-CSharp::GlobalFontConfig
-  montserratRegularSdf: {fileID: 11400000, guid: a53ae1e4540dd41dabc340f5e6350c6f, type: 2}
-  montserratMediumTtf: {fileID: 12800000, guid: 88ffc9ca3f28042a6973d8a90148b034, type: 3}
+  primarySdfFont: {fileID: 11400000, guid: a929cb3b2b2d80c419d5d229015b7a35, type: 2}
+  primaryTtfFont: {fileID: 12800000, guid: e1c7b707dc08a42489ec9dbd3a56225b, type: 3}

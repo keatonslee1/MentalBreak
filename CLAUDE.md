@@ -105,12 +105,12 @@ python -m http.server 8000
 | Folder | Purpose | Key Files |
 |--------|---------|-----------|
 | Core/ | Game state, saves, settings | GameManager, SaveLoadManager, SaveExporter, SettingsManager |
-| Dialogue/ | Dialogue flow | DialogueAdvanceHandler, OptionsInputHandler |
+| Dialogue/ | Dialogue flow | ClickAdvancer, OptionsInputHandler |
 | UI/ | User interface | MenuManager, PauseMenuManager, SettingsPanel, StoreUI, ToastManager |
-| Audio/ | Audio commands | AudioCommandHandler, FMODAudioManager, FMODWebGLBankLoader |
-| Characters/ | Portraits | CharacterSpriteManager, CharacterTalkAnimation |
+| Audio/ | Audio commands | AudioCommandHandler, FMODAudioManager, FMODWebGLBankLoader, MumbleDialogueController |
+| Characters/ | Portraits | CharacterSpriteManager, PortraitTalkingStateController |
 | Commands/ | Yarn handlers | BackgroundCommandHandler, CheckpointCommandHandler |
-| Editor/ | Dev tools | DialogueSystemUIAutoWire, SettingsPanelSetup, various scripts |
+| Editor/ | Dev tools | DialogueSystemUIAutoWire, SettingsPanelSetup, DialogueFontSetup, PauseMenuSetup |
 
 ### Yarn Commands
 
@@ -131,6 +131,37 @@ python -m http.server 8000
 ### Scenes
 - **MainMenu.unity**: Title screen
 - **MVPScene.unity**: Main game (Dialogue System in DontDestroyOnLoad)
+
+## Dialogue Input System
+
+Clean two-component architecture for dialogue advancement:
+
+| Component | Location | Responsibility |
+|-----------|----------|----------------|
+| **LineAdvancer** (Yarn Spinner) | Line Advancer GameObject | Keyboard input (Space/Enter), two-stage advancement |
+| **ClickAdvancer** (custom) | Dialogue System | Mouse click input, delegates to LineAdvancer |
+
+### How It Works
+- **Space/Enter**: Two-stage advancement (first completes text, second advances to next line)
+- **Click anywhere** (except buttons): Same two-stage behavior via ClickAdvancer
+- **ESC**: Disabled (prevents accidental skips)
+
+### Key Components
+- `LineAdvancer`: Yarn Spinner's built-in component, handles keyboard and tracks line completion state
+- `ClickAdvancer`: Minimal 45-line script, checks `ModalInputLock` and `IsPointerOverInteractableUI()`, then calls `lineAdvancer.RequestLineHurryUp()`
+- `OptionsInputHandler`: Handles Space key for selecting dialogue options
+
+### Modal Blocking
+- `ModalInputLock`: Static lock checked by ClickAdvancer
+- `WelcomeOverlay`: Directly disables LineAdvancer when shown (LineAdvancer doesn't check ModalInputLock)
+
+### ActionMarkupHandler Pattern
+Line lifecycle callbacks (used by MumbleDialogueController, PortraitTalkingStateController):
+- `OnLineDisplayBegin()` → Line starts displaying (start mumble/talking animation)
+- `OnLineDisplayComplete()` → Text finished scrolling (stop mumble/talking animation)
+- `OnLineWillDismiss()` → Line about to be dismissed
+
+Register handlers in LinePresenter's **Event Handlers** list in the Inspector.
 
 ## Dialogue Files
 
@@ -197,6 +228,84 @@ See `docs/audio_guide.md` for comprehensive audio documentation including FMOD s
 ### Editor Setup
 - `Tools > Setup Settings Panel in Pause Menu` - Creates complete settings UI
 - `Tools > Setup SettingsManager in Scene` - Adds SettingsManager component
+
+## UI Canvas Architecture
+
+The game uses **two separate ScreenSpaceOverlay canvases** with different sorting orders:
+
+| Canvas | sortingOrder | Contents |
+|--------|--------------|----------|
+| Dialogue System Canvas ("Canvas") | 0 | Dialogue UI, pause menu, save/load panel, character sprites |
+| OverlayUIRoot | 2000 | Metrics bars (Engagement/Sanity), Leaderboard, runtime overlays |
+
+### OverlayCanvasProvider (`Scripts/UI/OverlayCanvasProvider.cs`)
+- Singleton that provides a deterministic overlay canvas for runtime-created UI
+- Creates "OverlayUIRoot" with `sortingOrder = 2000` and `DontDestroyOnLoad`
+- Used by: `MetricsPanelUI`, `LeaderboardUI`, `ToastManager`
+- Avoids nondeterministic canvas selection in WebGL/IL2CPP builds
+
+### Best Practices
+1. **Never change the Dialogue System Canvas sortingOrder** - This breaks OverlayUIRoot visibility
+2. **Use OverlayCanvasProvider.GetCanvas()** for runtime UI that should appear above dialogue
+3. **For modal dialogs within the Dialogue Canvas**, use sibling ordering (SetAsLastSibling) instead of sortingOrder changes
+
+### Known Pitfall (Fixed)
+`SaveSlotSelectionUI` previously changed the parent canvas `sortingOrder = 5000`, which caused metrics/leaderboard to disappear behind the dialogue UI. The fix was to remove this sortingOrder change entirely - the save/load panel is already visible within its parent canvas.
+
+---
+
+## UI Font Standardization
+
+All UI uses **TextMeshPro** with the **monogram-extended** pixel font. The `GlobalFontOverride` system automatically applies this font to all TMP_Text components.
+
+### Standardized Font Sizes
+| Size | Usage |
+|------|-------|
+| **60px** | Titles, main labels, menu buttons (pause menu, save/load, settings) |
+| **48px** | Secondary text, info labels, smaller buttons, HUD elements (metrics, scoreboard) |
+
+### Runtime UI Creation Pattern
+Some UI components create their elements dynamically at runtime (not via Editor setup scripts):
+- `SaveSlotSelectionUI.cs` - Creates save/load slot UI on first show
+- `MetricsPanelUI.cs` - Creates engagement/sanity bars
+- `LeaderboardUI.cs` - Creates scoreboard entries
+- `ToastManager.cs` - Creates toast notifications
+
+For these components, font sizes are set in code when elements are created. Changes take effect immediately without needing to run Editor setup tools.
+
+### Editor Setup Scripts
+Other UI is created via Editor menu tools that must be re-run to apply changes:
+- `Tools > Setup Pause Menu` - PauseMenuSetup.cs
+- `Tools > Setup Settings Panel in Pause Menu` - SettingsPanelSetup.cs
+- `Tools > Setup Company Store` - CompanyStoreSetup.cs
+- `Tools > Setup Dialogue Font Sizes` - DialogueFontSetup.cs (updates LinePresenter, WheelOptionView, BubbleContentView text)
+
+These scripts have "recreate" logic that prompts to delete existing UI before rebuilding.
+
+### HUD Buttons (Runtime-Created)
+The corner HUD buttons (Menu, Feedback, Back, Run/Day tracker) are created at runtime by `PauseMenuManager.cs`. Their sizes are controlled by constants:
+```csharp
+private const float HudButtonHeight = 90f;
+private const float HudMenuButtonWidth = 200f;
+private const float HudBackButtonWidth = 240f;
+private const float HudFeedbackButtonWidth = 300f;
+private const float HudRunDayBoxWidth = 400f;
+```
+Font size is set to 60px in `CreateButtonText()` and `SetupRunDayTracker()`.
+
+### Runtime Defaults Pattern
+`MetricsPanelUI` uses `enforceRuntimeDefaults = true` to override serialized Inspector values at runtime. This ensures consistent font sizes (48px) even if old values are saved in the scene. The pattern:
+```csharp
+private void ApplyRuntimeDefaults()
+{
+    if (!enforceRuntimeDefaults) return;
+    minFontSize = 48;
+    fontSize = 48;
+    // ... other defaults
+}
+```
+
+---
 
 ## WebGL Notes
 

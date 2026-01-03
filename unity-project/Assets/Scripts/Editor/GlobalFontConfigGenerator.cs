@@ -5,7 +5,7 @@ using UnityEditor;
 using UnityEngine;
 
 /// <summary>
-/// Creates/updates a Resources/GlobalFontConfig asset that points at the Montserrat fonts already present in the repo.
+/// Creates/updates a Resources/GlobalFontConfig asset that points at the project fonts.
 /// </summary>
 [InitializeOnLoad]
 public static class GlobalFontConfigGenerator
@@ -13,11 +13,9 @@ public static class GlobalFontConfigGenerator
     private const string ResourcesDir = "Assets/Resources";
     private const string ConfigAssetPath = ResourcesDir + "/GlobalFontConfig.asset";
 
-    // Prefer the Yarn Spinner sample assets that are already in the repo.
-    private const string MontserratRegularSdfSearch = "Montserrat-Regular SDF t:TMP_FontAsset";
-    // Font type search can be flaky across Packages vs Assets; we'll also fall back to filename search.
-    private const string MontserratMediumTtfSearch = "Montserrat-Medium t:Font";
-    private const string MontserratMediumTtfFilenameSearch = "Montserrat-Medium.ttf";
+    private const string PrimarySdfSearch = "monogram-extended SDF t:TMP_FontAsset";
+    private const string PrimaryTtfSearch = "monogram-extended t:Font";
+    private const string PrimaryTtfFilenameSearch = "monogram-extended.ttf";
 
     static GlobalFontConfigGenerator()
     {
@@ -51,24 +49,24 @@ public static class GlobalFontConfigGenerator
 
         bool changed = false;
 
-        if (config.montserratRegularSdf == null)
+        if (config.primarySdfFont == null)
         {
-            string guid = FindFirstGuid(MontserratRegularSdfSearch);
+            string guid = FindFirstGuid(PrimarySdfSearch);
             if (!string.IsNullOrEmpty(guid))
             {
                 string path = AssetDatabase.GUIDToAssetPath(guid);
-                config.montserratRegularSdf = AssetDatabase.LoadAssetAtPath<TMP_FontAsset>(path);
+                config.primarySdfFont = AssetDatabase.LoadAssetAtPath<TMP_FontAsset>(path);
                 changed = true;
             }
         }
 
-        if (config.montserratMediumTtf == null)
+        if (config.primaryTtfFont == null)
         {
-            string guid = FindFirstGuid(MontserratMediumTtfSearch);
+            string guid = FindFirstGuid(PrimaryTtfSearch);
             if (string.IsNullOrEmpty(guid))
             {
                 // Fallback: locate by filename (works reliably in Packages).
-                string[] ttfGuids = AssetDatabase.FindAssets(MontserratMediumTtfFilenameSearch);
+                string[] ttfGuids = AssetDatabase.FindAssets(PrimaryTtfFilenameSearch);
                 if (ttfGuids != null && ttfGuids.Length > 0)
                 {
                     guid = ttfGuids[0];
@@ -78,7 +76,7 @@ public static class GlobalFontConfigGenerator
             if (!string.IsNullOrEmpty(guid))
             {
                 string path = AssetDatabase.GUIDToAssetPath(guid);
-                config.montserratMediumTtf = AssetDatabase.LoadAssetAtPath<Font>(path);
+                config.primaryTtfFont = AssetDatabase.LoadAssetAtPath<Font>(path);
                 changed = true;
             }
         }
@@ -92,8 +90,8 @@ public static class GlobalFontConfigGenerator
         if (verbose)
         {
             Debug.Log($"GlobalFontConfigGenerator: {(changed ? "Updated" : "Verified")} {ConfigAssetPath}\n" +
-                      $"- TMP: {(config.montserratRegularSdf != null ? config.montserratRegularSdf.name : "<missing>")}\n" +
-                      $"- UI.Text: {(config.montserratMediumTtf != null ? config.montserratMediumTtf.name : "<missing>")}");
+                      $"- TMP: {(config.primarySdfFont != null ? config.primarySdfFont.name : "<missing>")}\n" +
+                      $"- UI.Text: {(config.primaryTtfFont != null ? config.primaryTtfFont.name : "<missing>")}");
         }
     }
 

@@ -83,6 +83,9 @@
   } else {
     init();
   }
+
+  // Expose fit16x9 globally so it can be called when Unity wrapper becomes visible
+  window.fit16x9 = fit16x9;
 })();
 
 

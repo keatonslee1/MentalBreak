@@ -1,193 +1,115 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
-
-#if USE_TMP
 using TMPro;
-#endif
 
 /// <summary>
-/// Simple save slot selection UI with 5 fixed buttons (Autosave + Slot 1-4) styled like pause menu
+/// Save/Load slot selection UI with store-style design.
+/// Creates UI dynamically at runtime for maximum flexibility.
 /// </summary>
 public class SaveSlotSelectionUI : MonoBehaviour
 {
-    public enum Mode
+    public enum Mode { Save, Load }
+
+    [System.Serializable]
+    public class SlotRowData
     {
-        Save,
-        Load
+        public int slotNumber;
+        public GameObject rowObject;
+        public TextMeshProUGUI slotLabel;
+        public TextMeshProUGUI nameText;
+        public TextMeshProUGUI infoText;
+        public Button actionButton;
+        public Button exportButton;
+        public Button deleteButton;
+        public CanvasGroup canvasGroup;
     }
 
     [Header("UI References")]
-    [Tooltip("The main save selection panel")]
     public GameObject selectionPanel;
 
-    [Header("Manual Slot Buttons (1-5)")]
-    [Tooltip("Button for Manual Slot 1")]
-    public Button slot1Button;
-
-    [Tooltip("Button for Manual Slot 2")]
-    public Button slot2Button;
-
-    [Tooltip("Button for Manual Slot 3")]
-    public Button slot3Button;
-
-    [Tooltip("Button for Manual Slot 4")]
-    public Button slot4Button;
-
-    [Tooltip("Button for Manual Slot 5")]
-    public Button slot5Button;
-
-    [Header("Autosave Slot Buttons (for Load mode only)")]
-    [Tooltip("Button for Autosave Newest (Slot 0)")]
-    public Button autosave0Button;
-
-    [Tooltip("Button for Autosave Middle (Slot -1)")]
-    public Button autosave1Button;
-
-    [Tooltip("Button for Autosave Oldest (Slot -2)")]
-    public Button autosave2Button;
-
-    [Header("Other Buttons")]
-    [Tooltip("Cancel/Back button")]
-    public Button cancelButton;
-
-    [Tooltip("Import save from clipboard")]
-    public Button importButton;
-
     [Header("References")]
-    [Tooltip("SaveLoadManager instance (auto-found if null)")]
     public SaveLoadManager saveLoadManager;
-
-    [Tooltip("PauseMenuManager instance (for closing pause menu when loading)")]
     public PauseMenuManager pauseMenuManager;
 
+    // Runtime UI elements
+    private TextMeshProUGUI titleText;
+    private Button closeButton;
+    private Button importButton;
+    private Button backButton;
+    private TextMeshProUGUI feedbackText;
+    private ScrollRect scrollRect;
+    private Transform contentTransform;
+
+    // Slot rows
+    private List<SlotRowData> slotRows = new List<SlotRowData>();
+
+    // Confirmation dialog
+    private GameObject confirmDialog;
+    private TextMeshProUGUI confirmText;
+    private Button confirmYesButton;
+    private Button confirmNoButton;
+    private int pendingDeleteSlot = -999;
+
+    // State
     private Mode currentMode = Mode.Load;
-    private CanvasGroup selectionPanelCanvasGroup;
+    private bool uiCreated = false;
+    private Coroutine feedbackCoroutine;
+
+    // Colors (match CompanyStore)
+    private static readonly Color PanelBgColor = new Color(0.08f, 0.08f, 0.12f, 0.98f);
+    private static readonly Color HeaderBgColor = new Color(0.12f, 0.12f, 0.18f, 1f);
+    private static readonly Color RowBgColor = new Color(0.15f, 0.15f, 0.2f, 0.9f);
+    private static readonly Color PrimaryButtonColor = new Color(0.2f, 0.5f, 0.2f, 1f);
+    private static readonly Color DangerButtonColor = new Color(0.7f, 0.2f, 0.2f, 1f);
+    private static readonly Color NeutralButtonColor = new Color(0.3f, 0.3f, 0.4f, 1f);
+    private static readonly Color TextSecondaryColor = new Color(0.7f, 0.7f, 0.7f, 1f);
+    private static readonly Color TextAccentColor = new Color(0.4f, 0.9f, 0.4f, 1f);
 
     private void Awake()
     {
-        // Auto-find references
         if (saveLoadManager == null)
         {
             saveLoadManager = FindFirstObjectByType<SaveLoadManager>();
             if (saveLoadManager == null && SaveLoadManager.Instance != null)
-            {
                 saveLoadManager = SaveLoadManager.Instance;
-            }
         }
 
         if (pauseMenuManager == null)
         {
             pauseMenuManager = FindFirstObjectByType<PauseMenuManager>();
             if (pauseMenuManager == null && PauseMenuManager.Instance != null)
-            {
                 pauseMenuManager = PauseMenuManager.Instance;
-            }
         }
-
-        if (selectionPanel != null)
-        {
-            selectionPanelCanvasGroup = selectionPanel.GetComponent<CanvasGroup>();
-            if (selectionPanelCanvasGroup == null)
-            {
-                selectionPanelCanvasGroup = selectionPanel.AddComponent<CanvasGroup>();
-                selectionPanelCanvasGroup.alpha = 0f;
-                selectionPanelCanvasGroup.interactable = false;
-                selectionPanelCanvasGroup.blocksRaycasts = false;
-                Debug.Log("SaveSlotSelectionUI: Added CanvasGroup to selectionPanel for visibility control.");
-            }
-        }
-
-        EnsureSelectionPanelParent();
     }
 
     private void Start()
     {
-        // Initialize UI state
-        
-        //this is the reason for save and load menus not working the first time when the button is pressed....but I see it was removed from the prefab, why?
         if (selectionPanel != null)
-        {
             selectionPanel.SetActive(false);
-        }
-
-        // Setup button listeners for Manual Slots (1-5)
-        if (slot1Button != null)
-        {
-            slot1Button.onClick.AddListener(() => OnSlotSelected(1));
-        }
-
-        if (slot2Button != null)
-        {
-            slot2Button.onClick.AddListener(() => OnSlotSelected(2));
-        }
-
-        if (slot3Button != null)
-        {
-            slot3Button.onClick.AddListener(() => OnSlotSelected(3));
-        }
-
-        if (slot4Button != null)
-        {
-            slot4Button.onClick.AddListener(() => OnSlotSelected(4));
-        }
-
-        if (slot5Button != null)
-        {
-            slot5Button.onClick.AddListener(() => OnSlotSelected(5));
-        }
-
-        // Setup button listeners for Autosave Slots (load only)
-        if (autosave0Button != null)
-        {
-            autosave0Button.onClick.AddListener(() => OnSlotSelected(0));
-        }
-
-        if (autosave1Button != null)
-        {
-            autosave1Button.onClick.AddListener(() => OnSlotSelected(-1));
-        }
-
-        if (autosave2Button != null)
-        {
-            autosave2Button.onClick.AddListener(() => OnSlotSelected(-2));
-        }
-
-        if (cancelButton != null)
-        {
-            cancelButton.onClick.AddListener(OnCancel);
-        }
-
-        if (importButton != null)
-        {
-            importButton.onClick.AddListener(OnImportClicked);
-        }
-
-        // Update button labels initially
-        UpdateButtonLabels();
     }
 
     private void Update()
     {
-        // Check for ESC key to close selection UI (using new Input System)
         if (selectionPanel != null && selectionPanel.activeSelf)
         {
-            if (ModalInputLock.IsLocked)
-            {
-                return;
-            }
+            if (ModalInputLock.IsLocked) return;
 
             if (Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame)
             {
-                OnCancel();
+                if (confirmDialog != null && confirmDialog.activeSelf)
+                    OnCancelDelete();
+                else
+                    OnCancel();
             }
         }
     }
 
     /// <summary>
-    /// Show the save slot selection UI in save mode
+    /// Show UI in Save mode
     /// </summary>
     public void ShowSelectionUIForSave()
     {
@@ -196,7 +118,7 @@ public class SaveSlotSelectionUI : MonoBehaviour
     }
 
     /// <summary>
-    /// Show the save slot selection UI in load mode
+    /// Show UI in Load mode
     /// </summary>
     public void ShowSelectionUIForLoad()
     {
@@ -205,765 +127,803 @@ public class SaveSlotSelectionUI : MonoBehaviour
     }
 
     /// <summary>
-    /// Show the save slot selection UI (mode should be set by caller)
+    /// Show the selection UI
     /// </summary>
     public void ShowSelectionUI()
     {
-        if (selectionPanel != null)
+        if (selectionPanel == null)
         {
-            // CRITICAL: Verify selectionPanel reference is correct
-            Debug.Log($"SaveSlotSelectionUI: ShowSelectionUI() - selectionPanel reference: name='{selectionPanel.name}', instanceID={selectionPanel.GetInstanceID()}, activeSelf={selectionPanel.activeSelf}, activeInHierarchy={selectionPanel.activeInHierarchy}");
-            
-            // CRITICAL FIX: Activate entire parent chain FIRST (before activating panel)
-            // This ensures LoadMenuPanel becomes active in hierarchy even if PauseMenuPanel was inactive
-            // Hierarchy: DontDestroyOnLoad/DialogueSystem/Canvas/PauseMenuPanel/LoadMenuPanel
-            Transform current = selectionPanel.transform.parent; // Start with parent, not LoadMenuPanel itself
-            while (current != null)
-            {
-                bool initiallyActive = current.gameObject.activeSelf;
-                Debug.Log($"SaveSlotSelectionUI: Inspecting parent {current.name} (activeSelf={initiallyActive}, activeInHierarchy={current.gameObject.activeInHierarchy})");
-
-                if (!initiallyActive)
-                {
-                    current.gameObject.SetActive(true);
-                    Debug.Log($"SaveSlotSelectionUI: Activated parent {current.name} to enable LoadMenuPanel");
-                }
-                
-                // CRITICAL: If parent is PauseMenuPanel, disable its Image component to prevent it covering LoadMenuPanel
-                if (current.name == "PauseMenuPanel")
-                {
-                    Image pausePanelImage = current.GetComponent<Image>();
-                    if (pausePanelImage != null)
-                    {
-                        Debug.Log($"SaveSlotSelectionUI: PauseMenuPanel Image state before disable -> enabled={pausePanelImage.enabled}, color={pausePanelImage.color}, raycastTarget={pausePanelImage.raycastTarget}");
-                        if (pausePanelImage.enabled)
-                        {
-                            pausePanelImage.enabled = false;
-                            Debug.LogWarning("SaveSlotSelectionUI: Disabled PauseMenuPanel Image to prevent covering LoadMenuPanel");
-                        }
-                    }
-                    else
-                    {
-                        Debug.Log("SaveSlotSelectionUI: PauseMenuPanel does not have an Image component.");
-                    }
-                }
-                
-                current = current.parent;
-            }
-
-            // Set CanvasGroup alpha BEFORE activating panel to ensure proper rendering
-            if (selectionPanelCanvasGroup != null)
-            {
-                selectionPanelCanvasGroup.alpha = 1f;
-                selectionPanelCanvasGroup.interactable = true;
-                selectionPanelCanvasGroup.blocksRaycasts = true;
-                Debug.Log($"SaveSlotSelectionUI: Enabled CanvasGroup (alpha={selectionPanelCanvasGroup.alpha}, interactable={selectionPanelCanvasGroup.interactable}).");
-            }
-
-            // NOW activate the panel using multiple methods to ensure it works
-            // Method 1: Direct GameObject.SetActive
-            selectionPanel.SetActive(true);
-            bool activeSelf1 = selectionPanel.activeSelf;
-            bool activeInHierarchy1 = selectionPanel.activeInHierarchy;
-            Debug.Log($"SaveSlotSelectionUI: Method 1 (GameObject.SetActive) - activeSelf={activeSelf1}, activeInHierarchy={activeInHierarchy1}");
-            
-            // If Method 1 failed, try Method 2: Via Transform
-            if (!activeSelf1)
-            {
-                Debug.LogWarning($"SaveSlotSelectionUI: Method 1 failed! Trying Method 2 (Transform.gameObject.SetActive)");
-                selectionPanel.transform.gameObject.SetActive(true);
-                bool activeSelf2 = selectionPanel.activeSelf;
-                bool activeInHierarchy2 = selectionPanel.activeInHierarchy;
-                Debug.Log($"SaveSlotSelectionUI: Method 2 (Transform.gameObject.SetActive) - activeSelf={activeSelf2}, activeInHierarchy={activeInHierarchy2}");
-                
-                // If Method 2 failed, try Method 3: Direct reference
-                if (!activeSelf2)
-                {
-                    Debug.LogError($"SaveSlotSelectionUI: Method 2 also failed! Trying Method 3 (direct reference)");
-                    GameObject panelObj = selectionPanel;
-                    if (panelObj != null)
-                    {
-                        panelObj.SetActive(true);
-                        bool activeSelf3 = panelObj.activeSelf;
-                        bool activeInHierarchy3 = panelObj.activeInHierarchy;
-                        Debug.Log($"SaveSlotSelectionUI: Method 3 (direct reference) - activeSelf={activeSelf3}, activeInHierarchy={activeInHierarchy3}");
-                        
-                        if (!activeSelf3)
-                        {
-                            Debug.LogError($"SaveSlotSelectionUI: ALL activation methods failed! selectionPanel.name='{selectionPanel.name}', instanceID={selectionPanel.GetInstanceID()}");
-                        }
-                    }
-                }
-            }
-            
-            // Final verification
-            bool finalActiveSelf = selectionPanel.activeSelf;
-            bool finalActiveInHierarchy = selectionPanel.activeInHierarchy;
-            Debug.Log($"SaveSlotSelectionUI: FINAL STATE - activeSelf={finalActiveSelf}, activeInHierarchy={finalActiveInHierarchy}");
-            
-            if (!finalActiveInHierarchy && finalActiveSelf)
-            {
-                Debug.LogError($"SaveSlotSelectionUI: LoadMenuPanel.activeInHierarchy is FALSE even though activeSelf is TRUE! Parent chain may not be fully active.");
-                // Verify parent chain again
-                Transform parentCheck = selectionPanel.transform.parent;
-                while (parentCheck != null)
-                {
-                    Debug.Log($"SaveSlotSelectionUI: Parent {parentCheck.name} - activeSelf={parentCheck.gameObject.activeSelf}, activeInHierarchy={parentCheck.gameObject.activeInHierarchy}");
-                    if (!parentCheck.gameObject.activeSelf)
-                    {
-                        Debug.LogWarning($"SaveSlotSelectionUI: Reactivating parent {parentCheck.name}");
-                        parentCheck.gameObject.SetActive(true);
-                    }
-                    parentCheck = parentCheck.parent;
-                }
-                // Try activating again after fixing parent chain
-                selectionPanel.SetActive(true);
-                Debug.Log($"SaveSlotSelectionUI: After parent chain fix - activeSelf={selectionPanel.activeSelf}, activeInHierarchy={selectionPanel.activeInHierarchy}");
-            }
-            
-            // Start coroutine as fallback if still not active
-            if (!selectionPanel.activeSelf)
-            {
-                Debug.LogError($"SaveSlotSelectionUI: LoadMenuPanel still inactive after all attempts! Starting delayed activation coroutine.");
-                StartCoroutine(DelayedActivationFallback());
-            }
-            
-            // Handle prefab overrides and Editor refresh (Editor-only)
-#if UNITY_EDITOR
-            try
-            {
-                // Check if LoadMenuPanel is a prefab instance
-                UnityEditor.PrefabAssetType prefabType = UnityEditor.PrefabUtility.GetPrefabAssetType(selectionPanel);
-                UnityEditor.PrefabInstanceStatus prefabStatus = UnityEditor.PrefabUtility.GetPrefabInstanceStatus(selectionPanel);
-                
-                Debug.Log($"SaveSlotSelectionUI: Prefab status - assetType={prefabType}, instanceStatus={prefabStatus}");
-                
-                // If it's a prefab instance, we need to record the property modification
-                if (prefabStatus == UnityEditor.PrefabInstanceStatus.Connected || 
-                    prefabStatus == UnityEditor.PrefabInstanceStatus.MissingAsset)
-                {
-                    Debug.Log($"SaveSlotSelectionUI: LoadMenuPanel is a prefab instance. Recording property modification to save active state override.");
-                    
-                    // Record the active state modification so it persists
-                    UnityEditor.PrefabUtility.RecordPrefabInstancePropertyModifications(selectionPanel);
-                    
-                    // Mark as dirty to force Editor refresh
-                    UnityEditor.EditorUtility.SetDirty(selectionPanel);
-                    
-                    Debug.Log($"SaveSlotSelectionUI: Recorded prefab modification and marked as dirty. Inspector should now show active state.");
-                }
-                else if (prefabType == UnityEditor.PrefabAssetType.Regular || 
-                         prefabType == UnityEditor.PrefabAssetType.Variant)
-                {
-                    Debug.LogWarning($"SaveSlotSelectionUI: LoadMenuPanel appears to be a prefab asset, not an instance! This might be why activation isn't working.");
-                    
-                    // Try to find the scene instance instead
-                    GameObject sceneInstance = GameObject.Find("LoadMenuPanel");
-                    if (sceneInstance != null && sceneInstance != selectionPanel)
-                    {
-                        Debug.LogWarning($"SaveSlotSelectionUI: Found different LoadMenuPanel instance in scene! Activating scene instance instead.");
-                        sceneInstance.SetActive(true);
-                        UnityEditor.EditorUtility.SetDirty(sceneInstance);
-                    }
-                }
-                else
-                {
-                    // Not a prefab, just mark as dirty for refresh
-                    UnityEditor.EditorUtility.SetDirty(selectionPanel);
-                    Debug.Log($"SaveSlotSelectionUI: LoadMenuPanel is not a prefab instance. Marked as dirty for Editor refresh.");
-                }
-            }
-            catch (System.Exception ex)
-            {
-                Debug.LogWarning($"SaveSlotSelectionUI: Could not handle prefab override (Editor-only code failed): {ex.Message}");
-            }
-#endif
-            
-            // CRITICAL: Verify reference is correct and activate scene instance as fallback
-            // The selectionPanel reference might be pointing to a prefab or wrong instance
-            GameObject actualSceneInstance = GameObject.Find("LoadMenuPanel");
-            if (actualSceneInstance != null)
-            {
-                int referenceInstanceID = selectionPanel != null ? selectionPanel.GetInstanceID() : -1;
-                int actualSceneInstanceID = actualSceneInstance.GetInstanceID();
-                
-                Debug.Log($"SaveSlotSelectionUI: Reference verification - selectionPanel instanceID={referenceInstanceID}, actualSceneInstance instanceID={actualSceneInstanceID}");
-                
-                if (referenceInstanceID != actualSceneInstanceID)
-                {
-                    Debug.LogError($"SaveSlotSelectionUI: INSTANCE MISMATCH! selectionPanel reference (ID={referenceInstanceID}) is NOT the scene instance (ID={actualSceneInstanceID})! This is why activation isn't working!");
-                    Debug.LogError($"SaveSlotSelectionUI: selectionPanel name='{selectionPanel?.name}', actualSceneInstance name='{actualSceneInstance.name}'");
-                    
-                    // Activate the ACTUAL scene instance
-                    Debug.LogWarning($"SaveSlotSelectionUI: Activating scene instance instead of reference!");
-                    actualSceneInstance.SetActive(true);
-                    
-                    // Also update the reference to point to the correct instance
-                    selectionPanel = actualSceneInstance;
-                    Debug.LogWarning($"SaveSlotSelectionUI: Updated selectionPanel reference to point to scene instance!");
-                }
-                else
-                {
-                    Debug.Log($"SaveSlotSelectionUI: Reference verification passed - selectionPanel matches scene instance.");
-                    // Even if they match, activate the scene instance as well to be absolutely sure
-                    actualSceneInstance.SetActive(true);
-                    Debug.Log($"SaveSlotSelectionUI: Also activated scene instance directly to ensure it's active.");
-                }
-                
-                // Final verification after activating scene instance
-                bool sceneActive = actualSceneInstance.activeSelf;
-                bool sceneInHierarchy = actualSceneInstance.activeInHierarchy;
-                Debug.Log($"SaveSlotSelectionUI: Scene instance final state - activeSelf={sceneActive}, activeInHierarchy={sceneInHierarchy}");
-                
-                if (!sceneActive)
-                {
-                    Debug.LogError($"SaveSlotSelectionUI: Scene instance still inactive after all attempts! This is a critical failure.");
-                }
-            }
-            else
-            {
-                Debug.LogError($"SaveSlotSelectionUI: Could not find 'LoadMenuPanel' in scene using GameObject.Find! This means the GameObject doesn't exist or has a different name.");
-            }
-            
-            // Ensure RectTransform is configured correctly (center-anchored, fixed size)
-            RectTransform rectTransform = selectionPanel.GetComponent<RectTransform>();
-            if (rectTransform != null)
-            {
-                // Set to middle-center anchor if not already set
-                Vector2 anchorMin = rectTransform.anchorMin;
-                Vector2 anchorMax = rectTransform.anchorMax;
-                
-                // Check if anchors are set to full-screen stretch (0,0) to (1,1)
-                // Also check for near-zero/near-one values (floating point comparison)
-                bool isFullScreenStretch = (anchorMin.x < 0.01f && anchorMin.y < 0.01f && 
-                                          anchorMax.x > 0.99f && anchorMax.y > 0.99f);
-                
-                if (isFullScreenStretch)
-                {
-                    Debug.LogWarning($"SaveSlotSelectionUI: LoadMenuPanel has full-screen stretch anchors ({anchorMin} to {anchorMax}). Fixing to center-anchored.");
-                    // Fix anchors to center
-                    rectTransform.anchorMin = new Vector2(0.5f, 0.5f);
-                    rectTransform.anchorMax = new Vector2(0.5f, 0.5f);
-                    rectTransform.pivot = new Vector2(0.5f, 0.5f);
-                    rectTransform.sizeDelta = new Vector2(250f, 350f);
-                    rectTransform.anchoredPosition = Vector2.zero;
-                }
-            }
-            
-            // CRITICAL: Ensure LoadMenuPanel renders on top by moving it to end of sibling list
-            // Unity UI renders children in sibling order - later siblings render on top
-            Transform parent = selectionPanel.transform.parent;
-            if (parent != null)
-            {
-                selectionPanel.transform.SetAsLastSibling();
-                Debug.Log($"SaveSlotSelectionUI: Moved LoadMenuPanel to sibling index {selectionPanel.transform.GetSiblingIndex()} (last) to ensure it renders on top");
-            }
-            
-            // Set panel background to semi-transparent dark (matching pause menu style)
-            Image panelImage = selectionPanel.GetComponent<Image>();
-            if (panelImage != null)
-            {
-                panelImage.enabled = true;
-                panelImage.color = new Color(0.08f, 0.08f, 0.12f, 0.95f); // Dark semi-transparent
-                panelImage.raycastTarget = true;
-                Debug.Log("SaveSlotSelectionUI: Set LoadMenuPanel background to semi-transparent dark");
-            }
-            
-            // DIAGNOSTIC: Log state AFTER activation
-            if (rectTransform != null)
-            {
-                LogPanelDiagnostics(rectTransform);
-            }
-            
-            // Force layout rebuild to ensure proper sizing and button layout
-            if (rectTransform != null)
-            {
-                UnityEngine.UI.LayoutRebuilder.ForceRebuildLayoutImmediate(rectTransform);
-                
-                // Also rebuild all children
-                foreach (Transform child in selectionPanel.transform)
-                {
-                    RectTransform childRect = child.GetComponent<RectTransform>();
-                    if (childRect != null)
-                    {
-                        UnityEngine.UI.LayoutRebuilder.ForceRebuildLayoutImmediate(childRect);
-                    }
-                }
-            }
-            
-            // Update button labels
-            UpdateButtonLabels();
-            
-            // DIAGNOSTIC: Verify buttons are visible
-            VerifyButtonsVisible();
+            Debug.LogError("[SaveSlotSelectionUI] selectionPanel is null!");
+            return;
         }
-        else
+
+        // Create UI if not already created
+        if (!uiCreated)
         {
-            Debug.LogError("SaveSlotSelectionUI: selectionPanel is null! Make sure it's assigned in the Inspector.");
+            CreateUI();
+            uiCreated = true;
         }
+
+        // Update title
+        if (titleText != null)
+            titleText.text = currentMode == Mode.Save ? "SAVE GAME" : "LOAD GAME";
+
+        // Show/hide import button (Load mode only)
+        if (importButton != null)
+            importButton.gameObject.SetActive(currentMode == Mode.Load);
+
+        // Update all slot rows
+        UpdateAllSlotRows();
+
+        // Show panel
+        selectionPanel.SetActive(true);
+
+        // NOTE: Removed sortingOrder change (was breaking OverlayUIRoot visibility).
+        // The save/load panel is already visible within its parent canvas.
+
+        Debug.Log($"[SaveSlotSelectionUI] Showing UI in {currentMode} mode");
     }
 
     /// <summary>
-    /// Diagnostic: Log panel configuration
-    /// </summary>
-    private void LogPanelDiagnostics(RectTransform rectTransform)
-    {
-        Debug.Log($"=== LoadMenuPanel Diagnostics ===");
-        Debug.Log($"Active: {selectionPanel.activeSelf}, ActiveInHierarchy: {selectionPanel.activeInHierarchy}");
-        Debug.Log($"RectTransform - Anchor: ({rectTransform.anchorMin.x:F2}, {rectTransform.anchorMin.y:F2}) to ({rectTransform.anchorMax.x:F2}, {rectTransform.anchorMax.y:F2})");
-        Debug.Log($"RectTransform - Size: {rectTransform.sizeDelta}, Pos: {rectTransform.anchoredPosition}");
-        Debug.Log($"RectTransform - Rect: {rectTransform.rect}");
-        
-        Image image = selectionPanel.GetComponent<Image>();
-        if (image != null)
-        {
-            Debug.Log($"Image - Color: {image.color}, Alpha: {image.color.a}, Enabled: {image.enabled}");
-        }
-        
-        VerticalLayoutGroup layout = selectionPanel.GetComponent<VerticalLayoutGroup>();
-        if (layout != null)
-        {
-            Debug.Log($"LayoutGroup - Enabled: {layout.enabled}, Spacing: {layout.spacing}, Child Control Width: {layout.childControlWidth}");
-        }
-        
-        Debug.Log($"Child Count: {selectionPanel.transform.childCount}");
-        foreach (Transform child in selectionPanel.transform)
-        {
-            Debug.Log($"  Child: {child.name} - Active: {child.gameObject.activeSelf}, ActiveInHierarchy: {child.gameObject.activeInHierarchy}");
-            RectTransform childRect = child.GetComponent<RectTransform>();
-            if (childRect != null)
-            {
-                Debug.Log($"    Rect: {childRect.rect}, Size: {childRect.sizeDelta}");
-            }
-            Image childImage = child.GetComponent<Image>();
-            if (childImage != null)
-            {
-                Debug.Log($"    Image Color: {childImage.color}, Alpha: {childImage.color.a}");
-            }
-        }
-    }
-
-    /// <summary>
-    /// Diagnostic: Verify buttons are visible
-    /// </summary>
-    private void VerifyButtonsVisible()
-    {
-        Button[] buttons = { slot1Button, slot2Button, slot3Button, slot4Button, slot5Button, autosave0Button, autosave1Button, autosave2Button, cancelButton };
-        int visibleCount = 0;
-        
-        Debug.Log("=== Button Position Diagnostics ===");
-        for (int i = 0; i < buttons.Length; i++)
-        {
-            Button button = buttons[i];
-            if (button != null && button.gameObject.activeInHierarchy)
-            {
-                RectTransform rect = button.GetComponent<RectTransform>();
-                if (rect != null)
-                {
-                    bool hasSize = rect.rect.width > 0 && rect.rect.height > 0;
-                    Debug.Log($"Button {i+1} ({button.name}): Position={rect.anchoredPosition}, Size={rect.rect.size}, HasSize={hasSize}, LocalPosition={rect.localPosition}");
-                    
-                    if (hasSize)
-                    {
-                        visibleCount++;
-                    }
-                }
-            }
-            else
-            {
-                Debug.LogWarning($"Button {i+1}: {(button == null ? "NULL" : button.name)} - ActiveInHierarchy: {button != null && button.gameObject.activeInHierarchy}");
-            }
-        }
-        
-        Debug.Log($"SaveSlotSelectionUI: {visibleCount}/{buttons.Length} buttons are visible and have size > 0");
-        
-        if (visibleCount == 0)
-        {
-            Debug.LogError("SaveSlotSelectionUI: NO BUTTONS ARE VISIBLE! This is likely the cause of the black square issue.");
-        }
-        else if (visibleCount < buttons.Length)
-        {
-            Debug.LogWarning($"SaveSlotSelectionUI: Only {visibleCount}/{buttons.Length} buttons are visible. Some buttons may be positioned incorrectly.");
-        }
-    }
-
-    /// <summary>
-    /// Hide the save slot selection UI
+    /// Hide the selection UI
     /// </summary>
     public void HideSelectionUI()
     {
         if (selectionPanel != null)
-        {
-            if (selectionPanelCanvasGroup != null)
-            {
-                selectionPanelCanvasGroup.alpha = 0f;
-                selectionPanelCanvasGroup.interactable = false;
-                selectionPanelCanvasGroup.blocksRaycasts = false;
-                Debug.Log("SaveSlotSelectionUI: Disabled CanvasGroup for selectionPanel.");
-            }
-
             selectionPanel.SetActive(false);
-        }
+
+        if (confirmDialog != null)
+            confirmDialog.SetActive(false);
+
+        ClearFeedback();
     }
 
     /// <summary>
-    /// Update button labels with save metadata
+    /// Create the entire UI programmatically
     /// </summary>
-    private void UpdateButtonLabels()
+    private void CreateUI()
     {
-        if (saveLoadManager == null)
+        // Clear any existing children
+        foreach (Transform child in selectionPanel.transform)
+            Destroy(child.gameObject);
+
+        slotRows.Clear();
+
+        // REMOVE any layout components from the old UI that could override our sizing
+        var layoutGroup = selectionPanel.GetComponent<LayoutGroup>();
+        if (layoutGroup != null)
         {
-            Debug.LogWarning("SaveSlotSelectionUI: SaveLoadManager not found, cannot update button labels");
-            return;
+            Debug.Log("[SaveSlotSelectionUI] Removing old LayoutGroup from panel");
+            Destroy(layoutGroup);
         }
 
-        // Update Manual Slot buttons (1-5)
-        UpdateButtonLabel(slot1Button, 1, "SLOT 1");
-        UpdateButtonLabel(slot2Button, 2, "SLOT 2");
-        UpdateButtonLabel(slot3Button, 3, "SLOT 3");
-        UpdateButtonLabel(slot4Button, 4, "SLOT 4");
-        UpdateButtonLabel(slot5Button, 5, "SLOT 5");
+        var contentFitter = selectionPanel.GetComponent<ContentSizeFitter>();
+        if (contentFitter != null)
+        {
+            Debug.Log("[SaveSlotSelectionUI] Removing old ContentSizeFitter from panel");
+            Destroy(contentFitter);
+        }
 
-        // Update Autosave buttons
-        UpdateButtonLabel(autosave0Button, 0, "AUTO (NEW)");
-        UpdateButtonLabel(autosave1Button, -1, "AUTO (MID)");
-        UpdateButtonLabel(autosave2Button, -2, "AUTO (OLD)");
+        var layoutElement = selectionPanel.GetComponent<LayoutElement>();
+        if (layoutElement != null)
+        {
+            Debug.Log("[SaveSlotSelectionUI] Removing old LayoutElement from panel");
+            Destroy(layoutElement);
+        }
 
-        // Show/hide autosave buttons based on mode
-        // In Save mode, hide autosave buttons (can't save to autosave slots)
-        // In Load mode, show autosave buttons
-        bool showAutosaves = (currentMode == Mode.Load);
-        if (autosave0Button != null) autosave0Button.gameObject.SetActive(showAutosaves);
-        if (autosave1Button != null) autosave1Button.gameObject.SetActive(showAutosaves);
-        if (autosave2Button != null) autosave2Button.gameObject.SetActive(showAutosaves);
+        RectTransform panelRect = selectionPanel.GetComponent<RectTransform>();
+        if (panelRect == null)
+            panelRect = selectionPanel.AddComponent<RectTransform>();
 
-        // Show import button only in Load mode
-        if (importButton != null) importButton.gameObject.SetActive(currentMode == Mode.Load);
+        // Ensure panel is center-anchored with fixed size
+        panelRect.anchorMin = new Vector2(0.5f, 0.5f);
+        panelRect.anchorMax = new Vector2(0.5f, 0.5f);
+        panelRect.pivot = new Vector2(0.5f, 0.5f);
+        panelRect.sizeDelta = new Vector2(480, 580);
+        panelRect.anchoredPosition = Vector2.zero;
+
+        // Panel background
+        Image panelImage = selectionPanel.GetComponent<Image>();
+        if (panelImage == null)
+            panelImage = selectionPanel.AddComponent<Image>();
+        panelImage.color = PanelBgColor;
+
+        // Header
+        CreateHeader();
+
+        // Scroll view for slots
+        CreateScrollView();
+
+        // Create slot rows
+        CreateSlotRows();
+
+        // Footer
+        CreateFooter();
+
+        // Confirmation dialog (hidden initially)
+        CreateConfirmDialog();
+
+        Debug.Log("[SaveSlotSelectionUI] UI created successfully");
     }
 
-    /// <summary>
-    /// Update a single button's label with save metadata
-    /// </summary>
-    private void UpdateButtonLabel(Button button, int slot, string defaultLabel)
+    private void CreateHeader()
     {
-        if (button == null) return;
+        // Header background
+        GameObject headerBg = CreateUIElement(selectionPanel.transform, "HeaderBackground",
+            new Vector2(0, 1), new Vector2(1, 1), new Vector2(0, -30), new Vector2(0, 60));
+        Image headerImage = headerBg.AddComponent<Image>();
+        headerImage.color = HeaderBgColor;
 
-        // Get save data if it exists
-        SaveSlotData slotData = saveLoadManager.GetSaveSlotData(slot);
+        // Title text
+        GameObject titleObj = CreateUIElement(headerBg.transform, "TitleText",
+            new Vector2(0, 0), new Vector2(1, 1), Vector2.zero, new Vector2(-60, 0));
+        titleText = titleObj.AddComponent<TextMeshProUGUI>();
+        titleText.text = "LOAD GAME";
+        titleText.fontSize = 60;
+        titleText.fontStyle = FontStyles.Bold;
+        titleText.alignment = TextAlignmentOptions.Center;
+        titleText.color = Color.white;
 
-        string buttonText = defaultLabel;
-        if (slotData != null)
+        // Close button (X)
+        GameObject closeObj = CreateUIElement(headerBg.transform, "CloseButton",
+            new Vector2(1, 0.5f), new Vector2(1, 0.5f), new Vector2(-30, 0), new Vector2(48, 48));
+        Image closeImage = closeObj.AddComponent<Image>();
+        closeImage.color = DangerButtonColor;
+        closeButton = closeObj.AddComponent<Button>();
+        closeButton.targetGraphic = closeImage;
+        closeButton.onClick.AddListener(OnCancel);
+
+        SetButtonColors(closeButton, DangerButtonColor);
+
+        // X text
+        GameObject closeText = CreateUIElement(closeObj.transform, "Text",
+            Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero);
+        TextMeshProUGUI closeTMP = closeText.AddComponent<TextMeshProUGUI>();
+        closeTMP.text = "X";
+        closeTMP.fontSize = 60;
+        closeTMP.fontStyle = FontStyles.Bold;
+        closeTMP.alignment = TextAlignmentOptions.Center;
+        closeTMP.color = Color.white;
+    }
+
+    private void CreateScrollView()
+    {
+        // Scroll view container
+        GameObject scrollObj = CreateUIElement(selectionPanel.transform, "ScrollView",
+            new Vector2(0, 0), new Vector2(1, 1), new Vector2(0, -10), new Vector2(-20, -130));
+        RectTransform scrollRect = scrollObj.GetComponent<RectTransform>();
+        scrollRect.anchoredPosition = new Vector2(0, -10);
+
+        Image scrollBg = scrollObj.AddComponent<Image>();
+        scrollBg.color = new Color(0, 0, 0, 0);
+
+        this.scrollRect = scrollObj.AddComponent<ScrollRect>();
+        this.scrollRect.horizontal = false;
+        this.scrollRect.vertical = true;
+        this.scrollRect.movementType = ScrollRect.MovementType.Clamped;
+        this.scrollRect.scrollSensitivity = 30f;
+
+        // Viewport
+        GameObject viewport = CreateUIElement(scrollObj.transform, "Viewport",
+            Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero);
+        viewport.AddComponent<Image>().color = new Color(0, 0, 0, 0);
+        viewport.AddComponent<RectMask2D>();
+        this.scrollRect.viewport = viewport.GetComponent<RectTransform>();
+
+        // Content
+        GameObject content = CreateUIElement(viewport.transform, "Content",
+            new Vector2(0, 1), new Vector2(1, 1), Vector2.zero, Vector2.zero);
+        RectTransform contentRect = content.GetComponent<RectTransform>();
+        contentRect.pivot = new Vector2(0.5f, 1);
+
+        VerticalLayoutGroup layout = content.AddComponent<VerticalLayoutGroup>();
+        layout.spacing = 8;
+        layout.padding = new RectOffset(10, 10, 10, 10);
+        layout.childControlHeight = false;
+        layout.childControlWidth = true;
+        layout.childForceExpandWidth = true;
+        layout.childForceExpandHeight = false;
+
+        ContentSizeFitter fitter = content.AddComponent<ContentSizeFitter>();
+        fitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
+
+        this.scrollRect.content = contentRect;
+        contentTransform = content.transform;
+    }
+
+    private void CreateSlotRows()
+    {
+        // Manual slots 1-5
+        for (int i = 1; i <= 5; i++)
+            CreateSlotRow(i, false);
+
+        // Autosave slots 0, -1, -2
+        CreateSlotRow(0, true);
+        CreateSlotRow(-1, true);
+        CreateSlotRow(-2, true);
+    }
+
+    private void CreateSlotRow(int slotNumber, bool isAutosave)
+    {
+        GameObject row = new GameObject($"SlotRow_{slotNumber}");
+        row.transform.SetParent(contentTransform, false);
+
+        RectTransform rowRect = row.AddComponent<RectTransform>();
+        rowRect.sizeDelta = new Vector2(0, 80);
+
+        Image rowBg = row.AddComponent<Image>();
+        rowBg.color = RowBgColor;
+
+        CanvasGroup canvasGroup = row.AddComponent<CanvasGroup>();
+
+        // Slot indicator (left side)
+        GameObject slotIndicator = CreateUIElement(row.transform, "SlotIndicator",
+            new Vector2(0, 0.5f), new Vector2(0, 0.5f), new Vector2(30, 0), new Vector2(40, 60));
+        Image slotIndBg = slotIndicator.AddComponent<Image>();
+        slotIndBg.color = new Color(0.2f, 0.2f, 0.25f, 1f);
+
+        GameObject slotLabelObj = CreateUIElement(slotIndicator.transform, "Label",
+            Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero);
+        TextMeshProUGUI slotLabel = slotLabelObj.AddComponent<TextMeshProUGUI>();
+        if (isAutosave)
         {
-            // Format: "AUTOSAVE\nR1-D2\n2024-01-15 10:30"
-            buttonText = $"{defaultLabel}\nR{slotData.run}-D{slotData.day}";
-            
-            // Parse and format timestamp
-            if (DateTime.TryParse(slotData.timestamp, out DateTime timestamp))
-            {
-                buttonText += $"\n{timestamp:MM/dd HH:mm}";
-            }
+            slotLabel.text = slotNumber == 0 ? "A0" : slotNumber == -1 ? "A1" : "A2";
         }
         else
         {
-            // Empty slot
-            buttonText = $"{defaultLabel}\n(Empty)";
+            slotLabel.text = $"#{slotNumber}";
         }
+        slotLabel.fontSize = 48;
+        slotLabel.fontStyle = FontStyles.Bold;
+        slotLabel.alignment = TextAlignmentOptions.Center;
+        slotLabel.color = TextAccentColor;
 
-        // Update button text
-        Transform textChild = button.transform.Find("Text");
-        if (textChild != null)
+        // Slot name
+        GameObject nameObj = CreateUIElement(row.transform, "NameText",
+            new Vector2(0, 1), new Vector2(0, 1), new Vector2(60, -8), new Vector2(200, 28));
+        RectTransform nameRect = nameObj.GetComponent<RectTransform>();
+        nameRect.pivot = new Vector2(0, 1);
+        TextMeshProUGUI nameText = nameObj.AddComponent<TextMeshProUGUI>();
+        nameText.text = isAutosave ? GetAutosaveLabel(slotNumber) : $"SLOT {slotNumber}";
+        nameText.fontSize = 60;
+        nameText.fontStyle = FontStyles.Bold;
+        nameText.alignment = TextAlignmentOptions.Left;
+        nameText.color = Color.white;
+
+        // Info text (run/day, timestamp)
+        GameObject infoObj = CreateUIElement(row.transform, "InfoText",
+            new Vector2(0, 0), new Vector2(0, 0), new Vector2(60, 8), new Vector2(280, 36));
+        RectTransform infoRect = infoObj.GetComponent<RectTransform>();
+        infoRect.pivot = new Vector2(0, 0);
+        TextMeshProUGUI infoText = infoObj.AddComponent<TextMeshProUGUI>();
+        infoText.text = "(Empty)";
+        infoText.fontSize = 48;
+        infoText.alignment = TextAlignmentOptions.Left;
+        infoText.color = TextSecondaryColor;
+        infoText.textWrappingMode = TextWrappingModes.Normal;
+
+        // Action button (Load/Save)
+        GameObject actionObj = CreateUIElement(row.transform, "ActionButton",
+            new Vector2(1, 0.5f), new Vector2(1, 0.5f), new Vector2(-100, 0), new Vector2(70, 40));
+        Image actionImage = actionObj.AddComponent<Image>();
+        actionImage.color = PrimaryButtonColor;
+        Button actionButton = actionObj.AddComponent<Button>();
+        actionButton.targetGraphic = actionImage;
+        SetButtonColors(actionButton, PrimaryButtonColor);
+
+        int slot = slotNumber; // Capture for lambda
+        actionButton.onClick.AddListener(() => OnSlotSelected(slot));
+
+        GameObject actionText = CreateUIElement(actionObj.transform, "Text",
+            Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero);
+        TextMeshProUGUI actionTMP = actionText.AddComponent<TextMeshProUGUI>();
+        actionTMP.text = "LOAD";
+        actionTMP.fontSize = 48;
+        actionTMP.fontStyle = FontStyles.Bold;
+        actionTMP.alignment = TextAlignmentOptions.Center;
+        actionTMP.color = Color.white;
+
+        // Export button
+        GameObject exportObj = CreateUIElement(row.transform, "ExportButton",
+            new Vector2(1, 0.5f), new Vector2(1, 0.5f), new Vector2(-55, 0), new Vector2(36, 36));
+        Image exportImage = exportObj.AddComponent<Image>();
+        exportImage.color = NeutralButtonColor;
+        Button exportButton = exportObj.AddComponent<Button>();
+        exportButton.targetGraphic = exportImage;
+        SetButtonColors(exportButton, NeutralButtonColor);
+        exportButton.onClick.AddListener(() => OnExportSlot(slot));
+
+        GameObject exportText = CreateUIElement(exportObj.transform, "Text",
+            Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero);
+        TextMeshProUGUI exportTMP = exportText.AddComponent<TextMeshProUGUI>();
+        exportTMP.text = "\u2197"; // Arrow symbol
+        exportTMP.fontSize = 48;
+        exportTMP.alignment = TextAlignmentOptions.Center;
+        exportTMP.color = Color.white;
+
+        // Delete button
+        GameObject deleteObj = CreateUIElement(row.transform, "DeleteButton",
+            new Vector2(1, 0.5f), new Vector2(1, 0.5f), new Vector2(-20, 0), new Vector2(36, 36));
+        Image deleteImage = deleteObj.AddComponent<Image>();
+        deleteImage.color = DangerButtonColor;
+        Button deleteButton = deleteObj.AddComponent<Button>();
+        deleteButton.targetGraphic = deleteImage;
+        SetButtonColors(deleteButton, DangerButtonColor);
+        deleteButton.onClick.AddListener(() => ShowConfirmDelete(slot));
+
+        GameObject deleteText = CreateUIElement(deleteObj.transform, "Text",
+            Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero);
+        TextMeshProUGUI deleteTMP = deleteText.AddComponent<TextMeshProUGUI>();
+        deleteTMP.text = "X";
+        deleteTMP.fontSize = 48;
+        deleteTMP.fontStyle = FontStyles.Bold;
+        deleteTMP.alignment = TextAlignmentOptions.Center;
+        deleteTMP.color = Color.white;
+
+        // Store row data
+        SlotRowData rowData = new SlotRowData
         {
-#if USE_TMP
-            TextMeshProUGUI tmpText = textChild.GetComponent<TextMeshProUGUI>();
-            if (tmpText != null)
-            {
-                tmpText.text = buttonText;
-            }
-            else
-            {
-                Text text = textChild.GetComponent<Text>();
-                if (text != null)
-                {
-                    text.text = buttonText;
-                }
-            }
-#else
-            Text text = textChild.GetComponent<Text>();
-            if (text != null)
-            {
-                text.text = buttonText;
-            }
-#endif
+            slotNumber = slotNumber,
+            rowObject = row,
+            slotLabel = slotLabel,
+            nameText = nameText,
+            infoText = infoText,
+            actionButton = actionButton,
+            exportButton = exportButton,
+            deleteButton = deleteButton,
+            canvasGroup = canvasGroup
+        };
+        slotRows.Add(rowData);
+    }
+
+    private void CreateFooter()
+    {
+        // Feedback text
+        GameObject feedbackObj = CreateUIElement(selectionPanel.transform, "FeedbackText",
+            new Vector2(0, 0), new Vector2(1, 0), new Vector2(0, 65), new Vector2(-20, 25));
+        feedbackText = feedbackObj.AddComponent<TextMeshProUGUI>();
+        feedbackText.text = "";
+        feedbackText.fontSize = 48;
+        feedbackText.alignment = TextAlignmentOptions.Center;
+        feedbackText.color = TextAccentColor;
+
+        // Footer buttons container
+        GameObject footerObj = CreateUIElement(selectionPanel.transform, "Footer",
+            new Vector2(0, 0), new Vector2(1, 0), new Vector2(0, 25), new Vector2(-20, 40));
+
+        HorizontalLayoutGroup footerLayout = footerObj.AddComponent<HorizontalLayoutGroup>();
+        footerLayout.spacing = 20;
+        footerLayout.childAlignment = TextAnchor.MiddleCenter;
+        footerLayout.childControlWidth = false;
+        footerLayout.childControlHeight = false;
+
+        // Import button (Load mode only)
+        GameObject importObj = new GameObject("ImportButton");
+        importObj.transform.SetParent(footerObj.transform, false);
+        RectTransform importRect = importObj.AddComponent<RectTransform>();
+        importRect.sizeDelta = new Vector2(140, 40);
+        Image importImage = importObj.AddComponent<Image>();
+        importImage.color = NeutralButtonColor;
+        importButton = importObj.AddComponent<Button>();
+        importButton.targetGraphic = importImage;
+        SetButtonColors(importButton, NeutralButtonColor);
+        importButton.onClick.AddListener(OnImportClicked);
+
+        GameObject importText = CreateUIElement(importObj.transform, "Text",
+            Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero);
+        TextMeshProUGUI importTMP = importText.AddComponent<TextMeshProUGUI>();
+        importTMP.text = "IMPORT";
+        importTMP.fontSize = 48;
+        importTMP.fontStyle = FontStyles.Bold;
+        importTMP.alignment = TextAlignmentOptions.Center;
+        importTMP.color = Color.white;
+
+        // Back button
+        GameObject backObj = new GameObject("BackButton");
+        backObj.transform.SetParent(footerObj.transform, false);
+        RectTransform backRect = backObj.AddComponent<RectTransform>();
+        backRect.sizeDelta = new Vector2(140, 40);
+        Image backImage = backObj.AddComponent<Image>();
+        backImage.color = NeutralButtonColor;
+        backButton = backObj.AddComponent<Button>();
+        backButton.targetGraphic = backImage;
+        SetButtonColors(backButton, NeutralButtonColor);
+        backButton.onClick.AddListener(OnCancel);
+
+        GameObject backText = CreateUIElement(backObj.transform, "Text",
+            Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero);
+        TextMeshProUGUI backTMP = backText.AddComponent<TextMeshProUGUI>();
+        backTMP.text = "BACK";
+        backTMP.fontSize = 48;
+        backTMP.fontStyle = FontStyles.Bold;
+        backTMP.alignment = TextAlignmentOptions.Center;
+        backTMP.color = Color.white;
+    }
+
+    private void CreateConfirmDialog()
+    {
+        // Overlay background
+        confirmDialog = CreateUIElement(selectionPanel.transform, "ConfirmDialog",
+            Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero);
+        Image overlayImage = confirmDialog.AddComponent<Image>();
+        overlayImage.color = new Color(0, 0, 0, 0.7f);
+        overlayImage.raycastTarget = true;
+
+        // Dialog box
+        GameObject dialogBox = CreateUIElement(confirmDialog.transform, "DialogBox",
+            new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), Vector2.zero, new Vector2(320, 180));
+        Image dialogImage = dialogBox.AddComponent<Image>();
+        dialogImage.color = PanelBgColor;
+
+        // Title
+        GameObject titleObj = CreateUIElement(dialogBox.transform, "Title",
+            new Vector2(0, 1), new Vector2(1, 1), new Vector2(0, -20), new Vector2(-20, 35));
+        TextMeshProUGUI titleTMP = titleObj.AddComponent<TextMeshProUGUI>();
+        titleTMP.text = "DELETE SAVE?";
+        titleTMP.fontSize = 60;
+        titleTMP.fontStyle = FontStyles.Bold;
+        titleTMP.alignment = TextAlignmentOptions.Center;
+        titleTMP.color = Color.white;
+
+        // Confirm text
+        GameObject textObj = CreateUIElement(dialogBox.transform, "ConfirmText",
+            new Vector2(0, 0.4f), new Vector2(1, 0.8f), Vector2.zero, new Vector2(-20, 0));
+        confirmText = textObj.AddComponent<TextMeshProUGUI>();
+        confirmText.text = "Delete save from Slot 1?";
+        confirmText.fontSize = 48;
+        confirmText.alignment = TextAlignmentOptions.Center;
+        confirmText.color = TextSecondaryColor;
+
+        // Buttons container
+        GameObject buttonsObj = CreateUIElement(dialogBox.transform, "Buttons",
+            new Vector2(0, 0), new Vector2(1, 0), new Vector2(0, 25), new Vector2(-20, 45));
+
+        HorizontalLayoutGroup buttonsLayout = buttonsObj.AddComponent<HorizontalLayoutGroup>();
+        buttonsLayout.spacing = 30;
+        buttonsLayout.childAlignment = TextAnchor.MiddleCenter;
+        buttonsLayout.childControlWidth = false;
+        buttonsLayout.childControlHeight = false;
+
+        // Cancel button
+        GameObject cancelObj = new GameObject("CancelButton");
+        cancelObj.transform.SetParent(buttonsObj.transform, false);
+        RectTransform cancelRect = cancelObj.AddComponent<RectTransform>();
+        cancelRect.sizeDelta = new Vector2(100, 40);
+        Image cancelImage = cancelObj.AddComponent<Image>();
+        cancelImage.color = NeutralButtonColor;
+        confirmNoButton = cancelObj.AddComponent<Button>();
+        confirmNoButton.targetGraphic = cancelImage;
+        SetButtonColors(confirmNoButton, NeutralButtonColor);
+        confirmNoButton.onClick.AddListener(OnCancelDelete);
+
+        GameObject cancelText = CreateUIElement(cancelObj.transform, "Text",
+            Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero);
+        TextMeshProUGUI cancelTMP = cancelText.AddComponent<TextMeshProUGUI>();
+        cancelTMP.text = "CANCEL";
+        cancelTMP.fontSize = 48;
+        cancelTMP.fontStyle = FontStyles.Bold;
+        cancelTMP.alignment = TextAlignmentOptions.Center;
+        cancelTMP.color = Color.white;
+
+        // Delete button
+        GameObject deleteObj = new GameObject("DeleteButton");
+        deleteObj.transform.SetParent(buttonsObj.transform, false);
+        RectTransform deleteRect = deleteObj.AddComponent<RectTransform>();
+        deleteRect.sizeDelta = new Vector2(100, 40);
+        Image deleteImage = deleteObj.AddComponent<Image>();
+        deleteImage.color = DangerButtonColor;
+        confirmYesButton = deleteObj.AddComponent<Button>();
+        confirmYesButton.targetGraphic = deleteImage;
+        SetButtonColors(confirmYesButton, DangerButtonColor);
+        confirmYesButton.onClick.AddListener(OnConfirmDelete);
+
+        GameObject deleteText = CreateUIElement(deleteObj.transform, "Text",
+            Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero);
+        TextMeshProUGUI deleteTMP = deleteText.AddComponent<TextMeshProUGUI>();
+        deleteTMP.text = "DELETE";
+        deleteTMP.fontSize = 48;
+        deleteTMP.fontStyle = FontStyles.Bold;
+        deleteTMP.alignment = TextAlignmentOptions.Center;
+        deleteTMP.color = Color.white;
+
+        confirmDialog.SetActive(false);
+    }
+
+    private void UpdateAllSlotRows()
+    {
+        foreach (var row in slotRows)
+        {
+            UpdateSlotRow(row);
         }
     }
 
-    /// <summary>
-    /// Handle slot selection (save or load depending on mode)
-    /// </summary>
+    private void UpdateSlotRow(SlotRowData row)
+    {
+        bool isAutosave = row.slotNumber <= 0;
+        SaveSlotData slotData = saveLoadManager?.GetSaveSlotData(row.slotNumber);
+        bool hasData = slotData != null;
+
+        // Update name text
+        if (isAutosave)
+        {
+            row.nameText.text = GetAutosaveLabel(row.slotNumber);
+        }
+        else
+        {
+            row.nameText.text = $"SLOT {row.slotNumber}";
+        }
+
+        // Update info text
+        if (hasData)
+        {
+            string info = $"Run {slotData.run} - Day {slotData.day}";
+            if (DateTime.TryParse(slotData.timestamp, out DateTime timestamp))
+            {
+                info += $"\n{timestamp:MMM dd, yyyy HH:mm}";
+            }
+            row.infoText.text = info;
+        }
+        else
+        {
+            row.infoText.text = "(Empty)";
+        }
+
+        // Update action button
+        TextMeshProUGUI actionText = row.actionButton.GetComponentInChildren<TextMeshProUGUI>();
+        if (currentMode == Mode.Save)
+        {
+            actionText.text = "SAVE";
+            // Can always save to manual slots, but not to autosave slots
+            row.actionButton.interactable = !isAutosave;
+            row.rowObject.SetActive(!isAutosave); // Hide autosave rows in Save mode
+        }
+        else // Load mode
+        {
+            actionText.text = "LOAD";
+            row.actionButton.interactable = hasData;
+            row.rowObject.SetActive(true);
+        }
+
+        // Update export/delete buttons (only show if has data)
+        row.exportButton.gameObject.SetActive(hasData);
+        row.deleteButton.gameObject.SetActive(hasData);
+
+        // Update row opacity
+        if (currentMode == Mode.Load && !hasData)
+        {
+            row.canvasGroup.alpha = 0.5f;
+        }
+        else
+        {
+            row.canvasGroup.alpha = 1f;
+        }
+    }
+
+    private string GetAutosaveLabel(int slot)
+    {
+        switch (slot)
+        {
+            case 0: return "AUTOSAVE (Newest)";
+            case -1: return "AUTOSAVE (Middle)";
+            case -2: return "AUTOSAVE (Oldest)";
+            default: return "AUTOSAVE";
+        }
+    }
+
+    #region Button Handlers
+
     public void OnSlotSelected(int slot)
     {
         if (saveLoadManager == null)
         {
-            Debug.LogError("SaveSlotSelectionUI: Cannot save/load - SaveLoadManager not found!");
+            ShowFeedback("Save system not available!", Color.red);
             return;
         }
-
-        // Debug log to track mode
-        Debug.Log($"SaveSlotSelectionUI: OnSlotSelected called with slot {slot}, currentMode = {currentMode}");
 
         bool success = false;
 
         if (currentMode == Mode.Save)
         {
-            // Save to the selected slot
             success = saveLoadManager.SaveGame(slot);
             if (success)
             {
-                Debug.Log($"Saved game to slot {slot}");
+                ShowFeedback($"Saved to Slot {slot}!", TextAccentColor);
                 ToastManager.ShowSuccess($"Game saved to Slot {slot}");
-
-                // Update button labels to show new save
-                UpdateButtonLabels();
-                // Hide selection UI
-                HideSelectionUI();
-
-                // Return to pause menu if it exists
-                if (pauseMenuManager != null)
-                {
-                    pauseMenuManager.ShowPauseMenu();
-                }
-
-                // CRITICAL: Return early to prevent any fall-through or double execution
-                return;
+                UpdateAllSlotRows();
             }
             else
             {
-                Debug.LogWarning($"Failed to save to slot {slot}");
+                ShowFeedback("Failed to save!", Color.red);
                 ToastManager.ShowError("Failed to save game");
-                return;
             }
         }
         else // Load mode
         {
-            // Load from the selected slot
             success = saveLoadManager.LoadGame(slot);
             if (success)
             {
-                Debug.Log($"Loaded save from slot {slot}");
                 ToastManager.ShowSuccess("Game loaded");
-
-                // Hide selection UI
                 HideSelectionUI();
-
-                // Resume game (unpause) after loading
                 if (pauseMenuManager != null)
-                {
                     pauseMenuManager.ResumeGame();
-                }
             }
             else
             {
-                Debug.LogWarning($"No save found in slot {slot} or failed to load");
-                // Check if slot is empty vs failed to load
                 if (!saveLoadManager.HasSaveData(slot))
-                {
-                    ToastManager.ShowWarning("No save data in this slot");
-                }
+                    ShowFeedback("No save in this slot!", Color.yellow);
                 else
-                {
-                    ToastManager.ShowError("Failed to load save");
-                }
+                    ShowFeedback("Failed to load!", Color.red);
             }
         }
     }
 
-    /// <summary>
-    /// Handle cancel button
-    /// </summary>
-    public void OnCancel()
+    public void OnExportSlot(int slot)
     {
-        HideSelectionUI();
-        
-        // Return to pause menu if it exists
-        if (pauseMenuManager != null)
-        {
-            // Show pause menu buttons again
-            pauseMenuManager.ShowPauseMenu();
-        }
-    }
-
-    /// <summary>
-    /// Coroutine fallback to activate LoadMenuPanel after a frame delay
-    /// This ensures activation happens after any other code that might be deactivating it
-    /// </summary>
-    private IEnumerator DelayedActivationFallback()
-    {
-        yield return null; // Wait one frame
-        
-        if (selectionPanel != null)
-        {
-            Debug.Log($"SaveSlotSelectionUI: DelayedActivationFallback - attempting activation after frame delay");
-            selectionPanel.SetActive(true);
-            
-            // Verify after delay
-            bool activeSelf = selectionPanel.activeSelf;
-            bool activeInHierarchy = selectionPanel.activeInHierarchy;
-            Debug.Log($"SaveSlotSelectionUI: DelayedActivationFallback - after delay: activeSelf={activeSelf}, activeInHierarchy={activeInHierarchy}");
-            
-            if (!activeSelf)
-            {
-                Debug.LogError($"SaveSlotSelectionUI: DelayedActivationFallback FAILED! LoadMenuPanel still inactive. name='{selectionPanel.name}', instanceID={selectionPanel.GetInstanceID()}");
-            }
-            else
-            {
-                Debug.Log($"SaveSlotSelectionUI: DelayedActivationFallback SUCCESS! LoadMenuPanel is now active.");
-            }
-        }
-    }
-
-    private void EnsureSelectionPanelParent()
-    {
-        if (selectionPanel == null)
-        {
-            Debug.LogWarning("SaveSlotSelectionUI: selectionPanel is null; cannot reparent to pause menu panel.");
-            return;
-        }
-
-        if (pauseMenuManager == null || pauseMenuManager.pauseMenuPanel == null)
-        {
-            Debug.LogWarning("SaveSlotSelectionUI: pauseMenuManager or pauseMenuPanel is null; skipping reparent.");
-            return;
-        }
-
-        Transform desiredParent = pauseMenuManager.pauseMenuPanel.transform;
-        if (selectionPanel.transform.parent != desiredParent)
-        {
-            Debug.Log($"SaveSlotSelectionUI: Reparenting LoadMenuPanel from {selectionPanel.transform.parent?.name ?? "<none>"} to {desiredParent.name}.");
-            selectionPanel.transform.SetParent(desiredParent, false);
-        }
-
-        LayoutElement layoutElement = selectionPanel.GetComponent<LayoutElement>();
-        if (layoutElement == null)
-        {
-            layoutElement = selectionPanel.AddComponent<LayoutElement>();
-            layoutElement.minWidth = -1;
-            layoutElement.minHeight = -1;
-            layoutElement.preferredWidth = -1;
-            layoutElement.preferredHeight = -1;
-        }
-
-        if (!layoutElement.ignoreLayout)
-        {
-            layoutElement.ignoreLayout = true;
-            Debug.Log("SaveSlotSelectionUI: Set LayoutElement.ignoreLayout=true so PauseMenuPanel layout won't reposition LoadMenuPanel.");
-        }
-    }
-
-    // ========================================================================
-    // Export/Import Functionality
-    // ========================================================================
-
-    /// <summary>
-    /// Handle Import button click - prompts user to paste save string
-    /// </summary>
-    private void OnImportClicked()
-    {
-        // Get clipboard content
-        string clipboardContent = GUIUtility.systemCopyBuffer;
-
-        if (string.IsNullOrEmpty(clipboardContent))
-        {
-            Debug.LogWarning("SaveSlotSelectionUI: Clipboard is empty. Copy a save string first.");
-            ToastManager.ShowWarning("Clipboard is empty - copy a save string first");
-            return;
-        }
-
-        if (!SaveExporter.ValidateSaveString(clipboardContent))
-        {
-            Debug.LogWarning("SaveSlotSelectionUI: Clipboard content is not a valid save string.");
-            ToastManager.ShowError("Invalid save string in clipboard");
-            return;
-        }
-
-        // Import to the first empty manual slot, or slot 5 if all full
-        int targetSlot = FindFirstEmptyManualSlot();
-        if (targetSlot == -1)
-        {
-            targetSlot = 5; // Use slot 5 as fallback (will overwrite)
-            Debug.Log("SaveSlotSelectionUI: All manual slots full, importing to Slot 5");
-            ToastManager.ShowWarning($"All slots full - importing to Slot {targetSlot}");
-        }
-
-        if (saveLoadManager.ImportFromString(clipboardContent, targetSlot))
-        {
-            Debug.Log($"SaveSlotSelectionUI: Successfully imported save to Slot {targetSlot}");
-            UpdateButtonLabels();
-            ToastManager.ShowSuccess($"Save imported to Slot {targetSlot}");
-        }
-        else
-        {
-            Debug.LogError("SaveSlotSelectionUI: Import failed");
-            ToastManager.ShowError("Failed to import save data");
-        }
-    }
-
-    /// <summary>
-    /// Find the first empty manual slot (1-5)
-    /// </summary>
-    private int FindFirstEmptyManualSlot()
-    {
-        for (int slot = 1; slot <= 5; slot++)
-        {
-            if (!saveLoadManager.HasSaveData(slot))
-            {
-                return slot;
-            }
-        }
-        return -1; // All slots full
-    }
-
-    /// <summary>
-    /// Export a slot to clipboard
-    /// </summary>
-    public void ExportSlotToClipboard(int slot)
-    {
-        if (saveLoadManager == null)
-        {
-            Debug.LogError("SaveSlotSelectionUI: SaveLoadManager not found");
-            ToastManager.ShowError("Save system not available");
-            return;
-        }
+        if (saveLoadManager == null) return;
 
         string exportString = saveLoadManager.ExportSlotToString(slot);
         if (!string.IsNullOrEmpty(exportString))
         {
             GUIUtility.systemCopyBuffer = exportString;
-            Debug.Log($"SaveSlotSelectionUI: Copied save from slot {slot} to clipboard ({SaveExporter.GetExportSizeDescription(exportString)})");
+            ShowFeedback("Save copied to clipboard!", TextAccentColor);
             ToastManager.ShowSuccess("Save copied to clipboard");
         }
         else
         {
-            Debug.LogWarning($"SaveSlotSelectionUI: Slot {slot} is empty or export failed");
-            if (!saveLoadManager.HasSaveData(slot))
-            {
-                ToastManager.ShowWarning("This slot is empty");
-            }
-            else
-            {
-                ToastManager.ShowError("Failed to export save");
-            }
+            ShowFeedback("Export failed!", Color.red);
         }
     }
 
-    /// <summary>
-    /// Public method for UI buttons to trigger export
-    /// </summary>
-    public void OnExportSlot1() => ExportSlotToClipboard(1);
-    public void OnExportSlot2() => ExportSlotToClipboard(2);
-    public void OnExportSlot3() => ExportSlotToClipboard(3);
-    public void OnExportSlot4() => ExportSlotToClipboard(4);
-    public void OnExportSlot5() => ExportSlotToClipboard(5);
-    public void OnExportAutosave0() => ExportSlotToClipboard(0);
-    public void OnExportAutosave1() => ExportSlotToClipboard(-1);
-    public void OnExportAutosave2() => ExportSlotToClipboard(-2);
+    public void ShowConfirmDelete(int slot)
+    {
+        pendingDeleteSlot = slot;
+
+        SaveSlotData slotData = saveLoadManager?.GetSaveSlotData(slot);
+        string slotName = slot <= 0 ? GetAutosaveLabel(slot) : $"Slot {slot}";
+        string info = slotData != null ? $"\nRun {slotData.run} - Day {slotData.day}" : "";
+
+        confirmText.text = $"Delete save from {slotName}?{info}";
+        confirmDialog.SetActive(true);
+    }
+
+    public void OnConfirmDelete()
+    {
+        if (pendingDeleteSlot == -999) return;
+
+        if (saveLoadManager != null && saveLoadManager.DeleteSave(pendingDeleteSlot))
+        {
+            ShowFeedback("Save deleted!", TextAccentColor);
+            ToastManager.ShowSuccess("Save deleted");
+            UpdateAllSlotRows();
+        }
+        else
+        {
+            ShowFeedback("Delete failed!", Color.red);
+        }
+
+        confirmDialog.SetActive(false);
+        pendingDeleteSlot = -999;
+    }
+
+    public void OnCancelDelete()
+    {
+        confirmDialog.SetActive(false);
+        pendingDeleteSlot = -999;
+    }
+
+    public void OnImportClicked()
+    {
+        string clipboardContent = GUIUtility.systemCopyBuffer;
+
+        if (string.IsNullOrEmpty(clipboardContent))
+        {
+            ShowFeedback("Clipboard is empty!", Color.yellow);
+            return;
+        }
+
+        if (!SaveExporter.ValidateSaveString(clipboardContent))
+        {
+            ShowFeedback("Invalid save string!", Color.red);
+            return;
+        }
+
+        // Find first empty manual slot
+        int targetSlot = -1;
+        for (int i = 1; i <= 5; i++)
+        {
+            if (!saveLoadManager.HasSaveData(i))
+            {
+                targetSlot = i;
+                break;
+            }
+        }
+
+        if (targetSlot == -1)
+        {
+            targetSlot = 5; // Overwrite slot 5 if all full
+            ShowFeedback("All slots full - using Slot 5", Color.yellow);
+        }
+
+        if (saveLoadManager.ImportFromString(clipboardContent, targetSlot))
+        {
+            ShowFeedback($"Imported to Slot {targetSlot}!", TextAccentColor);
+            ToastManager.ShowSuccess($"Save imported to Slot {targetSlot}");
+            UpdateAllSlotRows();
+        }
+        else
+        {
+            ShowFeedback("Import failed!", Color.red);
+        }
+    }
+
+    public void OnCancel()
+    {
+        HideSelectionUI();
+
+        if (pauseMenuManager != null)
+            pauseMenuManager.ShowPauseMenu();
+    }
+
+    #endregion
+
+    #region Utility Methods
+
+    private GameObject CreateUIElement(Transform parent, string name, Vector2 anchorMin, Vector2 anchorMax, Vector2 anchoredPosition, Vector2 sizeDelta)
+    {
+        GameObject obj = new GameObject(name);
+        obj.transform.SetParent(parent, false);
+
+        RectTransform rect = obj.AddComponent<RectTransform>();
+        rect.anchorMin = anchorMin;
+        rect.anchorMax = anchorMax;
+        rect.anchoredPosition = anchoredPosition;
+        rect.sizeDelta = sizeDelta;
+
+        return obj;
+    }
+
+    private void SetButtonColors(Button button, Color normalColor)
+    {
+        ColorBlock colors = button.colors;
+        colors.normalColor = normalColor;
+        colors.highlightedColor = normalColor * 1.2f;
+        colors.pressedColor = normalColor * 0.8f;
+        colors.disabledColor = new Color(0.3f, 0.3f, 0.3f, 0.5f);
+        button.colors = colors;
+    }
+
+    private void ShowFeedback(string message, Color color)
+    {
+        if (feedbackText == null) return;
+
+        feedbackText.text = message;
+        feedbackText.color = color;
+
+        if (feedbackCoroutine != null)
+            StopCoroutine(feedbackCoroutine);
+
+        feedbackCoroutine = StartCoroutine(ClearFeedbackAfterDelay(3f));
+    }
+
+    private void ClearFeedback()
+    {
+        if (feedbackCoroutine != null)
+        {
+            StopCoroutine(feedbackCoroutine);
+            feedbackCoroutine = null;
+        }
+
+        if (feedbackText != null)
+            feedbackText.text = "";
+    }
+
+    private IEnumerator ClearFeedbackAfterDelay(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        if (feedbackText != null)
+            feedbackText.text = "";
+        feedbackCoroutine = null;
+    }
+
+    #endregion
 }

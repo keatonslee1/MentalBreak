@@ -120,65 +120,44 @@ public static class DialogueSystemUIAutoWire
 
     private static void AutoWireSaveSlotSelection(GameObject dialogueSystemRoot, Transform canvasTransform)
     {
-        // IMPORTANT: In this project, SaveSlotSelectionUI may live on a scene manager object (e.g. PauseMenuManager),
-        // while the actual UI panel/buttons live under Dialogue System/Canvas. So we must wire the *existing*
-        // SaveSlotSelectionUI, not assume it lives on LoadMenuPanel.
+        // SaveSlotSelectionUI now creates its UI dynamically at runtime.
+        // We only need to wire the selectionPanel reference if it exists.
         SaveSlotSelectionUI selectionUI = dialogueSystemRoot.GetComponentInChildren<SaveSlotSelectionUI>(true);
         if (selectionUI == null)
         {
             selectionUI = Object.FindFirstObjectByType<SaveSlotSelectionUI>();
         }
 
-        // Find the panel that contains the slot buttons. Prefer an explicitly named LoadMenuPanel.
-        Transform loadMenuPanelTf =
-            canvasTransform.Find(LoadMenuPanelName) ??
-            FindDeepChild(canvasTransform, LoadMenuPanelName);
-
-        // Fallback: find Slot1Button anywhere under the canvas and treat its parent as the panel.
-        if (loadMenuPanelTf == null)
+        if (selectionUI == null)
         {
-            Transform slot1 = FindDeepChild(canvasTransform, "Slot1Button");
-            if (slot1 != null)
-            {
-                loadMenuPanelTf = slot1.parent;
-            }
-        }
-
-        if (loadMenuPanelTf == null)
-        {
-            Debug.LogWarning("DialogueSystemUIAutoWire: Could not find LoadMenuPanel (or Slot1Button). Skipping SaveSlotSelectionUI wiring.");
+            // No SaveSlotSelectionUI found - this is fine, it may be set up via Tools > Setup Save/Load Panel
             return;
         }
 
-        // If no SaveSlotSelectionUI exists anywhere, attach it to the panel as a last resort.
-        if (selectionUI == null)
+        // Find the panel - check SaveLoadPanel first (new name), then LoadMenuPanel (legacy)
+        Transform panelTf =
+            canvasTransform.Find("SaveLoadPanel") ??
+            FindDeepChild(canvasTransform, "SaveLoadPanel") ??
+            canvasTransform.Find(LoadMenuPanelName) ??
+            FindDeepChild(canvasTransform, LoadMenuPanelName);
+
+        if (panelTf == null)
         {
-            selectionUI = loadMenuPanelTf.GetComponent<SaveSlotSelectionUI>();
-            if (selectionUI == null)
+            // Panel not found - the new SaveSlotSelectionUI creates UI dynamically,
+            // so the selectionPanel may be the component's own GameObject
+            if (selectionUI.selectionPanel == null)
             {
-                selectionUI = loadMenuPanelTf.gameObject.AddComponent<SaveSlotSelectionUI>();
-                Debug.Log("DialogueSystemUIAutoWire: Added SaveSlotSelectionUI to LoadMenuPanel (fallback).");
+                Debug.LogWarning("DialogueSystemUIAutoWire: SaveSlotSelectionUI.selectionPanel not set. Run Tools > Setup Save/Load Panel to create the UI.");
             }
+            return;
         }
 
         SerializedObject so = new SerializedObject(selectionUI);
-        AssignIfNull(so, "selectionPanel", loadMenuPanelTf.gameObject);
-        if (so.FindProperty("selectionPanel") != null && so.FindProperty("selectionPanel").objectReferenceValue == null)
-        {
-            Debug.LogWarning("DialogueSystemUIAutoWire: SaveSlotSelectionUI.selectionPanel is still null after wiring. Check that the field name is still 'selectionPanel'.", selectionUI);
-        }
-
-        AssignButtonIfNull(so, "slot1Button", loadMenuPanelTf, "Slot1Button");
-        AssignButtonIfNull(so, "slot2Button", loadMenuPanelTf, "Slot2Button");
-        AssignButtonIfNull(so, "slot3Button", loadMenuPanelTf, "Slot3Button");
-        AssignButtonIfNull(so, "slot4Button", loadMenuPanelTf, "Slot4Button");
-        AssignButtonIfNull(so, "slot5Button", loadMenuPanelTf, "Slot5Button");
-        AssignButtonIfNull(so, "cancelButton", loadMenuPanelTf, "CancelButton");
-
+        AssignIfNull(so, "selectionPanel", panelTf.gameObject);
         so.ApplyModifiedProperties();
         EditorUtility.SetDirty(selectionUI);
 
-        Debug.Log($"DialogueSystemUIAutoWire: Wired SaveSlotSelectionUI on '{selectionUI.gameObject.name}' to panel '{loadMenuPanelTf.name}'.", selectionUI);
+        Debug.Log($"DialogueSystemUIAutoWire: Wired SaveSlotSelectionUI.selectionPanel to '{panelTf.name}'.", selectionUI);
     }
 
     private static void AutoWireFeedbackForm(GameObject dialogueSystemRoot, Transform canvasTransform)

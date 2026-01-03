@@ -19,20 +19,17 @@ public class PauseMenuManager : MonoBehaviour
     public static PauseMenuManager Instance { get; private set; }
 
     private const float HudEdgePadding = 20f;
-    private const float HudButtonHeight = 70f;
-    private const float HudMenuButtonWidth = 160f;
-    private const float HudBackButtonWidth = 200f;
-    private const float HudFeedbackButtonWidth = 200f;
-    private const float HudRunDayBoxWidth = 300f;
+    private const float HudButtonHeight = 90f;
+    private const float HudMenuButtonWidth = 200f;
+    private const float HudBackButtonWidth = 240f;
+    private const float HudFeedbackButtonWidth = 300f;
+    private const float HudRunDayBoxWidth = 400f;
     private static readonly Color HudBackgroundColor = new Color(0f, 0f, 0f, 0.55f);
     private const float HudVerticalGap = 20f;
 
     [Header("UI References")]
     [Tooltip("The pause menu panel (main menu container)")]
     public GameObject pauseMenuPanel;
-
-    [Tooltip("Hint text showing 'Press ESC to pause' at top-right")]
-    public Component pauseHintText;
 
     [Tooltip("Run/Day tracker text on middle-left (optional - will be created if null)")]
     public Component runDayTrackerText;
@@ -65,9 +62,6 @@ public class PauseMenuManager : MonoBehaviour
     [Header("Settings")]
     [Tooltip("Scene name for the main menu")]
     public string mainMenuSceneName = "MainMenu";
-
-    [Tooltip("Should the hint text be visible when not paused?")]
-    public bool showHintWhenNotPaused = true;
 
     [Tooltip("Time scale when paused (typically 0)")]
     public float pausedTimeScale = 0f;
@@ -200,10 +194,6 @@ public class PauseMenuManager : MonoBehaviour
         {
             Debug.LogError("PauseMenuManager: pauseMenuPanel is not assigned. Pause menu UI will not display correctly.");
         }
-
-        // Disable the keybind tooltip entirely (no "esc = pause, space/enter = forward" hints).
-        showHintWhenNotPaused = false;
-        UpdateHintVisibility();
 
         // Setup run/day tracker if needed
         SetupRunDayTracker();
@@ -575,9 +565,6 @@ public class PauseMenuManager : MonoBehaviour
 
         LogPauseMenuState("PauseGame - after ShowPauseMenuButtons");
 
-        // Hide hint text when paused
-        UpdateHintVisibility();
-
         // Pause dialogue if running
         if (dialogueRunner != null && dialogueRunner.IsDialogueRunning)
         {
@@ -617,9 +604,6 @@ public class PauseMenuManager : MonoBehaviour
             pauseMenuPanel.SetActive(false);
         }
 
-        // Show hint text when not paused
-        UpdateHintVisibility();
-
         Debug.Log("Game resumed");
     }
 
@@ -645,6 +629,7 @@ public class PauseMenuManager : MonoBehaviour
         if (resumeButton != null) resumeButton.gameObject.SetActive(false);
         if (saveGameButton != null) saveGameButton.gameObject.SetActive(false);
         if (loadGameButton != null) loadGameButton.gameObject.SetActive(false);
+        if (settingsButton != null) settingsButton.gameObject.SetActive(false);
         if (mainMenuButton != null) mainMenuButton.gameObject.SetActive(false);
         if (exitButton != null) exitButton.gameObject.SetActive(false);
         if (skipDayButton != null) skipDayButton.gameObject.SetActive(false);
@@ -663,6 +648,7 @@ public class PauseMenuManager : MonoBehaviour
         if (resumeButton != null) resumeButton.gameObject.SetActive(true);
         if (saveGameButton != null) saveGameButton.gameObject.SetActive(true);
         if (loadGameButton != null) loadGameButton.gameObject.SetActive(true);
+        if (settingsButton != null) settingsButton.gameObject.SetActive(true);
         // Main menu button hidden for MVP (too buggy, but backend code kept)
         // if (mainMenuButton != null) mainMenuButton.gameObject.SetActive(true);
         if (exitButton != null) exitButton.gameObject.SetActive(true);
@@ -887,14 +873,14 @@ public class PauseMenuManager : MonoBehaviour
                 tmpText.font = TMPro.TMP_Settings.instance.defaultFontAsset;
             }
             tmpText.text = "Run 1, Day 1";
-            tmpText.fontSize = 32;
+            tmpText.fontSize = 60;
             tmpText.alignment = TextAlignmentOptions.MidlineLeft;
             tmpText.color = Color.white;
             runDayTrackerText = tmpText;
 #else
             Text text = trackerObj.AddComponent<Text>();
             text.text = "Run 1, Day 1";
-            text.fontSize = 32;
+            text.fontSize = 60;
             text.alignment = TextAnchor.MiddleLeft;
             text.color = Color.white;
             text.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
@@ -963,34 +949,6 @@ public class PauseMenuManager : MonoBehaviour
         if (runDayTrackerText is Text regularText)
         {
             regularText.text = trackerText;
-        }
-    }
-
-    /// <summary>
-    /// Update hint text visibility and content based on pause state
-    /// </summary>
-    private void UpdateHintVisibility()
-    {
-        if (pauseHintText == null) return;
-
-        // Tooltip is intentionally disabled in this project.
-        bool shouldShow = false;
-
-        GameObject hintGameObject = null;
-#if USE_TMP
-        if (pauseHintText is TMPro.TextMeshProUGUI tmpText)
-        {
-            hintGameObject = tmpText.gameObject;
-        }
-#endif
-        if (pauseHintText is UnityEngine.UI.Text regularText)
-        {
-            hintGameObject = regularText.gameObject;
-        }
-
-        if (hintGameObject != null)
-        {
-            hintGameObject.SetActive(shouldShow);
         }
     }
 
@@ -1397,13 +1355,13 @@ public class PauseMenuManager : MonoBehaviour
             tmpText.font = TMPro.TMP_Settings.instance.defaultFontAsset;
         }
         tmpText.text = textValue;
-        tmpText.fontSize = 32;
+        tmpText.fontSize = 60;
         tmpText.alignment = TMPro.TextAlignmentOptions.MidlineLeft;
         tmpText.color = Color.white;
 #else
         Text uiText = textObj.AddComponent<Text>();
         uiText.text = textValue;
-        uiText.fontSize = 32;
+        uiText.fontSize = 60;
         uiText.alignment = TextAnchor.MiddleLeft;
         uiText.color = Color.white;
         uiText.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");

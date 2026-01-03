@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEditor;
@@ -5,6 +6,7 @@ using UnityEditor;
 /// <summary>
 /// Editor script to create and setup the Settings Panel UI.
 /// Creates a complete settings panel with volume sliders and soundtrack toggle.
+/// Uses TextMeshPro for all text (font applied by GlobalFontOverride).
 /// </summary>
 public class SettingsPanelSetup : EditorWindow
 {
@@ -101,7 +103,7 @@ public class SettingsPanelSetup : EditorWindow
         contentRect.anchorMin = new Vector2(0.5f, 0.5f);
         contentRect.anchorMax = new Vector2(0.5f, 0.5f);
         contentRect.pivot = new Vector2(0.5f, 0.5f);
-        contentRect.sizeDelta = new Vector2(500f, 480f); // Larger content box
+        contentRect.sizeDelta = new Vector2(700f, 600f); // Larger content box for 60px font
         contentRect.anchoredPosition = Vector2.zero;
 
         Image contentBg = contentBox.AddComponent<Image>();
@@ -111,20 +113,20 @@ public class SettingsPanelSetup : EditorWindow
         CreateTitle(contentBox.transform);
 
         // Volume sliders
-        float yPos = 115f;
+        float yPos = 140f;
         settingsPanelComp.masterVolumeSlider = CreateVolumeRow(contentBox.transform, "Master", yPos, out Component masterLabel);
         settingsPanelComp.masterVolumeLabel = masterLabel;
 
-        yPos -= 60f;
+        yPos -= 80f;
         settingsPanelComp.musicVolumeSlider = CreateVolumeRow(contentBox.transform, "Music", yPos, out Component musicLabel);
         settingsPanelComp.musicVolumeLabel = musicLabel;
 
-        yPos -= 60f;
+        yPos -= 80f;
         settingsPanelComp.sfxVolumeSlider = CreateVolumeRow(contentBox.transform, "SFX", yPos, out Component sfxLabel);
         settingsPanelComp.sfxVolumeLabel = sfxLabel;
 
         // Soundtrack toggle
-        yPos -= 70f;
+        yPos -= 90f;
         settingsPanelComp.soundtrackToggleButton = CreateSoundtrackRow(contentBox.transform, yPos, out Component soundtrackLabel);
         settingsPanelComp.soundtrackLabel = soundtrackLabel;
 
@@ -147,15 +149,14 @@ public class SettingsPanelSetup : EditorWindow
         rect.anchorMax = new Vector2(0.5f, 1f);
         rect.pivot = new Vector2(0.5f, 1f);
         rect.anchoredPosition = new Vector2(0f, -15f);
-        rect.sizeDelta = new Vector2(300f, 50f);
+        rect.sizeDelta = new Vector2(400f, 70f);
 
-        Text text = titleObj.AddComponent<Text>();
+        TextMeshProUGUI text = titleObj.AddComponent<TextMeshProUGUI>();
         text.text = "SETTINGS";
-        text.fontSize = 36; // Larger title
-        text.fontStyle = FontStyle.Bold;
-        text.alignment = TextAnchor.MiddleCenter;
+        text.fontSize = 60;
+        text.fontStyle = FontStyles.Bold;
+        text.alignment = TextAlignmentOptions.Center;
         text.color = Color.white;
-        text.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
     }
 
     private static Slider CreateVolumeRow(Transform parent, string label, float yPos, out Component valueLabel)
@@ -169,7 +170,7 @@ public class SettingsPanelSetup : EditorWindow
         rowRect.anchorMax = new Vector2(1f, 0.5f);
         rowRect.pivot = new Vector2(0.5f, 0.5f);
         rowRect.anchoredPosition = new Vector2(0f, yPos);
-        rowRect.sizeDelta = new Vector2(-40f, 50f); // Taller rows
+        rowRect.sizeDelta = new Vector2(-40f, 70f); // Taller rows for larger font
         rowRect.offsetMin = new Vector2(25f, rowRect.offsetMin.y);
         rowRect.offsetMax = new Vector2(-25f, rowRect.offsetMax.y);
 
@@ -185,14 +186,13 @@ public class SettingsPanelSetup : EditorWindow
         labelRect.anchorMax = new Vector2(0f, 1f);
         labelRect.pivot = new Vector2(0f, 0.5f);
         labelRect.anchoredPosition = new Vector2(15f, 0f);
-        labelRect.sizeDelta = new Vector2(90f, 0f);
+        labelRect.sizeDelta = new Vector2(180f, 0f);
 
-        Text labelText = labelObj.AddComponent<Text>();
+        TextMeshProUGUI labelText = labelObj.AddComponent<TextMeshProUGUI>();
         labelText.text = label;
-        labelText.fontSize = 22; // Larger font
-        labelText.alignment = TextAnchor.MiddleLeft;
+        labelText.fontSize = 60;
+        labelText.alignment = TextAlignmentOptions.MidlineLeft;
         labelText.color = Color.white;
-        labelText.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
 
         // Slider using DefaultControls for proper setup
         GameObject sliderObj = DefaultControls.CreateSlider(new DefaultControls.Resources());
@@ -204,9 +204,9 @@ public class SettingsPanelSetup : EditorWindow
         sliderRect.anchorMax = new Vector2(1f, 0.5f);
         sliderRect.pivot = new Vector2(0.5f, 0.5f);
         sliderRect.anchoredPosition = new Vector2(20f, 0f);
-        sliderRect.sizeDelta = new Vector2(-180f, 20f);
-        sliderRect.offsetMin = new Vector2(100f, -10f);
-        sliderRect.offsetMax = new Vector2(-70f, 10f);
+        sliderRect.sizeDelta = new Vector2(-280f, 20f);
+        sliderRect.offsetMin = new Vector2(200f, -10f);
+        sliderRect.offsetMax = new Vector2(-100f, 10f);
 
         Slider slider = sliderObj.GetComponent<Slider>();
         slider.minValue = 0f;
@@ -234,14 +234,13 @@ public class SettingsPanelSetup : EditorWindow
         valueRect.anchorMax = new Vector2(1f, 1f);
         valueRect.pivot = new Vector2(1f, 0.5f);
         valueRect.anchoredPosition = new Vector2(-15f, 0f);
-        valueRect.sizeDelta = new Vector2(50f, 0f);
+        valueRect.sizeDelta = new Vector2(80f, 0f);
 
-        Text valueText = valueObj.AddComponent<Text>();
+        TextMeshProUGUI valueText = valueObj.AddComponent<TextMeshProUGUI>();
         valueText.text = "70%";
-        valueText.fontSize = 20; // Larger font
-        valueText.alignment = TextAnchor.MiddleRight;
+        valueText.fontSize = 48;
+        valueText.alignment = TextAlignmentOptions.MidlineRight;
         valueText.color = Color.white;
-        valueText.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
 
         valueLabel = valueText;
         return slider;
@@ -258,7 +257,7 @@ public class SettingsPanelSetup : EditorWindow
         rowRect.anchorMax = new Vector2(1f, 0.5f);
         rowRect.pivot = new Vector2(0.5f, 0.5f);
         rowRect.anchoredPosition = new Vector2(0f, yPos);
-        rowRect.sizeDelta = new Vector2(-40f, 50f); // Taller row
+        rowRect.sizeDelta = new Vector2(-40f, 70f); // Taller row for larger font
         rowRect.offsetMin = new Vector2(25f, rowRect.offsetMin.y);
         rowRect.offsetMax = new Vector2(-25f, rowRect.offsetMax.y);
 
@@ -274,14 +273,13 @@ public class SettingsPanelSetup : EditorWindow
         labelRect.anchorMax = new Vector2(0f, 1f);
         labelRect.pivot = new Vector2(0f, 0.5f);
         labelRect.anchoredPosition = new Vector2(15f, 0f);
-        labelRect.sizeDelta = new Vector2(130f, 0f);
+        labelRect.sizeDelta = new Vector2(280f, 0f);
 
-        Text labelText = labelObj.AddComponent<Text>();
+        TextMeshProUGUI labelText = labelObj.AddComponent<TextMeshProUGUI>();
         labelText.text = "Soundtrack";
-        labelText.fontSize = 22; // Larger font
-        labelText.alignment = TextAnchor.MiddleLeft;
+        labelText.fontSize = 60;
+        labelText.alignment = TextAlignmentOptions.MidlineLeft;
         labelText.color = Color.white;
-        labelText.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
 
         // Toggle button
         GameObject buttonObj = new GameObject("ToggleButton");
@@ -292,7 +290,7 @@ public class SettingsPanelSetup : EditorWindow
         buttonRect.anchorMax = new Vector2(1f, 0.5f);
         buttonRect.pivot = new Vector2(1f, 0.5f);
         buttonRect.anchoredPosition = new Vector2(-15f, 0f);
-        buttonRect.sizeDelta = new Vector2(200f, 40f); // Larger button
+        buttonRect.sizeDelta = new Vector2(280f, 56f); // Larger button
 
         Image buttonImage = buttonObj.AddComponent<Image>();
         buttonImage.color = new Color(0.3f, 0.25f, 0.4f, 1f);
@@ -313,12 +311,11 @@ public class SettingsPanelSetup : EditorWindow
         textRect.anchorMax = Vector2.one;
         textRect.sizeDelta = Vector2.zero;
 
-        Text text = textObj.AddComponent<Text>();
+        TextMeshProUGUI text = textObj.AddComponent<TextMeshProUGUI>();
         text.text = "Nela's Score";
-        text.fontSize = 18; // Larger font
-        text.alignment = TextAnchor.MiddleCenter;
+        text.fontSize = 48;
+        text.alignment = TextAlignmentOptions.Center;
         text.color = Color.white;
-        text.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
 
         label = text;
         return button;
@@ -334,7 +331,7 @@ public class SettingsPanelSetup : EditorWindow
         rect.anchorMax = new Vector2(0.5f, 0f);
         rect.pivot = new Vector2(0.5f, 0f);
         rect.anchoredPosition = new Vector2(0f, 35f);
-        rect.sizeDelta = new Vector2(180f, 50f); // Larger button
+        rect.sizeDelta = new Vector2(220f, 70f); // Larger button for 60px font
 
         Image image = buttonObj.AddComponent<Image>();
         image.color = ButtonColor;
@@ -354,12 +351,11 @@ public class SettingsPanelSetup : EditorWindow
         textRect.anchorMax = Vector2.one;
         textRect.sizeDelta = Vector2.zero;
 
-        Text text = textObj.AddComponent<Text>();
+        TextMeshProUGUI text = textObj.AddComponent<TextMeshProUGUI>();
         text.text = "Back";
-        text.fontSize = 22; // Larger font
-        text.alignment = TextAnchor.MiddleCenter;
+        text.fontSize = 60;
+        text.alignment = TextAlignmentOptions.Center;
         text.color = Color.white;
-        text.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
 
         return button;
     }

@@ -2,9 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Yarn.Unity;
 
-#if USE_TMP
 using TMPro;
-#endif
 
 /// <summary>
 /// Displays Engagement, Sanity, and Suspicion percentages on the right side of the screen.
@@ -27,10 +25,10 @@ public class MetricsPanelUI : MonoBehaviour
     public bool enableVerboseLogging = false;
 
     [Tooltip("Minimum font size for metric text")]
-    public int minFontSize = 26;
+    public int minFontSize = 48;
 
     [Tooltip("Font size for metric text (clamped by Min Font Size)")]
-    public int fontSize = 32;
+    public int fontSize = 48;
 
     [Tooltip("Spacing between metrics")]
     public float metricSpacing = 20f;
@@ -101,7 +99,6 @@ public class MetricsPanelUI : MonoBehaviour
     private GameObject suspicionPanel;
     private Canvas canvas;
 
-#if USE_TMP
     private TextMeshProUGUI engagementLabelText;
     private TextMeshProUGUI engagementValueText;
     private Image engagementFillImage;
@@ -113,19 +110,6 @@ public class MetricsPanelUI : MonoBehaviour
     private TextMeshProUGUI suspicionLabelText;
     private TextMeshProUGUI suspicionValueText;
     private Image suspicionFillImage;
-#else
-    private Text engagementLabelText;
-    private Text engagementValueText;
-    private Image engagementFillImage;
-
-    private Text sanityLabelText;
-    private Text sanityValueText;
-    private Image sanityFillImage;
-
-    private Text suspicionLabelText;
-    private Text suspicionValueText;
-    private Image suspicionFillImage;
-#endif
 
     private static Sprite runtimeWhiteSprite;
 
@@ -284,13 +268,8 @@ public class MetricsPanelUI : MonoBehaviour
         string name,
         string label,
         Color fillColor,
-#if USE_TMP
         out TextMeshProUGUI labelText,
         out TextMeshProUGUI valueText,
-#else
-        out Text labelText,
-        out Text valueText,
-#endif
         out Image fillImage)
     {
         labelText = null;
@@ -386,7 +365,6 @@ public class MetricsPanelUI : MonoBehaviour
         valueLayout.flexibleWidth = 0f;
         valueLayout.minWidth = 80f;
 
-#if USE_TMP
         TextMeshProUGUI labelTmp = labelObj.AddComponent<TextMeshProUGUI>();
         ApplyTmpFontFallback(labelTmp);
         labelTmp.text = label;
@@ -407,32 +385,6 @@ public class MetricsPanelUI : MonoBehaviour
 
         labelText = labelTmp;
         valueText = valueTmp;
-#else
-        Text labelUi = labelObj.AddComponent<Text>();
-        labelUi.text = label;
-        labelUi.fontSize = GetFontSize();
-        labelUi.alignment = TextAnchor.MiddleLeft;
-        labelUi.color = Color.white;
-        labelUi.raycastTarget = false;
-        labelUi.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
-        labelUi.horizontalOverflow = HorizontalWrapMode.Overflow;
-        labelUi.verticalOverflow = VerticalWrapMode.Overflow;
-        labelUi.resizeTextForBestFit = false;
-
-        Text valueUi = valueObj.AddComponent<Text>();
-        valueUi.text = "0%";
-        valueUi.fontSize = GetFontSize();
-        valueUi.alignment = TextAnchor.MiddleRight;
-        valueUi.color = Color.white;
-        valueUi.raycastTarget = false;
-        valueUi.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
-        valueUi.horizontalOverflow = HorizontalWrapMode.Overflow;
-        valueUi.verticalOverflow = VerticalWrapMode.Overflow;
-        valueUi.resizeTextForBestFit = false;
-
-        labelText = labelUi;
-        valueText = valueUi;
-#endif
 
         // Bar container (track + fill + subtle highlight)
         GameObject barObj = new GameObject("Bar");
@@ -515,7 +467,6 @@ public class MetricsPanelUI : MonoBehaviour
         return runtimeWhiteSprite;
     }
 
-#if USE_TMP
     private static void ApplyTmpFontFallback(TextMeshProUGUI text)
     {
         if (text == null)
@@ -525,12 +476,6 @@ public class MetricsPanelUI : MonoBehaviour
 
         // Prefer the global TMP default (can be set by GlobalFontOverride).
         TMP_FontAsset font = TMP_Settings.defaultFontAsset;
-
-        // Fallback to TMP Settings asset.
-        if (font == null && TMP_Settings.instance != null)
-        {
-            font = TMP_Settings.instance.defaultFontAsset;
-        }
 
         // Final fallback: built-in TMP font (ships with TextMeshPro).
         if (font == null)
@@ -543,7 +488,6 @@ public class MetricsPanelUI : MonoBehaviour
             text.font = font;
         }
     }
-#endif
 
     private void ApplyRuntimeDefaults()
     {
@@ -551,6 +495,10 @@ public class MetricsPanelUI : MonoBehaviour
         {
             return;
         }
+
+        // Font sizes
+        minFontSize = 48;
+        fontSize = 48;
 
         metricSpacing = 20f;
         panelPadding = new Vector2(20f, 10f);
@@ -569,6 +517,8 @@ public class MetricsPanelUI : MonoBehaviour
     /// </summary>
     private void UpdateMetrics()
     {
+        EnsureUIReady();
+
         if (variableStorage == null)
         {
             ApplyLoadingState();
@@ -710,7 +660,6 @@ public class MetricsPanelUI : MonoBehaviour
             suspicionPanel.SetActive(false);
         }
 
-#if USE_TMP
         if (engagementValueText != null)
         {
             engagementValueText.text = "--%";
@@ -720,17 +669,6 @@ public class MetricsPanelUI : MonoBehaviour
         {
             sanityValueText.text = "--%";
         }
-#else
-        if (engagementValueText != null)
-        {
-            engagementValueText.text = "--%";
-        }
-
-        if (sanityValueText != null)
-        {
-            sanityValueText.text = "--%";
-        }
-#endif
 
         if (engagementFillImage != null)
         {

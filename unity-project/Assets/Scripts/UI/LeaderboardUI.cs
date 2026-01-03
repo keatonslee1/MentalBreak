@@ -14,12 +14,12 @@ public class LeaderboardUI : MonoBehaviour
 {
     private static class DefaultStyle
     {
-        public const int MinFontSize = 32;
-        public const int FontSize = 36;
-        public const int TitleFontBonus = 8;
+        public const int MinFontSize = 48;
+        public const int FontSize = 48;
+        public const int TitleFontBonus = 0;
         public const float EntrySpacing = 0f;
         public const float EntryHeightPadding = 2f;
-        public const float TitlePreferredHeight = 36f;
+        public const float TitlePreferredHeight = 60f;
         public static readonly Vector2 PanelPadding = new Vector2(36f, 4f);
     }
 
@@ -36,13 +36,13 @@ public class LeaderboardUI : MonoBehaviour
     public bool enableVerboseLogging = false;
 
     [Tooltip("Minimum font size for leaderboard entries")]
-    public int minFontSize = 32;
+    public int minFontSize = 48;
 
     [Tooltip("Font size for leaderboard text (clamped by Min Font Size)")]
-    public int fontSize = 36;
+    public int fontSize = 48;
 
     [Tooltip("Additional font size applied to the title")]
-    public int titleFontBonus = 8;
+    public int titleFontBonus = 0;
 
     [Tooltip("Spacing between entries")]
     public float entrySpacing = 0f;
@@ -51,7 +51,7 @@ public class LeaderboardUI : MonoBehaviour
     public float entryHeightPadding = 2f;
 
     [Tooltip("Preferred height for the leaderboard title row")]
-    public float titlePreferredHeight = 36f;
+    public float titlePreferredHeight = 60f;
 
     [Header("Layout")]
     [Tooltip("Top margin from the top edge of the safe area")]
@@ -377,7 +377,8 @@ public class LeaderboardUI : MonoBehaviour
     {
         if (leaderboardPanel == null)
         {
-            return;
+            CreateUI();
+            if (leaderboardPanel == null) return;
         }
 
         // Keep scale deterministic (some rebuilds/layout passes can reset transforms).

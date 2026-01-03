@@ -141,7 +141,7 @@ public class CompanyStoreSetup : EditorWindow
         RectTransform rect = panelObj.AddComponent<RectTransform>();
         rect.anchorMin = new Vector2(0.5f, 0.5f);
         rect.anchorMax = new Vector2(0.5f, 0.5f);
-        rect.sizeDelta = new Vector2(700, 600);
+        rect.sizeDelta = new Vector2(1200, 900);
         rect.anchoredPosition = Vector2.zero;
 
         Image panelImage = panelObj.AddComponent<Image>();
@@ -156,20 +156,20 @@ public class CompanyStoreSetup : EditorWindow
     private static void CreateStoreUI(Transform panelTransform)
     {
         // Header background
-        GameObject headerBg = CreateUIElement(panelTransform, "HeaderBackground", new Vector2(0, 1), new Vector2(1, 1), new Vector2(0, -50), new Vector2(0, 50));
+        GameObject headerBg = CreateUIElement(panelTransform, "HeaderBackground", new Vector2(0, 1), new Vector2(1, 1), new Vector2(0, -50), new Vector2(0, 100));
         headerBg.AddComponent<Image>().color = new Color(0.12f, 0.12f, 0.18f, 1f);
 
         // Title text
-        GameObject titleObj = CreateUIElement(panelTransform, "TitleText", new Vector2(0, 1), new Vector2(1, 1), new Vector2(0, -25), new Vector2(-60, 40));
+        GameObject titleObj = CreateUIElement(panelTransform, "TitleText", new Vector2(0, 1), new Vector2(1, 1), new Vector2(0, -50), new Vector2(-80, 80));
         TextMeshProUGUI titleText = titleObj.AddComponent<TextMeshProUGUI>();
         titleText.text = "COMPANY STORE";
-        titleText.fontSize = 28;
+        titleText.fontSize = 60;
         titleText.fontStyle = FontStyles.Bold;
         titleText.alignment = TextAlignmentOptions.Center;
         titleText.color = Color.white;
 
         // Close button (X)
-        GameObject closeBtn = CreateUIElement(panelTransform, "CloseButton", new Vector2(1, 1), new Vector2(1, 1), new Vector2(-25, -25), new Vector2(40, 40));
+        GameObject closeBtn = CreateUIElement(panelTransform, "CloseButton", new Vector2(1, 1), new Vector2(1, 1), new Vector2(-35, -50), new Vector2(70, 70));
         Image closeBtnImage = closeBtn.AddComponent<Image>();
         closeBtnImage.color = new Color(0.7f, 0.2f, 0.2f, 1f);
         Button closeButton = closeBtn.AddComponent<Button>();
@@ -183,16 +183,16 @@ public class CompanyStoreSetup : EditorWindow
         closeTextRect.sizeDelta = Vector2.zero;
         TextMeshProUGUI closeTMP = closeText.AddComponent<TextMeshProUGUI>();
         closeTMP.text = "X";
-        closeTMP.fontSize = 24;
+        closeTMP.fontSize = 60;
         closeTMP.fontStyle = FontStyles.Bold;
         closeTMP.alignment = TextAlignmentOptions.Center;
         closeTMP.color = Color.white;
 
         // Credits text
-        GameObject creditsObj = CreateUIElement(panelTransform, "CreditsText", new Vector2(0, 1), new Vector2(1, 1), new Vector2(0, -70), new Vector2(-20, 30));
+        GameObject creditsObj = CreateUIElement(panelTransform, "CreditsText", new Vector2(0, 1), new Vector2(1, 1), new Vector2(0, -120), new Vector2(-20, 60));
         TextMeshProUGUI creditsText = creditsObj.AddComponent<TextMeshProUGUI>();
         creditsText.text = "Credits: 0";
-        creditsText.fontSize = 22;
+        creditsText.fontSize = 48;
         creditsText.alignment = TextAlignmentOptions.Center;
         creditsText.color = new Color(0.4f, 0.9f, 0.4f, 1f);
 
@@ -207,15 +207,15 @@ public class CompanyStoreSetup : EditorWindow
         }
 
         // Feedback text
-        GameObject feedbackObj = CreateUIElement(panelTransform, "FeedbackText", new Vector2(0, 0), new Vector2(1, 0), new Vector2(0, 70), new Vector2(-20, 30));
+        GameObject feedbackObj = CreateUIElement(panelTransform, "FeedbackText", new Vector2(0, 0), new Vector2(1, 0), new Vector2(0, 100), new Vector2(-20, 60));
         TextMeshProUGUI feedbackText = feedbackObj.AddComponent<TextMeshProUGUI>();
         feedbackText.text = "";
-        feedbackText.fontSize = 18;
+        feedbackText.fontSize = 48;
         feedbackText.alignment = TextAlignmentOptions.Center;
         feedbackText.color = Color.green;
 
         // Leave Store button
-        GameObject leaveBtn = CreateUIElement(panelTransform, "LeaveButton", new Vector2(0.5f, 0), new Vector2(0.5f, 0), new Vector2(0, 30), new Vector2(200, 45));
+        GameObject leaveBtn = CreateUIElement(panelTransform, "LeaveButton", new Vector2(0.5f, 0), new Vector2(0.5f, 0), new Vector2(0, 30), new Vector2(350, 70));
         Image leaveBtnImage = leaveBtn.AddComponent<Image>();
         leaveBtnImage.color = new Color(0.3f, 0.3f, 0.4f, 1f);
         Button leaveButton = leaveBtn.AddComponent<Button>();
@@ -234,7 +234,7 @@ public class CompanyStoreSetup : EditorWindow
         leaveTextRect.sizeDelta = Vector2.zero;
         TextMeshProUGUI leaveTMP = leaveText.AddComponent<TextMeshProUGUI>();
         leaveTMP.text = "LEAVE STORE";
-        leaveTMP.fontSize = 18;
+        leaveTMP.fontSize = 48;
         leaveTMP.fontStyle = FontStyles.Bold;
         leaveTMP.alignment = TextAlignmentOptions.Center;
         leaveTMP.color = Color.white;
@@ -243,9 +243,9 @@ public class CompanyStoreSetup : EditorWindow
     private static GameObject CreateScrollView(Transform parent)
     {
         // Scroll View container
-        GameObject scrollView = CreateUIElement(parent, "ScrollView", new Vector2(0, 0), new Vector2(1, 1), new Vector2(0, 0), new Vector2(-40, -160));
+        GameObject scrollView = CreateUIElement(parent, "ScrollView", new Vector2(0, 0), new Vector2(1, 1), new Vector2(0, 0), new Vector2(-40, -280));
         RectTransform scrollRect = scrollView.GetComponent<RectTransform>();
-        scrollRect.anchoredPosition = new Vector2(0, -15);
+        scrollRect.anchoredPosition = new Vector2(0, -40);
 
         Image scrollBg = scrollView.AddComponent<Image>();
         scrollBg.color = new Color(0, 0, 0, 0);
@@ -288,7 +288,7 @@ public class CompanyStoreSetup : EditorWindow
         row.transform.SetParent(parent, false);
 
         RectTransform rowRect = row.AddComponent<RectTransform>();
-        rowRect.sizeDelta = new Vector2(0, 80);
+        rowRect.sizeDelta = new Vector2(0, 200);
 
         Image rowBg = row.AddComponent<Image>();
         rowBg.color = new Color(0.15f, 0.15f, 0.2f, 0.9f);
@@ -296,46 +296,46 @@ public class CompanyStoreSetup : EditorWindow
         CanvasGroup canvasGroup = row.AddComponent<CanvasGroup>();
 
         // Icon placeholder
-        GameObject iconObj = CreateUIElement(row.transform, "Icon", new Vector2(0, 0.5f), new Vector2(0, 0.5f), new Vector2(45, 0), new Vector2(60, 60));
+        GameObject iconObj = CreateUIElement(row.transform, "Icon", new Vector2(0, 0.5f), new Vector2(0, 0.5f), new Vector2(60, 0), new Vector2(100, 100));
         Image iconImage = iconObj.AddComponent<Image>();
         iconImage.color = new Color(0.4f, 0.4f, 0.5f, 1f);
 
         // Item name
-        GameObject nameObj = CreateUIElement(row.transform, "NameText", new Vector2(0, 1), new Vector2(0, 1), new Vector2(90, -8), new Vector2(250, 25));
+        GameObject nameObj = CreateUIElement(row.transform, "NameText", new Vector2(0, 1), new Vector2(0, 1), new Vector2(180, -10), new Vector2(400, 70));
         RectTransform nameRect = nameObj.GetComponent<RectTransform>();
         nameRect.pivot = new Vector2(0, 1);
         TextMeshProUGUI nameText = nameObj.AddComponent<TextMeshProUGUI>();
         nameText.text = itemNames[index];
-        nameText.fontSize = 18;
+        nameText.fontSize = 60;
         nameText.fontStyle = FontStyles.Bold;
         nameText.alignment = TextAlignmentOptions.Left;
         nameText.color = Color.white;
 
         // Cost text
-        GameObject costObj = CreateUIElement(row.transform, "CostText", new Vector2(0, 1), new Vector2(0, 1), new Vector2(350, -8), new Vector2(120, 25));
+        GameObject costObj = CreateUIElement(row.transform, "CostText", new Vector2(0, 1), new Vector2(0, 1), new Vector2(600, -10), new Vector2(200, 60));
         RectTransform costRect = costObj.GetComponent<RectTransform>();
         costRect.pivot = new Vector2(0, 1);
         TextMeshProUGUI costText = costObj.AddComponent<TextMeshProUGUI>();
         costText.text = $"{itemCosts[index]} credits";
-        costText.fontSize = 16;
+        costText.fontSize = 48;
         costText.alignment = TextAlignmentOptions.Left;
         costText.color = new Color(0.4f, 0.9f, 0.4f, 1f);
 
         // Description text
-        GameObject descObj = CreateUIElement(row.transform, "DescriptionText", new Vector2(0, 0), new Vector2(1, 0), new Vector2(90, 8), new Vector2(-180, 40));
+        GameObject descObj = CreateUIElement(row.transform, "DescriptionText", new Vector2(0, 0), new Vector2(1, 0), new Vector2(180, 10), new Vector2(-250, 120));
         RectTransform descRect = descObj.GetComponent<RectTransform>();
         descRect.pivot = new Vector2(0, 0);
         descRect.anchorMin = new Vector2(0, 0);
         descRect.anchorMax = new Vector2(1, 0);
         TextMeshProUGUI descText = descObj.AddComponent<TextMeshProUGUI>();
         descText.text = itemDescriptions[index];
-        descText.fontSize = 13;
+        descText.fontSize = 48;
         descText.alignment = TextAlignmentOptions.Left;
         descText.color = new Color(0.7f, 0.7f, 0.7f, 1f);
         descText.enableWordWrapping = true;
 
         // Buy button
-        GameObject buyBtn = CreateUIElement(row.transform, "BuyButton", new Vector2(1, 0.5f), new Vector2(1, 0.5f), new Vector2(-50, 0), new Vector2(70, 35));
+        GameObject buyBtn = CreateUIElement(row.transform, "BuyButton", new Vector2(1, 0.5f), new Vector2(1, 0.5f), new Vector2(-70, 0), new Vector2(120, 60));
         Image buyBtnImage = buyBtn.AddComponent<Image>();
         buyBtnImage.color = new Color(0.2f, 0.5f, 0.2f, 1f);
         Button buyButton = buyBtn.AddComponent<Button>();
@@ -355,7 +355,7 @@ public class CompanyStoreSetup : EditorWindow
         buyTextRect.sizeDelta = Vector2.zero;
         TextMeshProUGUI buyTMP = buyText.AddComponent<TextMeshProUGUI>();
         buyTMP.text = "BUY";
-        buyTMP.fontSize = 14;
+        buyTMP.fontSize = 48;
         buyTMP.fontStyle = FontStyles.Bold;
         buyTMP.alignment = TextAlignmentOptions.Center;
         buyTMP.color = Color.white;

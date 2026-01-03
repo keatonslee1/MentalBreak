@@ -34,38 +34,32 @@ public class PauseMenuSetup : EditorWindow
             Debug.Log("Created Canvas and EventSystem");
         }
 
-        // Check for existing pause menu elements
-        Transform existingHint = canvas.transform.Find("PauseHintText");
+        // Check for existing pause menu panel
         Transform existingPanel = canvas.transform.Find("PauseMenuPanel");
 
-        if (existingHint != null || existingPanel != null)
+        if (existingPanel != null)
         {
             bool recreate = EditorUtility.DisplayDialog("Pause Menu Exists",
-                "PauseMenuPanel and/or PauseHintText already exist. Delete and recreate them with updated settings?",
+                "PauseMenuPanel already exists. Delete and recreate it with updated settings?",
                 "Yes, Recreate", "Cancel");
             if (!recreate)
             {
-                if (existingPanel != null)
-                    Selection.activeGameObject = existingPanel.gameObject;
+                Selection.activeGameObject = existingPanel.gameObject;
                 return;
             }
 
-            // Delete existing elements
-            if (existingHint != null)
-            {
-                Undo.DestroyObjectImmediate(existingHint.gameObject);
-                Debug.Log("Deleted existing PauseHintText");
-            }
-            if (existingPanel != null)
-            {
-                Undo.DestroyObjectImmediate(existingPanel.gameObject);
-                Debug.Log("Deleted existing PauseMenuPanel");
-            }
+            // Delete existing panel
+            Undo.DestroyObjectImmediate(existingPanel.gameObject);
+            Debug.Log("Deleted existing PauseMenuPanel");
         }
 
-        // Create Pause Hint Text
-        GameObject hintTextObj = CreateHintText(canvas.transform);
-        Debug.Log("Created PauseHintText");
+        // Also clean up any legacy hint text if present
+        Transform existingHint = canvas.transform.Find("PauseHintText");
+        if (existingHint != null)
+        {
+            Undo.DestroyObjectImmediate(existingHint.gameObject);
+            Debug.Log("Deleted legacy PauseHintText");
+        }
 
         // Create Pause Menu Panel
         GameObject panelObj = CreatePausePanel(canvas.transform);
@@ -75,7 +69,7 @@ public class PauseMenuSetup : EditorWindow
         CreateMenuButtons(panelObj.transform);
 
         // Setup PauseMenuManager
-        SetupPauseMenuManager(hintTextObj, panelObj);
+        SetupPauseMenuManager(panelObj);
 
         Debug.Log("Pause Menu UI setup complete! Check the Canvas in the Hierarchy.");
         
@@ -106,27 +100,6 @@ public class PauseMenuSetup : EditorWindow
         }
         
         EditorUtility.DisplayDialog("Pause Menu Setup", dialogMessage, "OK");
-    }
-
-    private static GameObject CreateHintText(Transform parent)
-    {
-        GameObject hintObj = new GameObject("PauseHintText");
-        hintObj.transform.SetParent(parent, false);
-
-        RectTransform rectTransform = hintObj.AddComponent<RectTransform>();
-        rectTransform.anchorMin = new Vector2(1f, 1f);
-        rectTransform.anchorMax = new Vector2(1f, 1f);
-        rectTransform.pivot = new Vector2(1f, 1f);
-        rectTransform.anchoredPosition = new Vector2(-20f, -20f);
-        rectTransform.sizeDelta = new Vector2(500f, 60f);
-
-        TextMeshProUGUI text = hintObj.AddComponent<TextMeshProUGUI>();
-        text.text = "Press ESC to pause";
-        text.fontSize = 48;
-        text.color = Color.white;
-        text.alignment = TextAlignmentOptions.TopRight;
-
-        return hintObj;
     }
 
     private static GameObject CreatePausePanel(Transform parent)
@@ -225,7 +198,7 @@ public class PauseMenuSetup : EditorWindow
         }
     }
 
-    private static void SetupPauseMenuManager(GameObject hintTextObj, GameObject panelObj)
+    private static void SetupPauseMenuManager(GameObject panelObj)
     {
         // Find existing PauseMenuManager
         PauseMenuManager manager = FindFirstObjectByType<PauseMenuManager>();
@@ -239,17 +212,6 @@ public class PauseMenuSetup : EditorWindow
 
         // Assign references using SerializedObject for proper undo support
         SerializedObject serializedManager = new SerializedObject(manager);
-        
-        // Assign hint text
-        SerializedProperty hintProp = serializedManager.FindProperty("pauseHintText");
-        if (hintProp != null)
-        {
-            TextMeshProUGUI hintText = hintTextObj.GetComponent<TextMeshProUGUI>();
-            if (hintText != null)
-            {
-                hintProp.objectReferenceValue = hintText;
-            }
-        }
 
         // Assign panel
         SerializedProperty panelProp = serializedManager.FindProperty("pauseMenuPanel");

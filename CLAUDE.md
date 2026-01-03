@@ -110,7 +110,7 @@ python -m http.server 8000
 | Audio/ | Audio commands | AudioCommandHandler, FMODAudioManager, FMODWebGLBankLoader, MumbleDialogueController |
 | Characters/ | Portraits | CharacterSpriteManager, PortraitTalkingStateController |
 | Commands/ | Yarn handlers | BackgroundCommandHandler, CheckpointCommandHandler |
-| Editor/ | Dev tools | DialogueSystemUIAutoWire, SettingsPanelSetup, ForceEnableUnityAudio |
+| Editor/ | Dev tools | DialogueSystemUIAutoWire, SettingsPanelSetup, DialogueFontSetup, PauseMenuSetup |
 
 ### Yarn Commands
 
@@ -278,8 +278,32 @@ Other UI is created via Editor menu tools that must be re-run to apply changes:
 - `Tools > Setup Pause Menu` - PauseMenuSetup.cs
 - `Tools > Setup Settings Panel in Pause Menu` - SettingsPanelSetup.cs
 - `Tools > Setup Company Store` - CompanyStoreSetup.cs
+- `Tools > Setup Dialogue Font Sizes` - DialogueFontSetup.cs (updates LinePresenter, WheelOptionView, BubbleContentView text)
 
 These scripts have "recreate" logic that prompts to delete existing UI before rebuilding.
+
+### HUD Buttons (Runtime-Created)
+The corner HUD buttons (Menu, Feedback, Back, Run/Day tracker) are created at runtime by `PauseMenuManager.cs`. Their sizes are controlled by constants:
+```csharp
+private const float HudButtonHeight = 90f;
+private const float HudMenuButtonWidth = 200f;
+private const float HudBackButtonWidth = 240f;
+private const float HudFeedbackButtonWidth = 300f;
+private const float HudRunDayBoxWidth = 400f;
+```
+Font size is set to 60px in `CreateButtonText()` and `SetupRunDayTracker()`.
+
+### Runtime Defaults Pattern
+`MetricsPanelUI` uses `enforceRuntimeDefaults = true` to override serialized Inspector values at runtime. This ensures consistent font sizes (48px) even if old values are saved in the scene. The pattern:
+```csharp
+private void ApplyRuntimeDefaults()
+{
+    if (!enforceRuntimeDefaults) return;
+    minFontSize = 48;
+    fontSize = 48;
+    // ... other defaults
+}
+```
 
 ---
 

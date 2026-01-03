@@ -496,6 +496,10 @@ public class MetricsPanelUI : MonoBehaviour
             return;
         }
 
+        // Font sizes
+        minFontSize = 48;
+        fontSize = 48;
+
         metricSpacing = 20f;
         panelPadding = new Vector2(20f, 10f);
         barHeight = 20f;

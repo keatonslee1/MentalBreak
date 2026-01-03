@@ -323,7 +323,7 @@ h1.mb-brand__title {
 .mb-hero-stage__alice {
   position: absolute;
   left: calc(6% + 100px);
-  bottom: calc(14% + 100px);
+  bottom: calc(14% + 50px);
   width: auto;
   height: auto;
   max-width: clamp(180px, 24vw, 420px);
@@ -340,8 +340,8 @@ h1.mb-brand__title {
   left: 50%;
   bottom: 3%;
   transform: translateX(-50%);
-  width: fit-content;
-  max-width: min(980px, calc(100% - 60px));
+  width: calc(100% - 60px);
+  max-width: 980px;
   z-index: 4;
   background: var(--mb-panel);
   border: 1px solid var(--mb-border);
@@ -572,7 +572,7 @@ h1.mb-brand__title {
   }
   .mb-hero-stage__alice {
     left: calc(4% + 100px);
-    bottom: calc(14% + 100px);
+    bottom: calc(14% + 50px);
     width: auto;
     height: auto;
     max-width: min(40%, clamp(160px, 42vw, 320px));

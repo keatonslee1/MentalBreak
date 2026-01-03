@@ -338,7 +338,7 @@ h1.mb-brand__title {
 .mb-dialogue {
   position: absolute;
   left: 50%;
-  bottom: 3%;
+  bottom: 0;
   transform: translateX(-50%);
   width: 100%;
   z-index: 4;

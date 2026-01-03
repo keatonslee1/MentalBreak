@@ -739,7 +739,7 @@ public class CharacterSpriteManager : MonoBehaviour
         }
 
         // Frame is taller than the portrait image so the head never clips at the inhale peak.
-        float frameHeight = spriteSize.y + Mathf.Max(0f, breathAmplitudePixels) + Mathf.Max(0f, portraitFrameHeadroom) - 100f;
+        float frameHeight = spriteSize.y + Mathf.Max(0f, breathAmplitudePixels) + Mathf.Max(0f, portraitFrameHeadroom) - 175f;
         Vector2 frameSize = new Vector2(spriteSize.x, frameHeight);
         
         // Create LEFT portrait frame (masked container + translucent background)
@@ -805,7 +805,7 @@ public class CharacterSpriteManager : MonoBehaviour
         leftBaseRect.anchorMin = new Vector2(0f, 0f);
         leftBaseRect.anchorMax = new Vector2(1f, 0f);
         leftBaseRect.pivot = new Vector2(0.5f, 0f);
-        leftBaseRect.anchoredPosition = Vector2.zero;
+        leftBaseRect.anchoredPosition = new Vector2(0f, -20f);
         leftBaseRect.sizeDelta = new Vector2(0f, spriteSize.y);
 
         leftBaseImage = leftBaseObject.AddComponent<Image>();
@@ -819,7 +819,7 @@ public class CharacterSpriteManager : MonoBehaviour
         leftTalkingRect.anchorMin = new Vector2(0f, 0f);
         leftTalkingRect.anchorMax = new Vector2(1f, 0f);
         leftTalkingRect.pivot = new Vector2(0.5f, 0f);
-        leftTalkingRect.anchoredPosition = Vector2.zero;
+        leftTalkingRect.anchoredPosition = new Vector2(0f, -20f);
         leftTalkingRect.sizeDelta = new Vector2(0f, spriteSize.y);
 
         leftTalkingImage = leftTalkingObject.AddComponent<Image>();
@@ -834,7 +834,7 @@ public class CharacterSpriteManager : MonoBehaviour
         leftEyesRect.anchorMin = new Vector2(0f, 0f);
         leftEyesRect.anchorMax = new Vector2(1f, 0f);
         leftEyesRect.pivot = new Vector2(0.5f, 0f);
-        leftEyesRect.anchoredPosition = Vector2.zero;
+        leftEyesRect.anchoredPosition = new Vector2(0f, -20f);
         leftEyesRect.sizeDelta = new Vector2(0f, spriteSize.y);
 
         leftEyesImage = leftEyesObject.AddComponent<Image>();
@@ -908,7 +908,7 @@ public class CharacterSpriteManager : MonoBehaviour
         rightBaseRect.anchorMin = new Vector2(0f, 0f);
         rightBaseRect.anchorMax = new Vector2(1f, 0f);
         rightBaseRect.pivot = new Vector2(0.5f, 0f);
-        rightBaseRect.anchoredPosition = Vector2.zero;
+        rightBaseRect.anchoredPosition = new Vector2(0f, -20f);
         rightBaseRect.sizeDelta = new Vector2(0f, spriteSize.y);
 
         rightBaseImage = rightBaseObject.AddComponent<Image>();
@@ -922,7 +922,7 @@ public class CharacterSpriteManager : MonoBehaviour
         rightTalkingRect.anchorMin = new Vector2(0f, 0f);
         rightTalkingRect.anchorMax = new Vector2(1f, 0f);
         rightTalkingRect.pivot = new Vector2(0.5f, 0f);
-        rightTalkingRect.anchoredPosition = Vector2.zero;
+        rightTalkingRect.anchoredPosition = new Vector2(0f, -20f);
         rightTalkingRect.sizeDelta = new Vector2(0f, spriteSize.y);
 
         rightTalkingImage = rightTalkingObject.AddComponent<Image>();
@@ -937,7 +937,7 @@ public class CharacterSpriteManager : MonoBehaviour
         rightEyesRect.anchorMin = new Vector2(0f, 0f);
         rightEyesRect.anchorMax = new Vector2(1f, 0f);
         rightEyesRect.pivot = new Vector2(0.5f, 0f);
-        rightEyesRect.anchoredPosition = Vector2.zero;
+        rightEyesRect.anchoredPosition = new Vector2(0f, -20f);
         rightEyesRect.sizeDelta = new Vector2(0f, spriteSize.y);
 
         rightEyesImage = rightEyesObject.AddComponent<Image>();

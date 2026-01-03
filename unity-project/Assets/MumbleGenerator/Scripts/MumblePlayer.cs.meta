@@ -1,6 +1,5 @@
-﻿fileFormatVersion: 2
+fileFormatVersion: 2
 guid: 457861c37a05407fbdea90106aeb2b35
-timeCreated: 1745573622
 AssetOrigin:
   serializedVersion: 1
   productId: 319430
@@ -8,3 +7,12 @@ AssetOrigin:
   packageVersion: 1.0.1
   assetPath: Assets/MumbleGenerator/Scripts/MumblePlayer.cs
   uploadId: 807434
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: -50
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

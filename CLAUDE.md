@@ -105,12 +105,12 @@ python -m http.server 8000
 | Folder | Purpose | Key Files |
 |--------|---------|-----------|
 | Core/ | Game state, saves, settings | GameManager, SaveLoadManager, SaveExporter, SettingsManager |
-| Dialogue/ | Dialogue flow | DialogueAdvanceHandler, OptionsInputHandler |
+| Dialogue/ | Dialogue flow | ClickAdvancer, OptionsInputHandler |
 | UI/ | User interface | MenuManager, PauseMenuManager, SettingsPanel, StoreUI, ToastManager |
-| Audio/ | Audio commands | AudioCommandHandler, FMODAudioManager, FMODWebGLBankLoader |
-| Characters/ | Portraits | CharacterSpriteManager, CharacterTalkAnimation |
+| Audio/ | Audio commands | AudioCommandHandler, FMODAudioManager, FMODWebGLBankLoader, MumbleDialogueController |
+| Characters/ | Portraits | CharacterSpriteManager, PortraitTalkingStateController |
 | Commands/ | Yarn handlers | BackgroundCommandHandler, CheckpointCommandHandler |
-| Editor/ | Dev tools | DialogueSystemUIAutoWire, SettingsPanelSetup, various scripts |
+| Editor/ | Dev tools | DialogueSystemUIAutoWire, SettingsPanelSetup, ForceEnableUnityAudio |
 
 ### Yarn Commands
 
@@ -131,6 +131,37 @@ python -m http.server 8000
 ### Scenes
 - **MainMenu.unity**: Title screen
 - **MVPScene.unity**: Main game (Dialogue System in DontDestroyOnLoad)
+
+## Dialogue Input System
+
+Clean two-component architecture for dialogue advancement:
+
+| Component | Location | Responsibility |
+|-----------|----------|----------------|
+| **LineAdvancer** (Yarn Spinner) | Line Advancer GameObject | Keyboard input (Space/Enter), two-stage advancement |
+| **ClickAdvancer** (custom) | Dialogue System | Mouse click input, delegates to LineAdvancer |
+
+### How It Works
+- **Space/Enter**: Two-stage advancement (first completes text, second advances to next line)
+- **Click anywhere** (except buttons): Same two-stage behavior via ClickAdvancer
+- **ESC**: Disabled (prevents accidental skips)
+
+### Key Components
+- `LineAdvancer`: Yarn Spinner's built-in component, handles keyboard and tracks line completion state
+- `ClickAdvancer`: Minimal 45-line script, checks `ModalInputLock` and `IsPointerOverInteractableUI()`, then calls `lineAdvancer.RequestLineHurryUp()`
+- `OptionsInputHandler`: Handles Space key for selecting dialogue options
+
+### Modal Blocking
+- `ModalInputLock`: Static lock checked by ClickAdvancer
+- `WelcomeOverlay`: Directly disables LineAdvancer when shown (LineAdvancer doesn't check ModalInputLock)
+
+### ActionMarkupHandler Pattern
+Line lifecycle callbacks (used by MumbleDialogueController, PortraitTalkingStateController):
+- `OnLineDisplayBegin()` → Line starts displaying (start mumble/talking animation)
+- `OnLineDisplayComplete()` → Text finished scrolling (stop mumble/talking animation)
+- `OnLineWillDismiss()` → Line about to be dismissed
+
+Register handlers in LinePresenter's **Event Handlers** list in the Inspector.
 
 ## Dialogue Files
 

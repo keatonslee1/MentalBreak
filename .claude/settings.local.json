@@ -20,7 +20,8 @@
       "WebFetch(domain:docs.unity3d.com)",
       "WebFetch(domain:alessandrofama.com)",
       "WebFetch(domain:qa.fmod.com)",
-      "Bash(git -C \"C:\\\\Users\\\\epick\\\\OneDrive\\\\Documents\\\\mentalbreak\" log --oneline -20)"
+      "Bash(git -C \"C:\\\\Users\\\\epick\\\\OneDrive\\\\Documents\\\\mentalbreak\" log --oneline -20)",
+      "Bash(find:*)"
     ]
   }
 }

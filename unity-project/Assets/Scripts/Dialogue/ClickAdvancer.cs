@@ -33,16 +33,30 @@ public class ClickAdvancer : MonoBehaviour
         // Block input when modal overlays are active
         if (ModalInputLock.IsLocked) return;
 
-        // Check for mouse click (using new Input System)
+        // Handle mouse click
         var mouse = Mouse.current;
-        if (mouse == null || !mouse.leftButton.wasPressedThisFrame) return;
+        if (mouse != null && mouse.leftButton.wasPressedThisFrame)
+        {
+            // Don't advance if clicking on interactive UI elements
+            if (!IsPointerOverInteractableUI())
+            {
+                lineAdvancer?.RequestLineHurryUp();
+                return;
+            }
+        }
 
-        // Don't advance if clicking on interactive UI elements
-        if (IsPointerOverInteractableUI()) return;
-
-        // Delegate to LineAdvancer for two-stage advancement
-        // (first click completes text, second click advances to next line)
-        lineAdvancer?.RequestLineHurryUp();
+        // Handle Space and Enter keys (LineAdvancer's keyboard handling is disabled)
+        var keyboard = Keyboard.current;
+        if (keyboard != null)
+        {
+            if (keyboard.spaceKey.wasPressedThisFrame ||
+                keyboard.enterKey.wasPressedThisFrame ||
+                keyboard.numpadEnterKey.wasPressedThisFrame)
+            {
+                lineAdvancer?.RequestLineHurryUp();
+                return;
+            }
+        }
     }
 
     /// <summary>

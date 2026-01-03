@@ -160,16 +160,10 @@ public class WelcomeOverlay : MonoBehaviour {
 	private void DisableDialogueInput() {
 		disabledInputComponents.Clear();
 
-		// Disable LineAdvancer components (Yarn Spinner's built-in input)
-		LineAdvancer[] advancers = FindObjectsByType<LineAdvancer>(FindObjectsSortMode.None);
-		foreach (LineAdvancer advancer in advancers) {
-			if (advancer != null && advancer.enabled) {
-				disabledInputComponents.Add(advancer);
-				advancer.enabled = false;
-			}
-		}
+		// DON'T disable LineAdvancer - it needs to stay enabled to track line completion state
+		// ModalInputLock will block input via ClickAdvancer (which handles clicks, Space, and Enter)
 
-		// Disable BubbleInput components (without compile-time dependency)
+		// Only disable BubbleInput if using Speech Bubbles (it has its own keyboard handling)
 		MonoBehaviour[] allBehaviours = FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.None);
 		foreach (MonoBehaviour behaviour in allBehaviours) {
 			if (behaviour != null && behaviour.enabled) {
@@ -181,7 +175,7 @@ public class WelcomeOverlay : MonoBehaviour {
 			}
 		}
 
-		Debug.Log($"[WelcomeOverlay] Disabled {disabledInputComponents.Count} input components");
+		Debug.Log($"[WelcomeOverlay] Disabled {disabledInputComponents.Count} input components (LineAdvancer stays enabled for state tracking)");
 	}
 
 	private void EnableDialogueInput() {

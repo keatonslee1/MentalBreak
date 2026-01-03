@@ -14,10 +14,17 @@
   --mb-panel-gradient: linear-gradient(160deg, rgba(76, 233, 255, 0.08) 0%, rgba(255, 45, 210, 0.18) 100%);
 }
 
+@font-face {
+  font-family: 'monogram-extended';
+  src: url('../fonts/monogram-extended.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 .mental-break-body {
   background: radial-gradient(circle at top right, rgba(76, 233, 255, 0.12), transparent 40%), radial-gradient(circle at bottom left, rgba(255, 45, 210, 0.12), transparent 45%), var(--mb-background);
   color: var(--mb-text);
-  font-family: "Inter", sans-serif;
+  font-family: "monogram-extended", monospace;
 }
 
 .mental-break-body ::selection {

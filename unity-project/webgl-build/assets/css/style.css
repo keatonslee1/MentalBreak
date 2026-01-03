@@ -2,7 +2,7 @@
 * ----------------------------------------------------------------------------------------
 Author       : Tanvir Hossain
 Template Name: Noir - Premium Portfolio Template
-Version      : 1.0                                          
+Version      : 1.0
 * ----------------------------------------------------------------------------------------
 */
 
@@ -27,6 +27,12 @@ Version      : 1.0
 * ----------------------------------------------------------------------------------------
 */
 
+@font-face {
+  font-family: 'monogram-extended';
+  src: url('../fonts/monogram-extended.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
 
 /*
 * ----------------------------------------------------------------------------------------
@@ -44,8 +50,8 @@ Version      : 1.0
     --button-border: rgba(119, 119, 125, .2);
     --body-background: #000;
     --grey-bg: #E6EAEE;
-    --text-font: "Inter", sans-serif;
-    --title-font: "Inter", sans-serif;
+    --text-font: "monogram-extended", monospace;
+    --title-font: "monogram-extended", monospace;
 }
 
 

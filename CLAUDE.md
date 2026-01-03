@@ -229,6 +229,31 @@ See `docs/audio_guide.md` for comprehensive audio documentation including FMOD s
 - `Tools > Setup Settings Panel in Pause Menu` - Creates complete settings UI
 - `Tools > Setup SettingsManager in Scene` - Adds SettingsManager component
 
+## UI Canvas Architecture
+
+The game uses **two separate ScreenSpaceOverlay canvases** with different sorting orders:
+
+| Canvas | sortingOrder | Contents |
+|--------|--------------|----------|
+| Dialogue System Canvas ("Canvas") | 0 | Dialogue UI, pause menu, save/load panel, character sprites |
+| OverlayUIRoot | 2000 | Metrics bars (Engagement/Sanity), Leaderboard, runtime overlays |
+
+### OverlayCanvasProvider (`Scripts/UI/OverlayCanvasProvider.cs`)
+- Singleton that provides a deterministic overlay canvas for runtime-created UI
+- Creates "OverlayUIRoot" with `sortingOrder = 2000` and `DontDestroyOnLoad`
+- Used by: `MetricsPanelUI`, `LeaderboardUI`, `ToastManager`
+- Avoids nondeterministic canvas selection in WebGL/IL2CPP builds
+
+### Best Practices
+1. **Never change the Dialogue System Canvas sortingOrder** - This breaks OverlayUIRoot visibility
+2. **Use OverlayCanvasProvider.GetCanvas()** for runtime UI that should appear above dialogue
+3. **For modal dialogs within the Dialogue Canvas**, use sibling ordering (SetAsLastSibling) instead of sortingOrder changes
+
+### Known Pitfall (Fixed)
+`SaveSlotSelectionUI` previously changed the parent canvas `sortingOrder = 5000`, which caused metrics/leaderboard to disappear behind the dialogue UI. The fix was to remove this sortingOrder change entirely - the save/load panel is already visible within its parent canvas.
+
+---
+
 ## WebGL Notes
 
 - Use **Gzip compression** (not Brotli) for iOS compatibility

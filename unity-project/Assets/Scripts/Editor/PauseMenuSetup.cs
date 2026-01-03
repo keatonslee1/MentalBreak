@@ -1,13 +1,11 @@
+using TMPro;
 using UnityEngine;
 using UnityEditor;
 using UnityEngine.UI;
 
-#if USE_TMP
-using TMPro;
-#endif
-
 /// <summary>
 /// Editor script to automatically set up the pause menu UI in the current scene.
+/// Uses TextMeshPro for all text (font applied by GlobalFontOverride).
 /// Usage: Unity Menu -> Tools -> Setup Pause Menu UI
 /// </summary>
 public class PauseMenuSetup : EditorWindow
@@ -36,33 +34,42 @@ public class PauseMenuSetup : EditorWindow
             Debug.Log("Created Canvas and EventSystem");
         }
 
-        // Create Pause Hint Text
-        GameObject hintTextObj = null;
+        // Check for existing pause menu elements
         Transform existingHint = canvas.transform.Find("PauseHintText");
-        if (existingHint != null)
+        Transform existingPanel = canvas.transform.Find("PauseMenuPanel");
+
+        if (existingHint != null || existingPanel != null)
         {
-            hintTextObj = existingHint.gameObject;
-            Debug.Log("Found existing PauseHintText");
-        }
-        else
-        {
-            hintTextObj = CreateHintText(canvas.transform);
-            Debug.Log("Created PauseHintText");
+            bool recreate = EditorUtility.DisplayDialog("Pause Menu Exists",
+                "PauseMenuPanel and/or PauseHintText already exist. Delete and recreate them with updated settings?",
+                "Yes, Recreate", "Cancel");
+            if (!recreate)
+            {
+                if (existingPanel != null)
+                    Selection.activeGameObject = existingPanel.gameObject;
+                return;
+            }
+
+            // Delete existing elements
+            if (existingHint != null)
+            {
+                Undo.DestroyObjectImmediate(existingHint.gameObject);
+                Debug.Log("Deleted existing PauseHintText");
+            }
+            if (existingPanel != null)
+            {
+                Undo.DestroyObjectImmediate(existingPanel.gameObject);
+                Debug.Log("Deleted existing PauseMenuPanel");
+            }
         }
 
+        // Create Pause Hint Text
+        GameObject hintTextObj = CreateHintText(canvas.transform);
+        Debug.Log("Created PauseHintText");
+
         // Create Pause Menu Panel
-        GameObject panelObj = null;
-        Transform existingPanel = canvas.transform.Find("PauseMenuPanel");
-        if (existingPanel != null)
-        {
-            panelObj = existingPanel.gameObject;
-            Debug.Log("Found existing PauseMenuPanel");
-        }
-        else
-        {
-            panelObj = CreatePausePanel(canvas.transform);
-            Debug.Log("Created PauseMenuPanel");
-        }
+        GameObject panelObj = CreatePausePanel(canvas.transform);
+        Debug.Log("Created PauseMenuPanel");
 
         // Create buttons
         CreateMenuButtons(panelObj.transform);
@@ -111,22 +118,13 @@ public class PauseMenuSetup : EditorWindow
         rectTransform.anchorMax = new Vector2(1f, 1f);
         rectTransform.pivot = new Vector2(1f, 1f);
         rectTransform.anchoredPosition = new Vector2(-20f, -20f);
-        rectTransform.sizeDelta = new Vector2(200f, 30f);
+        rectTransform.sizeDelta = new Vector2(500f, 60f);
 
-#if USE_TMP
         TextMeshProUGUI text = hintObj.AddComponent<TextMeshProUGUI>();
         text.text = "Press ESC to pause";
-        text.fontSize = 14;
+        text.fontSize = 48;
         text.color = Color.white;
         text.alignment = TextAlignmentOptions.TopRight;
-#else
-        Text text = hintObj.AddComponent<Text>();
-        text.text = "Press ESC to pause";
-        text.fontSize = 14;
-        text.color = Color.white;
-        text.alignment = TextAnchor.UpperRight;
-        text.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
-#endif
 
         return hintObj;
     }
@@ -187,9 +185,9 @@ public class PauseMenuSetup : EditorWindow
             GameObject buttonObj = new GameObject(buttonNames[i]);
             buttonObj.transform.SetParent(panelParent, false);
 
-            // RectTransform - larger buttons
+            // RectTransform - larger buttons for 60px font
             RectTransform rectTransform = buttonObj.AddComponent<RectTransform>();
-            rectTransform.sizeDelta = new Vector2(280f, 55f); // Larger buttons
+            rectTransform.sizeDelta = new Vector2(400f, 80f);
 
             // Image (button background)
             Image image = buttonObj.AddComponent<Image>();
@@ -217,20 +215,11 @@ public class PauseMenuSetup : EditorWindow
             textRect.sizeDelta = Vector2.zero;
             textRect.anchoredPosition = Vector2.zero;
 
-#if USE_TMP
             TextMeshProUGUI text = textObj.AddComponent<TextMeshProUGUI>();
             text.text = buttonTexts[i];
-            text.fontSize = 22; // Larger font
+            text.fontSize = 60;
             text.color = Color.white;
             text.alignment = TextAlignmentOptions.Center;
-#else
-            Text text = textObj.AddComponent<Text>();
-            text.text = buttonTexts[i];
-            text.fontSize = 22; // Larger font
-            text.color = Color.white;
-            text.alignment = TextAnchor.MiddleCenter;
-            text.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
-#endif
 
             Debug.Log($"Created button: {buttonNames[i]}");
         }
@@ -255,19 +244,11 @@ public class PauseMenuSetup : EditorWindow
         SerializedProperty hintProp = serializedManager.FindProperty("pauseHintText");
         if (hintProp != null)
         {
-#if USE_TMP
             TextMeshProUGUI hintText = hintTextObj.GetComponent<TextMeshProUGUI>();
             if (hintText != null)
             {
                 hintProp.objectReferenceValue = hintText;
             }
-#else
-            Text hintText = hintTextObj.GetComponent<Text>();
-            if (hintText != null)
-            {
-                hintProp.objectReferenceValue = hintText;
-            }
-#endif
         }
 
         // Assign panel
@@ -364,7 +345,7 @@ public class PauseMenuSetup : EditorWindow
         buttonObj.transform.SetSiblingIndex(insertIndex);
 
         RectTransform rectTransform = buttonObj.AddComponent<RectTransform>();
-        rectTransform.sizeDelta = new Vector2(280f, 55f); // Larger button
+        rectTransform.sizeDelta = new Vector2(400f, 80f); // Larger button for 60px font
 
         Image image = buttonObj.AddComponent<Image>();
         image.color = new Color(0.2f, 0.2f, 0.25f, 1f);
@@ -387,20 +368,11 @@ public class PauseMenuSetup : EditorWindow
         textRect.sizeDelta = Vector2.zero;
         textRect.anchoredPosition = Vector2.zero;
 
-#if USE_TMP
         TextMeshProUGUI text = textObj.AddComponent<TextMeshProUGUI>();
         text.text = "Settings";
-        text.fontSize = 22; // Larger font
+        text.fontSize = 60;
         text.color = Color.white;
         text.alignment = TextAlignmentOptions.Center;
-#else
-        Text text = textObj.AddComponent<Text>();
-        text.text = "Settings";
-        text.fontSize = 22; // Larger font
-        text.color = Color.white;
-        text.alignment = TextAnchor.MiddleCenter;
-        text.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
-#endif
 
         // Assign to PauseMenuManager
         pauseMenu.settingsButton = button;

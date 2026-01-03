@@ -645,6 +645,7 @@ public class PauseMenuManager : MonoBehaviour
         if (resumeButton != null) resumeButton.gameObject.SetActive(false);
         if (saveGameButton != null) saveGameButton.gameObject.SetActive(false);
         if (loadGameButton != null) loadGameButton.gameObject.SetActive(false);
+        if (settingsButton != null) settingsButton.gameObject.SetActive(false);
         if (mainMenuButton != null) mainMenuButton.gameObject.SetActive(false);
         if (exitButton != null) exitButton.gameObject.SetActive(false);
         if (skipDayButton != null) skipDayButton.gameObject.SetActive(false);
@@ -663,6 +664,7 @@ public class PauseMenuManager : MonoBehaviour
         if (resumeButton != null) resumeButton.gameObject.SetActive(true);
         if (saveGameButton != null) saveGameButton.gameObject.SetActive(true);
         if (loadGameButton != null) loadGameButton.gameObject.SetActive(true);
+        if (settingsButton != null) settingsButton.gameObject.SetActive(true);
         // Main menu button hidden for MVP (too buggy, but backend code kept)
         // if (mainMenuButton != null) mainMenuButton.gameObject.SetActive(true);
         if (exitButton != null) exitButton.gameObject.SetActive(true);

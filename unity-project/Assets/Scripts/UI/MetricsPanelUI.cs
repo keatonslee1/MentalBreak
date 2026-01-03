@@ -569,6 +569,8 @@ public class MetricsPanelUI : MonoBehaviour
     /// </summary>
     private void UpdateMetrics()
     {
+        EnsureUIReady();
+
         if (variableStorage == null)
         {
             ApplyLoadingState();

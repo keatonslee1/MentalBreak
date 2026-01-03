@@ -1,53 +1,3 @@
-Import Error Code:(5)
-Message: Build asset version error: assets/nul does not exit in SourceAssetDB
-
-
-'Assets/nul' Amount of processed bytes '0' does not match file size '81'
-
-Import Error Code:(5)
-Message: Build asset version error: assets/nul does not exit in SourceAssetDB
-
-
-'Assets/nul' Amount of processed bytes '0' does not match file size '81'
-
-Import Error Code:(5)
-Message: Build asset version error: assets/nul does not exit in SourceAssetDB
-
-
-'Assets/nul' Amount of processed bytes '0' does not match file size '81'
-
-Import Error Code:(5)
-Message: Build asset version error: assets/nul does not exit in SourceAssetDB
-
-
-'Assets/nul' Amount of processed bytes '0' does not match file size '81'
-
-Import Error Code:(5)
-Message: Build asset version error: assets/nul does not exit in SourceAssetDB
-
-
-'Assets/nul' Amount of processed bytes '0' does not match file size '81'
-
-Import Error Code:(5)
-Message: Build asset version error: assets/nul does not exit in SourceAssetDB
-
-
-'Assets/nul' Amount of processed bytes '0' does not match file size '81'
-
-Import Error Code:(5)
-Message: Build asset version error: assets/nul does not exit in SourceAssetDB
-
-
-'Assets/nul' Amount of processed bytes '0' does not match file size '81'
-
-Import Error Code:(5)
-Message: Build asset version error: assets/nul does not exit in SourceAssetDB
-
-
-An infinite import loop has been detected. The following Assets were imported multiple times, but no changes to them have been detected. Please check if any custom code is trying to import them:
-Assets/nul(doesn't exist on disk)
-
-
 The referenced script on this Behaviour (Game Object 'Dialogue System') is missing!
 
 The referenced script on this Behaviour (Game Object '') is missing!
@@ -868,31 +818,31 @@ CharacterSpriteManager:LogCanvasHierarchy (string) (at Assets/Scripts/Characters
 CharacterSpriteManager:SetupCharacterSprites () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:654)
 CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:135)
 
-  [3] PauseMenuPanel (ACTIVE)
+  [3] LoadMenuPanel (INACTIVE)
 UnityEngine.Debug:Log (object)
 CharacterSpriteManager:LogCanvasHierarchy (string) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:628)
 CharacterSpriteManager:SetupCharacterSprites () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:654)
 CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:135)
 
-  [4] LoadMenuPanel (INACTIVE)
+  [4] OpenFeedbackFormButton (ACTIVE)
 UnityEngine.Debug:Log (object)
 CharacterSpriteManager:LogCanvasHierarchy (string) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:628)
 CharacterSpriteManager:SetupCharacterSprites () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:654)
 CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:135)
 
-  [5] OpenFeedbackFormButton (ACTIVE)
+  [5] Feedback Form (INACTIVE)
 UnityEngine.Debug:Log (object)
 CharacterSpriteManager:LogCanvasHierarchy (string) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:628)
 CharacterSpriteManager:SetupCharacterSprites () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:654)
 CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:135)
 
-  [6] Feedback Form (INACTIVE)
+  [6] PauseHintText (ACTIVE)
 UnityEngine.Debug:Log (object)
 CharacterSpriteManager:LogCanvasHierarchy (string) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:628)
 CharacterSpriteManager:SetupCharacterSprites () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:654)
 CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:135)
 
-  [7] PauseHintText (ACTIVE)
+  [7] PauseMenuPanel (INACTIVE)
 UnityEngine.Debug:Log (object)
 CharacterSpriteManager:LogCanvasHierarchy (string) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:628)
 CharacterSpriteManager:SetupCharacterSprites () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:654)
@@ -992,31 +942,31 @@ CharacterSpriteManager:LogCanvasHierarchy (string) (at Assets/Scripts/Characters
 CharacterSpriteManager:SetupCharacterSprites () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:871)
 CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:135)
 
-  [5] PauseMenuPanel (ACTIVE)
+  [5] LoadMenuPanel (INACTIVE)
 UnityEngine.Debug:Log (object)
 CharacterSpriteManager:LogCanvasHierarchy (string) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:628)
 CharacterSpriteManager:SetupCharacterSprites () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:871)
 CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:135)
 
-  [6] LoadMenuPanel (INACTIVE)
+  [6] OpenFeedbackFormButton (ACTIVE)
 UnityEngine.Debug:Log (object)
 CharacterSpriteManager:LogCanvasHierarchy (string) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:628)
 CharacterSpriteManager:SetupCharacterSprites () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:871)
 CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:135)
 
-  [7] OpenFeedbackFormButton (ACTIVE)
+  [7] Feedback Form (INACTIVE)
 UnityEngine.Debug:Log (object)
 CharacterSpriteManager:LogCanvasHierarchy (string) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:628)
 CharacterSpriteManager:SetupCharacterSprites () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:871)
 CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:135)
 
-  [8] Feedback Form (INACTIVE)
+  [8] PauseHintText (ACTIVE)
 UnityEngine.Debug:Log (object)
 CharacterSpriteManager:LogCanvasHierarchy (string) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:628)
 CharacterSpriteManager:SetupCharacterSprites () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:871)
 CharacterSpriteManager:Awake () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:135)
 
-  [9] PauseHintText (ACTIVE)
+  [9] PauseMenuPanel (INACTIVE)
 UnityEngine.Debug:Log (object)
 CharacterSpriteManager:LogCanvasHierarchy (string) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:628)
 CharacterSpriteManager:SetupCharacterSprites () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:871)
@@ -1471,13 +1421,13 @@ BackgroundCommandHandler/<ScanForVideos>d__21:MoveNext () (at Assets/Scripts/Com
 UnityEngine.MonoBehaviour:StartCoroutine (System.Collections.IEnumerator)
 BackgroundCommandHandler:Awake () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:108)
 
-[WelcomeOverlay] Disabled 1 input components
+[WelcomeOverlay] Disabled 0 input components (LineAdvancer stays enabled for state tracking)
 UnityEngine.Debug:Log (object)
-WelcomeOverlay:DisableDialogueInput () (at Assets/Scripts/UI/WelcomeOverlay.cs:184)
+WelcomeOverlay:DisableDialogueInput () (at Assets/Scripts/UI/WelcomeOverlay.cs:178)
 WelcomeOverlay:CreateOverlay (bool) (at Assets/Scripts/UI/WelcomeOverlay.cs:132)
 WelcomeOverlay:Initialize () (at Assets/Scripts/UI/WelcomeOverlay.cs:39)
 
-[WelcomeOverlay] Created for returning player
+[WelcomeOverlay] Created for new player
 UnityEngine.Debug:Log (object)
 WelcomeOverlay:CreateOverlay (bool) (at Assets/Scripts/UI/WelcomeOverlay.cs:134)
 WelcomeOverlay:Initialize () (at Assets/Scripts/UI/WelcomeOverlay.cs:39)
@@ -1587,7 +1537,7 @@ UnityEngine.Debug:Log (object)
 ChoiceDiagnostics:LogInitialState () (at Assets/Scripts/Dialogue/ChoiceDiagnostics.cs:93)
 ChoiceDiagnostics:Start () (at Assets/Scripts/Dialogue/ChoiceDiagnostics.cs:49)
 
-  - Presenter: LineAdvancer, Active: False, GameObject: Line Advancer
+  - Presenter: LineAdvancer, Active: True, GameObject: Line Advancer
 UnityEngine.Debug:Log (object)
 ChoiceDiagnostics:LogInitialState () (at Assets/Scripts/Dialogue/ChoiceDiagnostics.cs:80)
 ChoiceDiagnostics:Start () (at Assets/Scripts/Dialogue/ChoiceDiagnostics.cs:49)
@@ -1602,29 +1552,796 @@ UnityEngine.Debug:Log (object)
 ChoiceDiagnostics:LogInitialState () (at Assets/Scripts/Dialogue/ChoiceDiagnostics.cs:122)
 ChoiceDiagnostics:Start () (at Assets/Scripts/Dialogue/ChoiceDiagnostics.cs:49)
 
-[StartDialogueOnPlay] WelcomeOverlay active, deferring dialogue start
+StartDialogueOnPlay: New player, starting dialogue at R1_Start
 UnityEngine.Debug:Log (object)
-StartDialogueOnPlay:Start () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:23)
+StartDialogueOnPlay:StartGame () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:31)
+StartDialogueOnPlay:Start () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:22)
+
+CharacterSpriteManager: Node started: R1_Start
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:OnNodeStarted (string) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:965)
+UnityEngine.Events.UnityEvent`1<string>:Invoke (string)
+Yarn.Unity.DialogueRunner:OnNodeStarted (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:575)
+Yarn.VirtualMachine:SetNode (string,bool)
+Yarn.Dialogue:SetNode (string)
+Yarn.Unity.DialogueRunner:StartDialogue (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:932)
+StartDialogueOnPlay:StartGame () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:33)
+StartDialogueOnPlay:Start () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:22)
+
+CharacterSpriteManager: Tags header: '#run_1 #scene #loc_Office'
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:OnNodeStarted (string) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:975)
+UnityEngine.Events.UnityEvent`1<string>:Invoke (string)
+Yarn.Unity.DialogueRunner:OnNodeStarted (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:575)
+Yarn.VirtualMachine:SetNode (string,bool)
+Yarn.Dialogue:SetNode (string)
+Yarn.Unity.DialogueRunner:StartDialogue (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:932)
+StartDialogueOnPlay:StartGame () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:33)
+StartDialogueOnPlay:Start () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:22)
+
+CharacterSpriteManager: Extracted character tags (before auto-add): []
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:OnNodeStarted (string) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:1003)
+UnityEngine.Events.UnityEvent`1<string>:Invoke (string)
+Yarn.Unity.DialogueRunner:OnNodeStarted (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:575)
+Yarn.VirtualMachine:SetNode (string,bool)
+Yarn.Dialogue:SetNode (string)
+Yarn.Unity.DialogueRunner:StartDialogue (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:932)
+StartDialogueOnPlay:StartGame () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:33)
+StartDialogueOnPlay:Start () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:22)
+
+CharacterSpriteManager: Auto-added Alice (player is present, no supervisor, not darkroom)
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:OnNodeStarted (string) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:1014)
+UnityEngine.Events.UnityEvent`1<string>:Invoke (string)
+Yarn.Unity.DialogueRunner:OnNodeStarted (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:575)
+Yarn.VirtualMachine:SetNode (string,bool)
+Yarn.Dialogue:SetNode (string)
+Yarn.Unity.DialogueRunner:StartDialogue (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:932)
+StartDialogueOnPlay:StartGame () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:33)
+StartDialogueOnPlay:Start () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:22)
+
+CharacterSpriteManager: Final character tags: [char_Alice]
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:OnNodeStarted (string) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:1021)
+UnityEngine.Events.UnityEvent`1<string>:Invoke (string)
+Yarn.Unity.DialogueRunner:OnNodeStarted (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:575)
+Yarn.VirtualMachine:SetNode (string,bool)
+Yarn.Dialogue:SetNode (string)
+Yarn.Unity.DialogueRunner:StartDialogue (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:932)
+StartDialogueOnPlay:StartGame () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:33)
+StartDialogueOnPlay:Start () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:22)
+
+CharacterPortraitAnimator: Initialized for Alice (Talking: 15 frames, Eyes: 3 frames)
+UnityEngine.Debug:Log (object)
+CharacterPortraitAnimator:Initialize (CharacterPortraitData,UnityEngine.UI.Image,UnityEngine.UI.Image,UnityEngine.UI.Image) (at Assets/Scripts/Characters/CharacterPortraitAnimator.cs:69)
+CharacterSpriteManager:DisplayCharacters (System.Collections.Generic.List`1<string>) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:1104)
+CharacterSpriteManager:OnNodeStarted (string) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:1031)
+UnityEngine.Events.UnityEvent`1<string>:Invoke (string)
+Yarn.Unity.DialogueRunner:OnNodeStarted (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:575)
+Yarn.VirtualMachine:SetNode (string,bool)
+Yarn.Dialogue:SetNode (string)
+Yarn.Unity.DialogueRunner:StartDialogue (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:932)
+StartDialogueOnPlay:StartGame () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:33)
+StartDialogueOnPlay:Start () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:22)
+
+CharacterSpriteManager: Displaying 'char_Alice' on left (base sprite: Alice base_0, 15 talking frames, 3 eye frames)
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:DisplayCharacters (System.Collections.Generic.List`1<string>) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:1107)
+CharacterSpriteManager:OnNodeStarted (string) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:1031)
+UnityEngine.Events.UnityEvent`1<string>:Invoke (string)
+Yarn.Unity.DialogueRunner:OnNodeStarted (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:575)
+Yarn.VirtualMachine:SetNode (string,bool)
+Yarn.Dialogue:SetNode (string)
+Yarn.Unity.DialogueRunner:StartDialogue (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:932)
+StartDialogueOnPlay:StartGame () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:33)
+StartDialogueOnPlay:Start () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:22)
+
+[Debug Nav] Node visited: R1_Start (History: 1 nodes)
+UnityEngine.Debug:Log (object)
+DialogueDebugNavigator:OnNodeStart (string) (at Assets/Scripts/Dialogue/DialogueDebugNavigator.cs:530)
+UnityEngine.Events.UnityEvent`1<string>:Invoke (string)
+Yarn.Unity.DialogueRunner:OnNodeStarted (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:575)
+Yarn.VirtualMachine:SetNode (string,bool)
+Yarn.Dialogue:SetNode (string)
+Yarn.Unity.DialogueRunner:StartDialogue (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:932)
+StartDialogueOnPlay:StartGame () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:33)
+StartDialogueOnPlay:Start () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:22)
+
+ChoiceDiagnostics: Node started: R1_Start
+UnityEngine.Debug:Log (object)
+ChoiceDiagnostics:OnNodeStart (string) (at Assets/Scripts/Dialogue/ChoiceDiagnostics.cs:141)
+UnityEngine.Events.UnityEvent`1<string>:Invoke (string)
+Yarn.Unity.DialogueRunner:OnNodeStarted (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:575)
+Yarn.VirtualMachine:SetNode (string,bool)
+Yarn.Dialogue:SetNode (string)
+Yarn.Unity.DialogueRunner:StartDialogue (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:932)
+StartDialogueOnPlay:StartGame () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:33)
+StartDialogueOnPlay:Start () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:22)
+
+ChoiceDiagnostics: Dialogue started
+UnityEngine.Debug:Log (object)
+ChoiceDiagnostics:OnDialogueStart () (at Assets/Scripts/Dialogue/ChoiceDiagnostics.cs:129)
+UnityEngine.Events.UnityEvent:Invoke ()
+Yarn.Unity.DialogueRunner:StartDialogue (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:936)
+StartDialogueOnPlay:StartGame () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:33)
+StartDialogueOnPlay:Start () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:22)
+
+Background: Changed to bg_loading (sprite: bg_loading_0)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:ShowStaticBackground (UnityEngine.Sprite,string) (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:784)
+BackgroundCommandHandler:ChangeBackground (string) (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:543)
+System.Reflection.MethodBase:Invoke (object,object[])
+Yarn.Unity.Actions/CommandRegistration:Invoke (UnityEngine.MonoBehaviour,System.Collections.Generic.List`1<string>) (at ./Packages/dev.yarnspinner.unity/Runtime/Commands/Actions.cs:413)
+Yarn.Unity.Actions:Yarn.Unity.ICommandDispatcher.DispatchCommand (string,UnityEngine.MonoBehaviour) (at ./Packages/dev.yarnspinner.unity/Runtime/Commands/Actions.cs:654)
+Yarn.Unity.DialogueRunner/<OnCommandReceivedAsync>d__62:MoveNext () (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:585)
+UnityEngine.Awaitable/AwaitableAsyncMethodBuilder/StateMachineBox`1<Yarn.Unity.DialogueRunner/<OnCommandReceivedAsync>d__62>:DoMoveNext ()
+Yarn.Unity.DialogueRunner:OnCommandReceivedAsync (Yarn.Command)
+Yarn.Unity.DialogueRunner:OnCommandReceived (Yarn.Command) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:580)
+Yarn.VirtualMachine:RunInstruction (Yarn.Instruction)
+Yarn.VirtualMachine:Continue ()
+Yarn.Dialogue:Continue ()
+Yarn.Unity.DialogueRunner/<<StartDialogue>g__StartDialogueAsync|69_0>d:MoveNext () (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:952)
+UnityEngine.Awaitable/AwaitableAsyncMethodBuilder/StateMachineBox`1<Yarn.Unity.DialogueRunner/<<StartDialogue>g__StartDialogueAsync|69_0>d>:DoMoveNext ()
+Yarn.Unity.DialogueRunner:<StartDialogue>g__StartDialogueAsync|69_0 ()
+Yarn.Unity.DialogueRunner:StartDialogue (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:938)
+StartDialogueOnPlay:StartGame () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:33)
+StartDialogueOnPlay:Start () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:22)
+
+BGM Command: No audio clip found for key 'cyberpunk_background_cyberpunk_background_main'. Available keys: ...
+UnityEngine.Debug:LogWarning (object)
+AudioCommandHandler:PlayBGM (string) (at Assets/Scripts/Audio/AudioCommandHandler.cs:226)
+System.Reflection.MethodBase:Invoke (object,object[])
+Yarn.Unity.Actions/CommandRegistration:Invoke (UnityEngine.MonoBehaviour,System.Collections.Generic.List`1<string>) (at ./Packages/dev.yarnspinner.unity/Runtime/Commands/Actions.cs:413)
+Yarn.Unity.Actions:Yarn.Unity.ICommandDispatcher.DispatchCommand (string,UnityEngine.MonoBehaviour) (at ./Packages/dev.yarnspinner.unity/Runtime/Commands/Actions.cs:654)
+Yarn.Unity.DialogueRunner/<OnCommandReceivedAsync>d__62:MoveNext () (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:585)
+UnityEngine.Awaitable/AwaitableAsyncMethodBuilder/StateMachineBox`1<Yarn.Unity.DialogueRunner/<OnCommandReceivedAsync>d__62>:DoMoveNext ()
+Yarn.Unity.DialogueRunner:OnCommandReceivedAsync (Yarn.Command)
+Yarn.Unity.DialogueRunner:OnCommandReceived (Yarn.Command) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:580)
+Yarn.VirtualMachine:RunInstruction (Yarn.Instruction)
+Yarn.VirtualMachine:Continue ()
+Yarn.Dialogue:Continue ()
+Yarn.Unity.DialogueRunner/<<StartDialogue>g__StartDialogueAsync|69_0>d:MoveNext () (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:952)
+UnityEngine.Awaitable/AwaitableAsyncMethodBuilder/StateMachineBox`1<Yarn.Unity.DialogueRunner/<<StartDialogue>g__StartDialogueAsync|69_0>d>:DoMoveNext ()
+Yarn.Unity.DialogueRunner:<StartDialogue>g__StartDialogueAsync|69_0 ()
+Yarn.Unity.DialogueRunner:StartDialogue (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:938)
+StartDialogueOnPlay:StartGame () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:33)
+StartDialogueOnPlay:Start () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:22)
+
+CharacterSpriteManager: Node started: R1D1_Start
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:OnNodeStarted (string) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:965)
+UnityEngine.Events.UnityEvent`1<string>:Invoke (string)
+Yarn.Unity.DialogueRunner:OnNodeStarted (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:575)
+Yarn.VirtualMachine:SetNode (string,bool)
+Yarn.VirtualMachine:ExecuteJumpToNode (string,bool)
+Yarn.VirtualMachine:RunInstruction (Yarn.Instruction)
+Yarn.VirtualMachine:Continue ()
+Yarn.Dialogue:Continue ()
+Yarn.Unity.DialogueRunner/<<StartDialogue>g__StartDialogueAsync|69_0>d:MoveNext () (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:952)
+UnityEngine.Awaitable/AwaitableAsyncMethodBuilder/StateMachineBox`1<Yarn.Unity.DialogueRunner/<<StartDialogue>g__StartDialogueAsync|69_0>d>:DoMoveNext ()
+Yarn.Unity.DialogueRunner:<StartDialogue>g__StartDialogueAsync|69_0 ()
+Yarn.Unity.DialogueRunner:StartDialogue (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:938)
+StartDialogueOnPlay:StartGame () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:33)
+StartDialogueOnPlay:Start () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:22)
+
+CharacterSpriteManager: Tags header: '#run_1 #day_1 #morning #scene #char_Supervisor #loc_Office'
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:OnNodeStarted (string) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:975)
+UnityEngine.Events.UnityEvent`1<string>:Invoke (string)
+Yarn.Unity.DialogueRunner:OnNodeStarted (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:575)
+Yarn.VirtualMachine:SetNode (string,bool)
+Yarn.VirtualMachine:ExecuteJumpToNode (string,bool)
+Yarn.VirtualMachine:RunInstruction (Yarn.Instruction)
+Yarn.VirtualMachine:Continue ()
+Yarn.Dialogue:Continue ()
+Yarn.Unity.DialogueRunner/<<StartDialogue>g__StartDialogueAsync|69_0>d:MoveNext () (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:952)
+UnityEngine.Awaitable/AwaitableAsyncMethodBuilder/StateMachineBox`1<Yarn.Unity.DialogueRunner/<<StartDialogue>g__StartDialogueAsync|69_0>d>:DoMoveNext ()
+Yarn.Unity.DialogueRunner:<StartDialogue>g__StartDialogueAsync|69_0 ()
+Yarn.Unity.DialogueRunner:StartDialogue (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:938)
+StartDialogueOnPlay:StartGame () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:33)
+StartDialogueOnPlay:Start () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:22)
+
+CharacterSpriteManager: Current background updated to: bg_loading_0
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:UpdateCurrentBackground () (at Assets/Scripts/Characters/CharacterSpriteManager.cs:1042)
+CharacterSpriteManager:OnNodeStarted (string) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:986)
+UnityEngine.Events.UnityEvent`1<string>:Invoke (string)
+Yarn.Unity.DialogueRunner:OnNodeStarted (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:575)
+Yarn.VirtualMachine:SetNode (string,bool)
+Yarn.VirtualMachine:ExecuteJumpToNode (string,bool)
+Yarn.VirtualMachine:RunInstruction (Yarn.Instruction)
+Yarn.VirtualMachine:Continue ()
+Yarn.Dialogue:Continue ()
+Yarn.Unity.DialogueRunner/<<StartDialogue>g__StartDialogueAsync|69_0>d:MoveNext () (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:952)
+UnityEngine.Awaitable/AwaitableAsyncMethodBuilder/StateMachineBox`1<Yarn.Unity.DialogueRunner/<<StartDialogue>g__StartDialogueAsync|69_0>d>:DoMoveNext ()
+Yarn.Unity.DialogueRunner:<StartDialogue>g__StartDialogueAsync|69_0 ()
+Yarn.Unity.DialogueRunner:StartDialogue (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:938)
+StartDialogueOnPlay:StartGame () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:33)
+StartDialogueOnPlay:Start () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:22)
+
+CharacterSpriteManager: Extracted character tags (before auto-add): [char_Supervisor]
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:OnNodeStarted (string) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:1003)
+UnityEngine.Events.UnityEvent`1<string>:Invoke (string)
+Yarn.Unity.DialogueRunner:OnNodeStarted (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:575)
+Yarn.VirtualMachine:SetNode (string,bool)
+Yarn.VirtualMachine:ExecuteJumpToNode (string,bool)
+Yarn.VirtualMachine:RunInstruction (Yarn.Instruction)
+Yarn.VirtualMachine:Continue ()
+Yarn.Dialogue:Continue ()
+Yarn.Unity.DialogueRunner/<<StartDialogue>g__StartDialogueAsync|69_0>d:MoveNext () (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:952)
+UnityEngine.Awaitable/AwaitableAsyncMethodBuilder/StateMachineBox`1<Yarn.Unity.DialogueRunner/<<StartDialogue>g__StartDialogueAsync|69_0>d>:DoMoveNext ()
+Yarn.Unity.DialogueRunner:<StartDialogue>g__StartDialogueAsync|69_0 ()
+Yarn.Unity.DialogueRunner:StartDialogue (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:938)
+StartDialogueOnPlay:StartGame () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:33)
+StartDialogueOnPlay:Start () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:22)
+
+CharacterSpriteManager: Did not auto-add Alice - Supervisor present or darkroom or already in list
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:OnNodeStarted (string) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:1018)
+UnityEngine.Events.UnityEvent`1<string>:Invoke (string)
+Yarn.Unity.DialogueRunner:OnNodeStarted (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:575)
+Yarn.VirtualMachine:SetNode (string,bool)
+Yarn.VirtualMachine:ExecuteJumpToNode (string,bool)
+Yarn.VirtualMachine:RunInstruction (Yarn.Instruction)
+Yarn.VirtualMachine:Continue ()
+Yarn.Dialogue:Continue ()
+Yarn.Unity.DialogueRunner/<<StartDialogue>g__StartDialogueAsync|69_0>d:MoveNext () (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:952)
+UnityEngine.Awaitable/AwaitableAsyncMethodBuilder/StateMachineBox`1<Yarn.Unity.DialogueRunner/<<StartDialogue>g__StartDialogueAsync|69_0>d>:DoMoveNext ()
+Yarn.Unity.DialogueRunner:<StartDialogue>g__StartDialogueAsync|69_0 ()
+Yarn.Unity.DialogueRunner:StartDialogue (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:938)
+StartDialogueOnPlay:StartGame () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:33)
+StartDialogueOnPlay:Start () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:22)
+
+CharacterSpriteManager: Final character tags: [char_Supervisor]
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:OnNodeStarted (string) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:1021)
+UnityEngine.Events.UnityEvent`1<string>:Invoke (string)
+Yarn.Unity.DialogueRunner:OnNodeStarted (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:575)
+Yarn.VirtualMachine:SetNode (string,bool)
+Yarn.VirtualMachine:ExecuteJumpToNode (string,bool)
+Yarn.VirtualMachine:RunInstruction (Yarn.Instruction)
+Yarn.VirtualMachine:Continue ()
+Yarn.Dialogue:Continue ()
+Yarn.Unity.DialogueRunner/<<StartDialogue>g__StartDialogueAsync|69_0>d:MoveNext () (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:952)
+UnityEngine.Awaitable/AwaitableAsyncMethodBuilder/StateMachineBox`1<Yarn.Unity.DialogueRunner/<<StartDialogue>g__StartDialogueAsync|69_0>d>:DoMoveNext ()
+Yarn.Unity.DialogueRunner:<StartDialogue>g__StartDialogueAsync|69_0 ()
+Yarn.Unity.DialogueRunner:StartDialogue (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:938)
+StartDialogueOnPlay:StartGame () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:33)
+StartDialogueOnPlay:Start () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:22)
+
+CharacterPortraitAnimator: Initialized for char_Supervisor (Talking: 1 frames, Eyes: 3 frames)
+UnityEngine.Debug:Log (object)
+CharacterPortraitAnimator:Initialize (CharacterPortraitData,UnityEngine.UI.Image,UnityEngine.UI.Image,UnityEngine.UI.Image) (at Assets/Scripts/Characters/CharacterPortraitAnimator.cs:69)
+CharacterSpriteManager:DisplayCharacters (System.Collections.Generic.List`1<string>) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:1104)
+CharacterSpriteManager:OnNodeStarted (string) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:1031)
+UnityEngine.Events.UnityEvent`1<string>:Invoke (string)
+Yarn.Unity.DialogueRunner:OnNodeStarted (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:575)
+Yarn.VirtualMachine:SetNode (string,bool)
+Yarn.VirtualMachine:ExecuteJumpToNode (string,bool)
+Yarn.VirtualMachine:RunInstruction (Yarn.Instruction)
+Yarn.VirtualMachine:Continue ()
+Yarn.Dialogue:Continue ()
+Yarn.Unity.DialogueRunner/<<StartDialogue>g__StartDialogueAsync|69_0>d:MoveNext () (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:952)
+UnityEngine.Awaitable/AwaitableAsyncMethodBuilder/StateMachineBox`1<Yarn.Unity.DialogueRunner/<<StartDialogue>g__StartDialogueAsync|69_0>d>:DoMoveNext ()
+Yarn.Unity.DialogueRunner:<StartDialogue>g__StartDialogueAsync|69_0 ()
+Yarn.Unity.DialogueRunner:StartDialogue (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:938)
+StartDialogueOnPlay:StartGame () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:33)
+StartDialogueOnPlay:Start () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:22)
+
+CharacterSpriteManager: Displaying 'char_Supervisor' on left (base sprite: supervisor_0, 1 talking frames, 3 eye frames)
+UnityEngine.Debug:Log (object)
+CharacterSpriteManager:DisplayCharacters (System.Collections.Generic.List`1<string>) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:1107)
+CharacterSpriteManager:OnNodeStarted (string) (at Assets/Scripts/Characters/CharacterSpriteManager.cs:1031)
+UnityEngine.Events.UnityEvent`1<string>:Invoke (string)
+Yarn.Unity.DialogueRunner:OnNodeStarted (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:575)
+Yarn.VirtualMachine:SetNode (string,bool)
+Yarn.VirtualMachine:ExecuteJumpToNode (string,bool)
+Yarn.VirtualMachine:RunInstruction (Yarn.Instruction)
+Yarn.VirtualMachine:Continue ()
+Yarn.Dialogue:Continue ()
+Yarn.Unity.DialogueRunner/<<StartDialogue>g__StartDialogueAsync|69_0>d:MoveNext () (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:952)
+UnityEngine.Awaitable/AwaitableAsyncMethodBuilder/StateMachineBox`1<Yarn.Unity.DialogueRunner/<<StartDialogue>g__StartDialogueAsync|69_0>d>:DoMoveNext ()
+Yarn.Unity.DialogueRunner:<StartDialogue>g__StartDialogueAsync|69_0 ()
+Yarn.Unity.DialogueRunner:StartDialogue (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:938)
+StartDialogueOnPlay:StartGame () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:33)
+StartDialogueOnPlay:Start () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:22)
+
+[Debug Nav] Node visited: R1D1_Start (History: 2 nodes)
+UnityEngine.Debug:Log (object)
+DialogueDebugNavigator:OnNodeStart (string) (at Assets/Scripts/Dialogue/DialogueDebugNavigator.cs:530)
+UnityEngine.Events.UnityEvent`1<string>:Invoke (string)
+Yarn.Unity.DialogueRunner:OnNodeStarted (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:575)
+Yarn.VirtualMachine:SetNode (string,bool)
+Yarn.VirtualMachine:ExecuteJumpToNode (string,bool)
+Yarn.VirtualMachine:RunInstruction (Yarn.Instruction)
+Yarn.VirtualMachine:Continue ()
+Yarn.Dialogue:Continue ()
+Yarn.Unity.DialogueRunner/<<StartDialogue>g__StartDialogueAsync|69_0>d:MoveNext () (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:952)
+UnityEngine.Awaitable/AwaitableAsyncMethodBuilder/StateMachineBox`1<Yarn.Unity.DialogueRunner/<<StartDialogue>g__StartDialogueAsync|69_0>d>:DoMoveNext ()
+Yarn.Unity.DialogueRunner:<StartDialogue>g__StartDialogueAsync|69_0 ()
+Yarn.Unity.DialogueRunner:StartDialogue (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:938)
+StartDialogueOnPlay:StartGame () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:33)
+StartDialogueOnPlay:Start () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:22)
+
+ChoiceDiagnostics: Node started: R1D1_Start
+UnityEngine.Debug:Log (object)
+ChoiceDiagnostics:OnNodeStart (string) (at Assets/Scripts/Dialogue/ChoiceDiagnostics.cs:141)
+UnityEngine.Events.UnityEvent`1<string>:Invoke (string)
+Yarn.Unity.DialogueRunner:OnNodeStarted (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:575)
+Yarn.VirtualMachine:SetNode (string,bool)
+Yarn.VirtualMachine:ExecuteJumpToNode (string,bool)
+Yarn.VirtualMachine:RunInstruction (Yarn.Instruction)
+Yarn.VirtualMachine:Continue ()
+Yarn.Dialogue:Continue ()
+Yarn.Unity.DialogueRunner/<<StartDialogue>g__StartDialogueAsync|69_0>d:MoveNext () (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:952)
+UnityEngine.Awaitable/AwaitableAsyncMethodBuilder/StateMachineBox`1<Yarn.Unity.DialogueRunner/<<StartDialogue>g__StartDialogueAsync|69_0>d>:DoMoveNext ()
+Yarn.Unity.DialogueRunner:<StartDialogue>g__StartDialogueAsync|69_0 ()
+Yarn.Unity.DialogueRunner:StartDialogue (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:938)
+StartDialogueOnPlay:StartGame () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:33)
+StartDialogueOnPlay:Start () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:22)
+
+BackgroundCommandHandler: Initializing video system (lazy init)
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:EnsureVideoSystemInitialized () (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:188)
+BackgroundCommandHandler:PlayVideoBackground (string) (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:739)
+BackgroundCommandHandler:ChangeBackground (string) (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:526)
+System.Reflection.MethodBase:Invoke (object,object[])
+Yarn.Unity.Actions/CommandRegistration:Invoke (UnityEngine.MonoBehaviour,System.Collections.Generic.List`1<string>) (at ./Packages/dev.yarnspinner.unity/Runtime/Commands/Actions.cs:413)
+Yarn.Unity.Actions:Yarn.Unity.ICommandDispatcher.DispatchCommand (string,UnityEngine.MonoBehaviour) (at ./Packages/dev.yarnspinner.unity/Runtime/Commands/Actions.cs:654)
+Yarn.Unity.DialogueRunner/<OnCommandReceivedAsync>d__62:MoveNext () (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:585)
+UnityEngine.Awaitable/AwaitableAsyncMethodBuilder/StateMachineBox`1<Yarn.Unity.DialogueRunner/<OnCommandReceivedAsync>d__62>:DoMoveNext ()
+Yarn.Unity.DialogueRunner:OnCommandReceivedAsync (Yarn.Command)
+Yarn.Unity.DialogueRunner:OnCommandReceived (Yarn.Command) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:580)
+Yarn.VirtualMachine:RunInstruction (Yarn.Instruction)
+Yarn.VirtualMachine:Continue ()
+Yarn.Dialogue:Continue ()
+Yarn.Unity.DialogueRunner/<<StartDialogue>g__StartDialogueAsync|69_0>d:MoveNext () (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:952)
+UnityEngine.Awaitable/AwaitableAsyncMethodBuilder/StateMachineBox`1<Yarn.Unity.DialogueRunner/<<StartDialogue>g__StartDialogueAsync|69_0>d>:DoMoveNext ()
+Yarn.Unity.DialogueRunner:<StartDialogue>g__StartDialogueAsync|69_0 ()
+Yarn.Unity.DialogueRunner:StartDialogue (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:938)
+StartDialogueOnPlay:StartGame () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:33)
+StartDialogueOnPlay:Start () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:22)
+
+BackgroundCommandHandler: Loading video from URL: file://C:/Users/epick/OneDrive/Documents/mentalbreak/unity-project/Assets/StreamingAssets\Videos\bg_supervisoroffice.mp4
+UnityEngine.Debug:Log (object)
+BackgroundCommandHandler:PlayVideoBackground (string) (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:751)
+BackgroundCommandHandler:ChangeBackground (string) (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:526)
+System.Reflection.MethodBase:Invoke (object,object[])
+Yarn.Unity.Actions/CommandRegistration:Invoke (UnityEngine.MonoBehaviour,System.Collections.Generic.List`1<string>) (at ./Packages/dev.yarnspinner.unity/Runtime/Commands/Actions.cs:413)
+Yarn.Unity.Actions:Yarn.Unity.ICommandDispatcher.DispatchCommand (string,UnityEngine.MonoBehaviour) (at ./Packages/dev.yarnspinner.unity/Runtime/Commands/Actions.cs:654)
+Yarn.Unity.DialogueRunner/<OnCommandReceivedAsync>d__62:MoveNext () (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:585)
+UnityEngine.Awaitable/AwaitableAsyncMethodBuilder/StateMachineBox`1<Yarn.Unity.DialogueRunner/<OnCommandReceivedAsync>d__62>:DoMoveNext ()
+Yarn.Unity.DialogueRunner:OnCommandReceivedAsync (Yarn.Command)
+Yarn.Unity.DialogueRunner:OnCommandReceived (Yarn.Command) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:580)
+Yarn.VirtualMachine:RunInstruction (Yarn.Instruction)
+Yarn.VirtualMachine:Continue ()
+Yarn.Dialogue:Continue ()
+Yarn.Unity.DialogueRunner/<<StartDialogue>g__StartDialogueAsync|69_0>d:MoveNext () (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:952)
+UnityEngine.Awaitable/AwaitableAsyncMethodBuilder/StateMachineBox`1<Yarn.Unity.DialogueRunner/<<StartDialogue>g__StartDialogueAsync|69_0>d>:DoMoveNext ()
+Yarn.Unity.DialogueRunner:<StartDialogue>g__StartDialogueAsync|69_0 ()
+Yarn.Unity.DialogueRunner:StartDialogue (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:938)
+StartDialogueOnPlay:StartGame () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:33)
+StartDialogueOnPlay:Start () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:22)
+
+Unexpected timestamp values detected. This can occur in H.264 videos not encoded with the baseline profile. Timestamps will be skewed to correct the playback for C:\Users\epick\OneDrive\Documents\mentalbreak\unity-project\Assets\StreamingAssets\Videos\bg_supervisoroffice.mp4
+
+Color primaries 0 is unknown or unsupported by WindowsMediaFoundation. Falling back to default may result in color shift. C:\Users\epick\OneDrive\Documents\mentalbreak\unity-project\Assets\StreamingAssets\Videos\bg_supervisoroffice.mp4
+
+[FMOD] FMOD_OS_Net_Listen : Cannot listen for connections, port 9264 is currently in use.
+
+UnityEngine.Debug:LogWarning (object)
+FMODUnity.RuntimeUtils:DebugLogWarning (string) (at Assets/Plugins/FMOD/src/RuntimeUtils.cs:580)
+FMODUnity.RuntimeManager:DEBUG_CALLBACK (FMOD.DEBUG_FLAGS,intptr,int,intptr,intptr) (at Assets/Plugins/FMOD/src/RuntimeManager.cs:108)
+
+[FMOD] Event found on attempt 1: ASIDE_Supervisor
+UnityEngine.Debug:Log (object)
+FMODAudioManager/<PlayMusicWithRetry>d__33:MoveNext () (at Assets/Scripts/Audio/FMODAudioManager.cs:326)
+UnityEngine.MonoBehaviour:StartCoroutine (System.Collections.IEnumerator)
+FMODAudioManager:PlayMusic (string,int) (at Assets/Scripts/Audio/FMODAudioManager.cs:270)
+FMODAudioManager:PlayTheme (string,int) (at Assets/Scripts/Audio/FMODAudioManager.cs:235)
+FMODAudioManager:YarnPlayTheme (string,int) (at Assets/Scripts/Audio/FMODAudioManager.cs:511)
+System.Reflection.MethodBase:Invoke (object,object[])
+Yarn.Unity.Actions/CommandRegistration:Invoke (UnityEngine.MonoBehaviour,System.Collections.Generic.List`1<string>) (at ./Packages/dev.yarnspinner.unity/Runtime/Commands/Actions.cs:413)
+Yarn.Unity.Actions:Yarn.Unity.ICommandDispatcher.DispatchCommand (string,UnityEngine.MonoBehaviour) (at ./Packages/dev.yarnspinner.unity/Runtime/Commands/Actions.cs:654)
+Yarn.Unity.DialogueRunner/<OnCommandReceivedAsync>d__62:MoveNext () (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:585)
+UnityEngine.Awaitable/AwaitableAsyncMethodBuilder/StateMachineBox`1<Yarn.Unity.DialogueRunner/<OnCommandReceivedAsync>d__62>:DoMoveNext ()
+Yarn.Unity.DialogueRunner:OnCommandReceivedAsync (Yarn.Command)
+Yarn.Unity.DialogueRunner:OnCommandReceived (Yarn.Command) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:580)
+Yarn.VirtualMachine:RunInstruction (Yarn.Instruction)
+Yarn.VirtualMachine:Continue ()
+Yarn.Dialogue:Continue ()
+Yarn.Unity.DialogueRunner/<<StartDialogue>g__StartDialogueAsync|69_0>d:MoveNext () (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:952)
+UnityEngine.Awaitable/AwaitableAsyncMethodBuilder/StateMachineBox`1<Yarn.Unity.DialogueRunner/<<StartDialogue>g__StartDialogueAsync|69_0>d>:DoMoveNext ()
+Yarn.Unity.DialogueRunner:<StartDialogue>g__StartDialogueAsync|69_0 ()
+Yarn.Unity.DialogueRunner:StartDialogue (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:938)
+StartDialogueOnPlay:StartGame () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:33)
+StartDialogueOnPlay:Start () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:22)
+
+[FMOD] Started: ASIDE_Supervisor (vol=0.70)
+UnityEngine.Debug:Log (object)
+FMODAudioManager/<PlayMusicWithRetry>d__33:MoveNext () (at Assets/Scripts/Audio/FMODAudioManager.cs:379)
+UnityEngine.MonoBehaviour:StartCoroutine (System.Collections.IEnumerator)
+FMODAudioManager:PlayMusic (string,int) (at Assets/Scripts/Audio/FMODAudioManager.cs:270)
+FMODAudioManager:PlayTheme (string,int) (at Assets/Scripts/Audio/FMODAudioManager.cs:235)
+FMODAudioManager:YarnPlayTheme (string,int) (at Assets/Scripts/Audio/FMODAudioManager.cs:511)
+System.Reflection.MethodBase:Invoke (object,object[])
+Yarn.Unity.Actions/CommandRegistration:Invoke (UnityEngine.MonoBehaviour,System.Collections.Generic.List`1<string>) (at ./Packages/dev.yarnspinner.unity/Runtime/Commands/Actions.cs:413)
+Yarn.Unity.Actions:Yarn.Unity.ICommandDispatcher.DispatchCommand (string,UnityEngine.MonoBehaviour) (at ./Packages/dev.yarnspinner.unity/Runtime/Commands/Actions.cs:654)
+Yarn.Unity.DialogueRunner/<OnCommandReceivedAsync>d__62:MoveNext () (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:585)
+UnityEngine.Awaitable/AwaitableAsyncMethodBuilder/StateMachineBox`1<Yarn.Unity.DialogueRunner/<OnCommandReceivedAsync>d__62>:DoMoveNext ()
+Yarn.Unity.DialogueRunner:OnCommandReceivedAsync (Yarn.Command)
+Yarn.Unity.DialogueRunner:OnCommandReceived (Yarn.Command) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:580)
+Yarn.VirtualMachine:RunInstruction (Yarn.Instruction)
+Yarn.VirtualMachine:Continue ()
+Yarn.Dialogue:Continue ()
+Yarn.Unity.DialogueRunner/<<StartDialogue>g__StartDialogueAsync|69_0>d:MoveNext () (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:952)
+UnityEngine.Awaitable/AwaitableAsyncMethodBuilder/StateMachineBox`1<Yarn.Unity.DialogueRunner/<<StartDialogue>g__StartDialogueAsync|69_0>d>:DoMoveNext ()
+Yarn.Unity.DialogueRunner:<StartDialogue>g__StartDialogueAsync|69_0 ()
+Yarn.Unity.DialogueRunner:StartDialogue (string) (at ./Packages/dev.yarnspinner.unity/Runtime/DialogueRunner/DialogueRunner.cs:938)
+StartDialogueOnPlay:StartGame () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:33)
+StartDialogueOnPlay:Start () (at Assets/Scripts/Dialogue/StartDialogueOnPlay.cs:22)
 
 PauseMenuManager: Cached PauseMenuPanel Image (enabled=True, raycastTarget=True)
 UnityEngine.Debug:Log (object)
 PauseMenuManager:Start () (at Assets/Scripts/UI/PauseMenuManager.cs:192)
 
+[FMOD] Please add an 'FMOD Studio Listener' component to your camera in the scene for correct 3D positioning of sounds.
+UnityEngine.Debug:LogWarning (object)
+FMODUnity.RuntimeUtils:DebugLogWarning (string) (at Assets/Plugins/FMOD/src/RuntimeUtils.cs:580)
+FMODUnity.RuntimeManager:Update () (at Assets/Plugins/FMOD/src/RuntimeManager.cs:466)
+
 Camera __LetterboxCamera does not contain an additional camera data component. Open the Game Object in the inspector to add additional camera data.
 UnityEngine.GUIUtility:ProcessEvent (int,intptr,bool&)
 
-[Settings] Saved to PlayerPrefs
+BackgroundCommandHandler: Creating RenderTexture at 2560x1440 for video
 UnityEngine.Debug:Log (object)
-SettingsManager:SaveSettings () (at Assets/Scripts/Core/SettingsManager.cs:76)
-SettingsManager:OnApplicationQuit () (at Assets/Scripts/Core/SettingsManager.cs:236)
+BackgroundCommandHandler:OnVideoPrepared (UnityEngine.Video.VideoPlayer) (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:627)
+UnityEngine.Video.VideoPlayer:InvokePrepareCompletedCallback_Internal (UnityEngine.Video.VideoPlayer)
 
-[Settings] Saved to PlayerPrefs
+Background: Playing video for bg_supervisoroffice
 UnityEngine.Debug:Log (object)
-SettingsManager:SaveSettings () (at Assets/Scripts/Core/SettingsManager.cs:76)
-SettingsManager:OnDestroy () (at Assets/Scripts/Core/SettingsManager.cs:220)
+BackgroundCommandHandler:OnVideoPrepared (UnityEngine.Video.VideoPlayer) (at Assets/Scripts/Commands/BackgroundCommandHandler.cs:662)
+UnityEngine.Video.VideoPlayer:InvokePrepareCompletedCallback_Internal (UnityEngine.Video.VideoPlayer)
 
-[WelcomeOverlay] Re-enabled 1 input components
+PortraitTalkingStateController: No character name in line, skipping talking animation
 UnityEngine.Debug:Log (object)
-WelcomeOverlay:EnableDialogueInput () (at Assets/Scripts/UI/WelcomeOverlay.cs:193)
-WelcomeOverlay:OnDestroy () (at Assets/Scripts/UI/WelcomeOverlay.cs:239)
+PortraitTalkingStateController:OnLineDisplayBegin (Yarn.Markup.MarkupParseResult,TMPro.TMP_Text) (at Assets/Scripts/Characters/PortraitTalkingStateController.cs:75)
+Yarn.Unity.BasicTypewriter/<RunTypewriter>d__12:MoveNext () (at ./Packages/dev.yarnspinner.unity/Runtime/Views/Typewriter/BasicTypewriter.cs:53)
+UnityEngine.Awaitable/AwaitableAsyncMethodBuilder/StateMachineBox`1<Yarn.Unity.BasicTypewriter/<RunTypewriter>d__12>:DoMoveNext ()
+Yarn.Unity.BasicTypewriter:RunTypewriter (Yarn.Markup.MarkupParseResult,System.Threading.CancellationToken)
+Yarn.Unity.LinePresenter/<RunLineAsync>d__17:MoveNext () (at ./Packages/dev.yarnspinner.unity/Runtime/Views/LinePresenter.cs:342)
+UnityEngine.Awaitable:RaiseManagedCompletion ()
+Yarn.Unity.Effects/<FadeAlphaAsync>d__3:MoveNext () (at ./Packages/dev.yarnspinner.unity/Runtime/Views/Effects.cs:171)
+UnityEngine.Awaitable:RaiseManagedCompletion ()
+Yarn.Unity.YarnTask/<Yield>d__17:MoveNext () (at ./Packages/dev.yarnspinner.unity/Runtime/YarnTask/YarnTask.Awaitable.cs:107)
+UnityEngine.Awaitable:OnUpdate ()
+
+MumbleDialogueController: No character name in line, skipping mumble
+UnityEngine.Debug:Log (object)
+MumbleDialogueController:OnLineDisplayBegin (Yarn.Markup.MarkupParseResult,TMPro.TMP_Text) (at Assets/Scripts/Audio/MumbleDialogueController.cs:97)
+Yarn.Unity.BasicTypewriter/<RunTypewriter>d__12:MoveNext () (at ./Packages/dev.yarnspinner.unity/Runtime/Views/Typewriter/BasicTypewriter.cs:53)
+UnityEngine.Awaitable/AwaitableAsyncMethodBuilder/StateMachineBox`1<Yarn.Unity.BasicTypewriter/<RunTypewriter>d__12>:DoMoveNext ()
+Yarn.Unity.BasicTypewriter:RunTypewriter (Yarn.Markup.MarkupParseResult,System.Threading.CancellationToken)
+Yarn.Unity.LinePresenter/<RunLineAsync>d__17:MoveNext () (at ./Packages/dev.yarnspinner.unity/Runtime/Views/LinePresenter.cs:342)
+UnityEngine.Awaitable:RaiseManagedCompletion ()
+Yarn.Unity.Effects/<FadeAlphaAsync>d__3:MoveNext () (at ./Packages/dev.yarnspinner.unity/Runtime/Views/Effects.cs:171)
+UnityEngine.Awaitable:RaiseManagedCompletion ()
+Yarn.Unity.YarnTask/<Yield>d__17:MoveNext () (at ./Packages/dev.yarnspinner.unity/Runtime/YarnTask/YarnTask.Awaitable.cs:107)
+UnityEngine.Awaitable:OnUpdate ()
+
+[WelcomeOverlay] Dismissing...
+UnityEngine.Debug:Log (object)
+WelcomeOverlay/<FadeAndDismiss>d__19:MoveNext () (at Assets/Scripts/UI/WelcomeOverlay.cs:203)
+UnityEngine.MonoBehaviour:StartCoroutine (System.Collections.IEnumerator)
+WelcomeOverlay:Update () (at Assets/Scripts/UI/WelcomeOverlay.cs:197)
+
+[WelcomeOverlay] Re-enabled 0 input components
+UnityEngine.Debug:Log (object)
+WelcomeOverlay:EnableDialogueInput () (at Assets/Scripts/UI/WelcomeOverlay.cs:187)
+WelcomeOverlay/<FadeAndDismiss>d__19:MoveNext () (at Assets/Scripts/UI/WelcomeOverlay.cs:218)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+[WelcomeOverlay] Dismissed, firing OnDismissed event
+UnityEngine.Debug:Log (object)
+WelcomeOverlay/<FadeAndDismiss>d__19:MoveNext () (at Assets/Scripts/UI/WelcomeOverlay.cs:224)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+[WelcomeOverlay] Re-enabled 0 input components
+UnityEngine.Debug:Log (object)
+WelcomeOverlay:EnableDialogueInput () (at Assets/Scripts/UI/WelcomeOverlay.cs:187)
+WelcomeOverlay:OnDestroy () (at Assets/Scripts/UI/WelcomeOverlay.cs:233)
+
+PauseMenuManager: ShowPauseMenuButtons() - before state: Resume=activeSelf=True, activeInHierarchy=True | Save=activeSelf=True, activeInHierarchy=True | Load=activeSelf=True, activeInHierarchy=True | Main=activeSelf=False, activeInHierarchy=False | Exit=activeSelf=True, activeInHierarchy=True
+UnityEngine.Debug:Log (object)
+PauseMenuManager:ShowPauseMenuButtons () (at Assets/Scripts/UI/PauseMenuManager.cs:662)
+PauseMenuManager:PauseGame () (at Assets/Scripts/UI/PauseMenuManager.cs:568)
+PauseMenuManager:TogglePause () (at Assets/Scripts/UI/PauseMenuManager.cs:549)
+PauseMenuManager:<SetupTopLeftMenuButton>b__93_0 () (at Assets/Scripts/UI/PauseMenuManager.cs:1293)
+UnityEngine.EventSystems.EventSystem:Update () (at ./Library/PackageCache/com.unity.ugui@7056cb05de4c/Runtime/UGUI/EventSystem/EventSystem.cs:514)
+
+PauseMenuManager: ShowPauseMenuButtons() - after state: Resume=activeSelf=True, activeInHierarchy=True | Save=activeSelf=True, activeInHierarchy=True | Load=activeSelf=True, activeInHierarchy=True | Main=activeSelf=False, activeInHierarchy=False | Exit=activeSelf=True, activeInHierarchy=True
+UnityEngine.Debug:Log (object)
+PauseMenuManager:ShowPauseMenuButtons () (at Assets/Scripts/UI/PauseMenuManager.cs:673)
+PauseMenuManager:PauseGame () (at Assets/Scripts/UI/PauseMenuManager.cs:568)
+PauseMenuManager:TogglePause () (at Assets/Scripts/UI/PauseMenuManager.cs:549)
+PauseMenuManager:<SetupTopLeftMenuButton>b__93_0 () (at Assets/Scripts/UI/PauseMenuManager.cs:1293)
+UnityEngine.EventSystems.EventSystem:Update () (at ./Library/PackageCache/com.unity.ugui@7056cb05de4c/Runtime/UGUI/EventSystem/EventSystem.cs:514)
+
+PauseMenuManager[PauseGame]: Button states -> Resume=activeSelf=True, activeInHierarchy=True | Save=activeSelf=True, activeInHierarchy=True | Load=activeSelf=True, activeInHierarchy=True | Main=activeSelf=False, activeInHierarchy=False | Exit=activeSelf=True, activeInHierarchy=True
+UnityEngine.Debug:Log (object)
+PauseMenuManager:VerifyPauseMenuButtons (string) (at Assets/Scripts/UI/PauseMenuManager.cs:682)
+PauseMenuManager:PauseGame () (at Assets/Scripts/UI/PauseMenuManager.cs:569)
+PauseMenuManager:TogglePause () (at Assets/Scripts/UI/PauseMenuManager.cs:549)
+PauseMenuManager:<SetupTopLeftMenuButton>b__93_0 () (at Assets/Scripts/UI/PauseMenuManager.cs:1293)
+UnityEngine.EventSystems.EventSystem:Update () (at ./Library/PackageCache/com.unity.ugui@7056cb05de4c/Runtime/UGUI/EventSystem/EventSystem.cs:514)
+
+PauseMenuManager[PauseGame - after ShowPauseMenuButtons]: PauseMenuPanel activeSelf=True, activeInHierarchy=True, siblingIndex=10, childCount=9, parent=Canvas
+UnityEngine.Debug:Log (object)
+PauseMenuManager:LogPauseMenuState (string) (at Assets/Scripts/UI/PauseMenuManager.cs:765)
+PauseMenuManager:PauseGame () (at Assets/Scripts/UI/PauseMenuManager.cs:576)
+PauseMenuManager:TogglePause () (at Assets/Scripts/UI/PauseMenuManager.cs:549)
+PauseMenuManager:<SetupTopLeftMenuButton>b__93_0 () (at Assets/Scripts/UI/PauseMenuManager.cs:1293)
+UnityEngine.EventSystems.EventSystem:Update () (at ./Library/PackageCache/com.unity.ugui@7056cb05de4c/Runtime/UGUI/EventSystem/EventSystem.cs:514)
+
+PauseMenuManager[PauseGame - after ShowPauseMenuButtons]: PauseMenuPanel Rect -> anchorMin=(0.00, 0.00), anchorMax=(1.00, 1.00), sizeDelta=(0.00, 0.00), anchoredPosition=(0.00, 0.00)
+UnityEngine.Debug:Log (object)
+PauseMenuManager:LogPauseMenuState (string) (at Assets/Scripts/UI/PauseMenuManager.cs:769)
+PauseMenuManager:PauseGame () (at Assets/Scripts/UI/PauseMenuManager.cs:576)
+PauseMenuManager:TogglePause () (at Assets/Scripts/UI/PauseMenuManager.cs:549)
+PauseMenuManager:<SetupTopLeftMenuButton>b__93_0 () (at Assets/Scripts/UI/PauseMenuManager.cs:1293)
+UnityEngine.EventSystems.EventSystem:Update () (at ./Library/PackageCache/com.unity.ugui@7056cb05de4c/Runtime/UGUI/EventSystem/EventSystem.cs:514)
+
+PauseMenuManager[PauseGame - after ShowPauseMenuButtons]: PauseMenuPanel Image -> enabled=True, color=RGBA(0.000, 0.000, 0.000, 0.784), raycastTarget=True
+UnityEngine.Debug:Log (object)
+PauseMenuManager:LogPauseMenuState (string) (at Assets/Scripts/UI/PauseMenuManager.cs:774)
+PauseMenuManager:PauseGame () (at Assets/Scripts/UI/PauseMenuManager.cs:576)
+PauseMenuManager:TogglePause () (at Assets/Scripts/UI/PauseMenuManager.cs:549)
+PauseMenuManager:<SetupTopLeftMenuButton>b__93_0 () (at Assets/Scripts/UI/PauseMenuManager.cs:1293)
+UnityEngine.EventSystems.EventSystem:Update () (at ./Library/PackageCache/com.unity.ugui@7056cb05de4c/Runtime/UGUI/EventSystem/EventSystem.cs:514)
+
+PauseMenuManager[PauseGame - after ShowPauseMenuButtons]: Parent Canvas -> name=Canvas, renderMode=ScreenSpaceOverlay, sortingOrder=0, sortingLayerID=0
+UnityEngine.Debug:Log (object)
+PauseMenuManager:LogPauseMenuState (string) (at Assets/Scripts/UI/PauseMenuManager.cs:779)
+PauseMenuManager:PauseGame () (at Assets/Scripts/UI/PauseMenuManager.cs:576)
+PauseMenuManager:TogglePause () (at Assets/Scripts/UI/PauseMenuManager.cs:549)
+PauseMenuManager:<SetupTopLeftMenuButton>b__93_0 () (at Assets/Scripts/UI/PauseMenuManager.cs:1293)
+UnityEngine.EventSystems.EventSystem:Update () (at ./Library/PackageCache/com.unity.ugui@7056cb05de4c/Runtime/UGUI/EventSystem/EventSystem.cs:514)
+
+Game paused
+UnityEngine.Debug:Log (object)
+PauseMenuManager:PauseGame () (at Assets/Scripts/UI/PauseMenuManager.cs:588)
+PauseMenuManager:TogglePause () (at Assets/Scripts/UI/PauseMenuManager.cs:549)
+PauseMenuManager:<SetupTopLeftMenuButton>b__93_0 () (at Assets/Scripts/UI/PauseMenuManager.cs:1293)
+UnityEngine.EventSystems.EventSystem:Update () (at ./Library/PackageCache/com.unity.ugui@7056cb05de4c/Runtime/UGUI/EventSystem/EventSystem.cs:514)
+
+[FMOD] FMOD_OS_Net_Listen : Cannot listen for connections, port 9264 is currently in use.
+
+UnityEngine.Debug:LogWarning (object)
+FMODUnity.RuntimeUtils:DebugLogWarning (string) (at Assets/Plugins/FMOD/src/RuntimeUtils.cs:580)
+FMODUnity.RuntimeManager:DEBUG_CALLBACK (FMOD.DEBUG_FLAGS,intptr,int,intptr,intptr) (at Assets/Plugins/FMOD/src/RuntimeManager.cs:108)
+
+PauseMenuManager[OnSaveGame - before]: PauseMenuPanel activeSelf=True, activeInHierarchy=True, siblingIndex=10, childCount=9, parent=Canvas
+UnityEngine.Debug:Log (object)
+PauseMenuManager:LogPauseMenuState (string) (at Assets/Scripts/UI/PauseMenuManager.cs:765)
+PauseMenuManager:OnSaveGame () (at Assets/Scripts/UI/PauseMenuManager.cs:1012)
+UnityEngine.EventSystems.EventSystem:Update () (at ./Library/PackageCache/com.unity.ugui@7056cb05de4c/Runtime/UGUI/EventSystem/EventSystem.cs:514)
+
+PauseMenuManager[OnSaveGame - before]: PauseMenuPanel Rect -> anchorMin=(0.00, 0.00), anchorMax=(1.00, 1.00), sizeDelta=(-1420.00, -270.00), anchoredPosition=(0.00, 0.00)
+UnityEngine.Debug:Log (object)
+PauseMenuManager:LogPauseMenuState (string) (at Assets/Scripts/UI/PauseMenuManager.cs:769)
+PauseMenuManager:OnSaveGame () (at Assets/Scripts/UI/PauseMenuManager.cs:1012)
+UnityEngine.EventSystems.EventSystem:Update () (at ./Library/PackageCache/com.unity.ugui@7056cb05de4c/Runtime/UGUI/EventSystem/EventSystem.cs:514)
+
+PauseMenuManager[OnSaveGame - before]: PauseMenuPanel Image -> enabled=True, color=RGBA(0.000, 0.000, 0.000, 0.784), raycastTarget=True
+UnityEngine.Debug:Log (object)
+PauseMenuManager:LogPauseMenuState (string) (at Assets/Scripts/UI/PauseMenuManager.cs:774)
+PauseMenuManager:OnSaveGame () (at Assets/Scripts/UI/PauseMenuManager.cs:1012)
+UnityEngine.EventSystems.EventSystem:Update () (at ./Library/PackageCache/com.unity.ugui@7056cb05de4c/Runtime/UGUI/EventSystem/EventSystem.cs:514)
+
+PauseMenuManager[OnSaveGame - before]: Parent Canvas -> name=Canvas, renderMode=ScreenSpaceOverlay, sortingOrder=0, sortingLayerID=0
+UnityEngine.Debug:Log (object)
+PauseMenuManager:LogPauseMenuState (string) (at Assets/Scripts/UI/PauseMenuManager.cs:779)
+PauseMenuManager:OnSaveGame () (at Assets/Scripts/UI/PauseMenuManager.cs:1012)
+UnityEngine.EventSystems.EventSystem:Update () (at ./Library/PackageCache/com.unity.ugui@7056cb05de4c/Runtime/UGUI/EventSystem/EventSystem.cs:514)
+
+PauseMenuManager[OnSaveGame - before]: LoadMenuPanel activeSelf=False, activeInHierarchy=False, siblingIndex=6, childCount=14, parent=Canvas
+UnityEngine.Debug:Log (object)
+PauseMenuManager:LogLoadMenuPanelState (string) (at Assets/Scripts/UI/PauseMenuManager.cs:803)
+PauseMenuManager:OnSaveGame () (at Assets/Scripts/UI/PauseMenuManager.cs:1013)
+UnityEngine.EventSystems.EventSystem:Update () (at ./Library/PackageCache/com.unity.ugui@7056cb05de4c/Runtime/UGUI/EventSystem/EventSystem.cs:514)
+
+PauseMenuManager[OnSaveGame - before]: LoadMenuPanel Rect -> anchorMin=(0.50, 0.50), anchorMax=(0.50, 0.50), sizeDelta=(320.00, 580.00), anchoredPosition=(0.00, 0.00)
+UnityEngine.Debug:Log (object)
+PauseMenuManager:LogLoadMenuPanelState (string) (at Assets/Scripts/UI/PauseMenuManager.cs:807)
+PauseMenuManager:OnSaveGame () (at Assets/Scripts/UI/PauseMenuManager.cs:1013)
+UnityEngine.EventSystems.EventSystem:Update () (at ./Library/PackageCache/com.unity.ugui@7056cb05de4c/Runtime/UGUI/EventSystem/EventSystem.cs:514)
+
+PauseMenuManager[OnSaveGame - before]: LoadMenuPanel Image -> enabled=True, color=RGBA(0.000, 0.000, 0.000, 0.784), raycastTarget=True
+UnityEngine.Debug:Log (object)
+PauseMenuManager:LogLoadMenuPanelState (string) (at Assets/Scripts/UI/PauseMenuManager.cs:812)
+PauseMenuManager:OnSaveGame () (at Assets/Scripts/UI/PauseMenuManager.cs:1013)
+UnityEngine.EventSystems.EventSystem:Update () (at ./Library/PackageCache/com.unity.ugui@7056cb05de4c/Runtime/UGUI/EventSystem/EventSystem.cs:514)
+
+PauseMenuManager[OnSaveGame - before]: Parent Canvas -> name=Canvas, renderMode=ScreenSpaceOverlay, sortingOrder=0, sortingLayerID=0
+UnityEngine.Debug:Log (object)
+PauseMenuManager:LogLoadMenuPanelState (string) (at Assets/Scripts/UI/PauseMenuManager.cs:817)
+PauseMenuManager:OnSaveGame () (at Assets/Scripts/UI/PauseMenuManager.cs:1013)
+UnityEngine.EventSystems.EventSystem:Update () (at ./Library/PackageCache/com.unity.ugui@7056cb05de4c/Runtime/UGUI/EventSystem/EventSystem.cs:514)
+
+PauseMenuManager[OnSaveGame - before]: Button states -> Resume=activeSelf=True, activeInHierarchy=True | Save=activeSelf=True, activeInHierarchy=True | Load=activeSelf=True, activeInHierarchy=True | Main=activeSelf=False, activeInHierarchy=False | Exit=activeSelf=True, activeInHierarchy=True
+UnityEngine.Debug:Log (object)
+PauseMenuManager:VerifyPauseMenuButtons (string) (at Assets/Scripts/UI/PauseMenuManager.cs:682)
+PauseMenuManager:OnSaveGame () (at Assets/Scripts/UI/PauseMenuManager.cs:1014)
+UnityEngine.EventSystems.EventSystem:Update () (at ./Library/PackageCache/com.unity.ugui@7056cb05de4c/Runtime/UGUI/EventSystem/EventSystem.cs:514)
+
+PauseMenuManager: HidePauseMenuButtons() - before state: Resume=activeSelf=True, activeInHierarchy=True | Save=activeSelf=True, activeInHierarchy=True | Load=activeSelf=True, activeInHierarchy=True | Main=activeSelf=False, activeInHierarchy=False | Exit=activeSelf=True, activeInHierarchy=True
+UnityEngine.Debug:Log (object)
+PauseMenuManager:HidePauseMenuButtons () (at Assets/Scripts/UI/PauseMenuManager.cs:644)
+PauseMenuManager:OnSaveGame () (at Assets/Scripts/UI/PauseMenuManager.cs:1020)
+UnityEngine.EventSystems.EventSystem:Update () (at ./Library/PackageCache/com.unity.ugui@7056cb05de4c/Runtime/UGUI/EventSystem/EventSystem.cs:514)
+
+PauseMenuManager: HidePauseMenuButtons() - after state: Resume=activeSelf=False, activeInHierarchy=False | Save=activeSelf=False, activeInHierarchy=False | Load=activeSelf=False, activeInHierarchy=False | Main=activeSelf=False, activeInHierarchy=False | Exit=activeSelf=False, activeInHierarchy=False
+UnityEngine.Debug:Log (object)
+PauseMenuManager:HidePauseMenuButtons () (at Assets/Scripts/UI/PauseMenuManager.cs:653)
+PauseMenuManager:OnSaveGame () (at Assets/Scripts/UI/PauseMenuManager.cs:1020)
+UnityEngine.EventSystems.EventSystem:Update () (at ./Library/PackageCache/com.unity.ugui@7056cb05de4c/Runtime/UGUI/EventSystem/EventSystem.cs:514)
+
+PauseMenuManager[OnSaveGame - before ShowSelectionUI]: Set PauseMenuPanel Image.enabled=False
+UnityEngine.Debug:Log (object)
+PauseMenuManager:SetPauseMenuBackgroundVisible (bool,string) (at Assets/Scripts/UI/PauseMenuManager.cs:742)
+PauseMenuManager:OnSaveGame () (at Assets/Scripts/UI/PauseMenuManager.cs:1021)
+UnityEngine.EventSystems.EventSystem:Update () (at ./Library/PackageCache/com.unity.ugui@7056cb05de4c/Runtime/UGUI/EventSystem/EventSystem.cs:514)
+
+PauseMenuManager[OnSaveGame - before ShowSelectionUI]: Set PauseMenuPanel Image.raycastTarget=False
+UnityEngine.Debug:Log (object)
+PauseMenuManager:SetPauseMenuBackgroundVisible (bool,string) (at Assets/Scripts/UI/PauseMenuManager.cs:748)
+PauseMenuManager:OnSaveGame () (at Assets/Scripts/UI/PauseMenuManager.cs:1021)
+UnityEngine.EventSystems.EventSystem:Update () (at ./Library/PackageCache/com.unity.ugui@7056cb05de4c/Runtime/UGUI/EventSystem/EventSystem.cs:514)
+
+PauseMenuManager[OnSaveGame - before ShowSelectionUIForSave]: LoadMenuPanel activeSelf=False, activeInHierarchy=False, siblingIndex=6, childCount=14, parent=Canvas
+UnityEngine.Debug:Log (object)
+PauseMenuManager:LogLoadMenuPanelState (string) (at Assets/Scripts/UI/PauseMenuManager.cs:803)
+PauseMenuManager:OnSaveGame () (at Assets/Scripts/UI/PauseMenuManager.cs:1024)
+UnityEngine.EventSystems.EventSystem:Update () (at ./Library/PackageCache/com.unity.ugui@7056cb05de4c/Runtime/UGUI/EventSystem/EventSystem.cs:514)
+
+PauseMenuManager[OnSaveGame - before ShowSelectionUIForSave]: LoadMenuPanel Rect -> anchorMin=(0.50, 0.50), anchorMax=(0.50, 0.50), sizeDelta=(320.00, 580.00), anchoredPosition=(0.00, 0.00)
+UnityEngine.Debug:Log (object)
+PauseMenuManager:LogLoadMenuPanelState (string) (at Assets/Scripts/UI/PauseMenuManager.cs:807)
+PauseMenuManager:OnSaveGame () (at Assets/Scripts/UI/PauseMenuManager.cs:1024)
+UnityEngine.EventSystems.EventSystem:Update () (at ./Library/PackageCache/com.unity.ugui@7056cb05de4c/Runtime/UGUI/EventSystem/EventSystem.cs:514)
+
+PauseMenuManager[OnSaveGame - before ShowSelectionUIForSave]: LoadMenuPanel Image -> enabled=True, color=RGBA(0.000, 0.000, 0.000, 0.784), raycastTarget=True
+UnityEngine.Debug:Log (object)
+PauseMenuManager:LogLoadMenuPanelState (string) (at Assets/Scripts/UI/PauseMenuManager.cs:812)
+PauseMenuManager:OnSaveGame () (at Assets/Scripts/UI/PauseMenuManager.cs:1024)
+UnityEngine.EventSystems.EventSystem:Update () (at ./Library/PackageCache/com.unity.ugui@7056cb05de4c/Runtime/UGUI/EventSystem/EventSystem.cs:514)
+
+PauseMenuManager[OnSaveGame - before ShowSelectionUIForSave]: Parent Canvas -> name=Canvas, renderMode=ScreenSpaceOverlay, sortingOrder=0, sortingLayerID=0
+UnityEngine.Debug:Log (object)
+PauseMenuManager:LogLoadMenuPanelState (string) (at Assets/Scripts/UI/PauseMenuManager.cs:817)
+PauseMenuManager:OnSaveGame () (at Assets/Scripts/UI/PauseMenuManager.cs:1024)
+UnityEngine.EventSystems.EventSystem:Update () (at ./Library/PackageCache/com.unity.ugui@7056cb05de4c/Runtime/UGUI/EventSystem/EventSystem.cs:514)
+
+[SaveSlotSelectionUI] Removing old LayoutGroup from panel
+UnityEngine.Debug:Log (object)
+SaveSlotSelectionUI:CreateUI () (at Assets/Scripts/UI/SaveSlotSelectionUI.cs:198)
+SaveSlotSelectionUI:ShowSelectionUI () (at Assets/Scripts/UI/SaveSlotSelectionUI.cs:143)
+SaveSlotSelectionUI:ShowSelectionUIForSave () (at Assets/Scripts/UI/SaveSlotSelectionUI.cs:117)
+PauseMenuManager:OnSaveGame () (at Assets/Scripts/UI/PauseMenuManager.cs:1027)
+UnityEngine.EventSystems.EventSystem:Update () (at ./Library/PackageCache/com.unity.ugui@7056cb05de4c/Runtime/UGUI/EventSystem/EventSystem.cs:514)
+
+[SaveSlotSelectionUI] Removing old ContentSizeFitter from panel
+UnityEngine.Debug:Log (object)
+SaveSlotSelectionUI:CreateUI () (at Assets/Scripts/UI/SaveSlotSelectionUI.cs:205)
+SaveSlotSelectionUI:ShowSelectionUI () (at Assets/Scripts/UI/SaveSlotSelectionUI.cs:143)
+SaveSlotSelectionUI:ShowSelectionUIForSave () (at Assets/Scripts/UI/SaveSlotSelectionUI.cs:117)
+PauseMenuManager:OnSaveGame () (at Assets/Scripts/UI/PauseMenuManager.cs:1027)
+UnityEngine.EventSystems.EventSystem:Update () (at ./Library/PackageCache/com.unity.ugui@7056cb05de4c/Runtime/UGUI/EventSystem/EventSystem.cs:514)
+
+[SaveSlotSelectionUI] UI created successfully
+UnityEngine.Debug:Log (object)
+SaveSlotSelectionUI:CreateUI () (at Assets/Scripts/UI/SaveSlotSelectionUI.cs:248)
+SaveSlotSelectionUI:ShowSelectionUI () (at Assets/Scripts/UI/SaveSlotSelectionUI.cs:143)
+SaveSlotSelectionUI:ShowSelectionUIForSave () (at Assets/Scripts/UI/SaveSlotSelectionUI.cs:117)
+PauseMenuManager:OnSaveGame () (at Assets/Scripts/UI/PauseMenuManager.cs:1027)
+UnityEngine.EventSystems.EventSystem:Update () (at ./Library/PackageCache/com.unity.ugui@7056cb05de4c/Runtime/UGUI/EventSystem/EventSystem.cs:514)
+
+[SaveSlotSelectionUI] Showing UI in Save mode
+UnityEngine.Debug:Log (object)
+SaveSlotSelectionUI:ShowSelectionUI () (at Assets/Scripts/UI/SaveSlotSelectionUI.cs:166)
+SaveSlotSelectionUI:ShowSelectionUIForSave () (at Assets/Scripts/UI/SaveSlotSelectionUI.cs:117)
+PauseMenuManager:OnSaveGame () (at Assets/Scripts/UI/PauseMenuManager.cs:1027)
+UnityEngine.EventSystems.EventSystem:Update () (at ./Library/PackageCache/com.unity.ugui@7056cb05de4c/Runtime/UGUI/EventSystem/EventSystem.cs:514)
+
+PauseMenuManager[OnSaveGame - after ShowSelectionUIForSave]: LoadMenuPanel activeSelf=True, activeInHierarchy=True, siblingIndex=6, childCount=19, parent=Canvas
+UnityEngine.Debug:Log (object)
+PauseMenuManager:LogLoadMenuPanelState (string) (at Assets/Scripts/UI/PauseMenuManager.cs:803)
+PauseMenuManager:OnSaveGame () (at Assets/Scripts/UI/PauseMenuManager.cs:1030)
+UnityEngine.EventSystems.EventSystem:Update () (at ./Library/PackageCache/com.unity.ugui@7056cb05de4c/Runtime/UGUI/EventSystem/EventSystem.cs:514)
+
+PauseMenuManager[OnSaveGame - after ShowSelectionUIForSave]: LoadMenuPanel Rect -> anchorMin=(0.50, 0.50), anchorMax=(0.50, 0.50), sizeDelta=(480.00, 580.00), anchoredPosition=(0.00, 0.00)
+UnityEngine.Debug:Log (object)
+PauseMenuManager:LogLoadMenuPanelState (string) (at Assets/Scripts/UI/PauseMenuManager.cs:807)
+PauseMenuManager:OnSaveGame () (at Assets/Scripts/UI/PauseMenuManager.cs:1030)
+UnityEngine.EventSystems.EventSystem:Update () (at ./Library/PackageCache/com.unity.ugui@7056cb05de4c/Runtime/UGUI/EventSystem/EventSystem.cs:514)
+
+PauseMenuManager[OnSaveGame - after ShowSelectionUIForSave]: LoadMenuPanel Image -> enabled=True, color=RGBA(0.080, 0.080, 0.120, 0.980), raycastTarget=True
+UnityEngine.Debug:Log (object)
+PauseMenuManager:LogLoadMenuPanelState (string) (at Assets/Scripts/UI/PauseMenuManager.cs:812)
+PauseMenuManager:OnSaveGame () (at Assets/Scripts/UI/PauseMenuManager.cs:1030)
+UnityEngine.EventSystems.EventSystem:Update () (at ./Library/PackageCache/com.unity.ugui@7056cb05de4c/Runtime/UGUI/EventSystem/EventSystem.cs:514)
+
+PauseMenuManager[OnSaveGame - after ShowSelectionUIForSave]: Parent Canvas -> name=Canvas, renderMode=ScreenSpaceOverlay, sortingOrder=5000, sortingLayerID=0
+UnityEngine.Debug:Log (object)
+PauseMenuManager:LogLoadMenuPanelState (string) (at Assets/Scripts/UI/PauseMenuManager.cs:817)
+PauseMenuManager:OnSaveGame () (at Assets/Scripts/UI/PauseMenuManager.cs:1030)
+UnityEngine.EventSystems.EventSystem:Update () (at ./Library/PackageCache/com.unity.ugui@7056cb05de4c/Runtime/UGUI/EventSystem/EventSystem.cs:514)
+
+PauseMenuManager[OnSaveGame - after ShowSelectionUI]: Button states -> Resume=activeSelf=False, activeInHierarchy=False | Save=activeSelf=False, activeInHierarchy=False | Load=activeSelf=False, activeInHierarchy=False | Main=activeSelf=False, activeInHierarchy=False | Exit=activeSelf=False, activeInHierarchy=False
+UnityEngine.Debug:Log (object)
+PauseMenuManager:VerifyPauseMenuButtons (string) (at Assets/Scripts/UI/PauseMenuManager.cs:682)
+PauseMenuManager:OnSaveGame () (at Assets/Scripts/UI/PauseMenuManager.cs:1033)
+UnityEngine.EventSystems.EventSystem:Update () (at ./Library/PackageCache/com.unity.ugui@7056cb05de4c/Runtime/UGUI/EventSystem/EventSystem.cs:514)
+
+PauseMenuManager[OnSaveGame - after ShowSelectionUI]: One or more pause menu buttons are inactive. See states above for details.
+UnityEngine.Debug:LogWarning (object)
+PauseMenuManager:VerifyPauseMenuButtons (string) (at Assets/Scripts/UI/PauseMenuManager.cs:686)
+PauseMenuManager:OnSaveGame () (at Assets/Scripts/UI/PauseMenuManager.cs:1033)
+UnityEngine.EventSystems.EventSystem:Update () (at ./Library/PackageCache/com.unity.ugui@7056cb05de4c/Runtime/UGUI/EventSystem/EventSystem.cs:514)
+
+PauseMenuManager[OnSaveGame - after ShowSelectionUI]: PauseMenuPanel activeSelf=True, activeInHierarchy=True, siblingIndex=10, childCount=9, parent=Canvas
+UnityEngine.Debug:Log (object)
+PauseMenuManager:LogPauseMenuState (string) (at Assets/Scripts/UI/PauseMenuManager.cs:765)
+PauseMenuManager:OnSaveGame () (at Assets/Scripts/UI/PauseMenuManager.cs:1034)
+UnityEngine.EventSystems.EventSystem:Update () (at ./Library/PackageCache/com.unity.ugui@7056cb05de4c/Runtime/UGUI/EventSystem/EventSystem.cs:514)
+
+PauseMenuManager[OnSaveGame - after ShowSelectionUI]: PauseMenuPanel Rect -> anchorMin=(0.00, 0.00), anchorMax=(1.00, 1.00), sizeDelta=(-1420.00, -270.00), anchoredPosition=(0.00, 0.00)
+UnityEngine.Debug:Log (object)
+PauseMenuManager:LogPauseMenuState (string) (at Assets/Scripts/UI/PauseMenuManager.cs:769)
+PauseMenuManager:OnSaveGame () (at Assets/Scripts/UI/PauseMenuManager.cs:1034)
+UnityEngine.EventSystems.EventSystem:Update () (at ./Library/PackageCache/com.unity.ugui@7056cb05de4c/Runtime/UGUI/EventSystem/EventSystem.cs:514)
+
+PauseMenuManager[OnSaveGame - after ShowSelectionUI]: PauseMenuPanel Image -> enabled=False, color=RGBA(0.000, 0.000, 0.000, 0.784), raycastTarget=False
+UnityEngine.Debug:Log (object)
+PauseMenuManager:LogPauseMenuState (string) (at Assets/Scripts/UI/PauseMenuManager.cs:774)
+PauseMenuManager:OnSaveGame () (at Assets/Scripts/UI/PauseMenuManager.cs:1034)
+UnityEngine.EventSystems.EventSystem:Update () (at ./Library/PackageCache/com.unity.ugui@7056cb05de4c/Runtime/UGUI/EventSystem/EventSystem.cs:514)
+
+PauseMenuManager[OnSaveGame - after ShowSelectionUI]: Parent Canvas -> name=Canvas, renderMode=ScreenSpaceOverlay, sortingOrder=5000, sortingLayerID=0
+UnityEngine.Debug:Log (object)
+PauseMenuManager:LogPauseMenuState (string) (at Assets/Scripts/UI/PauseMenuManager.cs:779)
+PauseMenuManager:OnSaveGame () (at Assets/Scripts/UI/PauseMenuManager.cs:1034)
+UnityEngine.EventSystems.EventSystem:Update () (at ./Library/PackageCache/com.unity.ugui@7056cb05de4c/Runtime/UGUI/EventSystem/EventSystem.cs:514)
+
+PauseMenuManager[OnSaveGame - final]: LoadMenuPanel activeSelf=True, activeInHierarchy=True, siblingIndex=6, childCount=19, parent=Canvas
+UnityEngine.Debug:Log (object)
+PauseMenuManager:LogLoadMenuPanelState (string) (at Assets/Scripts/UI/PauseMenuManager.cs:803)
+PauseMenuManager:OnSaveGame () (at Assets/Scripts/UI/PauseMenuManager.cs:1035)
+UnityEngine.EventSystems.EventSystem:Update () (at ./Library/PackageCache/com.unity.ugui@7056cb05de4c/Runtime/UGUI/EventSystem/EventSystem.cs:514)
+
+PauseMenuManager[OnSaveGame - final]: LoadMenuPanel Rect -> anchorMin=(0.50, 0.50), anchorMax=(0.50, 0.50), sizeDelta=(480.00, 580.00), anchoredPosition=(0.00, 0.00)
+UnityEngine.Debug:Log (object)
+PauseMenuManager:LogLoadMenuPanelState (string) (at Assets/Scripts/UI/PauseMenuManager.cs:807)
+PauseMenuManager:OnSaveGame () (at Assets/Scripts/UI/PauseMenuManager.cs:1035)
+UnityEngine.EventSystems.EventSystem:Update () (at ./Library/PackageCache/com.unity.ugui@7056cb05de4c/Runtime/UGUI/EventSystem/EventSystem.cs:514)
+
+PauseMenuManager[OnSaveGame - final]: LoadMenuPanel Image -> enabled=True, color=RGBA(0.080, 0.080, 0.120, 0.980), raycastTarget=True
+UnityEngine.Debug:Log (object)
+PauseMenuManager:LogLoadMenuPanelState (string) (at Assets/Scripts/UI/PauseMenuManager.cs:812)
+PauseMenuManager:OnSaveGame () (at Assets/Scripts/UI/PauseMenuManager.cs:1035)
+UnityEngine.EventSystems.EventSystem:Update () (at ./Library/PackageCache/com.unity.ugui@7056cb05de4c/Runtime/UGUI/EventSystem/EventSystem.cs:514)
+
+PauseMenuManager[OnSaveGame - final]: Parent Canvas -> name=Canvas, renderMode=ScreenSpaceOverlay, sortingOrder=5000, sortingLayerID=0
+UnityEngine.Debug:Log (object)
+PauseMenuManager:LogLoadMenuPanelState (string) (at Assets/Scripts/UI/PauseMenuManager.cs:817)
+PauseMenuManager:OnSaveGame () (at Assets/Scripts/UI/PauseMenuManager.cs:1035)
+UnityEngine.EventSystems.EventSystem:Update () (at ./Library/PackageCache/com.unity.ugui@7056cb05de4c/Runtime/UGUI/EventSystem/EventSystem.cs:514)
+
+[FMOD] FMOD_OS_Net_Listen : Cannot listen for connections, port 9264 is currently in use.
+
+UnityEngine.Debug:LogWarning (object)
+FMODUnity.RuntimeUtils:DebugLogWarning (string) (at Assets/Plugins/FMOD/src/RuntimeUtils.cs:580)
+FMODUnity.RuntimeManager:DEBUG_CALLBACK (FMOD.DEBUG_FLAGS,intptr,int,intptr,intptr) (at Assets/Plugins/FMOD/src/RuntimeManager.cs:108)
 

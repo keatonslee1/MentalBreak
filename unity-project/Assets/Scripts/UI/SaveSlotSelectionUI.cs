@@ -158,10 +158,8 @@ public class SaveSlotSelectionUI : MonoBehaviour
         // Show panel
         selectionPanel.SetActive(true);
 
-        // Ensure proper layering
-        Canvas canvas = selectionPanel.GetComponentInParent<Canvas>();
-        if (canvas != null)
-            canvas.sortingOrder = 5000;
+        // NOTE: Removed sortingOrder change (was breaking OverlayUIRoot visibility).
+        // The save/load panel is already visible within its parent canvas.
 
         Debug.Log($"[SaveSlotSelectionUI] Showing UI in {currentMode} mode");
     }

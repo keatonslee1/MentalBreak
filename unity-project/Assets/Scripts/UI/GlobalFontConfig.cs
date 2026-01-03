@@ -9,10 +9,10 @@ using UnityEngine;
 public sealed class GlobalFontConfig : ScriptableObject
 {
     [Header("TextMeshPro")]
-    public TMP_FontAsset montserratRegularSdf;
+    public TMP_FontAsset primarySdfFont;
 
     [Header("Legacy UI Text")]
-    public Font montserratMediumTtf;
+    public Font primaryTtfFont;
 }
 
 

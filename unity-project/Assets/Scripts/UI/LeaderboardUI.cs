@@ -377,7 +377,8 @@ public class LeaderboardUI : MonoBehaviour
     {
         if (leaderboardPanel == null)
         {
-            return;
+            CreateUI();
+            if (leaderboardPanel == null) return;
         }
 
         // Keep scale deterministic (some rebuilds/layout passes can reset transforms).

@@ -137,9 +137,11 @@
           hardReload();
         });
       } else if (!localVersion) {
-        // First visit - just store version
-        console.log('[CacheBuster] First visit, storing version');
-        localStorage.setItem(STORAGE_KEY, serverVersion);
+        // First visit - clear cache in case user has old data from before cache-buster existed
+        console.log('[CacheBuster] First visit, clearing old cache and storing version');
+        clearUnityCache().then(function() {
+          localStorage.setItem(STORAGE_KEY, serverVersion);
+        });
       } else {
         console.log('[CacheBuster] Version matches, no reload needed');
       }

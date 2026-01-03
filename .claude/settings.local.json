@@ -22,7 +22,8 @@
       "WebFetch(domain:qa.fmod.com)",
       "Bash(git -C \"C:\\\\Users\\\\epick\\\\OneDrive\\\\Documents\\\\mentalbreak\" log --oneline -20)",
       "Bash(find:*)",
-      "Bash(del nul nul.meta)"
+      "Bash(del nul nul.meta)",
+      "Bash(powershell -ExecutionPolicy Bypass -File \".\\\\update-version.ps1\")"
     ]
   }
 }

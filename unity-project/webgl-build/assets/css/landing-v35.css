@@ -11,13 +11,20 @@
   --mb-shadow: 0 20px 60px rgba(0, 0, 0, 0.55);
 }
 
+@font-face {
+  font-family: 'monogram-extended';
+  src: url('../fonts/monogram-extended.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 html,
 body {
   height: 100%;
   margin: 0;
   background: var(--mb-bg);
   color: var(--mb-text);
-  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-family: 'monogram-extended', monospace;
 }
 
 .mb-page {
@@ -50,7 +57,7 @@ body {
 .mb-brand__title {
   letter-spacing: 0.18em;
   font-weight: 800;
-  font-size: 12px;
+  font-size: 24px;
   text-transform: uppercase;
   color: var(--mb-text);
   text-decoration: none;
@@ -68,7 +75,7 @@ h1.mb-brand__title {
 .mb-brand__subtitle {
   margin: 0;
   flex-basis: 100%;
-  font-size: 11px;
+  font-size: 22px;
   font-weight: 500;
   letter-spacing: 0.04em;
   color: var(--mb-muted);
@@ -83,20 +90,20 @@ h1.mb-brand__title {
   }
 
   .mb-brand__title {
-    font-size: 20px;
+    font-size: 40px;
     line-height: 1.1;
   }
 
   .mb-brand__subtitle {
     flex-basis: auto;
     margin-left: 14px;
-    font-size: 12px;
+    font-size: 24px;
     line-height: 1.15;
   }
 }
 
 .mb-brand__tag {
-  font-size: 11px;
+  font-size: 22px;
   letter-spacing: 0.08em;
   text-transform: lowercase;
   color: var(--mb-muted);
@@ -112,7 +119,7 @@ h1.mb-brand__title {
   background: rgba(122, 230, 255, 0.06);
   color: var(--mb-text);
   font: inherit;
-  font-size: 12px;
+  font-size: 24px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   padding: 6px 10px;
@@ -156,7 +163,7 @@ h1.mb-brand__title {
   background: transparent;
   color: var(--mb-muted);
   font: inherit;
-  font-size: 12px;
+  font-size: 24px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   padding: 6px 10px;
@@ -206,7 +213,7 @@ h1.mb-brand__title {
   }
 
   .mb-brand__title {
-    font-size: 18px;
+    font-size: 36px;
     line-height: 1.05;
   }
 
@@ -257,15 +264,15 @@ h1.mb-brand__title {
   margin: 0 0 12px 0;
   padding: 12px 14px;
   box-sizing: border-box;
-  border-radius: 16px;
+  border-radius: 0;
   background: var(--mb-panel);
-  border: 1px solid var(--mb-border);
-  box-shadow: var(--mb-shadow);
+  border: 2px outset var(--mb-border);
+  box-shadow: none;
 }
 
 .mb-hero-intro__title {
   margin: 0 0 6px 0;
-  font-size: 18px;
+  font-size: 36px;
   letter-spacing: 0.02em;
   text-transform: uppercase;
   color: var(--mb-text);
@@ -273,7 +280,7 @@ h1.mb-brand__title {
 
 .mb-hero-intro__body {
   margin: 0;
-  font-size: 14px;
+  font-size: 28px;
   line-height: 1.35;
   color: var(--mb-muted);
 }
@@ -282,11 +289,11 @@ h1.mb-brand__title {
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
-  border-radius: 18px;
+  border-radius: 0;
   overflow: hidden;
   background: #000;
-  box-shadow: var(--mb-shadow);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: none;
+  border: 2px outset rgba(255, 255, 255, 0.15);
 }
 
 .mb-hero-stage__bg {
@@ -296,8 +303,11 @@ h1.mb-brand__title {
   height: 100%;
   object-fit: cover;
   display: block;
-  transform: scale(1.02);
-  filter: saturate(1.05) contrast(1.02);
+  transform: none;
+  filter: none;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
   z-index: 1;
 }
 
@@ -315,8 +325,8 @@ h1.mb-brand__title {
 
 .mb-hero-stage__alice {
   position: absolute;
-  left: 6%;
-  bottom: 14%;
+  left: calc(6% + 100px);
+  bottom: calc(14% + 50px);
   width: auto;
   height: auto;
   max-width: clamp(180px, 24vw, 420px);
@@ -331,16 +341,16 @@ h1.mb-brand__title {
 .mb-dialogue {
   position: absolute;
   left: 50%;
-  bottom: 3%;
+  bottom: 0;
   transform: translateX(-50%);
-  width: fit-content;
-  max-width: min(980px, calc(100% - 24px));
+  width: 100%;
   z-index: 4;
   background: var(--mb-panel);
-  border: 1px solid var(--mb-border);
-  border-radius: 16px;
-  box-shadow: var(--mb-shadow);
+  border: 2px outset var(--mb-border);
+  border-radius: 0;
+  box-shadow: none;
   padding: 14px 14px 12px 14px;
+  box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -350,7 +360,7 @@ h1.mb-brand__title {
 
 .mb-dialogue__text {
   margin: 0;
-  font-size: 18px;
+  font-size: 36px;
   line-height: 1.45;
   color: var(--mb-text);
   flex: 1 1 420px;
@@ -367,17 +377,20 @@ h1.mb-brand__title {
 
 .mb-choice {
   appearance: none;
-  border: 1px solid rgba(122, 230, 255, 0.32);
-  background: rgba(122, 230, 255, 0.10);
+  border: 2px outset rgba(122, 230, 255, 0.5);
+  background: rgba(122, 230, 255, 0.15);
   color: var(--mb-text);
-  font-weight: 700;
-  font-size: 16px;
+  font-family: 'monogram-extended', monospace;
+  font-weight: normal;
+  font-size: 32px;
   letter-spacing: 0.02em;
   padding: 12px 16px;
-  border-radius: 14px;
+  border-radius: 0;
   cursor: pointer;
-  transition: transform 120ms ease, box-shadow 160ms ease, border-color 160ms ease, background 160ms ease;
-  will-change: box-shadow, transform;
+  transition: none;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
 }
 
 /* Prefer a single-row prompt + CTAs only when there's truly enough room */
@@ -407,6 +420,8 @@ h1.mb-brand__title {
     width: 100%;
     max-width: 100%;
     margin-top: 12px;
+    margin-left: auto;
+    margin-right: auto;
     flex-direction: column;
     align-items: stretch;
   }
@@ -422,7 +437,8 @@ h1.mb-brand__title {
 }
 
 .mb-choice:hover {
-  transform: translateY(-1px);
+  border-style: outset;
+  border-width: 2px;
 }
 
 .mb-choice:focus-visible {
@@ -432,79 +448,39 @@ h1.mb-brand__title {
 
 /* Choice CTA variants */
 .mb-choice[data-mb-choice="meditation"] {
-  border-color: rgba(122, 230, 255, 0.75);
-  background: linear-gradient(180deg, rgba(122, 230, 255, 0.30), rgba(122, 230, 255, 0.10));
-  box-shadow:
-    0 0 0 1px rgba(122, 230, 255, 0.20) inset,
-    0 14px 34px rgba(122, 230, 255, 0.26),
-    0 0 24px rgba(122, 230, 255, 0.30);
-  animation: mb-glow-cyan 1.9s ease-in-out infinite;
+  border: 2px outset rgba(122, 230, 255, 0.75);
+  background: rgba(122, 230, 255, 0.20);
+  box-shadow: none;
+  animation: none;
 }
 
 .mb-choice[data-mb-choice="meditation"]:hover {
-  border-color: rgba(122, 230, 255, 0.85);
-  box-shadow:
-    0 0 0 1px rgba(122, 230, 255, 0.20) inset,
-    0 14px 34px rgba(122, 230, 255, 0.26),
-    0 0 26px rgba(122, 230, 255, 0.30);
+  border-style: outset;
+  background: rgba(122, 230, 255, 0.25);
+}
+
+.mb-choice[data-mb-choice="meditation"]:active {
+  border-style: inset;
+  background: rgba(122, 230, 255, 0.15);
 }
 
 .mb-choice[data-mb-choice="pickup"] {
-  border-color: rgba(255, 91, 214, 0.75);
-  background: linear-gradient(180deg, rgba(255, 91, 214, 0.30), rgba(255, 91, 214, 0.10));
-  box-shadow:
-    0 0 0 1px rgba(255, 91, 214, 0.20) inset,
-    0 14px 34px rgba(255, 91, 214, 0.24),
-    0 0 24px rgba(255, 91, 214, 0.30);
-  animation: mb-glow-magenta 2.1s ease-in-out infinite;
+  border: 2px outset rgba(255, 91, 214, 0.75);
+  background: rgba(255, 91, 214, 0.20);
+  box-shadow: none;
+  animation: none;
 }
 
 .mb-choice[data-mb-choice="pickup"]:hover {
-  border-color: rgba(255, 91, 214, 0.85);
-  box-shadow:
-    0 0 0 1px rgba(255, 91, 214, 0.20) inset,
-    0 14px 34px rgba(255, 91, 214, 0.24),
-    0 0 26px rgba(255, 91, 214, 0.30);
+  border-style: outset;
+  background: rgba(255, 91, 214, 0.25);
 }
 
-@keyframes mb-glow-cyan {
-  0%,
-  100% {
-    box-shadow:
-      0 0 0 1px rgba(122, 230, 255, 0.20) inset,
-      0 14px 34px rgba(122, 230, 255, 0.22),
-      0 0 18px rgba(122, 230, 255, 0.22);
-  }
-  50% {
-    box-shadow:
-      0 0 0 1px rgba(122, 230, 255, 0.26) inset,
-      0 18px 44px rgba(122, 230, 255, 0.30),
-      0 0 32px rgba(122, 230, 255, 0.40);
-  }
+.mb-choice[data-mb-choice="pickup"]:active {
+  border-style: inset;
+  background: rgba(255, 91, 214, 0.15);
 }
 
-@keyframes mb-glow-magenta {
-  0%,
-  100% {
-    box-shadow:
-      0 0 0 1px rgba(255, 91, 214, 0.20) inset,
-      0 14px 34px rgba(255, 91, 214, 0.20),
-      0 0 18px rgba(255, 91, 214, 0.22);
-  }
-  50% {
-    box-shadow:
-      0 0 0 1px rgba(255, 91, 214, 0.26) inset,
-      0 18px 44px rgba(255, 91, 214, 0.28),
-      0 0 32px rgba(255, 91, 214, 0.40);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .mb-choice[data-mb-choice="meditation"],
-  .mb-choice[data-mb-choice="pickup"] {
-    animation: none;
-  }
-}
 
 .mb-choice[disabled] {
   opacity: 0.55;
@@ -513,7 +489,7 @@ h1.mb-brand__title {
 
 .mb-dialogue__hint {
   margin-top: 8px;
-  font-size: 12px;
+  font-size: 24px;
   color: var(--mb-muted);
 }
 
@@ -528,7 +504,7 @@ h1.mb-brand__title {
   background: rgba(6, 6, 11, 0.78);
   backdrop-filter: blur(12px);
   color: rgba(234, 242, 255, 0.78);
-  font-size: 12px;
+  font-size: 24px;
   letter-spacing: 0.02em;
   text-align: center;
 }
@@ -542,10 +518,10 @@ h1.mb-brand__title {
     display: none;
   }
   .mb-dialogue__text {
-    font-size: 15px;
+    font-size: 30px;
   }
   .mb-choice {
-    font-size: 15px;
+    font-size: 30px;
     padding: 11px 14px;
   }
   .mb-hero-intro {
@@ -553,18 +529,18 @@ h1.mb-brand__title {
     padding: 10px 12px;
   }
   .mb-hero-intro__title {
-    font-size: 16px;
+    font-size: 32px;
   }
   .mb-hero-intro__body {
-    font-size: 13px;
+    font-size: 26px;
   }
   .mb-choice {
     width: 100%;
     justify-content: center;
   }
   .mb-hero-stage__alice {
-    left: 4%;
-    bottom: 14%;
+    left: calc(4% + 100px);
+    bottom: calc(14% + 50px);
     width: auto;
     height: auto;
     max-width: min(40%, clamp(160px, 42vw, 320px));

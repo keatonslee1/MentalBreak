@@ -91,7 +91,7 @@ public class WelcomeOverlay : MonoBehaviour {
 			new Vector2(0, 1), new Vector2(0, 1), // anchor top-left
 			new Vector2(30, -30), // position offset from top-left
 			new Vector2(0, 1), // pivot top-left
-			36, FontStyles.Normal, TextAlignmentOptions.TopLeft,
+			48, FontStyles.Normal, TextAlignmentOptions.TopLeft,
 			new Color(0.7f, 0.7f, 0.7f, 1f));
 
 		// Center welcome text
@@ -110,7 +110,7 @@ public class WelcomeOverlay : MonoBehaviour {
 			new Vector2(0.5f, 0.4f), new Vector2(0.5f, 0.4f), // below center
 			Vector2.zero,
 			new Vector2(0.5f, 0.5f), // pivot center
-			56, FontStyles.Normal, TextAlignmentOptions.Center,
+			60, FontStyles.Normal, TextAlignmentOptions.Center,
 			new Color(0.8f, 0.8f, 0.8f, 1f));
 
 		// Bottom center text
@@ -119,7 +119,7 @@ public class WelcomeOverlay : MonoBehaviour {
 			new Vector2(0.5f, 0), new Vector2(0.5f, 0), // anchor bottom-center
 			new Vector2(0, 40), // offset up from bottom
 			new Vector2(0.5f, 0), // pivot bottom-center
-			28, FontStyles.Normal, TextAlignmentOptions.Center,
+			48, FontStyles.Normal, TextAlignmentOptions.Center,
 			new Color(0.5f, 0.5f, 0.5f, 1f));
 
 		// Request font application

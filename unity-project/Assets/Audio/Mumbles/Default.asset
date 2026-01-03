@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MumbleGenerator.Mumble
   Text: '"Ari: morning lift? leg day"'
   Volume: 0.5
-  Pitch: 1.44
+  Pitch: 2
   PitchVariance: 0.24373904
   Speed: 0.75
   PitchChangeOnExclamation: 1.2334414

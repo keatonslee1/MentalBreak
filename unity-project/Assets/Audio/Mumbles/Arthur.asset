@@ -12,12 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e06a775a154400a21ea0914445b644, type: 3}
   m_Name: Arthur
   m_EditorClassIdentifier: Assembly-CSharp::MumbleGenerator.Mumble
-  Text: Alright, gotta run. Plumber's waiting at my house. Good luck, try not to
-    break anything your first day.
+  Text: Alice?
   Volume: 0.55
   Pitch: 0.9
   PitchVariance: 0.2
-  Speed: 0.65
+  Speed: 1.36
   PitchChangeOnExclamation: 1.15
   LanguageType: 0
   LetterBase: 0

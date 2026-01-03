@@ -15,9 +15,9 @@ MonoBehaviour:
   Text: Hello I am reading some text. This is exclamation! Is this question? The
     quick brown fox jumps over the lazy dog.
   Volume: 0.5
-  Pitch: 1
+  Pitch: 1.3
   PitchVariance: 0.25
-  Speed: 0.75
+  Speed: 0.7
   PitchChangeOnExclamation: 1.25
   LanguageType: 0
   LetterBase: 0

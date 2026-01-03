@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e06a775a154400a21ea0914445b644, type: 3}
   m_Name: Alice
   m_EditorClassIdentifier: Assembly-CSharp::MumbleGenerator.Mumble
-  Text: His roommate just texted him.
+  Text: This is how you're graded. Engagement is time on platform. Sanity is how
+    close he is to dropping out or punching something.
   Volume: 0.5
-  Pitch: 1.8
-  PitchVariance: 0.25
-  Speed: 0.75
+  Pitch: 2.12
+  PitchVariance: 0.238
+  Speed: 0.62
   PitchChangeOnExclamation: 1.25
   LanguageType: 0
   LetterBase: 0

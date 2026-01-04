@@ -97,6 +97,20 @@ public sealed class GlobalFontOverride : MonoBehaviour
         instance.ApplyNow();
     }
 
+    /// <summary>
+    /// Apply the global font to a single TMP_Text component.
+    /// Use this for dynamically instantiated UI that bypasses scene load.
+    /// </summary>
+    public static void ApplyFontToComponent(TMP_Text textComponent)
+    {
+        if (instance?.config?.primarySdfFont == null || textComponent == null)
+        {
+            return;
+        }
+
+        textComponent.font = instance.config.primarySdfFont;
+    }
+
     private void ApplyToAllTmpText()
     {
         if (config == null || config.primarySdfFont == null)

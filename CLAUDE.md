@@ -105,7 +105,7 @@ python -m http.server 8000
 | Folder | Purpose | Key Files |
 |--------|---------|-----------|
 | Core/ | Game state, saves, settings | GameManager, SaveLoadManager, SaveExporter, SettingsManager |
-| Dialogue/ | Dialogue flow | ClickAdvancer, OptionsInputHandler |
+| Dialogue/ | Dialogue flow | ClickAdvancer, OptionsInputHandler, OptionsFontApplier |
 | UI/ | User interface | MenuManager, PauseMenuManager, SettingsPanel, StoreUI, ToastManager |
 | Audio/ | Audio commands | AudioCommandHandler, FMODAudioManager, FMODWebGLBankLoader, MumbleDialogueController |
 | Characters/ | Portraits | CharacterSpriteManager, PortraitTalkingStateController |
@@ -304,6 +304,32 @@ private void ApplyRuntimeDefaults()
     // ... other defaults
 }
 ```
+
+### Dialogue Choice Font Override
+
+Yarn Spinner's `OptionItem` prefab (in Packages) has a hardcoded font that doesn't match the game's pixel font. The `OptionsFontApplier` component solves this:
+
+**Problem**:
+- `GlobalFontOverride` runs at scene load, before dialogue options exist
+- `OptionItem` instances are created dynamically when choices appear
+- The prefab is in `Packages/dev.yarnspinner.unity/Prefabs/` (can't modify directly)
+
+**Solution** (`Scripts/Dialogue/OptionsFontApplier.cs`):
+- Attached to Dialogue System GameObject
+- Polls every 50ms for active `OptionItem` instances
+- Uses reflection to access private `text` field on `OptionItem`
+- Applies monogram font + 60px size to:
+  - Option text (the choices)
+  - Last line text (dialogue shown above options)
+  - Character name text (if displayed)
+
+**Key Constants**:
+```csharp
+private const float DialogueFontSize = 60f;  // Standard dialogue size
+private float checkInterval = 0.05f;          // 50ms polling
+```
+
+**Why reflection?** The `OptionItem.text` field is private and in a separate assembly (Yarn.Unity). We can't subclass or modify it directly, so reflection is the only way to access it at runtime.
 
 ---
 

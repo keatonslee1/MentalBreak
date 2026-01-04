@@ -31,7 +31,16 @@
       "Bash(claude mcp get:*)",
       "mcp__UnityMCP__manage_scene",
       "mcp__UnityMCP__manage_gameobject",
-      "mcp__UnityMCP__manage_material"
+      "mcp__UnityMCP__manage_material",
+      "mcp__UnityMCP__refresh_unity",
+      "mcp__UnityMCP__read_console",
+      "Bash(git -C \"C:\\\\Users\\\\epick\\\\OneDrive\\\\Documents\\\\mentalbreak\" status)",
+      "Bash(git -C \"C:\\\\Users\\\\epick\\\\OneDrive\\\\Documents\\\\mentalbreak\" diff --name-only)",
+      "Bash(git -C \"C:\\\\Users\\\\epick\\\\OneDrive\\\\Documents\\\\mentalbreak\" diff \"unity-project/Assets/Dialogue Wheel for Yarn Spinner/Scripts/Wheel Option Views/WheelOptionView.cs\")",
+      "Bash(git -C \"C:\\\\Users\\\\epick\\\\OneDrive\\\\Documents\\\\mentalbreak\" diff \"unity-project/Assets/Speech Bubbles for Yarn Spinner/Scripts/BasicBubbleContent.cs\")",
+      "Bash(git -C \"C:\\\\Users\\\\epick\\\\OneDrive\\\\Documents\\\\mentalbreak\" status unity-project/Assets/Scenes/)",
+      "Bash(git -C \"C:\\\\Users\\\\epick\\\\OneDrive\\\\Documents\\\\mentalbreak\" status unity-project/Assets/*.asset unity-project/Assets/Resources/*.asset)",
+      "WebFetch(domain:docs.yarnspinner.dev)"
     ]
   }
 }

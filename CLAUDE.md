@@ -105,7 +105,7 @@ python -m http.server 8000
 | Folder | Purpose | Key Files |
 |--------|---------|-----------|
 | Core/ | Game state, saves, settings | GameManager, SaveLoadManager, SaveExporter, SettingsManager |
-| Dialogue/ | Dialogue flow | ClickAdvancer, OptionsInputHandler, OptionsFontApplier |
+| Dialogue/ | Dialogue flow | ClickAdvancer, OptionsInputHandler |
 | UI/ | User interface | MenuManager, PauseMenuManager, SettingsPanel, StoreUI, ToastManager |
 | Audio/ | Audio commands | AudioCommandHandler, FMODAudioManager, FMODWebGLBankLoader, MumbleDialogueController |
 | Characters/ | Portraits | CharacterSpriteManager, PortraitTalkingStateController |
@@ -307,29 +307,20 @@ private void ApplyRuntimeDefaults()
 
 ### Dialogue Choice Font Override
 
-Yarn Spinner's `OptionItem` prefab (in Packages) has a hardcoded font that doesn't match the game's pixel font. The `OptionsFontApplier` component solves this:
+Yarn Spinner's default `OptionItem` prefab (in Packages) has a hardcoded font. The solution is to use a **custom prefab** with the correct font settings.
 
-**Problem**:
-- `GlobalFontOverride` runs at scene load, before dialogue options exist
-- `OptionItem` instances are created dynamically when choices appear
-- The prefab is in `Packages/dev.yarnspinner.unity/Prefabs/` (can't modify directly)
+**Custom Prefab Location**: `Assets/Prefabs/Option Item.prefab`
+- Copied from `Packages/dev.yarnspinner.unity/Prefabs/Option Item.prefab`
+- Font: monogram-extended SDF
+- Font Size: 60px
 
-**Solution** (`Scripts/Dialogue/OptionsFontApplier.cs`):
-- Attached to Dialogue System GameObject
-- Polls every 50ms for active `OptionItem` instances
-- Uses reflection to access private `text` field on `OptionItem`
-- Applies monogram font + 60px size to:
-  - Option text (the choices)
-  - Last line text (dialogue shown above options)
-  - Character name text (if displayed)
+**Setup**:
+1. The custom prefab is assigned to `Options Presenter > Option View Prefab`
+2. The "Last Line" text fields in Options Presenter are configured directly in the scene
 
-**Key Constants**:
-```csharp
-private const float DialogueFontSize = 60f;  // Standard dialogue size
-private float checkInterval = 0.05f;          // 50ms polling
-```
+**Why a custom prefab?** The default prefab is in Packages and shouldn't be modified directly. Copying to Assets allows full customization while preserving upgrade compatibility.
 
-**Why reflection?** The `OptionItem.text` field is private and in a separate assembly (Yarn.Unity). We can't subclass or modify it directly, so reflection is the only way to access it at runtime.
+**Reference**: [Yarn Spinner - Theming Default Presenters](https://docs.yarnspinner.dev/yarn-spinner-for-unity/samples/theming-default-views)
 
 ---
 

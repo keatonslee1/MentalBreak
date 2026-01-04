@@ -77,7 +77,7 @@ public class WelcomeOverlay : MonoBehaviour {
 		GameObject bgGO = new GameObject("Background");
 		bgGO.transform.SetParent(overlayGO.transform, false);
 		Image bgImage = bgGO.AddComponent<Image>();
-		bgImage.color = new Color(0f, 0f, 0f, 0.95f);
+		bgImage.color = new Color(0f, 0f, 0f, 0.98f);
 		bgImage.raycastTarget = true; // Catch clicks
 		RectTransform bgRect = bgGO.GetComponent<RectTransform>();
 		bgRect.anchorMin = Vector2.zero;
@@ -117,7 +117,7 @@ public class WelcomeOverlay : MonoBehaviour {
 		CreateText(overlayGO.transform, "BottomText",
 			"For questions, refer to your employee handbook,\nor e-mail employee_relations@biggertech.com.",
 			new Vector2(0.5f, 0), new Vector2(0.5f, 0), // anchor bottom-center
-			new Vector2(0, 40), // offset up from bottom
+			new Vector2(0, 177), // offset up from bottom
 			new Vector2(0.5f, 0), // pivot bottom-center
 			48, FontStyles.Normal, TextAlignmentOptions.Center,
 			new Color(0.5f, 0.5f, 0.5f, 1f));

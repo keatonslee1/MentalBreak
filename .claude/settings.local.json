@@ -41,6 +41,9 @@
       "Bash(git -C \"C:\\\\Users\\\\epick\\\\OneDrive\\\\Documents\\\\mentalbreak\" status unity-project/Assets/Scenes/)",
       "Bash(git -C \"C:\\\\Users\\\\epick\\\\OneDrive\\\\Documents\\\\mentalbreak\" status unity-project/Assets/*.asset unity-project/Assets/Resources/*.asset)",
       "WebFetch(domain:docs.yarnspinner.dev)"
+      "Bash(dir /s \"C:\\\\Users\\\\epick\\\\OneDrive\\\\Documents\\\\mentalbreak\\\\unity-project\\\\Assets\\\\Audio\\\\SFX\\\\0_metrics\")",
+      "Bash(powershell -Command \"Get-Content ''C:\\\\Users\\\\epick\\\\OneDrive\\\\Documents\\\\mentalbreak\\\\unity-project\\\\Assets\\\\Dialogue\\\\01_meta_globals.yarn'' | Select-String ''suspicion_hud_active''\")",
+      "Bash(powershell -Command:*)"
     ]
   }
 }

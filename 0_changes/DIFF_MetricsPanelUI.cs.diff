@@ -1,0 +1,370 @@
+================================================================================
+DIFF FOR: unity-project/Assets/Scripts/UI/MetricsPanelUI.cs
+================================================================================
+
+This diff shows EXACTLY what lines to add to the ORIGINAL MetricsPanelUI.cs file.
+The original file has 787 lines. After changes, it will have ~850 lines.
+
+================================================================================
+CHANGE 1: Add new private fields after line 112 (after suspicionFillImage)
+================================================================================
+
+FIND THIS BLOCK (lines 110-114 in original):
+----------------------------------------
+    private TextMeshProUGUI suspicionLabelText;
+    private TextMeshProUGUI suspicionValueText;
+    private Image suspicionFillImage;
+
+    private static Sprite runtimeWhiteSprite;
+----------------------------------------
+
+REPLACE WITH:
+----------------------------------------
+    private TextMeshProUGUI suspicionLabelText;
+    private TextMeshProUGUI suspicionValueText;
+    private Image suspicionFillImage;
+
+    // Background images for animation highlighting
+    private Image engagementBackground;
+    private Image sanityBackground;
+    private Image suspicionBackground;
+
+    private static Sprite runtimeWhiteSprite;
+
+    // Flag to skip instant updates when MetricsAnimator handles animation
+    private bool useAnimatedUpdates = false;
+
+    #region Public Accessors for MetricsAnimator
+
+    /// <summary>Gets or sets whether animated updates are being used (skips instant fill updates).</summary>
+    public bool UseAnimatedUpdates
+    {
+        get => useAnimatedUpdates;
+        set => useAnimatedUpdates = value;
+    }
+
+    /// <summary>Gets the Engagement panel GameObject.</summary>
+    public GameObject EngagementPanel => engagementPanel;
+
+    /// <summary>Gets the Sanity panel GameObject.</summary>
+    public GameObject SanityPanel => sanityPanel;
+
+    /// <summary>Gets the Suspicion panel GameObject.</summary>
+    public GameObject SuspicionPanel => suspicionPanel;
+
+    /// <summary>Gets the Engagement fill bar Image.</summary>
+    public Image EngagementFillImage => engagementFillImage;
+
+    /// <summary>Gets the Sanity fill bar Image.</summary>
+    public Image SanityFillImage => sanityFillImage;
+
+    /// <summary>Gets the Suspicion fill bar Image.</summary>
+    public Image SuspicionFillImage => suspicionFillImage;
+
+    /// <summary>Gets the Engagement value text.</summary>
+    public TextMeshProUGUI EngagementValueText => engagementValueText;
+
+    /// <summary>Gets the Sanity value text.</summary>
+    public TextMeshProUGUI SanityValueText => sanityValueText;
+
+    /// <summary>Gets the Suspicion value text.</summary>
+    public TextMeshProUGUI SuspicionValueText => suspicionValueText;
+
+    /// <summary>Gets the Engagement panel background Image (for highlight effects).</summary>
+    public Image EngagementBackground => engagementBackground;
+
+    /// <summary>Gets the Sanity panel background Image (for highlight effects).</summary>
+    public Image SanityBackground => sanityBackground;
+
+    /// <summary>Gets the Suspicion panel background Image (for highlight effects).</summary>
+    public Image SuspicionBackground => suspicionBackground;
+
+    /// <summary>Gets the variable storage for reading Yarn variables.</summary>
+    public VariableStorageBehaviour VariableStorage => variableStorage;
+
+    #endregion
+----------------------------------------
+
+================================================================================
+CHANGE 2: Modify CreateMetricPanel method signature (around line 267)
+================================================================================
+
+FIND THIS BLOCK:
+----------------------------------------
+    private GameObject CreateMetricPanel(
+        string name,
+        string label,
+        Color fillColor,
+        out TextMeshProUGUI labelText,
+        out TextMeshProUGUI valueText,
+        out Image fillImage)
+    {
+        labelText = null;
+        valueText = null;
+        fillImage = null;
+----------------------------------------
+
+REPLACE WITH:
+----------------------------------------
+    private GameObject CreateMetricPanel(
+        string name,
+        string label,
+        Color fillColor,
+        out TextMeshProUGUI labelText,
+        out TextMeshProUGUI valueText,
+        out Image fillImage,
+        out Image backgroundImage)
+    {
+        labelText = null;
+        valueText = null;
+        fillImage = null;
+        backgroundImage = null;
+----------------------------------------
+
+================================================================================
+CHANGE 3: Store background reference when creating panel (around line 297-299)
+================================================================================
+
+FIND THIS BLOCK:
+----------------------------------------
+        // Background
+        Image bgImage = panel.AddComponent<Image>();
+        bgImage.color = panelBackgroundColor;
+        bgImage.raycastTarget = false;
+
+        // Layout inside panel
+----------------------------------------
+
+REPLACE WITH:
+----------------------------------------
+        // Background
+        Image bgImage = panel.AddComponent<Image>();
+        bgImage.color = panelBackgroundColor;
+        bgImage.raycastTarget = false;
+        backgroundImage = bgImage;
+
+        // Layout inside panel
+----------------------------------------
+
+================================================================================
+CHANGE 4: Update CreateMetricPanel calls (around lines 243-251)
+================================================================================
+
+FIND THIS BLOCK:
+----------------------------------------
+        // Create Engagement panel
+        engagementPanel = CreateMetricPanel("EngagementPanel", "Engagement", engagementColor, out engagementLabelText, out engagementValueText, out engagementFillImage);
+
+        // Create Sanity panel
+        sanityPanel = CreateMetricPanel("SanityPanel", "Sanity", sanityColor, out sanityLabelText, out sanityValueText, out sanityFillImage);
+
+        // Create Suspicion panel (hidden by default until Noam grants the HUD)
+        suspicionPanel = CreateMetricPanel("SuspicionPanel", "Suspicion", suspicionColorLow, out suspicionLabelText, out suspicionValueText, out suspicionFillImage);
+        suspicionPanel.SetActive(false); // Hidden until $suspicion_hud_active is true
+----------------------------------------
+
+REPLACE WITH:
+----------------------------------------
+        // Create Engagement panel
+        engagementPanel = CreateMetricPanel("EngagementPanel", "Engagement", engagementColor, out engagementLabelText, out engagementValueText, out engagementFillImage, out engagementBackground);
+
+        // Create Sanity panel
+        sanityPanel = CreateMetricPanel("SanityPanel", "Sanity", sanityColor, out sanityLabelText, out sanityValueText, out sanityFillImage, out sanityBackground);
+
+        // Create Suspicion panel (hidden by default until Noam grants the HUD)
+        suspicionPanel = CreateMetricPanel("SuspicionPanel", "Suspicion", suspicionColorLow, out suspicionLabelText, out suspicionValueText, out suspicionFillImage, out suspicionBackground);
+        suspicionPanel.SetActive(false); // Hidden until $suspicion_hud_active is true
+----------------------------------------
+
+================================================================================
+CHANGE 5: Wrap UpdateMetrics fill updates in useAnimatedUpdates check (around line 542-564)
+================================================================================
+
+FIND THIS BLOCK:
+----------------------------------------
+        // Update text + fills
+        float engagement01 = Mathf.Clamp01(engagement / 100f);
+        float sanity01 = Mathf.Clamp01(sanity / 100f);
+
+        if (engagementValueText != null)
+        {
+            engagementValueText.text = $"{engagement:F0}%";
+        }
+        if (engagementFillImage != null)
+        {
+            engagementFillImage.fillAmount = engagement01;
+            engagementFillImage.color = engagementColor;
+        }
+
+        if (sanityValueText != null)
+        {
+            sanityValueText.text = $"{sanity:F0}%";
+        }
+        if (sanityFillImage != null)
+        {
+            sanityFillImage.fillAmount = sanity01;
+            sanityFillImage.color = sanityColor;
+        }
+
+        // Update Suspicion panel visibility and value
+----------------------------------------
+
+REPLACE WITH:
+----------------------------------------
+        // Update text + fills (skip if MetricsAnimator is handling animation)
+        if (!useAnimatedUpdates)
+        {
+            float engagement01 = Mathf.Clamp01(engagement / 100f);
+            float sanity01 = Mathf.Clamp01(sanity / 100f);
+
+            if (engagementValueText != null)
+            {
+                engagementValueText.text = $"{engagement:F0}%";
+            }
+            if (engagementFillImage != null)
+            {
+                engagementFillImage.fillAmount = engagement01;
+                engagementFillImage.color = engagementColor;
+            }
+
+            if (sanityValueText != null)
+            {
+                sanityValueText.text = $"{sanity:F0}%";
+            }
+            if (sanityFillImage != null)
+            {
+                sanityFillImage.fillAmount = sanity01;
+                sanityFillImage.color = sanityColor;
+            }
+        }
+
+        // Update Suspicion panel visibility and value
+----------------------------------------
+
+================================================================================
+CHANGE 6: Modify UpdateSuspicionPanel to respect useAnimatedUpdates (around line 589-639)
+================================================================================
+
+FIND THIS BLOCK (inside the if (showSuspicion) block):
+----------------------------------------
+        if (showSuspicion)
+        {
+            // Get the alert level (suspicion score)
+            float alertLevel = 0f;
+            if (variableStorage.TryGetValue<float>("$alert_level", out var alertValue))
+            {
+                alertLevel = alertValue;
+            }
+
+            // Update the value
+            if (suspicionValueText != null)
+            {
+                suspicionValueText.text = $"{alertLevel:F0}%";
+            }
+
+            // Update color based on threat level
+            // 0-25: Clear (green), 26-50: Flagged (yellow-green), 51-75: Watched (orange), 76+: Critical (red)
+            Color suspicionColor;
+            if (alertLevel >= 76)
+            {
+                suspicionColor = suspicionColorHigh; // Red - Critical
+            }
+            else if (alertLevel >= 51)
+            {
+                suspicionColor = Color.Lerp(suspicionColorMid, suspicionColorHigh, (alertLevel - 51f) / 25f); // Orange to Red
+            }
+            else if (alertLevel >= 26)
+            {
+                suspicionColor = Color.Lerp(suspicionColorLow, suspicionColorMid, (alertLevel - 26f) / 25f); // Green to Orange
+            }
+            else
+            {
+                suspicionColor = suspicionColorLow; // Green - Clear
+            }
+
+            // Keep header text white; apply the dynamic color to the bar fill.
+            if (suspicionLabelText != null)
+            {
+                suspicionLabelText.color = Color.white;
+            }
+
+            if (suspicionValueText != null)
+            {
+                suspicionValueText.color = Color.white;
+            }
+
+            if (suspicionFillImage != null)
+            {
+                suspicionFillImage.fillAmount = Mathf.Clamp01(alertLevel / 100f);
+                suspicionFillImage.color = suspicionColor;
+            }
+        }
+----------------------------------------
+
+REPLACE WITH:
+----------------------------------------
+        if (showSuspicion)
+        {
+            // Get the alert level (suspicion score)
+            float alertLevel = 0f;
+            if (variableStorage.TryGetValue<float>("$alert_level", out var alertValue))
+            {
+                alertLevel = alertValue;
+            }
+
+            // Update color based on threat level (always update color, animator doesn't handle this)
+            // 0-25: Clear (green), 26-50: Flagged (yellow-green), 51-75: Watched (orange), 76+: Critical (red)
+            Color suspicionColor;
+            if (alertLevel >= 76)
+            {
+                suspicionColor = suspicionColorHigh; // Red - Critical
+            }
+            else if (alertLevel >= 51)
+            {
+                suspicionColor = Color.Lerp(suspicionColorMid, suspicionColorHigh, (alertLevel - 51f) / 25f); // Orange to Red
+            }
+            else if (alertLevel >= 26)
+            {
+                suspicionColor = Color.Lerp(suspicionColorLow, suspicionColorMid, (alertLevel - 26f) / 25f); // Green to Orange
+            }
+            else
+            {
+                suspicionColor = suspicionColorLow; // Green - Clear
+            }
+
+            // Keep header text white
+            if (suspicionLabelText != null)
+            {
+                suspicionLabelText.color = Color.white;
+            }
+
+            if (suspicionValueText != null)
+            {
+                suspicionValueText.color = Color.white;
+            }
+
+            // Update fill amount and text (skip if MetricsAnimator is handling animation)
+            if (!useAnimatedUpdates)
+            {
+                if (suspicionValueText != null)
+                {
+                    suspicionValueText.text = $"{alertLevel:F0}%";
+                }
+
+                if (suspicionFillImage != null)
+                {
+                    suspicionFillImage.fillAmount = Mathf.Clamp01(alertLevel / 100f);
+                }
+            }
+
+            // Always apply color (animator doesn't handle dynamic suspicion color)
+            if (suspicionFillImage != null)
+            {
+                suspicionFillImage.color = suspicionColor;
+            }
+        }
+----------------------------------------
+
+================================================================================
+END OF DIFF
+================================================================================

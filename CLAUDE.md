@@ -373,3 +373,223 @@ This project is a clean restructure from `Mental_Break_AlphaV2.0`. Key changes:
 - Unity project now in `unity-project/` subdirectory
 - Build output goes directly to `unity-project/webgl-build/`
 - New GitHub repo: https://github.com/keatonslee1/MentalBreak
+
+---
+
+## Unity MCP Integration
+
+Claude Code connects to the Unity Editor via the **Unity MCP** (Model Context Protocol) server, enabling direct interaction with the Unity Editor.
+
+### Connection Details
+| Setting | Value |
+|---------|-------|
+| Server Name | `UnityMCP` |
+| Transport | HTTP |
+| URL | `http://localhost:8080/mcp` |
+| Scope | User config (available in all projects) |
+| Server Version | 8.7.0 |
+| Source | `github.com/CoplayDev/unity-mcp` |
+
+### How It Works
+1. **Unity Editor** runs the MCP plugin (installed via Package Manager or manually)
+2. **MCP Server** starts automatically when Unity opens the project, listening on `localhost:8080`
+3. **Claude Code** connects to the server via the configured HTTP endpoint
+
+### Starting the Connection
+
+**Automatic (recommended):**
+- Simply open the Unity project in Unity Editor
+- The MCP server starts automatically
+- Claude Code connects when you start a session
+
+**Manual verification:**
+```powershell
+# Check if MCP server is configured in Claude Code
+claude mcp list
+
+# Check connection status
+claude mcp get UnityMCP
+```
+
+**If not configured, add it:**
+```powershell
+claude mcp add UnityMCP --transport http --url http://localhost:8080/mcp -s user
+```
+
+### Unity Instance Details
+| Property | Value |
+|----------|-------|
+| Instance ID | `unity-project@ab62627946292c7a` |
+| Unity Version | 6000.2.10f1 |
+| Platform | WebGL (WindowsEditor) |
+| Active Scene | `Assets/Scenes/MVPScene.unity` |
+
+### Available Resources (Read-Only State)
+| Resource | URI | Purpose |
+|----------|-----|---------|
+| Editor State | `unity://editor_state` | Play mode, compilation status, readiness |
+| Project Info | `unity://project/info` | Paths, Unity version, platform |
+| Scene Hierarchy | via `manage_scene` | GameObject tree |
+| Custom Tools | `unity://custom-tools` | Project-specific tools |
+| Console Logs | via `read_console` | Errors, warnings, logs |
+| Tests | `mcpforunity://tests` | Available test methods |
+| Tags/Layers | `unity://project/tags`, `unity://project/layers` | Project settings |
+
+### Available Tools (Actions)
+| Tool | Purpose |
+|------|---------|
+| `manage_editor` | Play/pause/stop, tags, layers |
+| `manage_scene` | Load, save, get hierarchy, screenshot |
+| `manage_gameobject` | Create, modify, find, add/remove components |
+| `manage_asset` | Search, import, create, delete assets |
+| `manage_script` | Create, read, delete C# scripts |
+| `script_apply_edits` | Structured C# edits (methods, classes) |
+| `apply_text_edits` | Raw text edits with line/column positions |
+| `manage_material` | Create materials, set properties, assign to renderers |
+| `manage_prefabs` | Open/close prefab stage, create from GameObject |
+| `run_tests` / `run_tests_async` | Execute Unity tests |
+| `read_console` | Get/clear console messages |
+| `refresh_unity` | Trigger asset database refresh |
+| `execute_menu_item` | Run Unity menu commands |
+
+### Best Practices
+1. **Check `editor_state` before mutations** - Ensure `ready_for_tools: true`
+2. **Use `read_console` after script changes** - Check for compilation errors
+3. **Use paging for large queries** - Scene hierarchy, asset searches
+4. **Prefer `script_apply_edits`** over raw text edits for safer C# modifications
+
+### Troubleshooting
+
+**Connection failed:**
+1. Ensure Unity Editor is open with the project loaded
+2. Check if MCP server is running: look for `mcp_http_8080.pid` in `unity-project/Library/MCPForUnity/RunState/`
+3. Restart Unity Editor to restart the MCP server
+
+**Server not configured:**
+```powershell
+claude mcp add UnityMCP --transport http --url http://localhost:8080/mcp -s user
+```
+
+**Multiple Unity instances:**
+- Use `set_active_instance` tool with `Name@hash` format
+- Check available instances via `unity://instances` resource
+
+### Files & Locations
+| File | Purpose |
+|------|---------|
+| `unity-project/Library/MCPForUnity/RunState/mcp_http_8080.pid` | Server process ID |
+| `unity-project/Library/MCPForUnity/TerminalScripts/mcp-terminal.cmd` | Manual server start script |
+| `.claude/settings.local.json` | Local Claude permissions (project-specific) |
+
+---
+
+## UI Adjustment via MCP
+
+Claude can directly inspect and modify Unity UI elements through MCP. This enables quick iteration on UI without manual Editor work.
+
+### UI Element Classification
+
+| Category | Elements | Location | Persistence Method |
+|----------|----------|----------|-------------------|
+| **Runtime-Created** | HUD buttons, MetricsPanel, Leaderboard, SaveSlotUI, Toast | Created by C# at runtime | Update code constants |
+| **Editor-Created** | PauseMenuPanel, SettingsPanel, CompanyStore, Dialogue UI | Scene hierarchy | Save scene in Unity |
+
+### MCP UI Workflow
+
+```
+1. DISCOVER  → Find UI element by name or component type
+2. INSPECT   → Read current component properties
+3. MODIFY    → Set new property values
+4. VERIFY    → Take screenshot to confirm changes
+5. PERSIST   → Scene: Save in Unity | Runtime: Update code constants
+```
+
+### MCP Commands
+
+**Find UI element:**
+```
+manage_gameobject(action="find", search_method="by_name", search_term="ButtonName")
+manage_gameobject(action="find", search_method="by_component", search_term="TMP_Text")
+```
+
+**Read properties:**
+```
+manage_gameobject(action="get_components", name="ElementName", include_properties=true)
+```
+
+**Modify properties:**
+```
+manage_gameobject(action="set_component_property", name="ElementName",
+    component_properties={"ComponentName": {"property": value}})
+```
+
+**Take screenshot:**
+```
+manage_scene(action="screenshot")
+```
+
+### Property Format Reference
+
+Properties must use nested dictionary format: `{ComponentName: {property: value}}`
+
+```javascript
+// Position
+{"RectTransform": {"anchoredPosition": {"x": 100, "y": 50}}}
+
+// Size
+{"RectTransform": {"sizeDelta": {"x": 200, "y": 100}}}
+
+// Text content & style
+{"TextMeshProUGUI": {"text": "New Text", "fontSize": 48}}
+
+// Color (RGBA 0-1 range)
+{"Image": {"color": {"r": 1, "g": 0.5, "b": 0.5, "a": 1}}}
+
+// Button state
+{"Button": {"interactable": false}}
+```
+
+### Common UI Element Paths
+
+| Element | Scene Path | Component |
+|---------|------------|-----------|
+| Dialogue text | `Dialogue System/Canvas/Line Presenter/Text` | TMP_Text |
+| Character name | `Dialogue System/Canvas/Line Presenter/Character Name` | TMP_Text |
+| Pause menu panel | `Dialogue System/Canvas/PauseMenuPanel` | Image, CanvasGroup |
+| Settings panel | `PauseMenuPanel/SettingsPanel` | Image, CanvasGroup |
+| Master volume slider | `SettingsPanel/ContentBox/MasterVolumeRow/MasterSlider` | Slider |
+| Options presenter | `Dialogue System/Canvas/Options Presenter` | VerticalLayoutGroup |
+
+### Runtime UI Constants
+
+For runtime-created UI, modify these constants in code:
+
+| Script | Constants | Purpose |
+|--------|-----------|---------|
+| `PauseMenuManager.cs` | `HudButtonHeight` (90), `HudMenuButtonWidth` (200), `HudBackButtonWidth` (240), `HudFeedbackButtonWidth` (300) | HUD button sizes |
+| `MetricsPanelUI.cs` | `fontSize` (48), `minFontSize` (48), bar width/height | Metrics display |
+| `LeaderboardUI.cs` | Column widths, `fontSize` (48) | Leaderboard layout |
+| `SaveSlotSelectionUI.cs` | `RowHeight` (100), button colors | Save/load UI |
+
+### Proactive UI Assistance
+
+Claude will proactively help with UI when:
+- User mentions UI looks wrong, off, or misaligned
+- User shares a screenshot showing UI issues
+- Console shows UI-related warnings or errors
+- User asks about visual appearance
+
+**Proactive workflow:**
+1. Take screenshot to assess current state
+2. Identify the UI element(s) involved
+3. Propose specific adjustments with values
+4. Ask for confirmation before modifying
+5. Apply changes and verify with screenshot
+6. Suggest persistence method based on UI type
+
+### Notes
+
+- MCP modifications are immediate in Editor but require scene save to persist
+- Runtime UI changes need code constant updates to persist across sessions
+- Screenshots save to `Assets/Screenshots/` (consider adding to .gitignore)
+- Always verify changes with screenshot before persisting

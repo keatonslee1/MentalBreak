@@ -111,7 +111,65 @@ public class MetricsPanelUI : MonoBehaviour
     private TextMeshProUGUI suspicionValueText;
     private Image suspicionFillImage;
 
+    // Background images for animation highlighting
+    private Image engagementBackground;
+    private Image sanityBackground;
+    private Image suspicionBackground;
+
     private static Sprite runtimeWhiteSprite;
+
+    // Flag to skip instant updates when MetricsAnimator handles animation
+    private bool useAnimatedUpdates = false;
+
+    #region Public Accessors for MetricsAnimator
+
+    /// <summary>Gets or sets whether animated updates are being used (skips instant fill updates).</summary>
+    public bool UseAnimatedUpdates
+    {
+        get => useAnimatedUpdates;
+        set => useAnimatedUpdates = value;
+    }
+
+    /// <summary>Gets the Engagement panel GameObject.</summary>
+    public GameObject EngagementPanel => engagementPanel;
+
+    /// <summary>Gets the Sanity panel GameObject.</summary>
+    public GameObject SanityPanel => sanityPanel;
+
+    /// <summary>Gets the Suspicion panel GameObject.</summary>
+    public GameObject SuspicionPanel => suspicionPanel;
+
+    /// <summary>Gets the Engagement fill bar Image.</summary>
+    public Image EngagementFillImage => engagementFillImage;
+
+    /// <summary>Gets the Sanity fill bar Image.</summary>
+    public Image SanityFillImage => sanityFillImage;
+
+    /// <summary>Gets the Suspicion fill bar Image.</summary>
+    public Image SuspicionFillImage => suspicionFillImage;
+
+    /// <summary>Gets the Engagement value text.</summary>
+    public TextMeshProUGUI EngagementValueText => engagementValueText;
+
+    /// <summary>Gets the Sanity value text.</summary>
+    public TextMeshProUGUI SanityValueText => sanityValueText;
+
+    /// <summary>Gets the Suspicion value text.</summary>
+    public TextMeshProUGUI SuspicionValueText => suspicionValueText;
+
+    /// <summary>Gets the Engagement panel background Image (for highlight effects).</summary>
+    public Image EngagementBackground => engagementBackground;
+
+    /// <summary>Gets the Sanity panel background Image (for highlight effects).</summary>
+    public Image SanityBackground => sanityBackground;
+
+    /// <summary>Gets the Suspicion panel background Image (for highlight effects).</summary>
+    public Image SuspicionBackground => suspicionBackground;
+
+    /// <summary>Gets the variable storage for reading Yarn variables.</summary>
+    public VariableStorageBehaviour VariableStorage => variableStorage;
+
+    #endregion
 
     private void OnEnable()
     {
@@ -241,13 +299,13 @@ public class MetricsPanelUI : MonoBehaviour
         rootFitter.horizontalFit = ContentSizeFitter.FitMode.Unconstrained;
 
         // Create Engagement panel
-        engagementPanel = CreateMetricPanel("EngagementPanel", "Engagement", engagementColor, out engagementLabelText, out engagementValueText, out engagementFillImage);
+        engagementPanel = CreateMetricPanel("EngagementPanel", "Engagement", engagementColor, out engagementLabelText, out engagementValueText, out engagementFillImage, out engagementBackground);
 
         // Create Sanity panel
-        sanityPanel = CreateMetricPanel("SanityPanel", "Sanity", sanityColor, out sanityLabelText, out sanityValueText, out sanityFillImage);
+        sanityPanel = CreateMetricPanel("SanityPanel", "Sanity", sanityColor, out sanityLabelText, out sanityValueText, out sanityFillImage, out sanityBackground);
 
         // Create Suspicion panel (hidden by default until Noam grants the HUD)
-        suspicionPanel = CreateMetricPanel("SuspicionPanel", "Suspicion", suspicionColorLow, out suspicionLabelText, out suspicionValueText, out suspicionFillImage);
+        suspicionPanel = CreateMetricPanel("SuspicionPanel", "Suspicion", suspicionColorLow, out suspicionLabelText, out suspicionValueText, out suspicionFillImage, out suspicionBackground);
         suspicionPanel.SetActive(false); // Hidden until $suspicion_hud_active is true
 
         EnsureContainerLayout();
@@ -270,11 +328,13 @@ public class MetricsPanelUI : MonoBehaviour
         Color fillColor,
         out TextMeshProUGUI labelText,
         out TextMeshProUGUI valueText,
-        out Image fillImage)
+        out Image fillImage,
+        out Image backgroundImage)
     {
         labelText = null;
         valueText = null;
         fillImage = null;
+        backgroundImage = null;
 
         GameObject panel = new GameObject(name);
         panel.transform.SetParent(metricsRoot.transform, false);
@@ -297,6 +357,7 @@ public class MetricsPanelUI : MonoBehaviour
         Image bgImage = panel.AddComponent<Image>();
         bgImage.color = panelBackgroundColor;
         bgImage.raycastTarget = false;
+        backgroundImage = bgImage;
 
         // Layout inside panel
         VerticalLayoutGroup panelLayout = panel.AddComponent<VerticalLayoutGroup>();
@@ -539,28 +600,31 @@ public class MetricsPanelUI : MonoBehaviour
             sanity = sanityValue;
         }
 
-        // Update text + fills
-        float engagement01 = Mathf.Clamp01(engagement / 100f);
-        float sanity01 = Mathf.Clamp01(sanity / 100f);
+        // Update text + fills (skip if MetricsAnimator is handling animation)
+        if (!useAnimatedUpdates)
+        {
+            float engagement01 = Mathf.Clamp01(engagement / 100f);
+            float sanity01 = Mathf.Clamp01(sanity / 100f);
 
-        if (engagementValueText != null)
-        {
-            engagementValueText.text = $"{engagement:F0}%";
-        }
-        if (engagementFillImage != null)
-        {
-            engagementFillImage.fillAmount = engagement01;
-            engagementFillImage.color = engagementColor;
-        }
+            if (engagementValueText != null)
+            {
+                engagementValueText.text = $"{engagement:F0}%";
+            }
+            if (engagementFillImage != null)
+            {
+                engagementFillImage.fillAmount = engagement01;
+                engagementFillImage.color = engagementColor;
+            }
 
-        if (sanityValueText != null)
-        {
-            sanityValueText.text = $"{sanity:F0}%";
-        }
-        if (sanityFillImage != null)
-        {
-            sanityFillImage.fillAmount = sanity01;
-            sanityFillImage.color = sanityColor;
+            if (sanityValueText != null)
+            {
+                sanityValueText.text = $"{sanity:F0}%";
+            }
+            if (sanityFillImage != null)
+            {
+                sanityFillImage.fillAmount = sanity01;
+                sanityFillImage.color = sanityColor;
+            }
         }
 
         // Update Suspicion panel visibility and value
@@ -595,13 +659,7 @@ public class MetricsPanelUI : MonoBehaviour
                 alertLevel = alertValue;
             }
 
-            // Update the value
-            if (suspicionValueText != null)
-            {
-                suspicionValueText.text = $"{alertLevel:F0}%";
-            }
-
-            // Update color based on threat level
+            // Update color based on threat level (always update color, animator doesn't handle this)
             // 0-25: Clear (green), 26-50: Flagged (yellow-green), 51-75: Watched (orange), 76+: Critical (red)
             Color suspicionColor;
             if (alertLevel >= 76)
@@ -621,7 +679,7 @@ public class MetricsPanelUI : MonoBehaviour
                 suspicionColor = suspicionColorLow; // Green - Clear
             }
 
-            // Keep header text white; apply the dynamic color to the bar fill.
+            // Keep header text white
             if (suspicionLabelText != null)
             {
                 suspicionLabelText.color = Color.white;
@@ -632,9 +690,23 @@ public class MetricsPanelUI : MonoBehaviour
                 suspicionValueText.color = Color.white;
             }
 
+            // Update fill amount and text (skip if MetricsAnimator is handling animation)
+            if (!useAnimatedUpdates)
+            {
+                if (suspicionValueText != null)
+                {
+                    suspicionValueText.text = $"{alertLevel:F0}%";
+                }
+
+                if (suspicionFillImage != null)
+                {
+                    suspicionFillImage.fillAmount = Mathf.Clamp01(alertLevel / 100f);
+                }
+            }
+
+            // Always apply color (animator doesn't handle dynamic suspicion color)
             if (suspicionFillImage != null)
             {
-                suspicionFillImage.fillAmount = Mathf.Clamp01(alertLevel / 100f);
                 suspicionFillImage.color = suspicionColor;
             }
         }

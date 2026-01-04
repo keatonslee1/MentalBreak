@@ -7191,6 +7191,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7262066351540048079, guid: 52571f68872914e24837210513edea1d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 793329341}
+    - targetCorrespondingSourceObject: {fileID: 7262066351540048079, guid: 52571f68872914e24837210513edea1d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 793329353}
     - targetCorrespondingSourceObject: {fileID: 3777764613968297427, guid: 52571f68872914e24837210513edea1d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1942533508}
@@ -7400,6 +7403,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ClickAdvancer
   lineAdvancer: {fileID: 269745840}
+--- !u!114 &793329353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 748757389}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f76921a136d7534c971408bcb63c598, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MetricsAnimator
+  animationDuration: 1
+  sequenceDelay: 0.75
+  highlightIntensity: 0.3
+  engagementUp: {fileID: 8300000, guid: 5d8795d067e83ed469322294bf05e2c4, type: 3}
+  engagementDown: {fileID: 8300000, guid: 40608dcd30f41f54985e20aae1e3aefc, type: 3}
+  sanityUp: {fileID: 8300000, guid: 5d8795d067e83ed469322294bf05e2c4, type: 3}
+  sanityDown: {fileID: 8300000, guid: 40608dcd30f41f54985e20aae1e3aefc, type: 3}
+  suspicionUp: {fileID: 8300000, guid: 5d8795d067e83ed469322294bf05e2c4, type: 3}
+  suspicionDown: {fileID: 8300000, guid: 40608dcd30f41f54985e20aae1e3aefc, type: 3}
+  metricsPanel: {fileID: 0}
+  audioHandler: {fileID: 0}
+  pollInterval: 0.1
 --- !u!1 &824752518
 GameObject:
   m_ObjectHideFlags: 0

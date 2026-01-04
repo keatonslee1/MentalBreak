@@ -1,0 +1,619 @@
+● I've completed the implementation plan. Here's the summary:
+
+  Plan Summary
+
+  New Files:
+  - MetricsAnimator.cs - Handles change detection, SFX playback, animation, and highlighting
+  - MetricChange.cs - Simple data struct for animation events
+
+  Modifications:
+  - MetricsPanelUI.cs - Add public accessors for UI elements + store background Image refs
+  - AudioCommandHandler.cs - Add PlaySFXClip(AudioClip) method
+
+  Key Behavior:
+  1. Detect Yarn variable changes by comparing to previous values
+  2. Queue changes in order: Engagement → Sanity → Suspicion
+  3. Process queue with 0.33s delay between animation starts
+  4. Each animation: play SFX, pulse background highlight, animate bar over 1 second
+  5. Skip Suspicion if $suspicion_hud_active is false
+  6. New changes queue up if animation is already running
+
+  SFX mapping:
+  - Engagement: 0_metrics/engagement/up_swell.wav / down_wobble.wav
+  - Sanity: 0_metrics/sanity/up_swell.wav / down_wobble.wav
+  - Suspicion: 0_metrics/compliance/up_swell.wav / down_wobble.wav
+                                                                                       
+● User approved Claude's plan
+  ⎿  Plan saved to: ~\.claude\plans\misty-gathering-gray.md · /plan to edit
+     Metrics Animation System Implementation Plan
+
+     Overview
+
+     Implement animated metrics changes with SFX, visual highlights, and sequential 
+     triggering when multiple metrics change at once.
+
+     Requirements Summary
+
+     - SFX: Play up_swell.wav or down_wobble.wav when a metric changes
+     - Highlight: Background color pulse on the metric panel
+     - Animation: Bar grows/shrinks over 1 second with smooth interpolation
+     - Sequencing: Multiple changes animate in order (Engagement → Sanity → Suspicion) 
+     with 0.33s delay between starts
+     - Skip Logic: Skip unchanged metrics; skip Suspicion if $suspicion_hud_active is 
+     false
+     - Queueing: New changes queue and play after current sequence finishes
+
+     Architecture
+
+     Create a new MetricsAnimator component that works alongside MetricsPanelUI:
+     - MetricsPanelUI handles layout/creation (unchanged core behavior)
+     - MetricsAnimator handles change detection, SFX, and animation
+     - Separation of concerns = easier to maintain/disable
+
+     Files to Create
+
+     1. Scripts/UI/MetricsAnimator.cs (NEW)
+
+     Core animation controller with:
+
+     public class MetricsAnimator : MonoBehaviour
+     {
+         // Settings
+         public float animationDuration = 1.0f;
+         public float sequenceDelay = 0.33f;
+         public float highlightIntensity = 0.3f;
+
+         // Change detection (previous values)
+         private float prevEngagement = -1f;
+         private float prevSanity = -1f;
+         private float prevAlertLevel = -1f;
+
+         // Animation queue
+         private Queue<MetricChange> pendingAnimations;
+         private bool isAnimating = false;
+     }
+
+     Key Methods:
+     - CheckForChanges() - Compare current vs previous Yarn variable values
+     - QueueAnimations(List<MetricChange>) - Add changes in priority order
+     - ProcessQueue() - Coroutine: process queue with 0.33s staggered starts
+     - AnimateMetric(MetricChange) - Coroutine: 1s animation with Lerp
+     - PulseHighlight(GameObject) - Coroutine: background color pulse
+     - PlayMetricSFX(MetricType, bool isUp) - Play appropriate sound
+
+     Change Detection Flow:
+     1. Poll Yarn variables on interval (0.1s like MetricsPanelUI)
+     2. Compare to previous values (skip if equal using Mathf.Approximately)
+     3. On first load, set previous values without animating
+     4. Build list of changes, sort by priority (Engagement=0, Sanity=1, Suspicion=2)
+     5. Skip Suspicion if $suspicion_hud_active is false
+     6. If not currently animating, start ProcessQueue() coroutine
+
+     Animation Coroutine:
+     IEnumerator AnimateMetric(MetricChange change)
+     {
+         // Play SFX at start
+         PlayMetricSFX(change.Type, change.NewValue > change.OldValue);
+
+         // Start highlight (runs parallel)
+         StartCoroutine(PulseHighlight(panel));
+
+         // Animate fill over 1 second
+         float elapsed = 0f;
+         while (elapsed < animationDuration)
+         {
+             elapsed += Time.deltaTime;
+             float t = Mathf.SmoothStep(0, 1, elapsed / animationDuration);
+             fillImage.fillAmount = Mathf.Lerp(oldFill, newFill, t);
+             valueText.text = $"{Mathf.Lerp(oldVal, newVal, t):F0}%";
+             yield return null;
+         }
+     }
+
+     Highlight Coroutine:
+     IEnumerator PulseHighlight(GameObject panel)
+     {
+         Image bg = panel.GetComponent<Image>();
+         Color original = bg.color;
+         Color bright = new Color(1f, 1f, 1f, original.a + 0.3f);
+
+         // Fade in (0.3s)
+         // Hold (0.4s)
+         // Fade out (0.3s)
+     }
+
+     2. Scripts/UI/MetricChange.cs (NEW)
+
+     Simple data struct:
+
+     public enum MetricType { Engagement = 0, Sanity = 1, Suspicion = 2 }
+
+     public struct MetricChange
+     {
+         public MetricType Type;
+         public float OldValue;
+         public float NewValue;
+     }
+
+     Files to Modify
+
+     1. Scripts/UI/MetricsPanelUI.cs
+
+     Add public accessors for MetricsAnimator to access UI elements:
+
+     // Add after private field declarations (~line 100)
+     public GameObject EngagementPanel => engagementPanel;
+     public GameObject SanityPanel => sanityPanel;
+     public GameObject SuspicionPanel => suspicionPanel;
+
+     public Image EngagementFillImage => engagementFillImage;
+     public Image SanityFillImage => sanityFillImage;
+     public Image SuspicionFillImage => suspicionFillImage;
+
+     public TextMeshProUGUI EngagementValueText => engagementValueText;
+     public TextMeshProUGUI SanityValueText => sanityValueText;
+     public TextMeshProUGUI SuspicionValueText => suspicionValueText;
+
+     public Image EngagementBackground => engagementBackground; // Need to store 
+     reference
+     public Image SanityBackground => sanityBackground;
+     public Image SuspicionBackground => suspicionBackground;
+
+     Also need to:
+     - Store background Image references when creating panels
+     - Add flag to skip instant updates when animator is handling them:
+     [Header("Animation")]
+     public bool useAnimatedUpdates = false; // Set true when MetricsAnimator is present
+
+     2. Scripts/Audio/AudioCommandHandler.cs
+
+     Add method for direct AudioClip playback (cleaner than string keys for this use 
+     case):
+
+     public void PlaySFXClip(AudioClip clip)
+     {
+         if (sfxSource != null && clip != null)
+         {
+             sfxSource.PlayOneShot(clip);
+         }
+     }
+
+     SFX Integration
+
+     MetricsAnimator will hold direct AudioClip references (serialized fields):
+
+     [Header("SFX")]
+     [SerializeField] private AudioClip engagementUp;
+     [SerializeField] private AudioClip engagementDown;
+     [SerializeField] private AudioClip sanityUp;
+     [SerializeField] private AudioClip sanityDown;
+     [SerializeField] private AudioClip suspicionUp;
+     [SerializeField] private AudioClip suspicionDown;
+
+     Assign in Inspector from:
+     - Assets/Audio/SFX/0_metrics/engagement/up_swell.wav
+     - Assets/Audio/SFX/0_metrics/engagement/down_wobble.wav
+     - Assets/Audio/SFX/0_metrics/sanity/up_swell.wav
+     - Assets/Audio/SFX/0_metrics/sanity/down_wobble.wav
+     - Assets/Audio/SFX/0_metrics/compliance/up_swell.wav
+     - Assets/Audio/SFX/0_metrics/compliance/down_wobble.wav
+
+     Scene Setup
+
+     1. Add MetricsAnimator component to same GameObject as MetricsPanelUI (or as 
+     sibling)
+     2. Assign AudioClip references in Inspector
+     3. Set useAnimatedUpdates = true on MetricsPanelUI
+
+     Edge Cases
+
+     - Initial load: Set prev values to current on first read (no animation)
+     - Rapid changes: Queue up and play sequentially
+     - Scene transition: Clear queue and stop coroutines in OnDisable()
+     - Suspicion reveal: When $suspicion_hud_active goes true, don't animate initial 
+     value
+
+     Implementation Order
+
+     1. Create MetricChange.cs (simple struct)
+     2. Add public accessors to MetricsPanelUI.cs
+     3. Add PlaySFXClip() to AudioCommandHandler.cs
+     4. Create MetricsAnimator.cs with full implementation
+     5. Test with single metric change
+     6. Test with multiple simultaneous changes
+     7. Test queueing behavior
+
+     Critical File Paths
+
+     - unity-project/Assets/Scripts/UI/MetricsPanelUI.cs - Modify for accessors
+     - unity-project/Assets/Scripts/Audio/AudioCommandHandler.cs - Add PlaySFXClip
+     - unity-project/Assets/Scripts/UI/MetricsAnimator.cs - NEW
+     - unity-project/Assets/Scripts/UI/MetricChange.cs - NEW
+     - unity-project/Assets/Audio/SFX/0_metrics/ - SFX source files
+
+
+● Let me set up my todo list and start implementing.
+
+● Read(unity-project\Assets\Scripts\UI\MetricsPanelUI.cs)
+  ⎿  Read 787 lines
+
+● Read(unity-project\Assets\Scripts\Audio\AudioCommandHandler.cs)
+  ⎿  Read 271 lines
+
+● Now I have full context. Let me start implementing. First, I'll create the MetricChange.cs struct:
+
+● Write(unity-project\Assets\Scripts\UI\MetricChange.cs)
+  ⎿  Wrote 1 lines to unity-project\Assets\Scripts\UI\MetricChange.cs
+     /// <summary>
+     /// Represents the type of metric for animation purposes.
+     /// Order determines animation priority (lower = first).
+     /// </summary>
+     public enum MetricType
+     {
+         Engagement = 0,
+         Sanity = 1,
+         Suspicion = 2
+     }
+
+● Now let me modify MetricsPanelUI.cs to add public accessors and store background references:
+
+● Update(unity-project\Assets\Scripts\UI\MetricsPanelUI.cs)
+  ⎿  Added 58 lines                                                                  
+      111      private TextMeshProUGUI suspicionValueText;                           
+      112      private Image suspicionFillImage;                                     
+      113                                                                            
+      114 +    // Background images for animation highlighting                       
+      115 +    private Image engagementBackground;                                   
+      116 +    private Image sanityBackground;                                       
+      117 +    private Image suspicionBackground;                                    
+      118 +                                                                          
+      119      private static Sprite runtimeWhiteSprite;                             
+      120                                                                            
+      121 +    // Flag to skip instant updates when MetricsAnimator handles          
+          +animation                                                                 
+      122 +    private bool useAnimatedUpdates = false;                              
+      123 +                                                                          
+      124 +    #region Public Accessors for MetricsAnimator                          
+      125 +                                                                          
+      126 +    /// <summary>Gets or sets whether animated updates are being used     
+          +(skips instant fill updates).</summary>                                   
+      127 +    public bool UseAnimatedUpdates                                        
+      128 +    {                                                                     
+      129 +        get => useAnimatedUpdates;                                        
+      130 +        set => useAnimatedUpdates = value;                                
+      131 +    }                                                                     
+      132 +                                                                          
+      133 +    /// <summary>Gets the Engagement panel GameObject.</summary>          
+      134 +    public GameObject EngagementPanel => engagementPanel;                 
+      135 +                                                                          
+      136 +    /// <summary>Gets the Sanity panel GameObject.</summary>              
+      137 +    public GameObject SanityPanel => sanityPanel;                         
+      138 +                                                                          
+      139 +    /// <summary>Gets the Suspicion panel GameObject.</summary>           
+      140 +    public GameObject SuspicionPanel => suspicionPanel;                   
+      141 +                                                                          
+      142 +    /// <summary>Gets the Engagement fill bar Image.</summary>            
+      143 +    public Image EngagementFillImage => engagementFillImage;              
+      144 +                                                                          
+      145 +    /// <summary>Gets the Sanity fill bar Image.</summary>                
+      146 +    public Image SanityFillImage => sanityFillImage;                      
+      147 +                                                                          
+      148 +    /// <summary>Gets the Suspicion fill bar Image.</summary>             
+      149 +    public Image SuspicionFillImage => suspicionFillImage;                
+      150 +                                                                          
+      151 +    /// <summary>Gets the Engagement value text.</summary>                
+      152 +    public TextMeshProUGUI EngagementValueText => engagementValueText;    
+      153 +                                                                          
+      154 +    /// <summary>Gets the Sanity value text.</summary>                    
+      155 +    public TextMeshProUGUI SanityValueText => sanityValueText;            
+      156 +                                                                          
+      157 +    /// <summary>Gets the Suspicion value text.</summary>                 
+      158 +    public TextMeshProUGUI SuspicionValueText => suspicionValueText;      
+      159 +                                                                          
+      160 +    /// <summary>Gets the Engagement panel background Image (for          
+          +highlight effects).</summary>                                             
+      161 +    public Image EngagementBackground => engagementBackground;            
+      162 +                                                                          
+      163 +    /// <summary>Gets the Sanity panel background Image (for highlight    
+          +effects).</summary>                                                       
+      164 +    public Image SanityBackground => sanityBackground;                    
+      165 +                                                                          
+      166 +    /// <summary>Gets the Suspicion panel background Image (for highlight 
+          + effects).</summary>                                                      
+      167 +    public Image SuspicionBackground => suspicionBackground;              
+      168 +                                                                          
+      169 +    /// <summary>Gets the variable storage for reading Yarn               
+          +variables.</summary>                                                      
+      170 +    public VariableStorageBehaviour VariableStorage => variableStorage;   
+      171 +                                                                          
+      172 +    #endregion                                                            
+      173 +                                                                          
+      174      private void OnEnable()                                               
+      175      {                                                                     
+      176          EnsureUIReady();                                                  
+
+● Now I need to modify CreateMetricPanel to output the background image and update the calls to store it. Let me update the method signature:
+
+● Update(unity-project\Assets\Scripts\UI\MetricsPanelUI.cs)
+  ⎿  Added 2 lines, removed 1 line                                                   
+      328          Color fillColor,                                                  
+      329          out TextMeshProUGUI labelText,                                    
+      330          out TextMeshProUGUI valueText,                                    
+      331 -        out Image fillImage)                                              
+      331 +        out Image fillImage,                                              
+      332 +        out Image backgroundImage)                                        
+      333      {                                                                     
+      334          labelText = null;                                                 
+      335          valueText = null;                                                 
+
+● Update(unity-project\Assets\Scripts\UI\MetricsPanelUI.cs)
+  ⎿  Added 1 line                                                                    
+      334          labelText = null;                                                 
+      335          valueText = null;                                                 
+      336          fillImage = null;                                                 
+      337 +        backgroundImage = null;                                           
+      338                                                                            
+      339          GameObject panel = new GameObject(name);                          
+      340          panel.transform.SetParent(metricsRoot.transform, false);          
+
+● Update(unity-project\Assets\Scripts\UI\MetricsPanelUI.cs)
+  ⎿  Added 1 line                                                                    
+      357          Image bgImage = panel.AddComponent<Image>();                      
+      358          bgImage.color = panelBackgroundColor;                             
+      359          bgImage.raycastTarget = false;                                    
+      360 +        backgroundImage = bgImage;                                        
+      361                                                                            
+      362          // Layout inside panel                                            
+      363          VerticalLayoutGroup panelLayout =                                 
+           panel.AddComponent<VerticalLayoutGroup>();                                
+
+● Now I need to update the calls to CreateMetricPanel to capture the background images:
+
+● Update(unity-project\Assets\Scripts\UI\MetricsPanelUI.cs)
+  ⎿  Added 3 lines, removed 3 lines                                                  
+      299          rootFitter.horizontalFit =                                        
+           ContentSizeFitter.FitMode.Unconstrained;                                  
+      300                                                                            
+      301          // Create Engagement panel                                        
+      302 -        engagementPanel = CreateMetricPanel("EngagementPanel",            
+          -"Engagement", engagementColor, out engagementLabelText, out               
+          -engagementValueText, out engagementFillImage);                            
+      302 +        engagementPanel = CreateMetricPanel("EngagementPanel",            
+          +"Engagement", engagementColor, out engagementLabelText, out               
+          +engagementValueText, out engagementFillImage, out engagementBackground);  
+      303                                                                            
+      304          // Create Sanity panel                                            
+      305 -        sanityPanel = CreateMetricPanel("SanityPanel", "Sanity",          
+          -sanityColor, out sanityLabelText, out sanityValueText, out sanityFillImage
+          -);                                                                        
+      305 +        sanityPanel = CreateMetricPanel("SanityPanel", "Sanity",          
+          +sanityColor, out sanityLabelText, out sanityValueText, out sanityFillImage
+          +, out sanityBackground);                                                  
+      306                                                                            
+      307          // Create Suspicion panel (hidden by default until Noam grants    
+           the HUD)                                                                  
+      308 -        suspicionPanel = CreateMetricPanel("SuspicionPanel", "Suspicion", 
+          -suspicionColorLow, out suspicionLabelText, out suspicionValueText, out    
+          -suspicionFillImage);                                                      
+      308 +        suspicionPanel = CreateMetricPanel("SuspicionPanel", "Suspicion", 
+          +suspicionColorLow, out suspicionLabelText, out suspicionValueText, out    
+          +suspicionFillImage, out suspicionBackground);                             
+      309          suspicionPanel.SetActive(false); // Hidden until                  
+           $suspicion_hud_active is true                                             
+      310                                                                            
+      311          EnsureContainerLayout();                                          
+
+● Now I need to modify UpdateMetrics to skip instant fill updates when useAnimatedUpdates is true:
+
+● Update(unity-project\Assets\Scripts\UI\MetricsPanelUI.cs)
+  ⎿  Added 23 lines, removed 20 lines                                                
+      600              sanity = sanityValue;                                         
+      601          }                                                                 
+      602                                                                            
+      603 -        // Update text + fills                                            
+      604 -        float engagement01 = Mathf.Clamp01(engagement / 100f);            
+      605 -        float sanity01 = Mathf.Clamp01(sanity / 100f);                    
+      606 -                                                                          
+      607 -        if (engagementValueText != null)                                  
+      603 +        // Update text + fills (skip if MetricsAnimator is handling       
+          +animation)                                                                
+      604 +        if (!useAnimatedUpdates)                                          
+      605          {                                                                 
+      606 -            engagementValueText.text = $"{engagement:F0}%";               
+      607 -        }                                                                 
+      608 -        if (engagementFillImage != null)                                  
+      609 -        {                                                                 
+      610 -            engagementFillImage.fillAmount = engagement01;                
+      611 -            engagementFillImage.color = engagementColor;                  
+      612 -        }                                                                 
+      606 +            float engagement01 = Mathf.Clamp01(engagement / 100f);        
+      607 +            float sanity01 = Mathf.Clamp01(sanity / 100f);                
+      608                                                                            
+      609 -        if (sanityValueText != null)                                      
+      610 -        {                                                                 
+      611 -            sanityValueText.text = $"{sanity:F0}%";                       
+      609 +            if (engagementValueText != null)                              
+      610 +            {                                                             
+      611 +                engagementValueText.text = $"{engagement:F0}%";           
+      612 +            }                                                             
+      613 +            if (engagementFillImage != null)                              
+      614 +            {                                                             
+      615 +                engagementFillImage.fillAmount = engagement01;            
+      616 +                engagementFillImage.color = engagementColor;              
+      617 +            }                                                             
+      618 +                                                                          
+      619 +            if (sanityValueText != null)                                  
+      620 +            {                                                             
+      621 +                sanityValueText.text = $"{sanity:F0}%";                   
+      622 +            }                                                             
+      623 +            if (sanityFillImage != null)                                  
+      624 +            {                                                             
+      625 +                sanityFillImage.fillAmount = sanity01;                    
+      626 +                sanityFillImage.color = sanityColor;                      
+      627 +            }                                                             
+      628          }                                                                 
+      629 -        if (sanityFillImage != null)                                      
+      630 -        {                                                                 
+      631 -            sanityFillImage.fillAmount = sanity01;                        
+      632 -            sanityFillImage.color = sanityColor;                          
+      633 -        }                                                                 
+      629                                                                            
+      630          // Update Suspicion panel visibility and value                    
+      631          UpdateSuspicionPanel();                                           
+
+● I also need to update UpdateSuspicionPanel to skip fill/text updates when animated:
+
+● Update(unity-project\Assets\Scripts\UI\MetricsPanelUI.cs)
+  ⎿  Added 17 lines, removed 9 lines                                                 
+      659                  alertLevel = alertValue;                                  
+      660              }                                                             
+      661                                                                            
+      662 -            // Update the value                                           
+      663 -            if (suspicionValueText != null)                               
+      664 -            {                                                             
+      665 -                suspicionValueText.text = $"{alertLevel:F0}%";            
+      666 -            }                                                             
+      667 -                                                                          
+      668 -            // Update color based on threat level                         
+      662 +            // Update color based on threat level (always update color,   
+          +animator doesn't handle this)                                             
+      663              // 0-25: Clear (green), 26-50: Flagged (yellow-green), 51-75: 
+            Watched (orange), 76+: Critical (red)                                    
+      664              Color suspicionColor;                                         
+      665              if (alertLevel >= 76)                                         
+     ...
+      685                  suspicionColor = suspicionColorLow; // Green - Clear      
+      686              }                                                             
+      687                                                                            
+      688 -            // Keep header text white                                     
+          -; apply the dynamic color to the bar fill.                                
+      688 +            // Keep header text white                                     
+      689              if (suspicionLabelText != null)                               
+      690              {                                                             
+      691                  suspicionLabelText.color = Color.white;                   
+     ...
+      696                  suspicionValueText.color = Color.white;                   
+      697              }                                                             
+      698                                                                            
+      699 +            // Update fill amount and text (skip if MetricsAnimator is    
+          +handling animation)                                                       
+      700 +            if (!useAnimatedUpdates)                                      
+      701 +            {                                                             
+      702 +                if (suspicionValueText != null)                           
+      703 +                {                                                         
+      704 +                    suspicionValueText.text = $"{alertLevel:F0}%";        
+      705 +                }                                                         
+      706 +                                                                          
+      707 +                if (suspicionFillImage != null)                           
+      708 +                {                                                         
+      709 +                    suspicionFillImage.fillAmount =                       
+          +Mathf.Clamp01(alertLevel / 100f);                                         
+      710 +                }                                                         
+      711 +            }                                                             
+      712 +                                                                          
+      713 +            // Always apply color (animator doesn't handle dynamic        
+          +suspicion color)                                                          
+      714              if (suspicionFillImage != null)                               
+      715              {                                                             
+      716 -                suspicionFillImage.fillAmount = Mathf.Clamp01(alertLevel  
+          -/ 100f);                                                                  
+      716                  suspicionFillImage.color = suspicionColor;                
+      717              }                                                             
+      718          }                                                                 
+
+● Now let me add PlaySFXClip() to AudioCommandHandler.cs:
+
+● Update(unity-project\Assets\Scripts\Audio\AudioCommandHandler.cs)
+  ⎿  Added 14 lines, removed 1 line                                                  
+      256              Debug.LogWarning($"SFX Command: No audio clip found for key   
+           '{key}'");                                                                
+      257          }                                                                 
+      258      }                                                                     
+      259 -                                                                          
+      259 +                                                                          
+      260 +    /// <summary>                                                         
+      261 +    /// Plays an SFX AudioClip directly without key lookup.               
+      262 +    /// Useful for programmatic SFX playback (e.g., metrics animation).   
+      263 +    /// </summary>                                                        
+      264 +    /// <param name="clip">The AudioClip to play.</param>                 
+      265 +    public void PlaySFXClip(AudioClip clip)                               
+      266 +    {                                                                     
+      267 +        if (sfxSource != null && clip != null)                            
+      268 +        {                                                                 
+      269 +            sfxSource.PlayOneShot(clip);                                  
+      270 +        }                                                                 
+      271 +    }                                                                     
+      272 +                                                                          
+      273      // Editor helper method                                               
+      274      void OnValidate()                                                     
+      275      {                                                                     
+
+● Now let me create the main MetricsAnimator.cs:
+
+● Write(unity-project\Assets\Scripts\UI\MetricsAnimator.cs)
+  ⎿  Wrote 1 lines to unity-project\Assets\Scripts\UI\MetricsAnimator.cs
+     using System.Collections;
+     using System.Collections.Generic;
+     using System.Linq;
+     using UnityEngine;
+     using UnityEngine.UI;
+     using TMPro;
+     using Yarn.Unity;
+     /// <summary>
+     /// Handles animated metric changes with SFX and visual highlights.
+
+● Done! Here's a summary of what was implemented:
+
+  Files Created
+
+  Scripts/UI/MetricChange.cs
+  - Simple enum MetricType (Engagement=0, Sanity=1, Suspicion=2) for priority ordering
+  - Struct MetricChange with OldValue, NewValue, and IsIncrease helper
+
+  Scripts/UI/MetricsAnimator.cs
+  - Main animation controller with coroutine-based animation
+  - Polls Yarn variables every 0.1s to detect changes
+  - Queues animations and processes them with 0.33s staggered starts
+  - Animates bar fill over 1 second using SmoothStep interpolation
+  - Pulses panel background (fade in 0.3s → hold 0.4s → fade out 0.3s)
+  - Plays appropriate SFX via AudioCommandHandler
+  - Skips Suspicion if $suspicion_hud_active is false
+
+  Files Modified
+
+  Scripts/UI/MetricsPanelUI.cs
+  - Added background Image storage for each panel
+  - Added public accessors for panels, fills, texts, and backgrounds
+  - Added UseAnimatedUpdates flag to skip instant updates when animator is active
+
+  Scripts/Audio/AudioCommandHandler.cs
+  - Added PlaySFXClip(AudioClip clip) for direct clip playback
+
+  Setup in Unity
+
+  1. Add MetricsAnimator component to a GameObject (same as or sibling to MetricsPanelUI)
+  2. Assign the 6 AudioClip references in the Inspector:
+    - Assets/Audio/SFX/0_metrics/engagement/up_swell.wav
+    - Assets/Audio/SFX/0_metrics/engagement/down_wobble.wav
+    - Assets/Audio/SFX/0_metrics/sanity/up_swell.wav
+    - Assets/Audio/SFX/0_metrics/sanity/down_wobble.wav
+    - Assets/Audio/SFX/0_metrics/compliance/up_swell.wav
+    - Assets/Audio/SFX/0_metrics/compliance/down_wobble.wav
+
+  The MetricsAnimator will auto-find MetricsPanelUI and AudioCommandHandler if not explicitly assigned.
+
+> change the delay between each successive metric from 0.33 to 0.75 seconds (the 
+stagger) 
+
+● Update(unity-project\Assets\Scripts\UI\MetricsAnimator.cs)
+  ⎿  Added 1 line, removed 1 line                                                    
+      17      public float animationDuration = 1.0f;                                 
+      18                                                                             
+      19      [Tooltip("Delay between starting each metric animation when multiple   
+          change")]                                                                  
+      20 -    public float sequenceDelay = 0.33f;                                    
+      20 +    public float sequenceDelay = 0.75f;                                    
+      21                                                                             
+      22      [Tooltip("How much brighter the panel background becomes during        
+          highlight (0-1)")]                                                         
+      23      [Range(0f, 1f)]                                                        

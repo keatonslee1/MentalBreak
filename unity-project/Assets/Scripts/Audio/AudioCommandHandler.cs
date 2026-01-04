@@ -256,7 +256,20 @@ public class AudioCommandHandler : MonoBehaviour
             Debug.LogWarning($"SFX Command: No audio clip found for key '{key}'");
         }
     }
-    
+
+    /// <summary>
+    /// Plays an SFX AudioClip directly without key lookup.
+    /// Useful for programmatic SFX playback (e.g., metrics animation).
+    /// </summary>
+    /// <param name="clip">The AudioClip to play.</param>
+    public void PlaySFXClip(AudioClip clip)
+    {
+        if (sfxSource != null && clip != null)
+        {
+            sfxSource.PlayOneShot(clip);
+        }
+    }
+
     // Editor helper method
     void OnValidate()
     {

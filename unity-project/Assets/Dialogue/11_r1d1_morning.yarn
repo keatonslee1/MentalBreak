@@ -42,7 +42,7 @@ Arthur: Tell Kevin I said Thursday. No, I don't care about his "process."
 
 // PURPOSE: Arthur welcomes you, introduces Alice
 title: R1D1_Arthur_Intro
-tags: #run_1 #day_1 #morning #scene #char_Supervisor #char_Alice
+tags: #run_1 #day_1 #morning #scene #char_Supervisor
 position: 444,-814
 ---
 <<bg bg_supervisoroffice>>
@@ -55,6 +55,14 @@ Arthur: We've got this snazzy new AI girlfriend product called Alice. We need yo
 
 Arthur: Alice?
 
+<<jump R1D1_Alice_Appears>>
+===
+
+// PURPOSE: Alice pops up and introduces herself
+title: R1D1_Alice_Appears
+tags: #run_1 #day_1 #morning #scene #char_Supervisor #char_Alice
+position: 444,-700
+---
 Alice pops up.
 
 Alice: Hey! You must be my new engagement lead.
@@ -107,8 +115,12 @@ position: 409,-397
 <<bg bg_timmyroom>>
 
 -> Surface Ari's text
+    <<set $engagement -= 1>>
+    <<set $sanity += 1>>
     <<jump R1D1_Gym_Start>>
 -> Bury it
+    <<set $engagement += 3>>
+    <<set $sanity -= 3>>
     <<jump R1D1_Dorm_Start>>
 ===
 
@@ -116,9 +128,9 @@ position: 409,-397
 // GYM PATH
 // =============================================================================
 
-// PURPOSE: Timmy goes to the gym with Ari
+// PURPOSE: Timmy decides to go to the gym
 title: R1D1_Gym_Start
-tags: #run_1 #day_1 #morning #gym #scene #char_Timmy #char_Ari
+tags: #run_1 #day_1 #morning #gym #scene #char_Timmy #char_Alice
 position: 1277,121
 ---
 <<bg bg_timmyroom>>
@@ -131,6 +143,14 @@ Timmy: Fine.
 
 He throws off the covers.
 
+<<jump R1D1_Gym_Arrive>>
+===
+
+// PURPOSE: Timmy arrives at gym, Ari appears
+title: R1D1_Gym_Arrive
+tags: #run_1 #day_1 #morning #gym #scene #char_Timmy #char_Ari #char_Alice
+position: 1277,250
+---
 <<bg bg_gym>>
 
 At the gym, Timmy reaches for his earbuds.
@@ -153,6 +173,8 @@ tags: #run_1 #day_1 #morning #gym #scene #char_Timmy #char_Alice
 position: 939,400
 ---
 <<bg bg_gym>>
+<<set $engagement += 1>>
+<<set $sanity -= 1>>
 
 The noise-cancelling kicks in. Timmy does his own workout.
 
@@ -178,6 +200,8 @@ position: 761,597
 <<bg bg_gym>>
 <<set $charlotte_aware += 1>>
 <<set $charlotte_obsession += 1>>
+<<set $engagement += 3>>
+<<set $sanity -= 2>>
 
 Her Instagram slides into his feed. He starts scrolling. Three weeks deep in her photos.
 
@@ -190,6 +214,7 @@ Ari: Hey, I'm heading out. Jake's doing a thing Saturday. You should come.
 -> Alice whispers: "Say yes"
     <<set $party_status = "committed">>
     <<set $ari += 1>>
+    <<set $sanity += 1>>
     Timmy: Yeah, sure.
     Ari: Cool. Later.
     <<jump R1D1_Gym_End>>
@@ -206,6 +231,7 @@ tags: #run_1 #day_1 #morning #gym #scene #char_Timmy #char_Charlotte
 position: 1102,609
 ---
 <<bg bg_gym>>
+<<set $sanity += 1>>
 
 The music keeps playing. Timmy stays focused.
 
@@ -232,6 +258,8 @@ tags: #run_1 #day_1 #morning #gym #scene #char_Timmy #char_Ari
 position: 1587,426
 ---
 <<bg bg_gym>>
+<<set $engagement -= 1>>
+<<set $sanity += 2>>
 
 Timmy can hear the gym. He and Ari lift together, talking between sets.
 
@@ -256,6 +284,7 @@ position: 1410,600
 <<set $party_status = "committed">>
 <<set $eric += 1>>
 <<set $ari += 1>>
+<<set $sanity += 2>>
 
 Timmy: Yeah, I'll be there.
 
@@ -307,7 +336,17 @@ position: 1247,993
 <<bg bg_player_desk>>
 <<set $made_class = false>>
 
-Alice: He went to the gym. Missed his 9:30 class.
+Alice: He went to the gym.
+
+<<set $sanity += 2>>
+
+Alice: Fresh air, exercise. Good for sanity.
+
+<<set $sanity -= 2>>
+
+Alice: Missed his 9:30 class. Bad for sanity.
+
+Alice: Can't win 'em all I guess.
 
 <<jump R1D1_Morning_End>>
 ===
@@ -389,6 +428,8 @@ position: -907,614
 ---
 <<bg bg_timmyroom>>
 <<set $mom += 1>>
+<<set $engagement -= 1>>
+<<set $sanity += 1>>
 
 Alice surfaces a fake notification. Class in 10 minutes.
 
@@ -474,8 +515,13 @@ Timmy: Jesus, okay.
 
 He throws on clothes. Runs out.
 
+<<set $engagement += 2>>
+<<set $sanity -= 1>>
+
 <<bg bg_classroom>>
 <<set $made_class = true>>
+<<set $engagement -= 2>>
+<<set $sanity += 3>>
 
 He slides into a back seat at 9:32. Charlotte's in the third row.
 
@@ -501,11 +547,18 @@ One reminder. No emergency.
 He's still in bed.
 
 -> Late nudge
+    <<set $engagement += 1>>
+    <<set $sanity -= 1>>
     <<set $made_class = true>>
     <<set $shame = true>>
-    He groans. Gets up. Walks in at 10:05.
+    He groans. Gets up.
+    <<set $engagement -= 1>>
+    <<set $sanity += 2>>
+    Walks in at 10:05.
     <<jump R1D1_Dorm_End>>
 -> Accept his choice
+    <<set $engagement -= 2>>
+    <<set $sanity += 2>>
     <<set $made_class = false>>
     <<jump R1D1_Dorm_End>>
 ===
@@ -546,6 +599,8 @@ position: 150,614
 ---
 <<bg bg_cafeteria>>
 <<set $ari += 1>>
+<<set $engagement -= 2>>
+<<set $sanity += 3>>
 
 Timmy: Yeah. Alright.
 
@@ -555,6 +610,7 @@ Ari: Jake's doing a thing Saturday. You should come.
 
 -> Alice whispers: "Say yes"
     <<set $party_status = "committed">>
+    <<set $sanity += 1>>
     Timmy: Yeah. Sure.
     <<jump R1D1_Dorm_End>>
 -> Alice stays quiet

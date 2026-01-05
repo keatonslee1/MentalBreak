@@ -24,7 +24,7 @@ public class PauseMenuManager : MonoBehaviour
     private const float HudBackButtonWidth = 240f;
     private const float HudFeedbackButtonWidth = 300f;
     private const float HudRunDayBoxWidth = 400f;
-    private static readonly Color HudBackgroundColor = new Color(0f, 0f, 0f, 0.55f);
+    private static readonly Color HudBackgroundColor = new Color(0f, 0f, 0f, 0.95f);
     private const float HudVerticalGap = 20f;
 
     [Header("UI References")]

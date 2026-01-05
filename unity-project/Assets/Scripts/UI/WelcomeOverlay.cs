@@ -191,9 +191,17 @@ public class WelcomeOverlay : MonoBehaviour {
 	private void Update() {
 		if (isDismissing) return;
 
-		// Only respond to mouse clicks, not keyboard
+		// Check for mouse click
 		var mouse = Mouse.current;
-		if (mouse != null && (mouse.leftButton.wasPressedThisFrame || mouse.rightButton.wasPressedThisFrame)) {
+		bool mouseClicked = mouse != null &&
+			(mouse.leftButton.wasPressedThisFrame || mouse.rightButton.wasPressedThisFrame);
+
+		// Check for touch (mobile)
+		var touchscreen = Touchscreen.current;
+		bool touchBegan = touchscreen != null &&
+			touchscreen.primaryTouch.press.wasPressedThisFrame;
+
+		if (mouseClicked || touchBegan) {
 			StartCoroutine(FadeAndDismiss());
 		}
 	}

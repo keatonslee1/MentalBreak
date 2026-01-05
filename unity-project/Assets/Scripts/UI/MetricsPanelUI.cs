@@ -69,7 +69,7 @@ public class MetricsPanelUI : MonoBehaviour
     public Color barTrackColor = new Color(1f, 1f, 1f, 0.06f);
 
     [Tooltip("Background color used for metric panels")]
-    public Color panelBackgroundColor = new Color(0f, 0f, 0f, 0.55f);
+    public Color panelBackgroundColor = new Color(0f, 0f, 0f, 0.95f);
 
     [Header("Tuning")]
     [Tooltip("If enabled, the script will overwrite inspector values with the defaults defined in code, ensuring consistent layout in builds.")]
@@ -567,7 +567,7 @@ public class MetricsPanelUI : MonoBehaviour
         barSpacing = 10f;
 
         // Match the button background opacity/feel.
-        panelBackgroundColor = new Color(0f, 0f, 0f, 0.55f);
+        panelBackgroundColor = new Color(0f, 0f, 0f, 0.95f);
 
         // Reduce track/highlight so the bars don't feel more opaque than the HUD buttons.
         barTrackColor = new Color(1f, 1f, 1f, 0.06f);

@@ -6392,6 +6392,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1990286531}
     - target: {fileID: 161567338268514566, guid: 52571f68872914e24837210513edea1d, type: 3}
+      propertyPath: bottomLeftOffset.y
+      value: 130
+      objectReference: {fileID: 0}
+    - target: {fileID: 161567338268514566, guid: 52571f68872914e24837210513edea1d, type: 3}
+      propertyPath: bottomRightOffset.y
+      value: 130
+      objectReference: {fileID: 0}
+    - target: {fileID: 161567338268514566, guid: 52571f68872914e24837210513edea1d, type: 3}
       propertyPath: characterSprites.Array.size
       value: 8
       objectReference: {fileID: 0}
@@ -6637,7 +6645,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2958262985454349539, guid: 52571f68872914e24837210513edea1d, type: 3}
       propertyPath: m_SizeDelta.x
-      value: -700
+      value: -880
       objectReference: {fileID: 0}
     - target: {fileID: 2958262985454349539, guid: 52571f68872914e24837210513edea1d, type: 3}
       propertyPath: m_SizeDelta.y
@@ -7013,7 +7021,7 @@ PrefabInstance:
       objectReference: {fileID: 2576261519635394347, guid: 416bee6bc45a2e84ebf93a2d411f7400, type: 3}
     - target: {fileID: 8020628925107869966, guid: 52571f68872914e24837210513edea1d, type: 3}
       propertyPath: m_SizeDelta.x
-      value: -700
+      value: -880
       objectReference: {fileID: 0}
     - target: {fileID: 8020628925107869966, guid: 52571f68872914e24837210513edea1d, type: 3}
       propertyPath: m_SizeDelta.y

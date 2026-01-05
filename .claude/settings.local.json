@@ -40,7 +40,8 @@
       "Bash(git -C \"C:\\\\Users\\\\epick\\\\OneDrive\\\\Documents\\\\mentalbreak\" diff \"unity-project/Assets/Speech Bubbles for Yarn Spinner/Scripts/BasicBubbleContent.cs\")",
       "Bash(git -C \"C:\\\\Users\\\\epick\\\\OneDrive\\\\Documents\\\\mentalbreak\" status unity-project/Assets/Scenes/)",
       "Bash(git -C \"C:\\\\Users\\\\epick\\\\OneDrive\\\\Documents\\\\mentalbreak\" status unity-project/Assets/*.asset unity-project/Assets/Resources/*.asset)",
-      "WebFetch(domain:docs.yarnspinner.dev)"
+      "WebFetch(domain:docs.yarnspinner.dev)",
+      "Bash(cp:*)"
     ]
   }
 }

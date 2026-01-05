@@ -35,9 +35,15 @@ public class ClickAdvancer : MonoBehaviour
 
         // Handle mouse click
         var mouse = Mouse.current;
-        if (mouse != null && mouse.leftButton.wasPressedThisFrame)
+        bool mouseClicked = mouse != null && mouse.leftButton.wasPressedThisFrame;
+
+        // Handle touch (mobile)
+        var touchscreen = Touchscreen.current;
+        bool touchBegan = touchscreen != null && touchscreen.primaryTouch.press.wasPressedThisFrame;
+
+        if (mouseClicked || touchBegan)
         {
-            // Don't advance if clicking on interactive UI elements
+            // Don't advance if clicking/tapping on interactive UI elements
             if (!IsPointerOverInteractableUI())
             {
                 lineAdvancer?.RequestLineHurryUp();
@@ -67,16 +73,30 @@ public class ClickAdvancer : MonoBehaviour
     {
         if (EventSystem.current == null) return false;
 
-        // Not over any UI? Allow click to advance dialogue.
+        // Not over any UI? Allow click/tap to advance dialogue.
         if (!EventSystem.current.IsPointerOverGameObject()) return false;
 
-        // Raycast to find what's under the pointer (using new Input System)
+        // Get pointer position from touch or mouse
+        Vector2 pointerPosition;
+        var touchscreen = Touchscreen.current;
         var mouse = Mouse.current;
-        if (mouse == null) return false;
+
+        if (touchscreen != null && touchscreen.primaryTouch.press.isPressed)
+        {
+            pointerPosition = touchscreen.primaryTouch.position.ReadValue();
+        }
+        else if (mouse != null)
+        {
+            pointerPosition = mouse.position.ReadValue();
+        }
+        else
+        {
+            return false; // No input device available
+        }
 
         var pointerData = new PointerEventData(EventSystem.current)
         {
-            position = mouse.position.ReadValue()
+            position = pointerPosition
         };
 
         var results = new List<RaycastResult>();

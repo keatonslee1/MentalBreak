@@ -95,19 +95,8 @@ foreach ($htmlFile in $htmlFiles) {
     }
 }
 
-# Update index.html title and meta tags
-$indexHtml = Join-Path $webglBuild "index.html"
-if (Test-Path $indexHtml) {
-    $content = Get-Content $indexHtml -Raw
-
-    # Update title (Alpha v3.5 -> v4.0.0)
-    $content = $content -replace '<title>Mental Break [^<]*</title>', "<title>Mental Break v$newVersion</title>"
-    $content = $content -replace 'og:title" content="Mental Break [^"]*"', "og:title`" content=`"Mental Break v$newVersion`""
-    $content = $content -replace 'twitter:title" content="Mental Break [^"]*"', "twitter:title`" content=`"Mental Break v$newVersion`""
-
-    Set-Content -Path $indexHtml -Value $content -Encoding UTF8
-    Write-Host "Updated index.html meta tags" -ForegroundColor Green
-}
+# Note: index.html title/og:title/twitter:title are no longer auto-updated
+# Version is only shown in HTML comments and version.json
 
 Write-Host ""
 Write-Host "=== Version Update Complete ===" -ForegroundColor Cyan

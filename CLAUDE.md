@@ -110,7 +110,7 @@ python -m http.server 8000
 | Audio/ | Audio commands | AudioCommandHandler, FMODAudioManager, FMODWebGLBankLoader, MumbleDialogueController |
 | Characters/ | Portraits | CharacterSpriteManager, PortraitTalkingStateController |
 | Commands/ | Yarn handlers | BackgroundCommandHandler, CheckpointCommandHandler |
-| Editor/ | Dev tools | DialogueSystemUIAutoWire, SettingsPanelSetup, DialogueFontSetup, PauseMenuSetup |
+| Editor/ | Dev tools | DialogueSystemUIAutoWire, SettingsPanelSetup, DialogueFontSetup, PauseMenuSetup, FixCharacterSpriteCropping |
 
 ### Yarn Commands
 
@@ -204,6 +204,83 @@ See `docs/audio_guide.md` for comprehensive audio documentation including FMOD s
 | AliceTheme | ASIDE_AliceTheme | BSIDE_AliceTheme |
 | SupervisorTheme | ASIDE_Supervisor | BSIDE_ArthurTheme |
 
+## Character Portrait Animation System
+
+Animated character portraits display during dialogue with layered sprite rendering for base, talking, and eye blink animations.
+
+### Portrait Folder Structure
+```
+Assets/Graphics/Characters/
+├── Alice/
+│   ├── Base/           # 1 idle sprite (e.g., "Alice base.png")
+│   ├── Talking/        # N talking frames (e.g., "alice talking1.png" - "alice talking15.png")
+│   └── Eyes/           # 3 blink frames (e.g., "alice blinking1.png" - "alice blinking3.png")
+├── Arthur/
+│   ├── Base/           # arthur.png
+│   ├── Talking/        # arthur talking1-37.png (37 frames)
+│   └── Eyes/           # arthur blinking1-3.png (3 frames)
+└── Ari/
+    ├── Base/           # ari.png
+    ├── Talking/        # ari talking1-37.png (37 frames)
+    └── Eyes/           # ari blinking1-3.png (3 frames)
+```
+
+### How It Works
+1. **CharacterSpriteManager** auto-loads portrait data from folder structure
+2. **Layered Rendering**: Base (always visible) + Talking overlay + Eyes overlay
+3. **Talking Animation**: Cycles frames at 10 FPS during speech
+4. **Eye Blink**: Random intervals (2-6 seconds), independent of talking
+5. **Breathing Motion**: Subtle sine-wave vertical bobbing on all layers
+
+### Character Tag Mapping
+In `CharacterSpriteManager.cs`, character tags map to folder names:
+```csharp
+{ "char_Alice", "alice" },       // → Graphics/Characters/Alice/
+{ "char_Supervisor", "arthur" }, // → Graphics/Characters/Arthur/ (Arthur = Supervisor)
+{ "char_Ari", "ari" },           // → Graphics/Characters/Ari/
+{ "char_Timmy", "timmy" },
+// ... etc
+```
+
+### Yarn Integration
+Characters are specified via node tags:
+```yarn
+title: R1_Conversation
+tags: #char_Alice #char_Supervisor #loc_Office
+---
+Alice: Hello!
+Supervisor: Hi there.
+```
+
+### Adding New Animated Characters
+1. Create folder structure: `Graphics/Characters/{Name}/Base/`, `Talking/`, `Eyes/`
+2. Add sprites with numeric suffixes (e.g., `name talking1.png`, `name talking2.png`)
+3. Add mapping in `CharacterSpriteManager.cs` → `characterTagToSpriteName`
+4. Add dialogue name mapping in `PortraitTalkingStateController.cs` → `characterNameToTag`
+5. **Run sprite fix**: `Tools > Fix All Character Sprite Cropping`
+
+### Sprite Cropping Fix (IMPORTANT)
+Unity's default "Tight" mesh type crops transparent pixels, causing size mismatches between animation layers. After adding new character sprites:
+
+**Run**: `Tools > Fix All Character Sprite Cropping`
+
+This script (`Scripts/Editor/FixCharacterSpriteCropping.cs`):
+- Sets `spriteMeshType: 0` (Full Rect instead of Tight)
+- Sets sprite rect to full canvas size
+- Sets pivot to bottom-center (0.5, 0)
+- Processes all characters with Base/Talking/Eyes folders automatically
+
+### Key Files
+| File | Location | Purpose |
+|------|----------|---------|
+| `CharacterSpriteManager.cs` | `Scripts/Characters/` | Main portrait display manager, tag mapping |
+| `CharacterPortraitData.cs` | `Scripts/Characters/` | Data container, asset loading |
+| `CharacterPortraitAnimator.cs` | `Scripts/Characters/` | Talking + blink animation |
+| `PortraitTalkingStateController.cs` | `Scripts/Characters/` | Yarn dialogue integration |
+| `FixCharacterSpriteCropping.cs` | `Scripts/Editor/` | Sprite import settings fix |
+
+---
+
 ## Settings System
 
 **SettingsManager** (`Scripts/Core/SettingsManager.cs`)
@@ -251,6 +328,34 @@ The game uses **two separate ScreenSpaceOverlay canvases** with different sortin
 
 ### Known Pitfall (Fixed)
 `SaveSlotSelectionUI` previously changed the parent canvas `sortingOrder = 5000`, which caused metrics/leaderboard to disappear behind the dialogue UI. The fix was to remove this sortingOrder change entirely - the save/load panel is already visible within its parent canvas.
+
+---
+
+## Unity Pitfalls & Patterns
+
+### Awake() on Inactive GameObjects
+
+**Critical**: When a GameObject is saved as **inactive** in the scene, Unity **defers** calling `Awake()` until the object is first activated via `SetActive(true)`.
+
+**The Race Condition:**
+```csharp
+// BAD - causes race condition on panels that start inactive
+private void Awake()
+{
+    // ... initialization ...
+    gameObject.SetActive(false);  // DON'T DO THIS!
+}
+```
+
+When `SetActive(true)` is called on an inactive object:
+1. Unity activates the object
+2. Unity **immediately** runs `Awake()` (before `SetActive()` returns)
+3. If `Awake()` calls `SetActive(false)`, the object deactivates again
+4. The caller's `SetActive(true)` appears to have no effect
+
+**Solution**: If a panel is created inactive by an Editor script (like `CompanyStoreSetup.cs`), do NOT call `SetActive(false)` in `Awake()`. The panel is already inactive.
+
+**Affected File**: `CompanyStore.cs` - Fixed by removing redundant `SetActive(false)` from `Awake()`
 
 ---
 

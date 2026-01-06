@@ -44,7 +44,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639018787485942012
+  lastModified: 639032609624358359
   FileSizes:
   - Name: 
     Value: 1328
@@ -88,7 +88,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/UI.bank
   Name: UI
   StudioPath: bank:/UI
-  lastModified: 639018787486635971
+  lastModified: 639032609625050706
   FileSizes: []
   Exists: 1
 --- !u!114 &-4086066731531743022
@@ -235,7 +235,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/Music_A_Side.bank
   Name: Music_A_Side
   StudioPath: bank:/Music_A_Side
-  lastModified: 639018787486154249
+  lastModified: 639032609624550887
   FileSizes: []
   Exists: 1
 --- !u!114 &-1150705768309665849
@@ -281,7 +281,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/Music_B_Side.bank
   Name: Music_B_Side
   StudioPath: bank:/Music_B_Side
-  lastModified: 639018787486485279
+  lastModified: 639032609625029801
   FileSizes: []
   Exists: 1
 --- !u!114 &11400000
@@ -315,7 +315,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: -5610765607738155562}
   cacheVersion: 131857
-  cacheTime: 639018787486635971
+  cacheTime: 639032609625050706
   SerializableEventsDict:
   - key: event:/ASIDE_Supervisor
     index: 0
@@ -344,7 +344,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639018787485817822
+  lastModified: 639032609624342834
   FileSizes: []
   Exists: 1
 --- !u!114 &3413104326806066222

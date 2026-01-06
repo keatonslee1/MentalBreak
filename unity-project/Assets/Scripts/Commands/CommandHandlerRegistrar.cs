@@ -215,27 +215,22 @@ public class CommandHandlerRegistrar : MonoBehaviour
             // Don't mark as failed - checkpoint is optional for backwards compatibility
         }
 
-        // Register CompanyStore method via bound delegate
-        // Note: OpenStore returns IEnumerator, so we use Func<IEnumerator> instead of Action
-        if (companyStore != null)
+        // Register CompanyStore command with dynamic lookup
+        // Uses a wrapper that finds the current CompanyStore at invocation time
+        // This handles scene reloads/debug jumps where instances change
+        try
         {
-            try
-            {
-                // Create the delegate bound to the specific instance
-                System.Func<IEnumerator> storeCommand = companyStore.OpenStore;
-                dialogueRunner.AddCommandHandler("store", storeCommand);
+            // Remove if already registered (safe to call)
+            try { dialogueRunner.RemoveCommandHandler("store"); } catch { }
 
-                Debug.Log($"CommandHandlerRegistrar: Registered 'store' command with CompanyStore on {companyStore.gameObject.name}");
-            }
-            catch (System.Exception e)
-            {
-                Debug.LogError($"CommandHandlerRegistrar: Failed to register 'store': {e.Message}");
-                allRegistered = false;
-            }
+            // Register wrapper that finds current CompanyStore dynamically
+            dialogueRunner.AddCommandHandler("store", new System.Func<IEnumerator>(OpenStoreWrapper));
+            Debug.Log("CommandHandlerRegistrar: Registered 'store' command with dynamic lookup");
         }
-        else
+        catch (System.Exception e)
         {
-            Debug.LogWarning("CommandHandlerRegistrar: CompanyStore not found! Store command will not be available. Run Tools > Setup Company Store.");
+            Debug.LogError($"CommandHandlerRegistrar: Failed to register 'store': {e.Message}");
+            allRegistered = false;
         }
 
         // Register FMODAudioManager commands
@@ -278,5 +273,24 @@ public class CommandHandlerRegistrar : MonoBehaviour
     // Note: using bound delegates above ensures Yarn does not interpret the first
     // parameter as a GameObject target; instead, the string is passed to the
     // instance methods directly.
+
+    /// <summary>
+    /// Wrapper that dynamically finds CompanyStore at invocation time.
+    /// This handles scene reloads where the CompanyStore instance changes.
+    /// </summary>
+    private IEnumerator OpenStoreWrapper()
+    {
+        var store = FindFirstObjectByType<CompanyStore>(FindObjectsInactive.Include);
+        if (store != null)
+        {
+            Debug.Log($"[CommandHandlerRegistrar] Found CompanyStore dynamically on '{store.gameObject.name}'");
+            yield return store.OpenStore();
+        }
+        else
+        {
+            Debug.LogError("[CommandHandlerRegistrar] CompanyStore not found in scene! Store command failed.");
+            yield break;
+        }
+    }
 }
 

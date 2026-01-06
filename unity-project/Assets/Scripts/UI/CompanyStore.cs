@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 using Yarn.Unity;
@@ -64,6 +65,7 @@ public class CompanyStore : MonoBehaviour
     private Dictionary<string, StoreItemData> itemLookup = new Dictionary<string, StoreItemData>();
     private bool isOpen = false;
     private Coroutine feedbackCoroutine;
+    private IDisposable modalLock;
 
     private void Awake()
     {
@@ -88,11 +90,10 @@ public class CompanyStore : MonoBehaviour
             variableStorage = dialogueRunner.VariableStorage;
         }
 
-        // Hide store panel initially
-        if (storePanel != null)
-        {
-            storePanel.SetActive(false);
-        }
+        // NOTE: Panel is already saved as inactive in scene by CompanyStoreSetup.cs
+        // Do NOT call SetActive(false) here - it causes a race condition:
+        // When an inactive object is first activated, Awake() runs DURING SetActive(true),
+        // so calling SetActive(false) here would immediately deactivate the panel again.
 
         // Setup button listeners
         if (closeButton != null)
@@ -127,8 +128,11 @@ public class CompanyStore : MonoBehaviour
 
         isOpen = true;
 
-        // Activate the panel - use storePanel if set, otherwise use this gameObject
-        GameObject panelToActivate = (storePanel != null) ? storePanel : gameObject;
+        // Acquire modal lock to block keyboard input during store
+        modalLock = ModalInputLock.Acquire(this);
+
+        // Always use our own gameObject since CompanyStore is on CompanyStorePanel
+        GameObject panelToActivate = gameObject;
         Debug.Log($"[CompanyStore] Before SetActive: activeSelf={panelToActivate.activeSelf}, activeInHierarchy={panelToActivate.activeInHierarchy}");
         Debug.Log($"[CompanyStore] Panel instanceID={panelToActivate.GetInstanceID()}, scene={panelToActivate.scene.name}");
 
@@ -153,6 +157,10 @@ public class CompanyStore : MonoBehaviour
             yield return null;
         }
 
+        // Release modal lock
+        modalLock?.Dispose();
+        modalLock = null;
+
         Debug.Log("[CompanyStore] Store closed, resuming dialogue");
     }
 
@@ -165,8 +173,12 @@ public class CompanyStore : MonoBehaviour
 
         isOpen = false;
 
-        // Deactivate the panel - use storePanel if set, otherwise use this gameObject
-        GameObject panelToDeactivate = (storePanel != null) ? storePanel : gameObject;
+        // Release modal lock (safety - also released in coroutine)
+        modalLock?.Dispose();
+        modalLock = null;
+
+        // Always use our own gameObject since CompanyStore is on CompanyStorePanel
+        GameObject panelToDeactivate = gameObject;
         panelToDeactivate.SetActive(false);
 
         // Clear feedback

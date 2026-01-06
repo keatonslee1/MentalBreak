@@ -41,7 +41,10 @@
       "Bash(git -C \"C:\\\\Users\\\\epick\\\\OneDrive\\\\Documents\\\\mentalbreak\" status unity-project/Assets/Scenes/)",
       "Bash(git -C \"C:\\\\Users\\\\epick\\\\OneDrive\\\\Documents\\\\mentalbreak\" status unity-project/Assets/*.asset unity-project/Assets/Resources/*.asset)",
       "WebFetch(domain:docs.yarnspinner.dev)",
-      "Bash(cp:*)"
+      "Bash(cp:*)",
+      "mcp__UnityMCP__manage_asset",
+      "mcp__UnityMCP__execute_menu_item",
+      "mcp__UnityMCP__validate_script"
     ]
   }
 }

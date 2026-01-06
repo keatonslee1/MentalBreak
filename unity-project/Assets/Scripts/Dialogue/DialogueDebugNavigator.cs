@@ -71,7 +71,7 @@ public class DialogueDebugNavigator : MonoBehaviour
         new JumpMenuItem { displayName = "Run 3 Day 1", nodeName = "R3_D1_Start" },
         new JumpMenuItem { displayName = "Run 3 Day 2", nodeName = "R3_D2_Start" },
         new JumpMenuItem { displayName = "Run 3 Day 3", nodeName = "R3_D3_Start" },
-        new JumpMenuItem { displayName = "Run 4 Start", nodeName = "R4_Start" },
+        new JumpMenuItem { displayName = "Before R1D1 Shop", nodeName = "R1D1_Evening_BT_Timmy_Report" },
     };
 
     // PlayerPrefs key for saving resume position

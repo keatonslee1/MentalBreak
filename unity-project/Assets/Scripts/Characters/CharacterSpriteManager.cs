@@ -109,7 +109,7 @@ public class CharacterSpriteManager : MonoBehaviour
     private Dictionary<string, string> characterTagToSpriteName = new Dictionary<string, string>
     {
         { "char_Alice", "alice" },
-        { "char_Supervisor", "supervisor" },
+        { "char_Supervisor", "arthur" },
         { "char_Timmy", "timmy" },
         { "char_BTC", "btc" },
         { "char_Ari", "ari" },

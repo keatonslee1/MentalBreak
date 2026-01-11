@@ -49,7 +49,8 @@
       "mcp__figma__get_metadata",
       "mcp__figma__get_screenshot",
       "Bash(mkdir:*)",
-      "mcp__UnityMCP__batch_execute"
+      "mcp__UnityMCP__batch_execute",
+      "Bash(timeout:*)"
     ]
   }
 }

@@ -82,6 +82,10 @@ public class PauseMenuManager : MonoBehaviour
     private bool isPaused = false;
     private float previousTimeScale = 1f;
 
+    // Simple pause overlay
+    private GameObject pauseOverlay;
+    private bool pauseOverlayInitialized = false;
+
     private Image pauseMenuPanelImage;
     private bool pauseMenuPanelImageInitialEnabled = true;
     private bool pauseMenuPanelImageInitialRaycastTarget = true;
@@ -108,6 +112,82 @@ public class PauseMenuManager : MonoBehaviour
 
     // Node titles encode run/day as R{run}_D{day}_...; prefer this over $current_* vars when jumping/back.
     private static readonly Regex RunDayNodeRegex = new Regex(@"^R(?<run>\d+)_D(?<day>\d+)(?:_|\b)", RegexOptions.Compiled);
+
+    private void CreatePauseOverlay()
+    {
+        if (pauseOverlayInitialized) return;
+
+        Canvas canvas = GetUiCanvas();
+        if (canvas == null) return;
+
+        // Create overlay root
+        pauseOverlay = new GameObject("PauseOverlay");
+        pauseOverlay.transform.SetParent(canvas.transform, false);
+
+        RectTransform rect = pauseOverlay.AddComponent<RectTransform>();
+        rect.anchorMin = Vector2.zero;
+        rect.anchorMax = Vector2.one;
+        rect.offsetMin = Vector2.zero;
+        rect.offsetMax = Vector2.zero;
+
+        // Grey semi-transparent background
+        Image bg = pauseOverlay.AddComponent<Image>();
+        bg.color = new Color(0.5f, 0.5f, 0.5f, 0.7f);
+        bg.raycastTarget = true;
+
+        // "PAUSED" text
+        GameObject pausedTextObj = new GameObject("PausedText");
+        pausedTextObj.transform.SetParent(pauseOverlay.transform, false);
+
+        RectTransform pausedRect = pausedTextObj.AddComponent<RectTransform>();
+        pausedRect.anchorMin = new Vector2(0.5f, 0.5f);
+        pausedRect.anchorMax = new Vector2(0.5f, 0.5f);
+        pausedRect.anchoredPosition = new Vector2(0, 40);
+        pausedRect.sizeDelta = new Vector2(400, 100);
+
+#if USE_TMP
+        TextMeshProUGUI pausedText = pausedTextObj.AddComponent<TextMeshProUGUI>();
+        pausedText.text = "PAUSED";
+        pausedText.fontSize = 72;
+        pausedText.alignment = TextAlignmentOptions.Center;
+        pausedText.color = Color.white;
+#else
+        Text pausedText = pausedTextObj.AddComponent<Text>();
+        pausedText.text = "PAUSED";
+        pausedText.fontSize = 72;
+        pausedText.alignment = TextAnchor.MiddleCenter;
+        pausedText.color = Color.white;
+        pausedText.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+#endif
+
+        // "Press ESC to Resume" text
+        GameObject resumeTextObj = new GameObject("ResumeText");
+        resumeTextObj.transform.SetParent(pauseOverlay.transform, false);
+
+        RectTransform resumeRect = resumeTextObj.AddComponent<RectTransform>();
+        resumeRect.anchorMin = new Vector2(0.5f, 0.5f);
+        resumeRect.anchorMax = new Vector2(0.5f, 0.5f);
+        resumeRect.anchoredPosition = new Vector2(0, -40);
+        resumeRect.sizeDelta = new Vector2(500, 60);
+
+#if USE_TMP
+        TextMeshProUGUI resumeText = resumeTextObj.AddComponent<TextMeshProUGUI>();
+        resumeText.text = "Press ESC to Resume";
+        resumeText.fontSize = 36;
+        resumeText.alignment = TextAlignmentOptions.Center;
+        resumeText.color = Color.white;
+#else
+        Text resumeText = resumeTextObj.AddComponent<Text>();
+        resumeText.text = "Press ESC to Resume";
+        resumeText.fontSize = 36;
+        resumeText.alignment = TextAnchor.MiddleCenter;
+        resumeText.color = Color.white;
+        resumeText.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+#endif
+
+        pauseOverlay.SetActive(false);
+        pauseOverlayInitialized = true;
+    }
 
     private Canvas GetUiCanvas()
     {
@@ -551,25 +631,11 @@ public class PauseMenuManager : MonoBehaviour
         previousTimeScale = Time.timeScale;
         Time.timeScale = pausedTimeScale;
 
-        // Show pause menu and ensure buttons are visible
-        if (pauseMenuPanel != null)
+        // Show simple pause overlay
+        CreatePauseOverlay();
+        if (pauseOverlay != null)
         {
-            pauseMenuPanel.SetActive(true);
-            ShowPauseMenuButtons(); // Always ensure buttons are visible when showing pause menu
-            VerifyPauseMenuButtons("PauseGame");
-        }
-        else
-        {
-            Debug.LogWarning("PauseMenuManager: PauseGame called but pauseMenuPanel is null.");
-        }
-
-        LogPauseMenuState("PauseGame - after ShowPauseMenuButtons");
-
-        // Pause dialogue if running
-        if (dialogueRunner != null && dialogueRunner.IsDialogueRunning)
-        {
-            // Dialogue will naturally pause when time scale is 0
-            // But we can add additional dialogue pause logic here if needed
+            pauseOverlay.SetActive(true);
         }
 
         Debug.Log("Game paused");
@@ -582,26 +648,13 @@ public class PauseMenuManager : MonoBehaviour
     {
         if (!isPaused) return;
 
-        // Ensure LoadMenuPanel is hidden if it's open
-        if (saveSlotSelectionUI != null)
-        {
-            saveSlotSelectionUI.HideSelectionUI();
-        }
-
-        // Ensure SettingsPanel is hidden if it's open
-        if (settingsPanel != null)
-        {
-            settingsPanel.Hide();
-        }
-
         isPaused = false;
         Time.timeScale = previousTimeScale;
 
-        // Hide pause menu (but restore buttons first so they're ready next time)
-        if (pauseMenuPanel != null)
+        // Hide pause overlay
+        if (pauseOverlay != null)
         {
-            ShowPauseMenuButtons(); // Restore buttons before hiding
-            pauseMenuPanel.SetActive(false);
+            pauseOverlay.SetActive(false);
         }
 
         Debug.Log("Game resumed");

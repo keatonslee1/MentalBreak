@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 using TMPro;
 using System;
 
@@ -12,34 +14,37 @@ namespace MentalBreak.UI.Win95
     public class Win95SettingsPanel : MonoBehaviour
     {
         [Header("Dialog Settings")]
-        [SerializeField] private float dialogWidth = 800f;
-        [SerializeField] private float dialogHeight = 700f;
+        [SerializeField] private float dialogWidth = 630f;
+        [SerializeField] private float dialogHeight = 570f;
         [SerializeField] private int fontSize = 36;
-        [SerializeField] private float sliderWidth = 400f;
+        [SerializeField] private float sliderWidth = 330f;
 
         // Events
         public event Action<float> OnMasterVolumeChanged;
         public event Action<float> OnMusicVolumeChanged;
         public event Action<float> OnSFXVolumeChanged;
-        public event Action<bool> OnSoundtrackSideChanged; // true = Side A, false = Side B
+        public event Action<bool> OnSoundtrackSideChanged;
         public event Action OnDialogClosed;
         public event Action OnResetDefaults;
 
         // UI Elements
         private GameObject dialogRoot;
         private GameObject dimBackground;
-        private TMP_Text titleText;
+        private RectTransform dialogRootRect;
         private Slider masterSlider;
         private Slider musicSlider;
         private Slider sfxSlider;
         private TMP_Text masterValueText;
         private TMP_Text musicValueText;
         private TMP_Text sfxValueText;
-        private Toggle soundtrackToggle;
-        private TMP_Text soundtrackLabel;
-        private CanvasGroup canvasGroup;
+
+        // Radio buttons for soundtrack selection
+        private ToggleGroup soundtrackToggleGroup;
+        private Toggle nelaToggle;
+        private Toggle francoToggle;
 
         private bool isInitialized = false;
+        private IDisposable modalLock;
 
         private void Awake()
         {
@@ -50,9 +55,40 @@ namespace MentalBreak.UI.Win95
             }
         }
 
+        private void Update()
+        {
+            if (!gameObject.activeSelf) return;
+
+            // Handle ESC to close
+            if (Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame)
+            {
+                ModalInputLock.ConsumeEscapeThisFrame();
+                Close();
+                return;
+            }
+
+            // Handle click outside dialog to close
+            var mouse = Mouse.current;
+            if (mouse != null && mouse.leftButton.wasPressedThisFrame)
+            {
+                if (!IsPointerOverDialog())
+                {
+                    Close();
+                }
+            }
+        }
+
+        private bool IsPointerOverDialog()
+        {
+            if (dialogRootRect == null) return false;
+
+            Vector2 mousePos = Mouse.current.position.ReadValue();
+            return RectTransformUtility.RectangleContainsScreenPoint(dialogRootRect, mousePos, null);
+        }
+
         private void CreateUI()
         {
-            // Create dim background
+            // Create dim background (no Button - we handle click-outside in Update)
             dimBackground = new GameObject("DimBackground");
             dimBackground.transform.SetParent(transform, false);
 
@@ -63,41 +99,26 @@ namespace MentalBreak.UI.Win95
             dimRect.offsetMax = Vector2.zero;
 
             Image dimImage = dimBackground.AddComponent<Image>();
-            dimImage.color = new Color(0, 0, 0, 0.5f);
-            dimImage.raycastTarget = true;
-
-            Button dimButton = dimBackground.AddComponent<Button>();
-            dimButton.transition = Selectable.Transition.None;
-            dimButton.onClick.AddListener(Close);
+            dimImage.color = new Color(0, 0, 0, 0.8f);
+            dimImage.raycastTarget = true; // Blocks clicks from going through
 
             // Create dialog window
             dialogRoot = new GameObject("DialogWindow");
             dialogRoot.transform.SetParent(transform, false);
 
-            RectTransform rootRect = dialogRoot.AddComponent<RectTransform>();
-            rootRect.anchorMin = new Vector2(0.5f, 0.5f);
-            rootRect.anchorMax = new Vector2(0.5f, 0.5f);
-            rootRect.pivot = new Vector2(0.5f, 0.5f);
-            rootRect.anchoredPosition = Vector2.zero;
-            rootRect.sizeDelta = new Vector2(dialogWidth, dialogHeight);
+            dialogRootRect = dialogRoot.AddComponent<RectTransform>();
+            dialogRootRect.anchorMin = new Vector2(0.5f, 0.5f);
+            dialogRootRect.anchorMax = new Vector2(0.5f, 0.5f);
+            dialogRootRect.pivot = new Vector2(0.5f, 0.5f);
+            dialogRootRect.anchoredPosition = Vector2.zero;
+            dialogRootRect.sizeDelta = new Vector2(dialogWidth, dialogHeight);
 
             Image bgImage = dialogRoot.AddComponent<Image>();
             bgImage.color = Win95Theme.WindowBackground;
             bgImage.raycastTarget = true;
 
-            canvasGroup = dialogRoot.AddComponent<CanvasGroup>();
-
-            // Add Win95 raised border
-            Win95Panel.Create(dialogRoot, Win95Panel.PanelStyle.Raised);
-
-            // Vertical layout
-            VerticalLayoutGroup layout = dialogRoot.AddComponent<VerticalLayoutGroup>();
-            layout.padding = new RectOffset(8, 8, 8, 8);
-            layout.spacing = 8;
-            layout.childControlWidth = true;
-            layout.childControlHeight = false;
-            layout.childForceExpandWidth = true;
-            layout.childForceExpandHeight = false;
+            // Add raised border manually (not as layout children)
+            CreateRaisedBorder(dialogRoot);
 
             // Create title bar
             CreateTitleBar();
@@ -112,386 +133,35 @@ namespace MentalBreak.UI.Win95
             gameObject.SetActive(false);
         }
 
-        private void CreateTitleBar()
+        private void CreateRaisedBorder(GameObject target)
         {
-            GameObject titleBar = new GameObject("TitleBar");
-            titleBar.transform.SetParent(dialogRoot.transform, false);
-
-            LayoutElement titleLayout = titleBar.AddComponent<LayoutElement>();
-            titleLayout.preferredHeight = 56;
-
-            Image titleBg = titleBar.AddComponent<Image>();
-            titleBg.color = Win95Theme.ColorTitleActive;
-
-            HorizontalLayoutGroup titleHlg = titleBar.AddComponent<HorizontalLayoutGroup>();
-            titleHlg.padding = new RectOffset(8, 8, 4, 4);
-            titleHlg.spacing = 8;
-            titleHlg.childAlignment = TextAnchor.MiddleLeft;
-            titleHlg.childControlWidth = true;
-            titleHlg.childControlHeight = true;
-            titleHlg.childForceExpandWidth = true;
-            titleHlg.childForceExpandHeight = true;
-
-            // Title text
-            GameObject titleTextObj = new GameObject("TitleText");
-            titleTextObj.transform.SetParent(titleBar.transform, false);
-
-            titleText = titleTextObj.AddComponent<TextMeshProUGUI>();
-            titleText.text = "Sound Settings";
-            titleText.fontSize = fontSize;
-            titleText.color = Win95Theme.TitleBarText;
-            titleText.fontStyle = FontStyles.Bold;
-            titleText.alignment = TextAlignmentOptions.MidlineLeft;
-
-            LayoutElement titleTextLayout = titleTextObj.AddComponent<LayoutElement>();
-            titleTextLayout.flexibleWidth = 1;
-
-            // Close button
-            GameObject closeObj = new GameObject("CloseButton");
-            closeObj.transform.SetParent(titleBar.transform, false);
-
-            LayoutElement closeLayout = closeObj.AddComponent<LayoutElement>();
-            closeLayout.preferredWidth = 44;
-            closeLayout.preferredHeight = 44;
-
-            Button closeButton = closeObj.AddComponent<Button>();
-            closeButton.onClick.AddListener(Close);
-
-            Win95Button.Create(closeObj, "X", fontSize - 2);
-        }
-
-        private void CreateContentArea()
-        {
-            GameObject contentArea = new GameObject("ContentArea");
-            contentArea.transform.SetParent(dialogRoot.transform, false);
-
-            LayoutElement contentLayout = contentArea.AddComponent<LayoutElement>();
-            contentLayout.flexibleHeight = 1;
-
-            VerticalLayoutGroup contentVlg = contentArea.AddComponent<VerticalLayoutGroup>();
-            contentVlg.padding = new RectOffset(32, 32, 32, 32);
-            contentVlg.spacing = 24;
-            contentVlg.childControlWidth = true;
-            contentVlg.childControlHeight = false;
-            contentVlg.childForceExpandWidth = true;
-            contentVlg.childForceExpandHeight = false;
-
-            // Master Volume
-            CreateVolumeSlider(contentArea.transform, "Master Volume", 1f,
-                out masterSlider, out masterValueText, OnMasterSliderChanged);
-
-            // Music Volume
-            CreateVolumeSlider(contentArea.transform, "Music Volume", 0.7f,
-                out musicSlider, out musicValueText, OnMusicSliderChanged);
-
-            // SFX Volume
-            CreateVolumeSlider(contentArea.transform, "SFX Volume", 1f,
-                out sfxSlider, out sfxValueText, OnSFXSliderChanged);
-
-            // Separator
-            CreateSeparator(contentArea.transform);
-
-            // Soundtrack Toggle
-            CreateSoundtrackToggle(contentArea.transform);
-        }
-
-        private void CreateVolumeSlider(Transform parent, string label, float defaultValue,
-            out Slider slider, out TMP_Text valueText, Action<float> onValueChanged)
-        {
-            GameObject row = new GameObject(label.Replace(" ", "") + "Row");
-            row.transform.SetParent(parent, false);
-
-            LayoutElement rowLayout = row.AddComponent<LayoutElement>();
-            rowLayout.preferredHeight = 80;
-
-            VerticalLayoutGroup rowVlg = row.AddComponent<VerticalLayoutGroup>();
-            rowVlg.spacing = 8;
-            rowVlg.childControlWidth = true;
-            rowVlg.childControlHeight = false;
-            rowVlg.childForceExpandWidth = true;
-            rowVlg.childForceExpandHeight = false;
-
-            // Label
-            GameObject labelObj = new GameObject("Label");
-            labelObj.transform.SetParent(row.transform, false);
-
-            TMP_Text labelText = labelObj.AddComponent<TextMeshProUGUI>();
-            labelText.text = label;
-            labelText.fontSize = fontSize;
-            labelText.color = Win95Theme.WindowText;
-            labelText.alignment = TextAlignmentOptions.MidlineLeft;
-
-            LayoutElement labelLayout = labelObj.AddComponent<LayoutElement>();
-            labelLayout.preferredHeight = fontSize + 4;
-
-            // Slider row
-            GameObject sliderRow = new GameObject("SliderRow");
-            sliderRow.transform.SetParent(row.transform, false);
-
-            HorizontalLayoutGroup sliderHlg = sliderRow.AddComponent<HorizontalLayoutGroup>();
-            sliderHlg.spacing = 16;
-            sliderHlg.childAlignment = TextAnchor.MiddleLeft;
-            sliderHlg.childControlWidth = false;
-            sliderHlg.childControlHeight = true;
-            sliderHlg.childForceExpandWidth = false;
-            sliderHlg.childForceExpandHeight = true;
-
-            LayoutElement sliderRowLayout = sliderRow.AddComponent<LayoutElement>();
-            sliderRowLayout.preferredHeight = 48;
-
-            // Create Win95 styled slider
-            slider = CreateWin95Slider(sliderRow.transform, sliderWidth);
-            slider.value = defaultValue;
-            slider.onValueChanged.AddListener((value) => onValueChanged(value));
-
-            // Value text
-            GameObject valueObj = new GameObject("ValueText");
-            valueObj.transform.SetParent(sliderRow.transform, false);
-
-            valueText = valueObj.AddComponent<TextMeshProUGUI>();
-            valueText.text = $"{defaultValue * 100:F0}%";
-            valueText.fontSize = fontSize - 2;
-            valueText.color = Win95Theme.WindowText;
-            valueText.alignment = TextAlignmentOptions.MidlineRight;
-
-            LayoutElement valueLayout = valueObj.AddComponent<LayoutElement>();
-            valueLayout.preferredWidth = 100;
-        }
-
-        private Slider CreateWin95Slider(Transform parent, float width)
-        {
-            GameObject sliderObj = new GameObject("Slider");
-            sliderObj.transform.SetParent(parent, false);
-
-            RectTransform sliderRect = sliderObj.AddComponent<RectTransform>();
-            sliderRect.sizeDelta = new Vector2(width, 40);
-
-            LayoutElement sliderLayout = sliderObj.AddComponent<LayoutElement>();
-            sliderLayout.preferredWidth = width;
-            sliderLayout.preferredHeight = 40;
-
-            // Background track (sunken)
-            GameObject trackObj = new GameObject("Track");
-            trackObj.transform.SetParent(sliderObj.transform, false);
-
-            RectTransform trackRect = trackObj.AddComponent<RectTransform>();
-            trackRect.anchorMin = new Vector2(0, 0.5f);
-            trackRect.anchorMax = new Vector2(1, 0.5f);
-            trackRect.pivot = new Vector2(0.5f, 0.5f);
-            trackRect.anchoredPosition = Vector2.zero;
-            trackRect.sizeDelta = new Vector2(0, 16);
-
-            Image trackImage = trackObj.AddComponent<Image>();
-            trackImage.color = Color.white;
-
-            // Add sunken border to track
-            CreateSunkenBorder(trackObj);
-
-            // Fill area
-            GameObject fillAreaObj = new GameObject("FillArea");
-            fillAreaObj.transform.SetParent(sliderObj.transform, false);
-
-            RectTransform fillAreaRect = fillAreaObj.AddComponent<RectTransform>();
-            fillAreaRect.anchorMin = new Vector2(0, 0.5f);
-            fillAreaRect.anchorMax = new Vector2(1, 0.5f);
-            fillAreaRect.pivot = new Vector2(0, 0.5f);
-            fillAreaRect.anchoredPosition = new Vector2(16, 0);
-            fillAreaRect.sizeDelta = new Vector2(-32, 12);
-
-            // Fill
-            GameObject fillObj = new GameObject("Fill");
-            fillObj.transform.SetParent(fillAreaObj.transform, false);
-
-            RectTransform fillRect = fillObj.AddComponent<RectTransform>();
-            fillRect.anchorMin = Vector2.zero;
-            fillRect.anchorMax = new Vector2(0, 1);
-            fillRect.pivot = new Vector2(0, 0.5f);
-            fillRect.sizeDelta = Vector2.zero;
-
-            Image fillImage = fillObj.AddComponent<Image>();
-            fillImage.color = Win95Theme.ColorTitleActive;
-
-            // Handle
-            GameObject handleAreaObj = new GameObject("HandleArea");
-            handleAreaObj.transform.SetParent(sliderObj.transform, false);
-
-            RectTransform handleAreaRect = handleAreaObj.AddComponent<RectTransform>();
-            handleAreaRect.anchorMin = Vector2.zero;
-            handleAreaRect.anchorMax = Vector2.one;
-            handleAreaRect.offsetMin = new Vector2(16, 0);
-            handleAreaRect.offsetMax = new Vector2(-16, 0);
-
-            GameObject handleObj = new GameObject("Handle");
-            handleObj.transform.SetParent(handleAreaObj.transform, false);
-
-            RectTransform handleRect = handleObj.AddComponent<RectTransform>();
-            handleRect.sizeDelta = new Vector2(32, 40);
-
-            Image handleImage = handleObj.AddComponent<Image>();
-            handleImage.color = Win95Theme.ButtonFace;
-
-            // Add raised border to handle
-            Win95Panel handlePanel = handleObj.AddComponent<Win95Panel>();
-
-            // Create slider component
-            Slider slider = sliderObj.AddComponent<Slider>();
-            slider.fillRect = fillRect;
-            slider.handleRect = handleRect;
-            slider.targetGraphic = handleImage;
-            slider.direction = Slider.Direction.LeftToRight;
-            slider.minValue = 0f;
-            slider.maxValue = 1f;
-
-            return slider;
-        }
-
-        private void CreateSeparator(Transform parent)
-        {
-            GameObject sepObj = new GameObject("Separator");
-            sepObj.transform.SetParent(parent, false);
-
-            LayoutElement sepLayout = sepObj.AddComponent<LayoutElement>();
-            sepLayout.preferredHeight = 4;
-
-            Image sepImage = sepObj.AddComponent<Image>();
-            sepImage.color = Win95Theme.ButtonShadow;
-        }
-
-        private void CreateSoundtrackToggle(Transform parent)
-        {
-            GameObject row = new GameObject("SoundtrackRow");
-            row.transform.SetParent(parent, false);
-
-            HorizontalLayoutGroup rowHlg = row.AddComponent<HorizontalLayoutGroup>();
-            rowHlg.spacing = 16;
-            rowHlg.childAlignment = TextAnchor.MiddleLeft;
-            rowHlg.childControlWidth = true;
-            rowHlg.childControlHeight = true;
-            rowHlg.childForceExpandWidth = false;
-            rowHlg.childForceExpandHeight = true;
-
-            LayoutElement rowLayout = row.AddComponent<LayoutElement>();
-            rowLayout.preferredHeight = 56;
-
-            // Label
-            GameObject labelObj = new GameObject("Label");
-            labelObj.transform.SetParent(row.transform, false);
-
-            TMP_Text labelText = labelObj.AddComponent<TextMeshProUGUI>();
-            labelText.text = "Soundtrack:";
-            labelText.fontSize = fontSize;
-            labelText.color = Win95Theme.WindowText;
-            labelText.alignment = TextAlignmentOptions.MidlineLeft;
-
-            LayoutElement labelLayout = labelObj.AddComponent<LayoutElement>();
-            labelLayout.preferredWidth = 200;
-
-            // Toggle
-            GameObject toggleObj = new GameObject("Toggle");
-            toggleObj.transform.SetParent(row.transform, false);
-
-            RectTransform toggleRect = toggleObj.AddComponent<RectTransform>();
-            toggleRect.sizeDelta = new Vector2(40, 40);
-
-            LayoutElement toggleLayout = toggleObj.AddComponent<LayoutElement>();
-            toggleLayout.preferredWidth = 40;
-            toggleLayout.preferredHeight = 40;
-
-            Image toggleBg = toggleObj.AddComponent<Image>();
-            toggleBg.color = Color.white;
-
-            // Checkmark
-            GameObject checkObj = new GameObject("Checkmark");
-            checkObj.transform.SetParent(toggleObj.transform, false);
-
-            RectTransform checkRect = checkObj.AddComponent<RectTransform>();
-            checkRect.anchorMin = new Vector2(0.2f, 0.2f);
-            checkRect.anchorMax = new Vector2(0.8f, 0.8f);
-            checkRect.offsetMin = Vector2.zero;
-            checkRect.offsetMax = Vector2.zero;
-
-            Image checkImage = checkObj.AddComponent<Image>();
-            checkImage.color = Win95Theme.WindowText;
-
-            soundtrackToggle = toggleObj.AddComponent<Toggle>();
-            soundtrackToggle.graphic = checkImage;
-            soundtrackToggle.targetGraphic = toggleBg;
-            soundtrackToggle.isOn = true; // Default to Side A
-            soundtrackToggle.onValueChanged.AddListener(OnSoundtrackToggleChanged);
-
-            // Soundtrack label
-            GameObject soundtrackLabelObj = new GameObject("SoundtrackLabel");
-            soundtrackLabelObj.transform.SetParent(row.transform, false);
-
-            soundtrackLabel = soundtrackLabelObj.AddComponent<TextMeshProUGUI>();
-            soundtrackLabel.text = "Nela's Score";
-            soundtrackLabel.fontSize = fontSize;
-            soundtrackLabel.color = Win95Theme.WindowText;
-            soundtrackLabel.alignment = TextAlignmentOptions.MidlineLeft;
-
-            LayoutElement soundtrackLabelLayout = soundtrackLabelObj.AddComponent<LayoutElement>();
-            soundtrackLabelLayout.flexibleWidth = 1;
-        }
-
-        private void CreateButtonRow()
-        {
-            GameObject buttonRow = new GameObject("ButtonRow");
-            buttonRow.transform.SetParent(dialogRoot.transform, false);
-
-            LayoutElement buttonLayout = buttonRow.AddComponent<LayoutElement>();
-            buttonLayout.preferredHeight = 96;
-
-            HorizontalLayoutGroup buttonHlg = buttonRow.AddComponent<HorizontalLayoutGroup>();
-            buttonHlg.padding = new RectOffset(8, 8, 8, 8);
-            buttonHlg.spacing = 16;
-            buttonHlg.childAlignment = TextAnchor.MiddleRight;
-            buttonHlg.childControlWidth = false;
-            buttonHlg.childControlHeight = true;
-            buttonHlg.childForceExpandWidth = false;
-            buttonHlg.childForceExpandHeight = true;
-
-            // Reset Defaults button
-            CreateButton(buttonRow.transform, "Reset", 200, () => {
-                ResetToDefaults();
-                OnResetDefaults?.Invoke();
-            });
-
-            // OK button
-            CreateButton(buttonRow.transform, "OK", 160, Close);
-        }
-
-        private void CreateButton(Transform parent, string text, float width, Action onClick)
-        {
-            GameObject btnObj = new GameObject(text + "Button");
-            btnObj.transform.SetParent(parent, false);
-
-            RectTransform btnRect = btnObj.AddComponent<RectTransform>();
-            btnRect.sizeDelta = new Vector2(width, 64);
-
-            LayoutElement btnLayout = btnObj.AddComponent<LayoutElement>();
-            btnLayout.preferredWidth = width;
-            btnLayout.preferredHeight = 64;
-
-            Button btn = btnObj.AddComponent<Button>();
-            btn.onClick.AddListener(() => onClick?.Invoke());
-
-            Win95Button.Create(btnObj, text, fontSize);
-        }
-
-        private void CreateSunkenBorder(GameObject parent)
-        {
-            CreateBorderLine(parent, "TopShadow", new Vector2(0, 1), new Vector2(1, 1),
-                new Vector2(0, 0), new Vector2(0, -2), Win95Theme.ButtonShadow);
-            CreateBorderLine(parent, "LeftShadow", new Vector2(0, 0), new Vector2(0, 1),
-                new Vector2(0, 0), new Vector2(2, 0), Win95Theme.ButtonShadow);
-            CreateBorderLine(parent, "BottomHighlight", new Vector2(0, 0), new Vector2(1, 0),
-                new Vector2(0, 0), new Vector2(0, 2), Win95Theme.ButtonHighlight);
-            CreateBorderLine(parent, "RightHighlight", new Vector2(1, 0), new Vector2(1, 1),
-                new Vector2(0, 0), new Vector2(-2, 0), Win95Theme.ButtonHighlight);
+            // Outer highlight (top-left)
+            CreateBorderLine(target, "TopHighlight", new Vector2(0, 1), new Vector2(1, 1),
+                new Vector2(0, 0), new Vector2(0, -2), Win95Theme.ButtonHighlight, true);
+            CreateBorderLine(target, "LeftHighlight", new Vector2(0, 0), new Vector2(0, 1),
+                new Vector2(0, 0), new Vector2(2, 0), Win95Theme.ButtonHighlight, true);
+
+            // Outer shadow (bottom-right)
+            CreateBorderLine(target, "BottomShadow", new Vector2(0, 0), new Vector2(1, 0),
+                new Vector2(0, 0), new Vector2(0, 2), Win95Theme.ColorDark, true);
+            CreateBorderLine(target, "RightShadow", new Vector2(1, 0), new Vector2(1, 1),
+                new Vector2(-2, 0), new Vector2(0, 0), Win95Theme.ColorDark, true);
+
+            // Inner highlight
+            CreateBorderLine(target, "TopHighlight2", new Vector2(0, 1), new Vector2(1, 1),
+                new Vector2(2, -2), new Vector2(-2, -4), Win95Theme.ColorLightHighlight, true);
+            CreateBorderLine(target, "LeftHighlight2", new Vector2(0, 0), new Vector2(0, 1),
+                new Vector2(2, 2), new Vector2(4, -2), Win95Theme.ColorLightHighlight, true);
+
+            // Inner shadow
+            CreateBorderLine(target, "BottomShadow2", new Vector2(0, 0), new Vector2(1, 0),
+                new Vector2(2, 2), new Vector2(-2, 4), Win95Theme.ButtonShadow, true);
+            CreateBorderLine(target, "RightShadow2", new Vector2(1, 0), new Vector2(1, 1),
+                new Vector2(-4, 2), new Vector2(-2, -2), Win95Theme.ButtonShadow, true);
         }
 
         private void CreateBorderLine(GameObject parent, string name, Vector2 anchorMin, Vector2 anchorMax,
-            Vector2 offsetMin, Vector2 offsetMax, Color color)
+            Vector2 offsetMin, Vector2 offsetMax, Color color, bool ignoreLayout = false)
         {
             GameObject lineObj = new GameObject(name);
             lineObj.transform.SetParent(parent.transform, false);
@@ -505,6 +175,437 @@ namespace MentalBreak.UI.Win95
             Image img = lineObj.AddComponent<Image>();
             img.color = color;
             img.raycastTarget = false;
+
+            if (ignoreLayout)
+            {
+                LayoutElement le = lineObj.AddComponent<LayoutElement>();
+                le.ignoreLayout = true;
+            }
+        }
+
+        private void CreateTitleBar()
+        {
+            GameObject titleBar = new GameObject("TitleBar");
+            titleBar.transform.SetParent(dialogRoot.transform, false);
+
+            RectTransform titleRect = titleBar.AddComponent<RectTransform>();
+            titleRect.anchorMin = new Vector2(0, 1);
+            titleRect.anchorMax = new Vector2(1, 1);
+            titleRect.pivot = new Vector2(0.5f, 1);
+            titleRect.anchoredPosition = new Vector2(0, -6);
+            titleRect.sizeDelta = new Vector2(-12, 42);
+
+            Image titleBg = titleBar.AddComponent<Image>();
+            titleBg.color = Win95Theme.ColorTitleActive;
+
+            // Title text
+            GameObject titleTextObj = new GameObject("TitleText");
+            titleTextObj.transform.SetParent(titleBar.transform, false);
+
+            RectTransform textRect = titleTextObj.AddComponent<RectTransform>();
+            textRect.anchorMin = new Vector2(0, 0);
+            textRect.anchorMax = new Vector2(1, 1);
+            textRect.offsetMin = new Vector2(12, 0);
+            textRect.offsetMax = new Vector2(-48, 0);
+
+            TMP_Text titleText = titleTextObj.AddComponent<TextMeshProUGUI>();
+            titleText.text = "Sound Settings";
+            titleText.fontSize = fontSize;
+            titleText.color = Win95Theme.TitleBarText;
+            titleText.fontStyle = FontStyles.Bold;
+            titleText.alignment = TextAlignmentOptions.MidlineLeft;
+
+            // Close button
+            GameObject closeObj = new GameObject("CloseButton");
+            closeObj.transform.SetParent(titleBar.transform, false);
+
+            RectTransform closeRect = closeObj.AddComponent<RectTransform>();
+            closeRect.anchorMin = new Vector2(1, 0.5f);
+            closeRect.anchorMax = new Vector2(1, 0.5f);
+            closeRect.pivot = new Vector2(1, 0.5f);
+            closeRect.anchoredPosition = new Vector2(-6, 0);
+            closeRect.sizeDelta = new Vector2(33, 33);
+
+            Image closeBg = closeObj.AddComponent<Image>();
+            closeBg.color = Win95Theme.ButtonFace;
+
+            Button closeButton = closeObj.AddComponent<Button>();
+            closeButton.targetGraphic = closeBg;
+            closeButton.onClick.AddListener(Close);
+
+            // X text
+            GameObject xTextObj = new GameObject("X");
+            xTextObj.transform.SetParent(closeObj.transform, false);
+
+            RectTransform xRect = xTextObj.AddComponent<RectTransform>();
+            xRect.anchorMin = Vector2.zero;
+            xRect.anchorMax = Vector2.one;
+            xRect.offsetMin = Vector2.zero;
+            xRect.offsetMax = Vector2.zero;
+
+            TMP_Text xText = xTextObj.AddComponent<TextMeshProUGUI>();
+            xText.text = "X";
+            xText.fontSize = 24;
+            xText.color = Win95Theme.WindowText;
+            xText.fontStyle = FontStyles.Bold;
+            xText.alignment = TextAlignmentOptions.Center;
+        }
+
+        private void CreateContentArea()
+        {
+            GameObject contentArea = new GameObject("ContentArea");
+            contentArea.transform.SetParent(dialogRoot.transform, false);
+
+            RectTransform contentRect = contentArea.AddComponent<RectTransform>();
+            contentRect.anchorMin = new Vector2(0, 0);
+            contentRect.anchorMax = new Vector2(1, 1);
+            contentRect.offsetMin = new Vector2(16, 60);
+            contentRect.offsetMax = new Vector2(-16, -54);
+
+            VerticalLayoutGroup contentVlg = contentArea.AddComponent<VerticalLayoutGroup>();
+            contentVlg.padding = new RectOffset(12, 12, 12, 12);
+            contentVlg.spacing = 6;
+            contentVlg.childControlWidth = true;
+            contentVlg.childControlHeight = false;
+            contentVlg.childForceExpandWidth = true;
+            contentVlg.childForceExpandHeight = false;
+
+            // Master Volume
+            masterSlider = CreateVolumeRow(contentArea.transform, "Master", 1f, out masterValueText);
+            masterSlider.onValueChanged.AddListener(OnMasterSliderChanged);
+
+            // Music Volume
+            musicSlider = CreateVolumeRow(contentArea.transform, "Music", 0.7f, out musicValueText);
+            musicSlider.onValueChanged.AddListener(OnMusicSliderChanged);
+
+            // SFX Volume
+            sfxSlider = CreateVolumeRow(contentArea.transform, "SFX", 1f, out sfxValueText);
+            sfxSlider.onValueChanged.AddListener(OnSFXSliderChanged);
+
+            // No separator - directly to soundtrack radio group
+
+            // Soundtrack Radio Buttons
+            CreateSoundtrackRadioGroup(contentArea.transform);
+        }
+
+        private Slider CreateVolumeRow(Transform parent, string label, float defaultValue, out TMP_Text valueText)
+        {
+            GameObject row = new GameObject(label + "Row");
+            row.transform.SetParent(parent, false);
+
+            LayoutElement rowLayout = row.AddComponent<LayoutElement>();
+            rowLayout.preferredHeight = 60;
+            rowLayout.minHeight = 60;
+
+            HorizontalLayoutGroup hlg = row.AddComponent<HorizontalLayoutGroup>();
+            hlg.spacing = 12;
+            hlg.childAlignment = TextAnchor.MiddleLeft;
+            hlg.childControlWidth = false;
+            hlg.childControlHeight = true;
+            hlg.childForceExpandWidth = false;
+            hlg.childForceExpandHeight = false;
+
+            // Label
+            GameObject labelObj = new GameObject("Label");
+            labelObj.transform.SetParent(row.transform, false);
+
+            TMP_Text labelText = labelObj.AddComponent<TextMeshProUGUI>();
+            labelText.text = label;
+            labelText.fontSize = fontSize;
+            labelText.color = Win95Theme.WindowText;
+            labelText.alignment = TextAlignmentOptions.MidlineLeft;
+
+            LayoutElement labelLayout = labelObj.AddComponent<LayoutElement>();
+            labelLayout.preferredWidth = 120;
+            labelLayout.preferredHeight = fontSize + 4;
+
+            // Create slider using Unity's DefaultControls for proper functionality
+            GameObject sliderObj = DefaultControls.CreateSlider(new DefaultControls.Resources());
+            sliderObj.name = label + "Slider";
+            sliderObj.transform.SetParent(row.transform, false);
+
+            LayoutElement sliderLayout = sliderObj.AddComponent<LayoutElement>();
+            sliderLayout.preferredWidth = sliderWidth;
+            sliderLayout.preferredHeight = 30;
+
+            Slider slider = sliderObj.GetComponent<Slider>();
+            slider.minValue = 0f;
+            slider.maxValue = 1f;
+            slider.value = defaultValue;
+
+            // Style the slider for Win95 look
+            StyleSlider(sliderObj);
+
+            // Value text
+            GameObject valueObj = new GameObject("Value");
+            valueObj.transform.SetParent(row.transform, false);
+
+            valueText = valueObj.AddComponent<TextMeshProUGUI>();
+            valueText.text = $"{defaultValue * 100:F0}%";
+            valueText.fontSize = fontSize - 6;
+            valueText.color = Win95Theme.WindowText;
+            valueText.alignment = TextAlignmentOptions.MidlineRight;
+
+            LayoutElement valueLayout = valueObj.AddComponent<LayoutElement>();
+            valueLayout.preferredWidth = 75;
+
+            return slider;
+        }
+
+        private void StyleSlider(GameObject sliderObj)
+        {
+            // Background
+            Transform bg = sliderObj.transform.Find("Background");
+            if (bg != null)
+            {
+                Image bgImage = bg.GetComponent<Image>();
+                bgImage.color = new Color(0.9f, 0.9f, 0.9f, 1f);
+            }
+
+            // Fill
+            Transform fillArea = sliderObj.transform.Find("Fill Area");
+            if (fillArea != null)
+            {
+                Transform fill = fillArea.Find("Fill");
+                if (fill != null)
+                {
+                    Image fillImage = fill.GetComponent<Image>();
+                    fillImage.color = Win95Theme.ColorTitleActive;
+                }
+            }
+
+            // Handle - darker grey with 3D raised border
+            Transform handleArea = sliderObj.transform.Find("Handle Slide Area");
+            if (handleArea != null)
+            {
+                Transform handle = handleArea.Find("Handle");
+                if (handle != null)
+                {
+                    Image handleImage = handle.GetComponent<Image>();
+                    handleImage.color = Win95Theme.ButtonShadow; // Darker grey
+
+                    RectTransform handleRect = handle.GetComponent<RectTransform>();
+                    handleRect.sizeDelta = new Vector2(21, 30);
+
+                    // Add 3D raised border to handle
+                    CreateHandleBorder(handle.gameObject);
+                }
+            }
+        }
+
+        private void CreateHandleBorder(GameObject handle)
+        {
+            // Top highlight (white)
+            CreateBorderLine(handle, "TopHL", new Vector2(0, 1), new Vector2(1, 1),
+                new Vector2(0, 0), new Vector2(0, -1), Win95Theme.ButtonHighlight);
+            // Left highlight (white)
+            CreateBorderLine(handle, "LeftHL", new Vector2(0, 0), new Vector2(0, 1),
+                new Vector2(0, 0), new Vector2(1, 0), Win95Theme.ButtonHighlight);
+            // Bottom shadow (dark)
+            CreateBorderLine(handle, "BottomSH", new Vector2(0, 0), new Vector2(1, 0),
+                new Vector2(0, 0), new Vector2(0, 1), Win95Theme.ColorDark);
+            // Right shadow (dark)
+            CreateBorderLine(handle, "RightSH", new Vector2(1, 0), new Vector2(1, 1),
+                new Vector2(-1, 0), new Vector2(0, 0), Win95Theme.ColorDark);
+        }
+
+        private void CreateSoundtrackRadioGroup(Transform parent)
+        {
+            // Container with VLG for the two radio options
+            GameObject group = new GameObject("SoundtrackGroup");
+            group.transform.SetParent(parent, false);
+
+            LayoutElement groupLayout = group.AddComponent<LayoutElement>();
+            groupLayout.preferredHeight = 76;
+            groupLayout.minHeight = 76;
+
+            VerticalLayoutGroup groupVlg = group.AddComponent<VerticalLayoutGroup>();
+            groupVlg.spacing = 4;
+            groupVlg.childControlWidth = true;
+            groupVlg.childControlHeight = false;
+            groupVlg.childForceExpandWidth = true;
+            groupVlg.childForceExpandHeight = false;
+
+            // Toggle group for mutual exclusivity
+            soundtrackToggleGroup = group.AddComponent<ToggleGroup>();
+            soundtrackToggleGroup.allowSwitchOff = false;
+
+            // Create two radio options
+            nelaToggle = CreateRadioOption(group.transform, "Nela's Score", true);
+            francoToggle = CreateRadioOption(group.transform, "Franco's Score", false);
+
+            nelaToggle.group = soundtrackToggleGroup;
+            francoToggle.group = soundtrackToggleGroup;
+
+            nelaToggle.onValueChanged.AddListener(OnNelaToggleChanged);
+        }
+
+        private Toggle CreateRadioOption(Transform parent, string labelText, bool isOn)
+        {
+            GameObject row = new GameObject(labelText.Replace("'", "") + "Row");
+            row.transform.SetParent(parent, false);
+
+            LayoutElement rowLayout = row.AddComponent<LayoutElement>();
+            rowLayout.preferredHeight = 32;
+            rowLayout.minHeight = 32;
+
+            HorizontalLayoutGroup hlg = row.AddComponent<HorizontalLayoutGroup>();
+            hlg.spacing = 12;
+            hlg.childAlignment = TextAnchor.MiddleLeft;
+            hlg.childControlWidth = false;
+            hlg.childControlHeight = true;
+            hlg.childForceExpandWidth = false;
+            hlg.childForceExpandHeight = false;
+
+            // Radio button (circle with dot)
+            GameObject radioObj = CreateWin95RadioButton();
+            radioObj.transform.SetParent(row.transform, false);
+
+            Toggle toggle = radioObj.GetComponent<Toggle>();
+            toggle.isOn = isOn;
+
+            // Label
+            GameObject labelObj = new GameObject("Label");
+            labelObj.transform.SetParent(row.transform, false);
+
+            TMP_Text label = labelObj.AddComponent<TextMeshProUGUI>();
+            label.text = labelText;
+            label.fontSize = fontSize;
+            label.color = Win95Theme.WindowText;
+            label.alignment = TextAlignmentOptions.MidlineLeft;
+
+            LayoutElement labelLayout = labelObj.AddComponent<LayoutElement>();
+            labelLayout.preferredWidth = 300;
+
+            return toggle;
+        }
+
+        private GameObject CreateWin95RadioButton()
+        {
+            GameObject radioObj = new GameObject("RadioButton");
+
+            LayoutElement layout = radioObj.AddComponent<LayoutElement>();
+            layout.preferredWidth = 24;
+            layout.preferredHeight = 24;
+            layout.minWidth = 24;
+            layout.minHeight = 24;
+
+            // White circle background (square for now - Win95 used square with rounded appearance)
+            Image bg = radioObj.AddComponent<Image>();
+            bg.color = Color.white;
+
+            // Sunken border (dark top-left, light bottom-right - opposite of raised)
+            // Top shadow (dark)
+            CreateBorderLine(radioObj, "TopSH", new Vector2(0, 1), new Vector2(1, 1),
+                new Vector2(0, 0), new Vector2(0, -1), Win95Theme.ButtonShadow);
+            // Left shadow (dark)
+            CreateBorderLine(radioObj, "LeftSH", new Vector2(0, 0), new Vector2(0, 1),
+                new Vector2(0, 0), new Vector2(1, 0), Win95Theme.ButtonShadow);
+            // Bottom highlight (white)
+            CreateBorderLine(radioObj, "BottomHL", new Vector2(0, 0), new Vector2(1, 0),
+                new Vector2(0, 0), new Vector2(0, 1), Win95Theme.ButtonHighlight);
+            // Right highlight (white)
+            CreateBorderLine(radioObj, "RightHL", new Vector2(1, 0), new Vector2(1, 1),
+                new Vector2(-1, 0), new Vector2(0, 0), Win95Theme.ButtonHighlight);
+
+            // Center dot (black, shown when selected)
+            GameObject dot = new GameObject("Dot");
+            dot.transform.SetParent(radioObj.transform, false);
+
+            RectTransform dotRect = dot.AddComponent<RectTransform>();
+            dotRect.anchorMin = new Vector2(0.3f, 0.3f);
+            dotRect.anchorMax = new Vector2(0.7f, 0.7f);
+            dotRect.offsetMin = Vector2.zero;
+            dotRect.offsetMax = Vector2.zero;
+
+            Image dotImage = dot.AddComponent<Image>();
+            dotImage.color = Win95Theme.WindowText;
+
+            // Toggle component
+            Toggle toggle = radioObj.AddComponent<Toggle>();
+            toggle.graphic = dotImage; // Dot shown/hidden based on isOn
+            toggle.targetGraphic = bg;
+
+            return radioObj;
+        }
+
+        private void CreateButtonRow()
+        {
+            GameObject buttonRow = new GameObject("ButtonRow");
+            buttonRow.transform.SetParent(dialogRoot.transform, false);
+
+            RectTransform buttonRect = buttonRow.AddComponent<RectTransform>();
+            buttonRect.anchorMin = new Vector2(0, 0);
+            buttonRect.anchorMax = new Vector2(1, 0);
+            buttonRect.pivot = new Vector2(0.5f, 0);
+            buttonRect.anchoredPosition = new Vector2(0, 12);
+            buttonRect.sizeDelta = new Vector2(-24, 48);
+
+            HorizontalLayoutGroup buttonHlg = buttonRow.AddComponent<HorizontalLayoutGroup>();
+            buttonHlg.spacing = 18;
+            buttonHlg.childAlignment = TextAnchor.MiddleRight;
+            buttonHlg.childControlWidth = false;
+            buttonHlg.childControlHeight = true;
+            buttonHlg.childForceExpandWidth = false;
+            buttonHlg.childForceExpandHeight = false;
+
+            // Spacer to push buttons right
+            GameObject spacer = new GameObject("Spacer");
+            spacer.transform.SetParent(buttonRow.transform, false);
+            LayoutElement spacerLayout = spacer.AddComponent<LayoutElement>();
+            spacerLayout.flexibleWidth = 1;
+
+            // Reset button
+            CreateButton(buttonRow.transform, "Reset", 120, () => {
+                ResetToDefaults();
+                OnResetDefaults?.Invoke();
+            });
+
+            // OK button
+            CreateButton(buttonRow.transform, "OK", 105, Close);
+        }
+
+        private void CreateButton(Transform parent, string text, float width, Action onClick)
+        {
+            GameObject btnObj = new GameObject(text + "Button");
+            btnObj.transform.SetParent(parent, false);
+
+            LayoutElement btnLayout = btnObj.AddComponent<LayoutElement>();
+            btnLayout.preferredWidth = width;
+            btnLayout.preferredHeight = 42;
+
+            Image btnBg = btnObj.AddComponent<Image>();
+            btnBg.color = Win95Theme.ButtonFace;
+
+            Button btn = btnObj.AddComponent<Button>();
+            btn.targetGraphic = btnBg;
+            btn.onClick.AddListener(() => onClick?.Invoke());
+
+            // Simple raised border
+            CreateBorderLine(btnObj, "TopHL", new Vector2(0, 1), new Vector2(1, 1),
+                new Vector2(0, 0), new Vector2(0, -2), Win95Theme.ButtonHighlight);
+            CreateBorderLine(btnObj, "LeftHL", new Vector2(0, 0), new Vector2(0, 1),
+                new Vector2(0, 0), new Vector2(2, 0), Win95Theme.ButtonHighlight);
+            CreateBorderLine(btnObj, "BottomSH", new Vector2(0, 0), new Vector2(1, 0),
+                new Vector2(0, 0), new Vector2(0, 2), Win95Theme.ColorDark);
+            CreateBorderLine(btnObj, "RightSH", new Vector2(1, 0), new Vector2(1, 1),
+                new Vector2(-2, 0), new Vector2(0, 0), Win95Theme.ColorDark);
+
+            // Text
+            GameObject textObj = new GameObject("Text");
+            textObj.transform.SetParent(btnObj.transform, false);
+
+            RectTransform textRect = textObj.AddComponent<RectTransform>();
+            textRect.anchorMin = Vector2.zero;
+            textRect.anchorMax = Vector2.one;
+            textRect.offsetMin = Vector2.zero;
+            textRect.offsetMax = Vector2.zero;
+
+            TMP_Text btnText = textObj.AddComponent<TextMeshProUGUI>();
+            btnText.text = text;
+            btnText.fontSize = fontSize - 6;
+            btnText.color = Win95Theme.WindowText;
+            btnText.alignment = TextAlignmentOptions.Center;
         }
 
         // Event handlers
@@ -526,13 +627,17 @@ namespace MentalBreak.UI.Win95
             OnSFXVolumeChanged?.Invoke(value);
         }
 
-        private void OnSoundtrackToggleChanged(bool isOn)
+        private void OnNelaToggleChanged(bool isNelaSelected)
         {
-            if (soundtrackLabel != null)
+            Debug.Log($"Soundtrack toggle changed: {(isNelaSelected ? "Nela (A)" : "Franco (B)")}");
+
+            // Directly update FMOD audio manager
+            if (FMODAudioManager.Instance != null)
             {
-                soundtrackLabel.text = isOn ? "Nela's Score" : "Franco's Score";
+                FMODAudioManager.Instance.SetSoundtrackSide(isNelaSelected ? "A" : "B");
             }
-            OnSoundtrackSideChanged?.Invoke(isOn);
+
+            OnSoundtrackSideChanged?.Invoke(isNelaSelected);
         }
 
         /// <summary>
@@ -540,6 +645,7 @@ namespace MentalBreak.UI.Win95
         /// </summary>
         public void Show()
         {
+            modalLock = ModalInputLock.Acquire(this);
             gameObject.SetActive(true);
         }
 
@@ -548,6 +654,8 @@ namespace MentalBreak.UI.Win95
         /// </summary>
         public void Close()
         {
+            modalLock?.Dispose();
+            modalLock = null;
             gameObject.SetActive(false);
             OnDialogClosed?.Invoke();
         }
@@ -560,7 +668,7 @@ namespace MentalBreak.UI.Win95
             if (masterSlider != null) masterSlider.value = 1f;
             if (musicSlider != null) musicSlider.value = 0.7f;
             if (sfxSlider != null) sfxSlider.value = 1f;
-            if (soundtrackToggle != null) soundtrackToggle.isOn = true;
+            if (nelaToggle != null) nelaToggle.isOn = true;
         }
 
         /// <summary>
@@ -571,11 +679,15 @@ namespace MentalBreak.UI.Win95
             if (masterSlider != null) masterSlider.value = master;
             if (musicSlider != null) musicSlider.value = music;
             if (sfxSlider != null) sfxSlider.value = sfx;
-            if (soundtrackToggle != null) soundtrackToggle.isOn = sideA;
+            if (nelaToggle != null && francoToggle != null)
+            {
+                nelaToggle.isOn = sideA;
+                francoToggle.isOn = !sideA;
+            }
         }
 
         /// <summary>
-        /// Create a Win95SettingsPanel.
+        /// Create a Win95SettingsPanel with its own Canvas for proper z-ordering.
         /// </summary>
         public static Win95SettingsPanel Create(Transform parent)
         {
@@ -587,6 +699,14 @@ namespace MentalBreak.UI.Win95
             panelRect.anchorMax = Vector2.one;
             panelRect.offsetMin = Vector2.zero;
             panelRect.offsetMax = Vector2.zero;
+
+            // Add Canvas with high sortingOrder to appear above overlay UI (2000)
+            Canvas panelCanvas = panelObj.AddComponent<Canvas>();
+            panelCanvas.overrideSorting = true;
+            panelCanvas.sortingOrder = 3000;
+
+            // Add GraphicRaycaster for UI interaction
+            panelObj.AddComponent<GraphicRaycaster>();
 
             return panelObj.AddComponent<Win95SettingsPanel>();
         }

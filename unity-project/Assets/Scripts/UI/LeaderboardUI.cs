@@ -55,7 +55,7 @@ public class LeaderboardUI : MonoBehaviour
 
     [Header("Layout")]
     [Tooltip("Top margin from the top edge of the safe area")]
-    public float topMargin = 12f;
+    public float topMargin = 89f;  // Adjusted for Win95 title/menu bars
 
     [Tooltip("Horizontal margin from the safe area's edges")]
     public float horizontalMargin = 32f;
@@ -295,6 +295,7 @@ public class LeaderboardUI : MonoBehaviour
         entryHeightPadding = DefaultStyle.EntryHeightPadding;
         titlePreferredHeight = DefaultStyle.TitlePreferredHeight;
         panelPadding = DefaultStyle.PanelPadding;
+        topMargin = 89f;  // Adjusted for Win95 title/menu bars
     }
 
     /// <summary>

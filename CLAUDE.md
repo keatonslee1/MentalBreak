@@ -4,9 +4,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Mental Break is a Unity 6.2 WebGL narrative game deployed via Vercel. It uses Yarn Spinner for dialogue with custom dialogue wheel and speech bubble systems.
+Mental Break is a Unity 6.2 WebGL narrative game deployed via Vercel. It uses Yarn Spinner for dialogue with a Windows 95 themed UI, including button-based dialogue options and speech bubbles.
 
 **Current Version**: 4.0.0 (Clean restructure from v3.5.3)
+
+**UI Theme**: Windows 95 style - game runs inside a classic Win95 window frame titled "Bigger Tech Corp. Employee Onboarding System"
 
 ---
 
@@ -107,10 +109,11 @@ python -m http.server 8000
 | Core/ | Game state, saves, settings | GameManager, SaveLoadManager, SaveExporter, SettingsManager |
 | Dialogue/ | Dialogue flow | ClickAdvancer, OptionsInputHandler |
 | UI/ | User interface | MenuManager, PauseMenuManager, SettingsPanel, StoreUI, ToastManager |
+| UI/Win95/ | Windows 95 UI system | Win95Theme, Win95WindowFrame, Win95Button, Win95Panel, Win95MenuBar |
 | Audio/ | Audio commands | AudioCommandHandler, FMODAudioManager, FMODWebGLBankLoader, MumbleDialogueController |
 | Characters/ | Portraits | CharacterSpriteManager, PortraitTalkingStateController |
 | Commands/ | Yarn handlers | BackgroundCommandHandler, CheckpointCommandHandler |
-| Editor/ | Dev tools | DialogueSystemUIAutoWire, SettingsPanelSetup, DialogueFontSetup, PauseMenuSetup, FixCharacterSpriteCropping |
+| Editor/ | Dev tools | DialogueSystemUIAutoWire, SettingsPanelSetup, DialogueFontSetup, PauseMenuSetup, Win95WindowSetup |
 
 ### Yarn Commands
 
@@ -328,6 +331,107 @@ The game uses **two separate ScreenSpaceOverlay canvases** with different sortin
 
 ### Known Pitfall (Fixed)
 `SaveSlotSelectionUI` previously changed the parent canvas `sortingOrder = 5000`, which caused metrics/leaderboard to disappear behind the dialogue UI. The fix was to remove this sortingOrder change entirely - the save/load panel is already visible within its parent canvas.
+
+---
+
+## Windows 95 UI System
+
+The game features a Windows 95 themed UI, wrapping the entire game in a classic Win95 window frame with proper 3D border effects.
+
+### Win95 Theme Colors (`Scripts/UI/Win95/Win95Theme.cs`)
+
+| Color | Hex | RGB | Usage |
+|-------|-----|-----|-------|
+| WindowBackground | #C3C3C3 | 195,195,195 | Main window/panel background |
+| ButtonFace | #C3C3C3 | 195,195,195 | Button backgrounds |
+| ButtonHighlight | #FFFFFF | 255,255,255 | Top-left borders (raised) |
+| ButtonShadow | #808080 | 128,128,128 | Bottom-right borders (raised) |
+| ColorDark | #262626 | 38,38,38 | Outer dark border |
+| ColorTitleActive | #000080 | 0,0,128 | Active window title bar (navy) |
+| ColorTitleText | #FFFFFF | 255,255,255 | Title bar text |
+| WindowText | #000000 | 0,0,0 | Standard text color |
+
+### Win95 UI Components
+
+| Component | File | Purpose |
+|-----------|------|---------|
+| Win95Theme | `Scripts/UI/Win95/Win95Theme.cs` | Central color palette and constants |
+| Win95Panel | `Scripts/UI/Win95/Win95Panel.cs` | Raised/sunken panel with 3D borders |
+| Win95Button | `Scripts/UI/Win95/Win95Button.cs` | 3D raised button with press state |
+| Win95WindowFrame | `Scripts/UI/Win95/Win95WindowFrame.cs` | Main window chrome (title bar, borders) |
+| Win95MenuBar | `Scripts/UI/Win95/Win95MenuBar.cs` | Menu bar with File/Edit style items |
+| Win95StatusBar | `Scripts/UI/Win95/Win95StatusBar.cs` | Status bar (version, run/day, credits) |
+| Win95MetricsPanel | `Scripts/UI/Win95/Win95MetricsPanel.cs` | Engagement/Sanity/Suspicion bars |
+| Win95Leaderboard | `Scripts/UI/Win95/Win95Leaderboard.cs` | Employee rankings list |
+| Win95OptionsPresenter | `Scripts/UI/Win95/Win95OptionsPresenter.cs` | Dialogue options as Win95 buttons |
+| Win95OptionItem | `Scripts/UI/Win95/Win95OptionItem.cs` | Individual option button |
+| Win95DialogueBox | `Scripts/UI/Win95/Win95DialogueBox.cs` | Styled dialogue text container |
+| Win95PortraitFrame | `Scripts/UI/Win95/Win95PortraitFrame.cs` | Raised border for character portraits |
+| Win95ModalDialog | `Scripts/UI/Win95/Win95ModalDialog.cs` | Base modal dialog class |
+| Win95SaveLoadDialog | `Scripts/UI/Win95/Win95SaveLoadDialog.cs` | Save/Load slot selection |
+| Win95SettingsPanel | `Scripts/UI/Win95/Win95SettingsPanel.cs` | Volume and settings controls |
+
+### Editor Setup Tools
+
+| Menu Item | Script | Purpose |
+|-----------|--------|---------|
+| Tools > Generate Win95 UI Assets | Win95AssetGenerator.cs | Create Win95 textures programmatically |
+| Tools > Setup Win95 Window Frame | Win95WindowSetup.cs | Add window frame to scene |
+| Tools > Wire Win95 Menu Bar | Win95WindowSetup.cs | Connect menu events to game systems |
+| Tools > Apply Win95 Portrait Frames | Win95PortraitStyler.cs | Style existing portrait frames |
+
+### Window Frame Structure
+
+```
+Win95WindowFrame
+├── TitleBar (Win95 navy blue)
+│   ├── WindowIcon
+│   ├── TitleText ("Bigger Tech Corp. Employee Onboarding System")
+│   └── WindowButtons (minimize, maximize, close - decorative)
+├── MenuBar
+│   └── Save | Load | Sound | Debug | Feedback
+├── ContentArea (game content goes here)
+└── StatusBar
+    └── Version | Run X Day X | Credits: XXX
+```
+
+### 3D Border Effect Pattern
+
+Win95 uses a characteristic 3D border effect with highlight and shadow colors:
+
+**Raised Panel** (buttons, windows):
+- Top/Left: White highlight (#FFFFFF)
+- Bottom/Right: Dark shadow (#262626)
+- Inner Top/Left: Light gray (#F0F0F0)
+- Inner Bottom/Right: Gray shadow (#808080)
+
+**Sunken Panel** (text fields, list views):
+- Top/Left: Gray shadow (#808080)
+- Bottom/Right: White highlight (#FFFFFF)
+
+### Runtime Portrait Styling
+
+The `Win95PortraitFrameApplier` component automatically applies Win95 borders to portrait frames at runtime. Add it to the CharacterSpriteManager GameObject.
+
+```csharp
+// Manual application
+Win95PortraitFrame.ApplyTo(portraitGameObject, Win95PortraitFrame.PanelStyle.Raised);
+
+// Apply to all portrait frames
+Win95PortraitFrame.StyleAllPortraitFrames();
+```
+
+### Menu Bar Events
+
+The Win95MenuConnector component wires menu bar events to game systems:
+
+| Menu Item | Action |
+|-----------|--------|
+| Save | Opens save dialog (PauseMenuManager.ShowSavePanel) |
+| Load | Opens load dialog (PauseMenuManager.ShowLoadPanel) |
+| Sound | Opens settings panel (PauseMenuManager.ShowSettingsPanel) |
+| Debug | Opens debug menu (PauseMenuManager.ShowDebugMenu) |
+| Feedback | Opens feedback form (FeedbackForm.Show) |
 
 ---
 

@@ -50,7 +50,7 @@ public class MetricsPanelUI : MonoBehaviour
     public float rightMargin = 20f;
 
     [Tooltip("Distance from the safe area's top edge")]
-    public float topMargin = 20f;
+    public float topMargin = 89f;  // Adjusted for Win95 title/menu bars
 
     [Tooltip("Extra width (in pixels) added to the computed metrics root width to avoid text clipping")]
     public float widthBonus = 50f;
@@ -571,6 +571,7 @@ public class MetricsPanelUI : MonoBehaviour
 
         // Reduce track/highlight so the bars don't feel more opaque than the HUD buttons.
         barTrackColor = new Color(1f, 1f, 1f, 0.06f);
+        topMargin = 89f;  // Adjusted for Win95 title/menu bars
     }
 
     /// <summary>

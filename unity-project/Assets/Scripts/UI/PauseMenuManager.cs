@@ -202,7 +202,7 @@ public class PauseMenuManager : MonoBehaviour
         // Always-visible on-screen buttons
         SetupTopLeftMenuButton();
         SetupBottomLeftFeedbackButton();
-        SetupBottomRightBackButton();
+        // SetupBottomRightBackButton(); // Moved to Win95 menu bar
 
         // Ensure newly created HUD text adopts the global font override.
         GlobalFontOverride.RequestApply();
@@ -890,6 +890,9 @@ public class PauseMenuManager : MonoBehaviour
             // Match the same internal left padding as HUD buttons.
             rect.offsetMin = new Vector2(18f, 0f);
             rect.offsetMax = new Vector2(-12f, 0f);
+
+            // Hide run/day tracker - now using Win95 status bar
+            panelObj.SetActive(false);
         }
     }
 
@@ -1252,6 +1255,8 @@ public class PauseMenuManager : MonoBehaviour
         if (topLeftMenuButton != null)
         {
             topLeftMenuButtonCanvasGroup = topLeftMenuButton.GetComponent<CanvasGroup>();
+            // Hide menu button - now using Win95 menu bar
+            topLeftMenuButton.gameObject.SetActive(false);
         }
     }
 
@@ -1289,6 +1294,8 @@ public class PauseMenuManager : MonoBehaviour
         if (bottomLeftFeedbackButton != null)
         {
             bottomLeftFeedbackButtonCanvasGroup = bottomLeftFeedbackButton.GetComponent<CanvasGroup>();
+            // Hide feedback button - now using Win95 menu bar
+            bottomLeftFeedbackButton.gameObject.SetActive(false);
         }
     }
 
@@ -1303,7 +1310,7 @@ public class PauseMenuManager : MonoBehaviour
             new Vector2(1f, 0f),
             new Vector2(1f, 0f),
             new Vector2(1f, 0f),
-            new Vector2(-HudEdgePadding, HudEdgePadding),
+            new Vector2(-HudEdgePadding, 35f),  // y=35 to clear Win95 status bar
             new Vector2(HudBackButtonWidth, HudButtonHeight),
             "Back",
             () =>

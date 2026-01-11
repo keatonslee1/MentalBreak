@@ -37,10 +37,13 @@ public class CharacterSpriteManager : MonoBehaviour
     public Vector2 spriteSize = new Vector2(200f, 300f);
     
     [Tooltip("Bottom-left position offset (x, y from bottom-left corner)")]
-    public Vector2 bottomLeftOffset = new Vector2(20f, 250f);
-    
+    public Vector2 bottomLeftOffset = new Vector2(20f, 12f);
+
     [Tooltip("Bottom-right position offset (x, y from bottom-right corner)")]
-    public Vector2 bottomRightOffset = new Vector2(-20f, 250f);
+    public Vector2 bottomRightOffset = new Vector2(-20f, 12f);
+
+    [Tooltip("Top-left position offset (x, y from top-left corner) for third portrait")]
+    public Vector2 topLeftOffset = new Vector2(12f, -89f);
 
     [Header("Portrait Frame")]
     [Tooltip("Background color for the portrait frame (translucent grey).")]
@@ -62,6 +65,7 @@ public class CharacterSpriteManager : MonoBehaviour
     // Character portrait frame GameObjects (containers with mask + background)
     private GameObject leftSpriteObject;
     private GameObject rightSpriteObject;
+    private GameObject topLeftSpriteObject;
 
     // Child images (actual portraits) inside the frames - LAYERED STRUCTURE
     // Base layer: shows static portrait or talking frames
@@ -82,6 +86,14 @@ public class CharacterSpriteManager : MonoBehaviour
     private RectTransform leftEyesRect;
     private RectTransform rightEyesRect;
 
+    // Top-left portrait layers (third character)
+    private Image topLeftBaseImage;
+    private RectTransform topLeftBaseRect;
+    private Image topLeftTalkingImage;
+    private RectTransform topLeftTalkingRect;
+    private Image topLeftEyesImage;
+    private RectTransform topLeftEyesRect;
+
     // Legacy references (for backwards compatibility, point to base layer)
     private Image leftPortraitImage => leftBaseImage;
     private Image rightPortraitImage => rightBaseImage;
@@ -91,10 +103,12 @@ public class CharacterSpriteManager : MonoBehaviour
     // Portrait animators (talking + blinking)
     private CharacterPortraitAnimator leftAnimator;
     private CharacterPortraitAnimator rightAnimator;
+    private CharacterPortraitAnimator topLeftAnimator;
 
     // Track currently displayed characters
     private string currentLeftCharacterTag = null;
     private string currentRightCharacterTag = null;
+    private string currentTopLeftCharacterTag = null;
 
     // Breathing animation driver
     private CharacterTalkAnimation talkAnimation;
@@ -718,7 +732,19 @@ public class CharacterSpriteManager : MonoBehaviour
             rightEyesImage = null;
             rightEyesRect = null;
         }
-        
+        if (topLeftSpriteObject != null)
+        {
+            Debug.LogWarning($"CharacterSpriteManager: Destroying existing top-left sprite object (was in wrong Canvas)");
+            DestroyImmediate(topLeftSpriteObject);
+            topLeftSpriteObject = null;
+            topLeftBaseImage = null;
+            topLeftBaseRect = null;
+            topLeftTalkingImage = null;
+            topLeftTalkingRect = null;
+            topLeftEyesImage = null;
+            topLeftEyesRect = null;
+        }
+
         // Verify we have the correct Canvas before creating sprites
         if (targetCanvas == null)
         {
@@ -950,12 +976,88 @@ public class CharacterSpriteManager : MonoBehaviour
 
         rightSpriteObject.SetActive(false);
 
-        // Wire breathing animation to ALL layers (base + talking + eyes for both portraits = 6 total)
+        // Get left sprite sibling index for placing third portrait (reuse existing leftIndex variable)
+        leftIndex = leftSpriteObject.transform.GetSiblingIndex();
+
+        // Create TOP-LEFT portrait frame (pinned to top-left corner for third character)
+        topLeftSpriteObject = new GameObject("CharacterPortraitFrame_TopLeft");
+        topLeftSpriteObject.transform.SetParent(targetCanvas.transform, false);
+        topLeftSpriteObject.transform.SetSiblingIndex(leftIndex + 2);
+
+        RectTransform topLeftFrameRect = topLeftSpriteObject.AddComponent<RectTransform>();
+        topLeftFrameRect.anchorMin = new Vector2(0f, 1f);  // Top-left anchor
+        topLeftFrameRect.anchorMax = new Vector2(0f, 1f);
+        topLeftFrameRect.pivot = new Vector2(0f, 1f);      // Top-left pivot
+        topLeftFrameRect.anchoredPosition = topLeftOffset;  // (12, -89)
+        topLeftFrameRect.sizeDelta = frameSize;
+
+        // Add frame background (translucent)
+        Image topLeftFrameBg = topLeftSpriteObject.AddComponent<Image>();
+        topLeftFrameBg.color = new Color(0f, 0f, 0f, 0.3f);
+        topLeftFrameBg.raycastTarget = false;
+
+        // Add mask to clip portrait at bottom of frame
+        RectMask2D topLeftMask = topLeftSpriteObject.AddComponent<RectMask2D>();
+
+        // Base Layer: Idle portrait
+        GameObject topLeftBaseObject = new GameObject("PortraitBase_TopLeft");
+        topLeftBaseObject.transform.SetParent(topLeftSpriteObject.transform, false);
+        topLeftBaseRect = topLeftBaseObject.AddComponent<RectTransform>();
+        topLeftBaseRect.anchorMin = new Vector2(0f, 0f);
+        topLeftBaseRect.anchorMax = new Vector2(1f, 0f);
+        topLeftBaseRect.pivot = new Vector2(0.5f, 0f);
+        topLeftBaseRect.anchoredPosition = new Vector2(0f, -20f);
+        topLeftBaseRect.sizeDelta = new Vector2(0f, spriteSize.y);
+
+        topLeftBaseImage = topLeftBaseObject.AddComponent<Image>();
+        topLeftBaseImage.preserveAspect = true;
+        topLeftBaseImage.raycastTarget = false;
+
+        // Talking Overlay Layer: Shows talking frames on top of base
+        GameObject topLeftTalkingObject = new GameObject("PortraitTalking_TopLeft");
+        topLeftTalkingObject.transform.SetParent(topLeftSpriteObject.transform, false);
+        topLeftTalkingRect = topLeftTalkingObject.AddComponent<RectTransform>();
+        topLeftTalkingRect.anchorMin = new Vector2(0f, 0f);
+        topLeftTalkingRect.anchorMax = new Vector2(1f, 0f);
+        topLeftTalkingRect.pivot = new Vector2(0.5f, 0f);
+        topLeftTalkingRect.anchoredPosition = new Vector2(0f, -20f);
+        topLeftTalkingRect.sizeDelta = new Vector2(0f, spriteSize.y);
+
+        topLeftTalkingImage = topLeftTalkingObject.AddComponent<Image>();
+        topLeftTalkingImage.preserveAspect = true;
+        topLeftTalkingImage.raycastTarget = false;
+        topLeftTalkingImage.color = new Color(1f, 1f, 1f, 0f); // Start transparent (will be set by animator)
+
+        // Eyes Overlay Layer: Shows eye blink frames on top of talking
+        GameObject topLeftEyesObject = new GameObject("PortraitEyes_TopLeft");
+        topLeftEyesObject.transform.SetParent(topLeftSpriteObject.transform, false);
+        topLeftEyesRect = topLeftEyesObject.AddComponent<RectTransform>();
+        topLeftEyesRect.anchorMin = new Vector2(0f, 0f);
+        topLeftEyesRect.anchorMax = new Vector2(1f, 0f);
+        topLeftEyesRect.pivot = new Vector2(0.5f, 0f);
+        topLeftEyesRect.anchoredPosition = new Vector2(0f, -20f);
+        topLeftEyesRect.sizeDelta = new Vector2(0f, spriteSize.y);
+
+        topLeftEyesImage = topLeftEyesObject.AddComponent<Image>();
+        topLeftEyesImage.preserveAspect = true;
+        topLeftEyesImage.raycastTarget = false;
+        topLeftEyesImage.color = new Color(1f, 1f, 1f, 0f); // Start transparent (will be set by animator)
+
+        // Add animator component to manage talking and blinking
+        topLeftAnimator = topLeftSpriteObject.AddComponent<CharacterPortraitAnimator>();
+
+        topLeftSpriteObject.SetActive(false);
+
+        // Wire breathing animation to ALL layers (base + talking + eyes for all 3 portraits = 9 total)
         if (talkAnimation != null)
         {
             // Use new breathing parameters: 3px amplitude, 10s period (half speed/distance)
             talkAnimation.Configure(3f, 10f);
-            RectTransform[] allLayers = { leftBaseRect, leftTalkingRect, leftEyesRect, rightBaseRect, rightTalkingRect, rightEyesRect };
+            RectTransform[] allLayers = {
+                leftBaseRect, leftTalkingRect, leftEyesRect,
+                rightBaseRect, rightTalkingRect, rightEyesRect,
+                topLeftBaseRect, topLeftTalkingRect, topLeftEyesRect
+            };
             talkAnimation.SetTargets(allLayers, resetPhase: true);
         }
     }
@@ -1020,11 +1122,11 @@ public class CharacterSpriteManager : MonoBehaviour
         
         Debug.Log($"CharacterSpriteManager: Final character tags: [{string.Join(", ", characterTags)}]");
         
-        // Limit to 2 characters max
-        if (characterTags.Count > 2)
+        // Limit to 3 characters max (left, right, top-left)
+        if (characterTags.Count > 3)
         {
-            characterTags = characterTags.Take(2).ToList();
-            Debug.Log($"CharacterSpriteManager: Limited to 2 characters: [{string.Join(", ", characterTags)}]");
+            characterTags = characterTags.Take(3).ToList();
+            Debug.Log($"CharacterSpriteManager: Limited to 3 characters: [{string.Join(", ", characterTags)}]");
         }
         
         // Display characters (priority: left first, then right)
@@ -1140,6 +1242,34 @@ public class CharacterSpriteManager : MonoBehaviour
                 Debug.LogWarning($"CharacterSpriteManager: No portrait data found for character tag '{rightTag}' in dictionary. Available keys: [{string.Join(", ", portraitDataDictionary.Keys)}]");
             }
         }
+
+        // Display third character on top-left
+        if (characterTags.Count >= 3)
+        {
+            string topLeftTag = characterTags[2];
+            if (portraitDataDictionary.TryGetValue(topLeftTag, out CharacterPortraitData topLeftData))
+            {
+                if (topLeftSpriteObject != null && topLeftBaseImage != null)
+                {
+                    currentTopLeftCharacterTag = topLeftTag;
+
+                    // IMPORTANT: Activate GameObject BEFORE initializing animator (coroutines need active GameObject)
+                    topLeftSpriteObject.SetActive(true);
+
+                    // Initialize animator with portrait data
+                    if (topLeftAnimator != null)
+                    {
+                        topLeftAnimator.Initialize(topLeftData, topLeftBaseImage, topLeftTalkingImage, topLeftEyesImage);
+                    }
+
+                    Debug.Log($"CharacterSpriteManager: Displaying '{topLeftTag}' on top-left (base sprite: {topLeftData.baseIdleSprite?.name}, {topLeftData.talkingFrames.Length} talking frames, {topLeftData.eyeBlinkFrames.Length} eye frames)");
+                }
+            }
+            else
+            {
+                Debug.LogWarning($"CharacterSpriteManager: No portrait data found for character tag '{topLeftTag}' in dictionary. Available keys: [{string.Join(", ", portraitDataDictionary.Keys)}]");
+            }
+        }
     }
 
     /// <summary>
@@ -1152,6 +1282,8 @@ public class CharacterSpriteManager : MonoBehaviour
             return leftAnimator;
         if (characterTag == currentRightCharacterTag)
             return rightAnimator;
+        if (characterTag == currentTopLeftCharacterTag)
+            return topLeftAnimator;
 
         return null; // Character not currently displayed
     }
@@ -1166,10 +1298,15 @@ public class CharacterSpriteManager : MonoBehaviour
         {
             rightSpriteObject.SetActive(false);
         }
+        if (topLeftSpriteObject != null)
+        {
+            topLeftSpriteObject.SetActive(false);
+        }
 
         // Clear current character tracking
         currentLeftCharacterTag = null;
         currentRightCharacterTag = null;
+        currentTopLeftCharacterTag = null;
     }
     
     // Editor helper method
